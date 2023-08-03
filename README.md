@@ -18,6 +18,6 @@ If you like my work, don't hesitate to support me by paying me a 🍺 or a ☕. 
 
 ## Wiki
 
-Guide is  available here: [Wiki](https://github.com/Guilouz/Creality-K1-and-K1-Max/wiki)https://github.com/Guilouz/Creality-K1-and-K1-Max/wiki
+Guide is  available here: [Wiki](https://github.com/Guilouz/Creality-K1-and-K1-Max/wiki)
 
 <br />
