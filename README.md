@@ -6,7 +6,11 @@
 
 This guide explains the whole process to root Creality K1 and K1 Max.
 
-Some of the firmwares were provided by Creality but have not yet been released publicly.
+The advantage is to have full access to the firmware and configuration files in order to be able to make changes to them.
+
+If you don't know what you're doing, I don't recommend following this guide.
+
+<u>Note:</u> Some of the firmwares were provided by Creality but have not yet been released publicly.
 
 <br />
 
