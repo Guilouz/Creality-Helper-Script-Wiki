@@ -22,6 +22,6 @@ Guide is  available here: [Wiki](https://github.com/Guilouz/Creality-K1-and-K1-M
 
 ## Credits
 
-Special Thanks are available [here](https://github.com/Guilouz/Creality-K1-and-K1-Max/wiki/Special-Thanks).
+Credits are available here: [Special Thanks](https://github.com/Guilouz/Creality-K1-and-K1-Max/wiki/Special-Thanks).
 
 <br />
