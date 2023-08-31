@@ -1,0 +1,13 @@
+Version Update V1.3.1.28 (Only for K1)
+
+1. Add boot animation.
+2. Add export log, upload log status, progress.
+3. Add support for connecting to hidden networks, support for connecting to open networks.
+4. Non-CrealityPrint Gcode no longer displays preview image error flooding effect.
+5. Optimize the logic of generating time-lapse video.
+6. Optimize the file compression method of uploading logs to the server.
+7. The cover of the time-lapse photography has been changed to the camera shooting screen.
+8. Fix some known issues.
+
+Upgrade Guide:
+Click on the screen for upgrade, wait for the upgrade to complete, then click on Settings - Device Self-Check - check Input Shaping and Auto Bed Leveling, click on Self-Check, wait for self-check to complete, then use the machine.
