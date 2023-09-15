@@ -12,7 +12,7 @@ show_menu(){
     printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
     printf " |            ${blue}Copyright © Cyril Guislain (Guilouz)            ${white}| \n"
     printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
-    printf " |                           ${cyan}v1.01                            ${white}| \n"
+    printf " |                            ${cyan}v1.1                            ${white}| \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
