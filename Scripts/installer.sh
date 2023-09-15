@@ -65,8 +65,7 @@ while [ $opt != '' ]
         1) DIR1=/usr/data/moonraker/
             DIR2=/usr/data/fluidd/
             DIR3=/usr/data/mainsail/
-            if [ -d "$DIR1" ];
-            then
+            if [ -d "$DIR1" ]; then
                 option_picked "Moonraker and Nginx are already installed!";
                 printf "\n"
                 show_menu;
@@ -78,18 +77,15 @@ while [ $opt != '' ]
                 [ ! -e /etc/init.d/S50nginx ] && cp nginx/S50nginx /etc/init.d/
                 [ ! -e /etc/init.d/S56moonraker_service ] && cp moonraker/S56moonraker_service /etc/init.d/
                 rm -f moonraker.tar
-                if [ ! -d "$DIR2" -a -d "$DIR3" ];
-                then
+                if [ ! -d "$DIR2" -a -d "$DIR3" ]; then
                     wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_fluidd.conf
                     cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
                     rm -f moonraker_fluidd.conf
-                elif [ -d "$DIR2" -a ! -d "$DIR3" ];
-                then
+                elif [ -d "$DIR2" -a ! -d "$DIR3" ]; then
                     wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_mainsail.conf
                     cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
                     rm -f moonraker_mainsail.conf
-                elif [ -d "$DIR2" -a -d "$DIR3" ];
-                then
+                elif [ -d "$DIR2" -a -d "$DIR3" ]; then
                     wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_both.conf
                     cp moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
                     rm -f moonraker_both.conf
@@ -109,13 +105,11 @@ while [ $opt != '' ]
         2) DIR1=/usr/data/fluidd/
             DIR2=/usr/data/mainsail/
             DIR3=/usr/data/moonraker/
-            if [ -d "$DIR1" ];
-            then
+            if [ -d "$DIR1" ]; then
                 option_picked "Fluidd is already installed!";
                 printf "\n"
                 show_menu;
-            elif [ ! -d "$DIR3" ];
-            then
+            elif [ ! -d "$DIR3" ]; then
                 option_picked "Please install Moonraker and Nginx first!";
                 printf "\n"
                 show_menu;
@@ -125,8 +119,7 @@ while [ $opt != '' ]
 	            cd /usr/data/fluidd
 	            wget -q -O fluidd.zip https://github.com/fluidd-core/fluidd/releases/latest/download/fluidd.zip && unzip fluidd.zip && rm fluidd.zip
                 cd /usr/data
-                if [ -d "$DIR2" ];
-                then
+                if [ -d "$DIR2" ]; then
                     wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_both.conf
                     cp moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
                     rm -f moonraker_both.conf
@@ -147,13 +140,11 @@ while [ $opt != '' ]
         3) DIR1=/usr/data/mainsail/
             DIR2=/usr/data/fluidd/
             DIR3=/usr/data/moonraker/
-            if [ -d "$DIR1" ];
-            then
+            if [ -d "$DIR1" ]; then
                 option_picked "Mainsail is already installed!";
                 printf "\n"
                 show_menu;
-            elif [ ! -d "$DIR3" ];
-            then
+            elif [ ! -d "$DIR3" ]; then
                 option_picked "Please install Moonraker and Nginx first!";
                 printf "\n"
                 show_menu;
@@ -163,8 +154,7 @@ while [ $opt != '' ]
 	            cd /usr/data/mainsail
 	            wget -q -O mainsail.zip https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip && unzip mainsail.zip && rm mainsail.zip
                 cd /usr/data
-                if [ -d "$DIR2" ];
-                then
+                if [ -d "$DIR2" ]; then
                     wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_both.conf
                     cp moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
                     rm -f moonraker_both.conf
@@ -200,15 +190,13 @@ while [ $opt != '' ]
         ;;
         5) DIR1=/usr/data/fluidd/
             DIR2=/usr/data/moonraker/
-            if [ ! -d "$DIR1" ];
-            then
+            if [ ! -d "$DIR1" ]; then
                 option_picked "Fluidd is not installed!";
                 printf "\n"
                 show_menu;
             else
                 rm -rf /usr/data/fluidd
-                if [ -d "$DIR2" ];
-                then
+                if [ -d "$DIR2" ]; then
                     cd /usr/data
                     wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_mainsail.conf
                     cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
@@ -220,15 +208,13 @@ while [ $opt != '' ]
         ;;
         6) DIR1=/usr/data/mainsail/
             DIR2=/usr/data/moonraker/
-            if [ ! -d "$DIR1" ];
-            then
+            if [ ! -d "$DIR1" ]; then
                 option_picked "Mainsail is not installed!";
                 printf "\n"
                 show_menu;
             else
                 rm -rf /usr/data/mainsail
-                if [ -d "$DIR2" ];
-                then
+                if [ -d "$DIR2" ]; then
                     cd /usr/data
                     wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_fluidd.conf
                     cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
@@ -240,8 +226,7 @@ while [ $opt != '' ]
         ;;
         7) DIR1=/usr/data/moonraker/
             DIR2=/usr/data/nginx/
-            if [[ ! -d "$DIR1" -a ! -d "$DIR2" ]]; 
-            then
+            if [[ ! -d "$DIR1" -a ! -d "$DIR2" ]]; then
                 option_picked "Moonraker and Nginx are not installed!";
                 printf "\n"
                 show_menu;
@@ -258,8 +243,7 @@ while [ $opt != '' ]
         ;;
         r) DIR1=/usr/data/moonraker/
             DIR2=/usr/data/nginx/
-            if [[ ! -d "$DIR1" -a ! -d "$DIR2" ]]; 
-            then
+            if [[ ! -d "$DIR1" -a ! -d "$DIR2" ]]; then
                 option_picked "Moonraker is not installed!";
                 printf "\n"
                 show_menu;
