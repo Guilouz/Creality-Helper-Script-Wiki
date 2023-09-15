@@ -56,7 +56,7 @@ option_picked(){
 
 clear
 show_menu
-while [ $opt != '' ]
+while [ $opt != '' ];
     do
     if [ $opt = '' ]; then
       exit;
