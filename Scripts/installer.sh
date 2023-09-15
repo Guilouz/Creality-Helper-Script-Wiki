@@ -105,7 +105,6 @@ while [ $opt != '' ]
                 printf "\n${green} Moonraker ${white}and ${green}Nginx ${white}have been installed ${green}successfully${white}!\n\n"
                 show_menu;
             fi
-        ;;
         2) DIR1=/usr/data/fluidd/
             DIR2=/usr/data/mainsail/
             DIR3=/usr/data/moonraker/
@@ -143,7 +142,6 @@ while [ $opt != '' ]
                 printf " You can now connect to Fluidd Web Interface with: ${yellow}https://xxx.xxx.xxx.xxx:4408${white}\n\n"
                 show_menu;
             fi
-        ;;
         3) DIR1=/usr/data/mainsail/
             DIR2=/usr/data/fluidd/
             DIR3=/usr/data/moonraker/
@@ -181,7 +179,6 @@ while [ $opt != '' ]
                 printf " You can now connect to Mainsail Web Interface with: ${yellow}https://xxx.xxx.xxx.xxx:4409${white}\n\n"
                 show_menu;
             fi
-        ;;
         4) printf "${green}Installing Entware...${white}\n"
             echo "Making /opt directory on data partition where there is space, and adding a symbolic link"
             rm -rf /opt/*
@@ -197,7 +194,6 @@ while [ $opt != '' ]
             printf "\n${green} Entware ${white}has been installed ${green}successfully${white}!\n"
             printf " Log out and log back in, and you can install packages with: ${yellow}opkg install <packagename>${white}\n\n"
             show_menu;
-        ;;
         5) DIR1=/usr/data/fluidd/
             DIR2=/usr/data/moonraker/
             if [ ! -d "$DIR1" ];
@@ -217,7 +213,6 @@ while [ $opt != '' ]
                 printf "\n${green} Fluidd ${white}has been removed ${green}successfully${white}!\n\n"
                 show_menu;
             fi
-        ;;
         6) DIR1=/usr/data/mainsail/
             DIR2=/usr/data/moonraker/
             if [ ! -d "$DIR1" ];
@@ -237,7 +232,6 @@ while [ $opt != '' ]
                 printf "\n${green} Mainsail ${white}has been removed ${green}successfully${white}!\n\n"
                 show_menu;
             fi
-        ;;
         7) DIR1=/usr/data/moonraker/
             DIR2=/usr/data/nginx/
             if [[ ! -d "$DIR1" -a ! -d "$DIR2" ]]; 
@@ -255,7 +249,6 @@ while [ $opt != '' ]
                 printf "\n${green} Moonraker ${white}and ${green}Nginx ${white}have been removed ${green}successfully${white}!\n\n"
                 show_menu;
             fi
-        ;;
         r) DIR1=/usr/data/moonraker/
             DIR2=/usr/data/nginx/
             if [[ ! -d "$DIR1" -a ! -d "$DIR2" ]]; 
@@ -273,14 +266,12 @@ while [ $opt != '' ]
                 printf "\n${green} Moonraker services ${white}has been reloaded!\n\n"
                 show_menu;
             fi
-        ;;
-        q)exit;
-        ;;
-        *)clear;
+        q) exit;
+
+        *) clear;
             option_picked "Please select a correct choice!";
             printf "\n"
             show_menu;
-        ;;
       esac
     fi
 done
