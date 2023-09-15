@@ -199,7 +199,7 @@ while [ $opt != '' ]
             show_menu;
         ;;
         5) DIR1=/usr/data/fluidd/
-            DIR2=/usr/data/moonraker/
+            DIR2=/usr/data/mainsail/
             if [ ! -d "$DIR1" ];
             then
                 option_picked "Fluidd is not installed!";
@@ -219,7 +219,7 @@ while [ $opt != '' ]
             fi
         ;;
         6) DIR1=/usr/data/mainsail/
-            DIR2=/usr/data/moonraker/
+            DIR2=/usr/data/fluidd/
             if [ ! -d "$DIR1" ];
             then
                 option_picked "Mainsail is not installed!";
