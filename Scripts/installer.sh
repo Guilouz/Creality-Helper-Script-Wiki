@@ -24,21 +24,24 @@ show_menu(){
     printf " |  ${yellow} 3)${white} Install ${green}Mainsail ${white}(port 4409)                          ${white}| \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} 4)${white} Install ${green}Entware                                       ${white}| \n"
+    printf " |  ${yellow} 5)${white} Install ${green}Mobileraker Companion                         ${white}| \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
     printf " | ${blue}UNINSTALLATION                                             ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow} 5)${white} Remove ${green}Fluidd                                         ${white}| \n"
-    printf " |  ${yellow} 6)${white} Remove ${green}Mainsail                                       ${white}| \n"
-    printf " |  ${yellow} 7)${white} Remove ${green}Moonraker ${white}and ${green}Nginx                            ${white}| \n"
+    printf " |  ${yellow} 6)${white} Remove ${green}Fluidd                                         ${white}| \n"
+    printf " |  ${yellow} 7)${white} Remove ${green}Mainsail                                       ${white}| \n"
+    printf " |  ${yellow} 8)${white} Remove ${green}Moonraker ${white}and ${green}Nginx                            ${white}| \n"
+    printf " |                                                            | \n"
+    printf " |  ${yellow} 9)${white} Remove ${green}Mobileraker Companion                          ${white}| \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
     printf " | ${blue}BACKUP AND RESTORE                                         ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow} 8)${white} Backup configuration files                            ${white}| \n"
-    printf " |  ${yellow} 9)${white} Restore configuration files                           ${white}| \n"
+    printf " |  ${yellow} 10)${white} Backup configuration files                           ${white}| \n"
+    printf " |  ${yellow} 11)${white} Restore configuration files                          ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |  ${yellow} r)${white} Reload Moonraker and Nginx                            ${white}| \n"
@@ -188,22 +191,49 @@ while [ $opt != '' ]
             fi
         ;;
         4) printf "${green}Installing Entware...${white}\n"
-            echo "Making /opt directory on data partition where there is space, and adding a symbolic link"
+            echo "Making /opt directory on data partition where there is space, and adding a symbolic link..."
             rm -rf /opt/*
             mkdir /usr/data/opt
             ln -nsf /usr/data/opt /opt
-            echo "Installing Entware using generic installer script"
+            echo "Installing Entware using generic installer script..."
             wget -O - http://bin.entware.net/mipselsf-k3.4/installer/generic.sh | /bin/sh
-            echo "Adding /opt/bin and /opt/sbin to the start of the PATH in the system profile"
+            echo "Adding /opt/bin and /opt/sbin to the start of the PATH in the system profile..."
             sed -i 's/export PATH="\/bin:/export PATH="\/opt\/bin:\/opt\/sbin:\/bin:/' /etc/profile
-            echo "Adding startup script /etc/init.d/S50unslung which will call future Entware startup and shutdown scripts that may needed"
+            echo "Adding startup script..."
             echo -e '#!/bin/sh\n/opt/etc/init.d/rc.unslung "$1"' > /etc/init.d/S50unslung
             chmod 755 /etc/init.d/S50unslung
             printf "\n${green} Entware ${white}has been installed ${green}successfully${white}!\n"
             printf " Log out and log back in, and you can install packages with: ${yellow}opkg install <packagename>${white}\n\n"
             show_menu;
         ;;
-        5) DIR1=/usr/data/fluidd/
+        5) DIR1=/usr/data/mobileraker_companion/
+            if [ -d "$DIR1" ];
+            then
+                option_picked "Mobileraker Companion is already installed!";
+                printf "\n"
+                show_menu;
+            else
+                printf "${green}Installing Mobileraker Companion...${white}\n"
+                cd /usr/data
+                echo "Installing prerequisite python packages..."
+                pip3 install requests websockets pytz coloredlogs
+                echo 'Done'
+                echo "Downloading modified version of Mobileraker Companion for K1..."
+                wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/mobileraker_companion.tar.gz
+                tar xzf mobileraker_companion.tar.gz
+                cd mobileraker_companion
+                echo "Adding startup script..."
+                cp S80mobileraker_companion /etc/init.d/S80mobileraker_companion
+                cd /usr/data
+                rm -f mobileraker_companion.tar.gz
+                chmod 755 /etc/init.d/S80mobileraker_companion
+                echo "Starting service..."
+                /etc/init.d/S80mobileraker_companion restart
+                printf "\n${green} Mobileraker Companion ${white}has been installed ${green}successfully${white}!\n"
+                show_menu;
+            fi
+        ;;
+        6) DIR1=/usr/data/fluidd/
             DIR2=/usr/data/mainsail/
             DIR3=/usr/data/moonraker/
             if [ ! -d "$DIR1" ];
@@ -228,7 +258,7 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        6) DIR1=/usr/data/fluidd/
+        7) DIR1=/usr/data/fluidd/
             DIR2=/usr/data/mainsail/
             DIR3=/usr/data/moonraker/
             if [ ! -d "$DIR2" ];
@@ -253,7 +283,7 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        7) DIR1=/usr/data/moonraker/
+        8) DIR1=/usr/data/moonraker/
             DIR2=/usr/data/nginx/
             if [[ ! -d "$DIR1" -a ! -d "$DIR2" ]]; 
             then
@@ -271,17 +301,30 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        8) FILE=/root/backup_config.tar
+        9) DIR1=/usr/data/mobileraker_companion/
+            if [[ ! -d "$DIR1" ]]; 
+            then
+                option_picked "Mobileraker Companion is not installed!";
+                printf "\n"
+                show_menu;
+            else
+                printf "${white}"
+                rm -rf /etc/init.d/S80mobileraker_companion /usr/data/mobileraker_companion
+                printf "\n${green} Mobileraker Companion ${white}have been removed ${green}successfully${white}!\n\n"
+                show_menu;
+            fi
+        ;;
+        10) FILE=/root/backup_config.tar
             if [[ -f "$FILE" ]]; 
             then
-                rm -rf /root/backup_config.tar
+                rm -f /root/backup_config.tar
             fi
             cd /usr/data/printer_data
             tar -czvf /root/backup_config.tar config/
             printf "\n${white} Klipper configuration files have been saved ${green}successfully${white} in ${yellow}/root ${white}folder!\n\n"
             show_menu;
         ;;
-        9) DIR1=/usr/data/printer_data/config/
+        11) DIR1=/usr/data/printer_data/config/
             FILE=/root/backup_config.tar
             if [[ -f "$FILE" ]]; 
             then
@@ -292,7 +335,7 @@ while [ $opt != '' ]
                 cp /root/backup_config.tar /usr/data/printer_data/
                 cd /usr/data/printer_data
                 tar -xvf backup_config.tar
-                rm -rf backup_config.tar
+                rm -f backup_config.tar
                 printf "\n${white} Klipper configuration files have been restored ${green}successfully${white}!\n\n"
                 show_menu;
             else
