@@ -17,13 +17,9 @@ show_menu(){
     printf " |                        ${blue}INSTALLATION                        ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
-    printf " |  ${red}Note: Moonraker and Nginx must be installed first         ${white}| \n"
-    printf " |                                                            | \n"
     printf " |  ${yellow} 1)${white} Install ${green}Moonraker ${white}and ${green}Nginx                           ${white}| \n"
     printf " |  ${yellow} 2)${white} Install ${green}Fluidd ${white}(port 4408)                            ${white}| \n"
     printf " |  ${yellow} 3)${white} Install ${green}Mainsail ${white}(port 4409)                          ${white}| \n"
-    printf " |                                                            | \n"
-    printf " | ---------------------------------------------------------- | \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} 4)${white} Install ${green}Entware                                       ${white}| \n"
     printf " |                                                            | \n"
@@ -34,6 +30,13 @@ show_menu(){
     printf " |  ${yellow} 5)${white} Remove ${green}Fluidd                                         ${white}| \n"
     printf " |  ${yellow} 6)${white} Remove ${green}Mainsail                                       ${white}| \n"
     printf " |  ${yellow} 7)${white} Remove ${green}Moonraker ${white}and ${green}Nginx                            ${white}| \n"
+    printf " |                                                            | \n"
+    printf " [============================================================] \n"
+    printf " |                     ${blue}BACKUP AND RESTORE                     ${white}| \n"
+    printf " [============================================================] \n"
+    printf " |                                                            | \n"
+    printf " |  ${yellow} 8)${white} Backup configuration files                            ${white}| \n"
+    printf " |  ${yellow} 9)${white} Restore configuration files                           ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |  ${yellow} r)${white} Reload Moonraker and Nginx                            ${white}| \n"
@@ -80,14 +83,14 @@ while [ $opt != '' ]
                 rm -f moonraker.tar
                 if [ ! -d "$DIR2" -a -d "$DIR3" ];
                 then
-                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_fluidd.conf
-                    cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
-                    rm -f moonraker_fluidd.conf
-                elif [ -d "$DIR2" -a ! -d "$DIR3" ];
-                then
                     wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_mainsail.conf
                     cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
                     rm -f moonraker_mainsail.conf
+                elif [ -d "$DIR2" -a ! -d "$DIR3" ];
+                then
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_fluidd.conf
+                    cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_fluidd.conf
                 elif [ -d "$DIR2" -a -d "$DIR3" ];
                 then
                     wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_both.conf
@@ -200,6 +203,7 @@ while [ $opt != '' ]
         ;;
         5) DIR1=/usr/data/fluidd/
             DIR2=/usr/data/mainsail/
+            DIR3=/usr/data/moonraker/
             if [ ! -d "$DIR1" ];
             then
                 option_picked "Fluidd is not installed!";
@@ -207,32 +211,41 @@ while [ $opt != '' ]
                 show_menu;
             else
                 rm -rf /usr/data/fluidd
-                if [ -d "$DIR2" ];
+                if [ -d "$DIR2" -a -d "$DIR3" ];
                 then
-                    cd /usr/data
                     wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_mainsail.conf
                     cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
                     rm -f moonraker_mainsail.conf
+                elif [ -d "$DIR3" ];
+                then
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker.conf
+                    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker.conf
                 fi
                 printf "\n${green} Fluidd ${white}has been removed ${green}successfully${white}!\n\n"
                 show_menu;
             fi
         ;;
-        6) DIR1=/usr/data/mainsail/
-            DIR2=/usr/data/fluidd/
-            if [ ! -d "$DIR1" ];
+        6) DIR1=/usr/data/fluidd/
+            DIR2=/usr/data/mainsail/
+            DIR3=/usr/data/moonraker/
+            if [ ! -d "$DIR2" ];
             then
                 option_picked "Mainsail is not installed!";
                 printf "\n"
                 show_menu;
             else
                 rm -rf /usr/data/mainsail
-                if [ -d "$DIR2" ];
+                if [ -d "$DIR1" -a -d "$DIR3" ];
                 then
-                    cd /usr/data
                     wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_fluidd.conf
                     cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
                     rm -f moonraker_fluidd.conf
+                elif [ -d "$DIR3" ];
+                then
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker.conf
+                    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker.conf
                 fi
                 printf "\n${green} Mainsail ${white}has been removed ${green}successfully${white}!\n\n"
                 show_menu;
@@ -253,6 +266,36 @@ while [ $opt != '' ]
                 rm -rf /etc/init.d/S50nginx /etc/init.d/S56moonraker_service 
                 rm -rf /usr/data/printer_data/config/moonraker.conf /usr/data/printer_data/config/.moonraker.conf.bkp /usr/data/nginx /usr/data/moonraker
                 printf "\n${green} Moonraker ${white}and ${green}Nginx ${white}have been removed ${green}successfully${white}!\n\n"
+                show_menu;
+            fi
+        ;;
+        8) FILE=/root/backup_config.tar
+            if [[ -f "$FILE" ]]; 
+            then
+                rm -rf /root/backup_config.tar
+            fi
+            cd /usr/data/printer_data
+            tar -czvf /root/backup_config.tar config/
+            printf "\n${white} Klipper configuration files have been saved ${green}successfully${white} in ${yellow}/root ${white}folder!\n\n"
+            show_menu;
+        ;;
+        9) DIR1=/usr/data/printer_data/config/
+            FILE=/root/backup_config.tar
+            if [[ -f "$FILE" ]]; 
+            then
+                if [[ -d "$DIR1" ]]; 
+                then
+                    rm -rf /usr/data/printer_data/config
+                fi
+                cp /root/backup_config.tar /usr/data/printer_data/
+                cd /usr/data/printer_data
+                tar -xvf backup_config.tar
+                rm -rf backup_config.tar
+                printf "\n${white} Klipper configuration files have been restored ${green}successfully${white}!\n\n"
+                show_menu;
+            else
+                option_picked "Please backup configuration file before restore!";
+                printf "\n"
                 show_menu;
             fi
         ;;
