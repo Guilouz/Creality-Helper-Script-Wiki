@@ -73,20 +73,30 @@ while [ $opt != '' ]
             else
                 printf "${green}Installing Moonraker and Nginx...${white}\n"
                 cd /usr/data
-                tar -xvf /root/creality/files/moonraker.tar
+                wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker.tar
+                tar -xvf moonraker.tar
                 [ ! -e /etc/init.d/S50nginx ] && cp nginx/S50nginx /etc/init.d/
                 [ ! -e /etc/init.d/S56moonraker_service ] && cp moonraker/S56moonraker_service /etc/init.d/
+                rm -f moonraker.tar
                 if [ ! -d "$DIR2" -a -d "$DIR3" ];
                 then
-                    cp /root/creality/files/moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_fluidd.conf
+                    cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_fluidd.conf
                 elif [ -d "$DIR2" -a ! -d "$DIR3" ];
                 then
-                    cp /root/creality/files/moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_mainsail.conf
+                    cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_mainsail.conf
                 elif [ -d "$DIR2" -a -d "$DIR3" ];
                 then
-                    cp /root/creality/files/moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_both.conf
+                    cp moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_both.conf
                 else
-                    cp /root/creality/files/moonraker.conf /usr/data/printer_data/config/moonraker.conf
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker.conf
+                    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker.conf
                 fi
                 /etc/init.d/S50nginx start
                 sleep 1
@@ -114,12 +124,16 @@ while [ $opt != '' ]
                 mkdir /usr/data/fluidd
 	            cd /usr/data/fluidd
 	            wget -q -O fluidd.zip https://github.com/fluidd-core/fluidd/releases/latest/download/fluidd.zip && unzip fluidd.zip && rm fluidd.zip
-                cd /usr/data/moonraker/moonraker
+                cd /usr/data
                 if [ -d "$DIR2" ];
                 then
-                    cp /root/creality/files/moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_both.conf
+                    cp moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_both.conf
                 else
-                    cp /root/creality/files/moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_fluidd.conf
+                    cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_fluidd.conf
                 fi
                 /etc/init.d/S50nginx restart
                 sleep 1
@@ -148,12 +162,16 @@ while [ $opt != '' ]
                 mkdir /usr/data/mainsail
 	            cd /usr/data/mainsail
 	            wget -q -O mainsail.zip https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip && unzip mainsail.zip && rm mainsail.zip
-                cd /usr/data/moonraker/moonraker
+                cd /usr/data
                 if [ -d "$DIR2" ];
                 then
-                    cp /root/creality/files/moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_both.conf
+                    cp moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_both.conf
                 else
-                    cp /root/creality/files/moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_mainsail.conf
+                    cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_mainsail.conf
                 fi
                 /etc/init.d/S50nginx restart
                 sleep 1
@@ -191,7 +209,10 @@ while [ $opt != '' ]
                 rm -rf /usr/data/fluidd
                 if [ -d "$DIR2" ];
                 then
-                    cp /root/creality/files/moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
+                    cd /usr/data
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_mainsail.conf
+                    cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_mainsail.conf
                 fi
                 printf "\n${green} Fluidd ${white}has been removed ${green}successfully${white}!\n\n"
                 show_menu;
@@ -208,7 +229,10 @@ while [ $opt != '' ]
                 rm -rf /usr/data/mainsail
                 if [ -d "$DIR2" ];
                 then
-                    cp /root/creality/files/moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
+                    cd /usr/data
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_fluidd.conf
+                    cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_fluidd.conf
                 fi
                 printf "\n${green} Mainsail ${white}has been removed ${green}successfully${white}!\n\n"
                 show_menu;
