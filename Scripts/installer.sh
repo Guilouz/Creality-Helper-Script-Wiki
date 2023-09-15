@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 show_menu(){
     white=`echo "\033[m"`
