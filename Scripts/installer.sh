@@ -3,6 +3,7 @@
 show_menu(){
     white=`echo "\033[m"`
     blue=`echo "\033[36m"`
+    cyan=`echo "\033[1;36m"`
     yellow=`echo "\033[1;33m"`
     green=`echo "\033[01;32m"`
     red=`echo "\033[01;31m"`
@@ -11,10 +12,11 @@ show_menu(){
     printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
     printf " |            ${blue}Copyright © Cyril Guislain (Guilouz)            ${white}| \n"
     printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
+    printf " |                           ${cyan}v1.01                            ${white}| \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
-    printf " |                        ${blue}INSTALLATION                        ${white}| \n"
+    printf " | ${blue}INSTALLATION                                               ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} 1)${white} Install ${green}Moonraker ${white}and ${green}Nginx                           ${white}| \n"
@@ -24,7 +26,7 @@ show_menu(){
     printf " |  ${yellow} 4)${white} Install ${green}Entware                                       ${white}| \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
-    printf " |                       ${blue}UNINSTALLATION                       ${white}| \n"
+    printf " | ${blue}UNINSTALLATION                                             ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} 5)${white} Remove ${green}Fluidd                                         ${white}| \n"
@@ -32,7 +34,7 @@ show_menu(){
     printf " |  ${yellow} 7)${white} Remove ${green}Moonraker ${white}and ${green}Nginx                            ${white}| \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
-    printf " |                     ${blue}BACKUP AND RESTORE                     ${white}| \n"
+    printf " | ${blue}BACKUP AND RESTORE                                         ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} 8)${white} Backup configuration files                            ${white}| \n"
