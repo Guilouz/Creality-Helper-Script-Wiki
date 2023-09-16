@@ -219,13 +219,15 @@ while [ $opt != '' ]
                 pip3 install requests websockets pytz coloredlogs
                 echo 'Done'
                 echo "Downloading modified version of Mobileraker Companion for K1..."
-                wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/mobileraker_companion.tar.gz
-                tar xzf mobileraker_companion.tar.gz
+                echo "Cloning mobileraker_companion github repository..."
+                git clone --depth 1 https://github.com/Clon1998/mobileraker_companion
                 cd mobileraker_companion
+                echo 'Getting K1 compatibility patches..'
+                wget https://openk1.org/static/k1/patches/mobileraker-companion-k1-no-tzlocal.patch
+                echo 'Applying K1 compatibility patches..'
+                patch -p1 < mobileraker-companion-k1-no-tzlocal.patch
                 echo "Adding startup script..."
                 cp S80mobileraker_companion /etc/init.d/S80mobileraker_companion
-                cd /usr/data
-                rm -f mobileraker_companion.tar.gz
                 chmod 755 /etc/init.d/S80mobileraker_companion
                 echo "Starting service..."
                 /etc/init.d/S80mobileraker_companion restart
