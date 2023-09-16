@@ -12,7 +12,7 @@ show_menu(){
     printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
     printf " |            ${blue}Copyright © Cyril Guislain (Guilouz)            ${white}| \n"
     printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
-    printf " |                            ${cyan}v1.1                            ${white}| \n"
+    printf " |                            ${cyan}v1.2                            ${white}| \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
@@ -106,6 +106,8 @@ while [ $opt != '' ]
                     cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
                     rm -f moonraker.conf
                 fi
+                cd /usr/data/moonraker/moonraker
+                git stash; git checkout master; git pull
                 /etc/init.d/S50nginx start
                 sleep 1
                 /etc/init.d/S56moonraker_service start
@@ -298,7 +300,7 @@ while [ $opt != '' ]
                 /etc/init.d/S50nginx stop
                 /etc/init.d/S56moonraker_service stop
                 rm -rf /etc/init.d/S50nginx /etc/init.d/S56moonraker_service 
-                rm -rf /usr/data/printer_data/config/moonraker.conf /usr/data/printer_data/config/.moonraker.conf.bkp /usr/data/nginx /usr/data/moonraker
+                rm -rf /usr/data/printer_data/config/moonraker.conf /usr/data/printer_data/config/.moonraker.conf.bkp /usr/data/printer_data/.moonraker.uuid /usr/data/printer_data/moonraker.asvc /usr/data/nginx /usr/data/moonraker
                 printf "\n${green} Moonraker ${white}and ${green}Nginx ${white}have been removed ${green}successfully${white}!\n\n"
                 show_menu;
             fi
