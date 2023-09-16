@@ -197,6 +197,8 @@ while [ $opt != '' ]
             fi
         ;;
         4) FILE=/usr/data/moonraker/moonraker/moonraker/components/timelapse.py
+            DIR1=/usr/data/fluidd/
+            DIR2=/usr/data/mainsail/
             if [ -f "$FILE" ];
             then
                 option_picked "Moonraker Timelapse is already installed!";
@@ -208,6 +210,26 @@ while [ $opt != '' ]
                 wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/timelapse/timelapse.cfg
                 mv timelapse.py moonraker/moonraker/moonraker/components/
                 mv timelapse.cfg printer_data/config/
+                if [ ! -d "$DIR1" -a -d "$DIR2" ];
+                then
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_mainsail.conf
+                    cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_mainsail.conf
+                elif [ -d "$DIR1" -a ! -d "$DIR2" ];
+                then
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_fluidd.conf
+                    cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_fluidd.conf
+                elif [ -d "$DIR1" -a -d "$DIR2" ];
+                then
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker_both.conf
+                    cp moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker_both.conf
+                else
+                    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/moonraker.conf
+                    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
+                    rm -f moonraker.conf
+                fi
                 printf "\n${green} Moonraker Timelapse ${white}has been installed ${green}successfully${white}!\n\n"
                 printf " Don't miss to enable ${yellow}[timelapse] ${white}function in moonraker.conf file.\n\n"
                 show_menu;
