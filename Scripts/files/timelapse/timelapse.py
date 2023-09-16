@@ -69,11 +69,11 @@ class Timelapse:
         self.config: Dict[str, Any] = {
             'enabled': True,
             'mode': "layermacro",
-            'camera': "Default",
+            'camera': "",
             'snapshoturl': "http://localhost::4408/webcam/?action=snapshot",
             'stream_delay_compensation': 0.05,
             'gcode_verbose': False,
-            'parkhead': True,
+            'parkhead': False,
             'parkpos': "back_left",
             'park_custom_pos_x': 10.0,
             'park_custom_pos_y': 10.0,
