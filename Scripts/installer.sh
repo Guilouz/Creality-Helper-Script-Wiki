@@ -12,7 +12,7 @@ show_menu(){
     printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
     printf " |            ${blue}Copyright © Cyril Guislain (Guilouz)            ${white}| \n"
     printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
-    printf " |                            ${cyan}v1.2                            ${white}| \n"
+    printf " |                            ${cyan}v1.3                            ${white}| \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
@@ -25,23 +25,25 @@ show_menu(){
     printf " |                                                            | \n"
     printf " |  ${yellow} 4)${white} Install ${green}Entware                                       ${white}| \n"
     printf " |  ${yellow} 5)${white} Install ${green}Mobileraker Companion                         ${white}| \n"
+    printf " |  ${yellow} 6)${white} Install ${green}Klipper Adaptive Meshing & Purging            ${white}| \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
     printf " | ${blue}UNINSTALLATION                                             ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow} 6)${white} Remove ${green}Fluidd                                         ${white}| \n"
-    printf " |  ${yellow} 7)${white} Remove ${green}Mainsail                                       ${white}| \n"
-    printf " |  ${yellow} 8)${white} Remove ${green}Moonraker ${white}and ${green}Nginx                            ${white}| \n"
+    printf " |  ${yellow} 7)${white} Remove ${green}Fluidd                                         ${white}| \n"
+    printf " |  ${yellow} 8)${white} Remove ${green}Mainsail                                       ${white}| \n"
+    printf " |  ${yellow} 9)${white} Remove ${green}Moonraker ${white}and ${green}Nginx                            ${white}| \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow} 9)${white} Remove ${green}Mobileraker Companion                          ${white}| \n"
+    printf " |  ${yellow} 10)${white} Remove ${green}Mobileraker Companion                         ${white}| \n"
+    printf " |  ${yellow} 11)${white} Remove ${green}Klipper Adaptive Meshing & Purging            ${white}| \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
     printf " | ${blue}BACKUP AND RESTORE                                         ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow} 10)${white} Backup configuration files                           ${white}| \n"
-    printf " |  ${yellow} 11)${white} Restore configuration files                          ${white}| \n"
+    printf " |  ${yellow} 12)${white} Backup configuration files                           ${white}| \n"
+    printf " |  ${yellow} 13)${white} Restore configuration files                          ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |  ${yellow} r)${white} Reload Moonraker and Nginx                            ${white}| \n"
@@ -237,7 +239,32 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        6) DIR1=/usr/data/fluidd/
+        6) DIR1=/usr/data/Klipper-Adaptive-Meshing-Purging
+            if [ -d "$DIR1" ];
+            then
+                option_picked "Klipper Adaptive Meshing & Purging is already installed!";
+                printf "\n"
+                show_menu;
+            else
+                printf "${green}Installing Klipper Adaptive Meshing & Purging...${white}\n"
+                cd /usr/data
+                git clone https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git
+                ln -sv /usr/data/Klipper-Adaptive-Meshing-Purging/Configuration printer_data/config/KAMP
+                cp Klipper-Adaptive-Meshing-Purging/Configuration/KAMP_Settings.cfg printer_data/config/KAMP_Settings.cfg
+                printf "\n${green} Klipper Adaptive Meshing & Purging ${white}has been installed ${green}successfully${white}!\n\n"
+                printf " Don't miss to enable ${yellow}enable_object_processing: True ${white}in moonraker.conf file.\n\n"
+                printf " You can also add this for future updates of KAMP:\n"
+                printf "\n${yellow} [update_manager Klipper Adaptive Meshing Purging]"
+                printf "\n${yellow} type: git_repo"
+                printf "\n${yellow} channel: dev"
+                printf "\n${yellow} path: /usr/data/Klipper-Adaptive-Meshing-Purging"
+                printf "\n${yellow} origin: https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git"
+                printf "\n${yellow} managed_services: klipper"
+                printf "\n${yellow} primary_branch: main${white}\n\n"
+                show_menu;
+            fi
+        ;;
+        7) DIR1=/usr/data/fluidd/
             DIR2=/usr/data/mainsail/
             DIR3=/usr/data/moonraker/
             if [ ! -d "$DIR1" ];
@@ -262,7 +289,7 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        7) DIR1=/usr/data/fluidd/
+        8) DIR1=/usr/data/fluidd/
             DIR2=/usr/data/mainsail/
             DIR3=/usr/data/moonraker/
             if [ ! -d "$DIR2" ];
@@ -287,7 +314,7 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        8) DIR1=/usr/data/moonraker/
+        9) DIR1=/usr/data/moonraker/
             DIR2=/usr/data/nginx/
             if [[ ! -d "$DIR1" -a ! -d "$DIR2" ]]; 
             then
@@ -305,7 +332,7 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        9) DIR1=/usr/data/mobileraker_companion/
+        10) DIR1=/usr/data/mobileraker_companion/
             if [[ ! -d "$DIR1" ]]; 
             then
                 option_picked "Mobileraker Companion is not installed!";
@@ -319,7 +346,20 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        10) FILE=/root/backup_config.tar
+        11) DIR1=/usr/data/Klipper-Adaptive-Meshing-Purging
+            if [[ ! -d "$DIR1" ]]; 
+            then
+                option_picked "Klipper Adaptive Meshing & Purging is not installed!";
+                printf "\n"
+                show_menu;
+            else
+                printf "${white}"
+                rm -rf /usr/data/Klipper-Adaptive-Meshing-Purging /usr/data/printer_data/config/KAMP /usr/data/printer_data/config/KAMP_Settings.cfg
+                printf "\n${green} Klipper Adaptive Meshing & Purging ${white}have been removed ${green}successfully${white}!\n\n"
+                show_menu;
+            fi
+        ;;
+        12) FILE=/root/backup_config.tar
             if [[ -f "$FILE" ]]; 
             then
                 rm -f /root/backup_config.tar
@@ -329,7 +369,7 @@ while [ $opt != '' ]
             printf "\n${white} Klipper configuration files have been saved ${green}successfully${white} in ${yellow}/root ${white}folder!\n\n"
             show_menu;
         ;;
-        11) DIR1=/usr/data/printer_data/config/
+        13) DIR1=/usr/data/printer_data/config/
             FILE=/root/backup_config.tar
             if [[ -f "$FILE" ]]; 
             then
