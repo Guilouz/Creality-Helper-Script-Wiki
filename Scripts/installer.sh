@@ -12,7 +12,7 @@ show_menu(){
     printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
     printf " |            ${blue}Copyright © Cyril Guislain (Guilouz)            ${white}| \n"
     printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
-    printf " |                            ${cyan}v1.3                            ${white}| \n"
+    printf " |                            ${cyan}v1.4                            ${white}| \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
@@ -22,28 +22,30 @@ show_menu(){
     printf " |  ${yellow} 1)${white} Install ${green}Moonraker ${white}and ${green}Nginx                           ${white}| \n"
     printf " |  ${yellow} 2)${white} Install ${green}Fluidd ${white}(port 4408)                            ${white}| \n"
     printf " |  ${yellow} 3)${white} Install ${green}Mainsail ${white}(port 4409)                          ${white}| \n"
+    printf " |  ${yellow} 4)${white} Install ${green}Moonraker Timelapse                           ${white}| \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow} 4)${white} Install ${green}Entware                                       ${white}| \n"
-    printf " |  ${yellow} 5)${white} Install ${green}Mobileraker Companion                         ${white}| \n"
-    printf " |  ${yellow} 6)${white} Install ${green}Klipper Adaptive Meshing & Purging            ${white}| \n"
+    printf " |  ${yellow} 5)${white} Install ${green}Entware                                       ${white}| \n"
+    printf " |  ${yellow} 6)${white} Install ${green}Mobileraker Companion                         ${white}| \n"
+    printf " |  ${yellow} 7)${white} Install ${green}Klipper Adaptive Meshing & Purging            ${white}| \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
     printf " | ${blue}UNINSTALLATION                                             ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow} 7)${white} Remove ${green}Fluidd                                         ${white}| \n"
-    printf " |  ${yellow} 8)${white} Remove ${green}Mainsail                                       ${white}| \n"
-    printf " |  ${yellow} 9)${white} Remove ${green}Moonraker ${white}and ${green}Nginx                            ${white}| \n"
+    printf " |  ${yellow} 8)${white}  Remove ${green}Fluidd                                        ${white}| \n"
+    printf " |  ${yellow} 9)${white}  Remove ${green}Mainsail                                      ${white}| \n"
+    printf " |  ${yellow} 10)${white} Remove ${green}Moonraker Timelapse                           ${white}| \n"
+    printf " |  ${yellow} 11)${white} Remove ${green}Moonraker ${white}and ${green}Nginx                           ${white}| \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow} 10)${white} Remove ${green}Mobileraker Companion                         ${white}| \n"
-    printf " |  ${yellow} 11)${white} Remove ${green}Klipper Adaptive Meshing & Purging            ${white}| \n"
+    printf " |  ${yellow} 12)${white} Remove ${green}Mobileraker Companion                         ${white}| \n"
+    printf " |  ${yellow} 13)${white} Remove ${green}Klipper Adaptive Meshing & Purging            ${white}| \n"
     printf " |                                                            | \n"
     printf " [============================================================] \n"
     printf " | ${blue}BACKUP AND RESTORE                                         ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow} 12)${white} Backup configuration files                           ${white}| \n"
-    printf " |  ${yellow} 13)${white} Restore configuration files                          ${white}| \n"
+    printf " |  ${yellow} 14)${white} Backup configuration files                           ${white}| \n"
+    printf " |  ${yellow} 15)${white} Restore configuration files                          ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |  ${yellow} r)${white} Reload Moonraker and Nginx                            ${white}| \n"
@@ -151,7 +153,7 @@ while [ $opt != '' ]
                 sleep 1
                 /etc/init.d/S56moonraker_service restart
                 sleep 1
-                printf "\n${green} Fluidd${white} has been installed ${green}successfully${white}!\n"
+                printf "\n${green} Fluidd${white} has been installed ${green}successfully${white}!\n\n"
                 printf " You can now connect to Fluidd Web Interface with: ${yellow}https://xxx.xxx.xxx.xxx:4408${white}\n\n"
                 show_menu;
             fi
@@ -189,12 +191,29 @@ while [ $opt != '' ]
                 sleep 1
                 /etc/init.d/S56moonraker_service restart
                 sleep 1
-                printf "\n${green} Mainsail ${white}has been installed ${green}successfully${white}!\n"
+                printf "\n${green} Mainsail ${white}has been installed ${green}successfully${white}!\n\n"
                 printf " You can now connect to Mainsail Web Interface with: ${yellow}https://xxx.xxx.xxx.xxx:4409${white}\n\n"
                 show_menu;
             fi
         ;;
-        4) printf "${green}Installing Entware...${white}\n"
+        4) FILE=/usr/data/moonraker/moonraker/moonraker/components/timelapse.py
+            if [ -f "$FILE" ];
+            then
+                option_picked "Moonraker Timelapse is already installed!";
+                printf "\n"
+                show_menu;
+            else
+                cd /usr/data
+                wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/timelapse/timelapse.py
+                wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/timelapse/timelapse.cfg
+                mv timelapse.py moonraker/moonraker/moonraker/components/
+                mv timelapse.cfg printer_data/config/
+                printf "\n${green} Moonraker Timelapse ${white}has been installed ${green}successfully${white}!\n\n"
+                printf " Don't miss to enable ${yellow}[timelapse] ${white}function in moonraker.conf file.\n\n"
+                show_menu;
+            fi
+        ;;
+        5) printf "${green}Installing Entware...${white}\n"
             echo "Making /opt directory on data partition where there is space, and adding a symbolic link..."
             rm -rf /opt/*
             mkdir /usr/data/opt
@@ -210,7 +229,7 @@ while [ $opt != '' ]
             printf " Log out and log back in, and you can install packages with: ${yellow}opkg install <packagename>${white}\n\n"
             show_menu;
         ;;
-        5) DIR1=/usr/data/mobileraker_companion/
+        6) DIR1=/usr/data/mobileraker_companion/
             if [ -d "$DIR1" ];
             then
                 option_picked "Mobileraker Companion is already installed!";
@@ -239,7 +258,7 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        6) DIR1=/usr/data/Klipper-Adaptive-Meshing-Purging
+        7) DIR1=/usr/data/Klipper-Adaptive-Meshing-Purging
             if [ -d "$DIR1" ];
             then
                 option_picked "Klipper Adaptive Meshing & Purging is already installed!";
@@ -264,7 +283,7 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        7) DIR1=/usr/data/fluidd/
+        8) DIR1=/usr/data/fluidd/
             DIR2=/usr/data/mainsail/
             DIR3=/usr/data/moonraker/
             if [ ! -d "$DIR1" ];
@@ -289,7 +308,7 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        8) DIR1=/usr/data/fluidd/
+        9) DIR1=/usr/data/fluidd/
             DIR2=/usr/data/mainsail/
             DIR3=/usr/data/moonraker/
             if [ ! -d "$DIR2" ];
@@ -314,7 +333,19 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        9) DIR1=/usr/data/moonraker/
+        10) FILE=/usr/data/moonraker/moonraker/moonraker/components/timelapse.py
+            if [ ! -f "$FILE" ];
+            then
+                option_picked "Moonraker Timelapse is not installed!";
+                printf "\n"
+                show_menu;
+            else
+                rm -rf /usr/data/moonraker/moonraker/moonraker/components/timelapse.py /usr/data/printer_data/config/timelapse.cfg
+                printf "\n${green} Moonraker Timelapse ${white}has been removed ${green}successfully${white}!\n\n"
+                show_menu;
+            fi
+        ;;
+        11) DIR1=/usr/data/moonraker/
             DIR2=/usr/data/nginx/
             if [[ ! -d "$DIR1" -a ! -d "$DIR2" ]]; 
             then
@@ -332,7 +363,7 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        10) DIR1=/usr/data/mobileraker_companion/
+        12) DIR1=/usr/data/mobileraker_companion/
             if [[ ! -d "$DIR1" ]]; 
             then
                 option_picked "Mobileraker Companion is not installed!";
@@ -346,7 +377,7 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        11) DIR1=/usr/data/Klipper-Adaptive-Meshing-Purging
+        13) DIR1=/usr/data/Klipper-Adaptive-Meshing-Purging
             if [[ ! -d "$DIR1" ]]; 
             then
                 option_picked "Klipper Adaptive Meshing & Purging is not installed!";
@@ -359,7 +390,7 @@ while [ $opt != '' ]
                 show_menu;
             fi
         ;;
-        12) FILE=/root/backup_config.tar
+        14) FILE=/root/backup_config.tar
             if [[ -f "$FILE" ]]; 
             then
                 rm -f /root/backup_config.tar
@@ -369,7 +400,7 @@ while [ $opt != '' ]
             printf "\n${white} Klipper configuration files have been saved ${green}successfully${white} in ${yellow}/root ${white}folder!\n\n"
             show_menu;
         ;;
-        13) DIR1=/usr/data/printer_data/config/
+        15) DIR1=/usr/data/printer_data/config/
             FILE=/root/backup_config.tar
             if [[ -f "$FILE" ]]; 
             then
