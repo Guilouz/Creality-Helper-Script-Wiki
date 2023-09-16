@@ -229,7 +229,7 @@ while [ $opt != '' ]
                 chmod 755 /etc/init.d/S80mobileraker_companion
                 echo "Starting service..."
                 /etc/init.d/S80mobileraker_companion restart
-                printf "\n${green} Mobileraker Companion ${white}has been installed ${green}successfully${white}!\n"
+                printf "\n${green} Mobileraker Companion ${white}has been installed ${green}successfully${white}!\n\n"
                 show_menu;
             fi
         ;;
@@ -309,6 +309,7 @@ while [ $opt != '' ]
                 show_menu;
             else
                 printf "${white}"
+                /etc/init.d/S80mobileraker_companion stop
                 rm -rf /etc/init.d/S80mobileraker_companion /usr/data/mobileraker_companion
                 printf "\n${green} Mobileraker Companion ${white}have been removed ${green}successfully${white}!\n\n"
                 show_menu;
