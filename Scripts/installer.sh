@@ -417,7 +417,7 @@ do
             			if [ ! -f "$FILE" ]; then
                 			printf "${darkred} Moonraker Timelapse is not installed!${white}\n\n";
             			else
-                			rm -rf /usr/data/moonraker/moonraker/moonraker/components/timelapse.py /usr/data/printer_data/config/timelapse.cfg
+                			rm -rf /usr/data/moonraker/moonraker/moonraker/components/timelapse.py /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc /usr/data/printer_data/config/timelapse.cfg
                 			printf "\n${green} Moonraker Timelapse ${white}has been removed ${green}successfully${white}!\n\n"
             			fi
                         ;;
