@@ -74,15 +74,15 @@ class Timelapse:
             'stream_delay_compensation': 0.05,
             'gcode_verbose': False,
             'parkhead': False,
-            'parkpos': "back_left",
+            'parkpos': "back_right",
             'park_custom_pos_x': 10.0,
             'park_custom_pos_y': 10.0,
             'park_custom_pos_dz': 0.0,
-            'park_travel_speed': 100,
-            'park_retract_speed': 15,
-            'park_extrude_speed': 15,
-            'park_retract_distance': 1.0,
-            'park_extrude_distance': 1.0,
+            'park_travel_speed': 400,
+            'park_retract_speed': 40,
+            'park_extrude_speed': 40,
+            'park_retract_distance': 0.5,
+            'park_extrude_distance': 0.5,
             'park_time': 0.1,
             'fw_retract': False,
             'hyperlapse_cycle': 30,
@@ -90,7 +90,7 @@ class Timelapse:
             'constant_rate_factor': 23,
             'output_framerate': 30,
             'pixelformat': "yuv420p",
-            'time_format_code': "%Y%m%d_%H%M",
+            'time_format_code': "%d-%m-%Y_%Hh%M",
             'extraoutputparams': "",
             'variable_fps': False,
             'targetlength': 10,
@@ -686,8 +686,9 @@ class Timelapse:
                 + " -i '" + inputfiles + "'" \
                 + filterParam \
                 + " -threads 2 -g 5" \
-                + " -vcodec mjpeg" \
+                + " -vcodec h264" \
                 + " -pix_fmt " + self.config['pixelformat'] \
+                + " -b:v 10M" \
                 + " -an" \
                 + " " + self.config['extraoutputparams'] \
                 + " '" + self.temp_dir + outfile + ".mp4' -y"
