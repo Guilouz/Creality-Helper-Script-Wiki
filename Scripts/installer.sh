@@ -28,7 +28,7 @@ main_menu(){
     printf " |  ${yellow} r)${white} Reload Moonraker and Nginx                            ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v1.6                                                       ${white}| \n"
+    printf " | ${cyan}v1.7                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -62,13 +62,14 @@ install_menu(){
     printf " |  ${yellow} 6)${white} Install ${green}Mobileraker Companion                         ${white}| \n"
     printf " |  ${yellow} 7)${white} Install ${green}Klipper Adaptive Meshing & Purging            ${white}| \n"
     printf " |  ${yellow} 8)${white} Install ${green}Hostname Service ${white}file                         ${white}| \n"
+    printf " |  ${yellow} 9)${white} Install ${green}Custom Boot Display ${white}                          ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v1.6                                                       ${white}| \n"
+    printf " | ${cyan}v1.7                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -101,13 +102,14 @@ uninstall_menu(){
     printf " |  ${yellow} 5)${white} Remove ${green}Mobileraker Companion                          ${white}| \n"
     printf " |  ${yellow} 6)${white} Remove ${green}Klipper Adaptive Meshing & Purging             ${white}| \n"
     printf " |  ${yellow} 7)${white} Remove ${green}Hostname Service ${white}file                          ${white}| \n"
+    printf " |  ${yellow} 8)${white} Remove ${green}Custom Boot Display ${white}                           ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v1.6                                                       ${white}| \n"
+    printf " | ${cyan}v1.7                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -140,7 +142,7 @@ backup_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v1.6                                                       ${white}| \n"
+    printf " | ${cyan}v1.7                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -165,7 +167,7 @@ do
             			then
             				printf "${darkred} Moonraker and Nginx are already installed!${white}\n\n";
             			else
-            			    printf " Are you sure you want to install ${green}Moonraker and Nginx${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Moonraker and Nginx${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			    read confirm
             			    printf "${white}\n";
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -200,6 +202,10 @@ do
                 			    /etc/init.d/S56moonraker_service start
                 			    sleep 1
                 			    printf "\n${green} Moonraker ${white}and ${green}Nginx ${white}have been installed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
@@ -212,7 +218,7 @@ do
             			elif [ ! -d "$DIR3" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!${white}\n\n";
             			else
-            			    printf " Are you sure you want to install ${green}Fluidd${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Fluidd${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			    read confirm
             			    printf "${white}\n";
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -236,6 +242,10 @@ do
                 			    sleep 1
                 			    printf "\n${green} Fluidd${white} has been installed ${green}successfully${white}!\n\n"
                 			    printf " You can now connect to Fluidd Web Interface with: ${yellow}https://xxx.xxx.xxx.xxx:4408${white}\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
@@ -248,7 +258,7 @@ do
             			elif [ ! -d "$DIR3" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!${white}\n\n";
             			else
-            			    printf " Are you sure you want to install ${green}Mainsail${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Mainsail${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			    read confirm
             			    printf "${white}\n";
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -272,6 +282,10 @@ do
                 			    sleep 1
                 			    printf "\n${green} Mainsail ${white}has been installed ${green}successfully${white}!\n\n"
                 			    printf " You can now connect to Mainsail Web Interface with: ${yellow}https://xxx.xxx.xxx.xxx:4409${white}\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
@@ -282,7 +296,7 @@ do
             			if [ -f "$FILE" ]; then
             				printf "${darkred} Moonraker Timelapse is already installed!${white}\n\n";
             			else
-            			    printf " Are you sure you want to install ${green}Moonraker Timelapse${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Moonraker Timelapse${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			    read confirm
             			    printf "${white}\n";
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -310,11 +324,15 @@ do
                 			    fi
                 			    printf "\n${green} Moonraker Timelapse ${white}has been installed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to enable ${yellow}[timelapse] ${white}function in moonraker.conf file.\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
                     5)
-                        printf " Are you sure you want to install ${green}Entware${white} ? (y/n): ${yellow}" 
+                        printf " Are you sure you want to install ${green}Entware${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			read confirm
             			printf "${white}\n";
             			if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -332,6 +350,10 @@ do
             			    chmod 755 /etc/init.d/S50unslung
             			    printf "\n${green} Entware ${white}has been installed ${green}successfully${white}!\n"
             			    printf " Log out and log back in, and you can install packages with: ${yellow}opkg install <packagename>${white}\n\n"
+            			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			printf "${darkred} Installation canceled!${white}\n\n";
+                	    else
+                		    printf "${darkred} Please select a correct choice!${white}\n\n";
             			fi
                         ;;
                     6)
@@ -339,7 +361,7 @@ do
             			if [ -d "$DIR1" ]; then
             				printf "${darkred} Mobileraker Companion is already installed!${white}\n\n";
             			else
-            			    printf " Are you sure you want to install ${green}Mobileraker Companion${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Mobileraker Companion${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			    read confirm
             			    printf "${white}\n";
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -361,6 +383,10 @@ do
                 			    echo "Starting service..."
                 			    /etc/init.d/S80mobileraker_companion restart
                 			    printf "\n${green} Mobileraker Companion ${white}has been installed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
@@ -369,7 +395,7 @@ do
             			if [ -d "$DIR1" ]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is already installed!${white}\n\n";
             			else
-            			    printf " Are you sure you want to install ${green}Klipper Adaptive Meshing & Purging${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Klipper Adaptive Meshing & Purging${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			    read confirm
             			    printf "${white}\n";
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -388,6 +414,10 @@ do
                 			    printf "\n${yellow} origin: https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git"
                 			    printf "\n${yellow} managed_services: klipper"
                 			    printf "\n${yellow} primary_branch: main${white}\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
@@ -396,7 +426,7 @@ do
             			if [ -f "$FILE" ]; then
             				printf "${darkred} Hotsname Service file is already installed!${white}\n\n";
             			else
-            			    printf " Are you sure you want to install ${green}Hotsname Service${white} file ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Hotsname Service${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			    read confirm
             			    printf "${white}\n";
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -405,7 +435,44 @@ do
                 			    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/S00hostname
                 			    chmod 755 S00hostname
                 			    printf "\n${green} Hotsname Service ${white}file has been installed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
+            			fi
+                        ;;
+                    9)
+                        printf " Are you sure you want to install ${green}Custom Boot Display${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			read confirm
+            			printf "${white}\n";
+            			if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+            			    printf " Do you want install ${green}Custom Boot Display${white} for ${yellow}K1${white} or ${yellow}K1 Max${white} ? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
+            			    read confirm2
+            			    printf "${white}\n";
+            			    if [ "$confirm2" = "k1" ]; then
+                			    printf "${green}Installing Custom Boot Display for K1...${white}\n"
+                			    cd /etc/boot-display
+                			    rm -rf part0 boot-display.conf
+                			    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/k1_boot_display.tar
+                			    tar -xvf  k1_boot_display.tar
+                			    rm -f k1_boot_display.tar
+                			    printf "\n${green} Custom Boot Display ${white}for ${yellow}K1${white} has been installed ${green}successfully${white}!\n\n"
+            			    elif [ "$confirm2" = "k1max" ]; then
+                			    printf "${green}Installing Custom Boot Display for K1 Max...${white}\n"
+                			    cd /etc/boot-display
+                			    rm -rf part0 boot-display.conf
+                			    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/k1max_boot_display.tar
+                			    tar -xvf k1max_boot_display.tar
+                			    rm -f k1max_boot_display.tar
+                			    printf "\n${green} Custom Boot Display ${white}for ${yellow}K1 Max${white} has been installed ${green}successfully${white}!\n\n"
+                			else
+                			    printf "${darkred} Please select a correct choice!${white}\n\n";
+            			    fi
+            			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			printf "${darkred} Installation canceled!${white}\n\n";
+                		else
+                		    printf "${darkred} Please select a correct choice!${white}\n\n";
             			fi
                         ;;
                     b)
@@ -433,7 +500,7 @@ do
             			if [ ! -d "$DIR1" ]; then
             				printf "${darkred} Fluidd is not installed!${white}\n\n";
             			else
-            			    printf " Are you sure you want to remove ${green}Fluidd${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to remove ${green}Fluidd${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			    read confirm
             			    printf "${white}\n";
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -448,6 +515,10 @@ do
                     			    rm -f moonraker.conf
                 			    fi
                 			    printf "\n${green} Fluidd ${white}has been removed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
@@ -458,7 +529,7 @@ do
             			if [ ! -d "$DIR2" ]; then
                 			printf "${darkred} Mainsail is not installed!${white}\n\n";
             			else
-            			    printf " Are you sure you want to remove ${green}Mainsail${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to remove ${green}Mainsail${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n";
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -473,6 +544,10 @@ do
                     			    rm -f moonraker.conf
                 			    fi
                 			    printf "\n${green} Mainsail ${white}has been removed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
@@ -481,12 +556,16 @@ do
             			if [ ! -f "$FILE" ]; then
                 			printf "${darkred} Moonraker Timelapse is not installed!${white}\n\n";
             			else
-            			    printf " Are you sure you want to remove ${green}Moonraker Timelapse${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to remove ${green}Moonraker Timelapse${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n";
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    rm -rf /usr/data/moonraker/moonraker/moonraker/components/timelapse.py /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc /usr/data/printer_data/config/timelapse.cfg
                 			    printf "\n${green} Moonraker Timelapse ${white}has been removed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
@@ -497,7 +576,7 @@ do
             				printf "${darkred} Moonraker and Nginx are not installed!\n";
             				printf "${white}\n"
             			else
-            			    printf " Are you sure you want to remove ${green}Moonraker and Nginx${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to remove ${green}Moonraker and Nginx${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n";
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -508,6 +587,10 @@ do
                 			    rm -rf /etc/init.d/S50nginx /etc/init.d/S56moonraker_service 
                 			    rm -rf /usr/data/printer_data/config/moonraker.conf /usr/data/printer_data/config/.moonraker.conf.bkp /usr/data/printer_data/.moonraker.uuid /usr/data/printer_data/moonraker.asvc /usr/data/nginx /usr/data/moonraker
                 			    printf "\n${green} Moonraker ${white}and ${green}Nginx ${white}have been removed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
@@ -516,7 +599,7 @@ do
             			if [[ ! -d "$DIR1" ]]; then
             				printf "${darkred} Mobileraker Companion is not installed!${white}\n\n";
             			else
-            			    printf " Are you sure you want to remove ${green}Mobileraker Companion${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to remove ${green}Mobileraker Companion${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n";
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -525,6 +608,10 @@ do
                 			    rm -rf /etc/init.d/S80mobileraker_companion /usr/data/mobileraker_companion
                 			    pip3 uninstall -y requests websockets pytz coloredlogs
                 			    printf "\n${green} Mobileraker Companion ${white}has been removed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
@@ -533,13 +620,17 @@ do
             			if [[ ! -d "$DIR1" ]]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is not installed!${white}\n\n";
             			else
-            			    printf " Are you sure you want to remove ${green}Klipper Adaptive Meshing & Purging${white} ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to remove ${green}Klipper Adaptive Meshing & Purging${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n";
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${white}"
                 			    rm -rf /usr/data/Klipper-Adaptive-Meshing-Purging /usr/data/printer_data/config/KAMP /usr/data/printer_data/config/KAMP_Settings.cfg
                 			    printf "\n${green} Klipper Adaptive Meshing & Purging ${white}has been removed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
                 			fi
            				fi
                         ;;
@@ -548,16 +639,37 @@ do
             			if [ ! -f "$FILE" ]; then
             				printf "${darkred} Hotsname Service file is not already installed!${white}\n\n";
             			else
-            			    printf " Are you sure you want to remove ${green}Hotsname Service${white} file ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to remove ${green}Hotsname Service${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n";
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
             			        printf "${white}"
                 			    rm -rf /etc/init.d/S00hostname
                 			    printf "\n${green} Hotsname Service ${white}file has been removed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
             			;;
+            	    8)
+                        printf " Are you sure you want to remove ${green}Custom Boot Display${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			read confirm
+            			printf "${white}\n";
+            			if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			cd /etc/boot-display
+                			rm -rf part0 boot-display.conf
+                			wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/stock_boot_display.tar
+                			tar -xvf  stock_boot_display.tar
+                			rm -f stock_boot_display.tar
+                			printf "\n${green} Custom Boot Display ${white}has been removed ${green}successfully${white}!\n\n"
+            			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			printf "${darkred} Deletion canceled!${white}\n\n";
+                		else
+                		    printf "${darkred} Please select a correct choice!${white}\n\n";
+            			fi
+                        ;;
                     b)
                     	clear
                         break
@@ -577,7 +689,7 @@ do
                 backup_menu
                 case $opt_backup_menu in
                     1)
-                        printf " Are you sure you want to backup ${green}Klipper configuration${white} files ? (y/n): ${yellow}" 
+                        printf " Are you sure you want to backup ${green}Klipper configuration${white} files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			read confirm
             			printf "${white}\n";
                         if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -588,6 +700,10 @@ do
             			    cd /usr/data/printer_data
             			    tar -czvf /root/backup_config.tar config/
             			    printf "\n${green} Klipper configuration ${white}files have been saved ${green}successfully${white} in ${yellow}/root ${white}folder!\n\n"
+            			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			printf "${darkred} Backup canceled!${white}\n\n";
+                		else
+                		    printf "${darkred} Please select a correct choice!${white}\n\n";
             			fi
                         ;;
                     2)
@@ -596,7 +712,7 @@ do
             			if [[ ! -f "$FILE" ]]; then
                 			printf "${darkred} Please backup configuration files before restore!${white}\n\n"
             			else
-            			    printf " Are you sure you want to backup ${green}Klipper configuration${white} files ? (y/n): ${yellow}" 
+            			    printf " Are you sure you want to backup ${green}Klipper configuration${white} files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n";
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -609,6 +725,10 @@ do
                 			    rm -f backup_config.tar
                 			    printf "\n${green} Klipper configuration ${white}files have been restored ${green}successfully${white}!\n\n"
                 			    backup_menu
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Restoration canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
             			fi
                         ;;
@@ -632,7 +752,7 @@ do
             then
             	printf "${darkred} Moonraker is not installed!${white}\n\n";
             else
-                printf " Do you want to reload ${green}Moonraker and Nginx${white} services ? (y/n): ${yellow}" 
+                printf " Do you want to reload ${green}Moonraker and Nginx${white} services ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             	read confirm
             	printf "${white}\n";
                 if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
@@ -643,6 +763,10 @@ do
                     /etc/init.d/S50nginx start
                     sleep 1
                     printf "\n${green} Moonraker and Nginx${white} services have been reloaded!\n\n"
+                elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                	printf "${darkred} Reload canceled!${white}\n\n";
+                else
+                	printf "${darkred} Please select a correct choice!${white}\n\n";
                 fi
             fi
             ;;
