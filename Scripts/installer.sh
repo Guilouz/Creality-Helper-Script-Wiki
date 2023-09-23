@@ -19,6 +19,8 @@ main_menu(){
     printf " |                       ${yellow} [ Main Menu ]                       ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
+    printf " | ${darkred}/!\ ONLY USE THIS SCRIPT WITH FIRMWARE 1.3.2.1 AND ABOVE!  ${white}| \n"
+    printf " |                                                            | \n"
     printf " |  ${yellow} 1)${white} Open ${green}[Install] ${white}Menu                                   | \n"
     printf " |  ${yellow} 2)${white} Open ${green}[Remove] ${white}Menu                                    | \n"
     printf " |  ${yellow} 3)${white} Open ${green}[Backup & Restore] ${white}Menu                          | \n"
@@ -28,7 +30,7 @@ main_menu(){
     printf " |  ${yellow} r)${white} Reload Moonraker and Nginx                            ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v1.7                                                       ${white}| \n"
+    printf " | ${cyan}v1.8                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -69,7 +71,7 @@ install_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v1.7                                                       ${white}| \n"
+    printf " | ${cyan}v1.8                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -109,7 +111,7 @@ uninstall_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v1.7                                                       ${white}| \n"
+    printf " | ${cyan}v1.8                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -142,7 +144,7 @@ backup_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v1.7                                                       ${white}| \n"
+    printf " | ${cyan}v1.8                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -443,36 +445,41 @@ do
             			fi
                         ;;
                     9)
-                        printf " Are you sure you want to install ${green}Custom Boot Display${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
-            			read confirm
-            			printf "${white}\n";
-            			if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-            			    printf " Do you want install ${green}Custom Boot Display${white} for ${yellow}K1${white} or ${yellow}K1 Max${white} ? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
-            			    read confirm2
+                        DIR=/etc/boot-display
+            			if [ ! -d "$DIR" ]; then
+            				printf "${darkred} Please use latest firmware to install Custom Boot Display!${white}\n\n";
+            			else
+                            printf " Are you sure you want to install ${green}Custom Boot Display${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    read confirm
             			    printf "${white}\n";
-            			    if [ "$confirm2" = "k1" ]; then
-                			    printf "${green}Installing Custom Boot Display for K1...${white}\n"
-                			    cd /etc/boot-display
-                			    rm -rf part0 boot-display.conf
-                			    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/k1_boot_display.tar
-                			    tar -xvf  k1_boot_display.tar
-                			    rm -f k1_boot_display.tar
-                			    printf "\n${green} Custom Boot Display ${white}for ${yellow}K1${white} has been installed ${green}successfully${white}!\n\n"
-            			    elif [ "$confirm2" = "k1max" ]; then
-                			    printf "${green}Installing Custom Boot Display for K1 Max...${white}\n"
-                			    cd /etc/boot-display
-                			    rm -rf part0 boot-display.conf
-                			    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/k1max_boot_display.tar
-                			    tar -xvf k1max_boot_display.tar
-                			    rm -f k1max_boot_display.tar
-                			    printf "\n${green} Custom Boot Display ${white}for ${yellow}K1 Max${white} has been installed ${green}successfully${white}!\n\n"
-                			else
-                			    printf "${darkred} Please select a correct choice!${white}\n\n";
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+            			        printf " Do you want install ${green}Custom Boot Display${white} for ${yellow}K1${white} or ${yellow}K1 Max${white} ? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
+            			        read confirm2
+            			        printf "${white}\n";
+            			        if [ "$confirm2" = "k1" ]; then
+                			        printf "${green}Installing Custom Boot Display for K1...${white}\n"
+                			        cd /etc/boot-display
+                			        rm -rf part0 boot-display.conf
+                			        wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/k1_boot_display.tar
+                			        tar -xvf  k1_boot_display.tar
+                			        rm -f k1_boot_display.tar
+                			        printf "\n${green} Custom Boot Display ${white}for ${yellow}K1${white} has been installed ${green}successfully${white}!\n\n"
+            			        elif [ "$confirm2" = "k1max" ]; then
+                			        printf "${green}Installing Custom Boot Display for K1 Max...${white}\n"
+                			        cd /etc/boot-display
+                			        rm -rf part0 boot-display.conf
+                			        wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/k1max_boot_display.tar
+                			        tar -xvf k1max_boot_display.tar
+                			        rm -f k1max_boot_display.tar
+                			        printf "\n${green} Custom Boot Display ${white}for ${yellow}K1 Max${white} has been installed ${green}successfully${white}!\n\n"
+                			    else
+                			        printf "${darkred} Please select a correct choice!${white}\n\n";
+            			        fi
+            			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
             			    fi
-            			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
-                			printf "${darkred} Installation canceled!${white}\n\n";
-                		else
-                		    printf "${darkred} Please select a correct choice!${white}\n\n";
             			fi
                         ;;
                     b)
@@ -654,20 +661,25 @@ do
             			fi
             			;;
             	    8)
-                        printf " Are you sure you want to remove ${green}Custom Boot Display${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
-            			read confirm
-            			printf "${white}\n";
-            			if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-                			cd /etc/boot-display
-                			rm -rf part0 boot-display.conf
-                			wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/stock_boot_display.tar
-                			tar -xvf  stock_boot_display.tar
-                			rm -f stock_boot_display.tar
-                			printf "\n${green} Custom Boot Display ${white}has been removed ${green}successfully${white}!\n\n"
-            			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
-                			printf "${darkred} Deletion canceled!${white}\n\n";
-                		else
-                		    printf "${darkred} Please select a correct choice!${white}\n\n";
+                        DIR=/etc/boot-display
+            			if [ ! -d "$DIR" ]; then
+            				printf "${darkred} Please use latest firmware to restore Stock Boot Display!${white}\n\n";
+            			else
+                            printf " Are you sure you want to remove ${green}Custom Boot Display${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    read confirm
+            			    printf "${white}\n";
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    cd /etc/boot-display
+                			    rm -rf part0 boot-display.conf
+                			    wget https://github.com/Guilouz/Creality-K1-and-K1-Max/raw/main/Scripts/files/stock_boot_display.tar
+                			    tar -xvf  stock_boot_display.tar
+                			    rm -f stock_boot_display.tar
+                			    printf "\n${green} Custom Boot Display ${white}has been removed ${green}successfully${white}!\n\n"
+            			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n";
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n";
+            			    fi
             			fi
                         ;;
                     b)
