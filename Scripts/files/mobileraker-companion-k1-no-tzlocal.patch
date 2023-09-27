@@ -1,0 +1,105 @@
+--- /dev/null
++++ mobileraker_companion.new/S80mobileraker_companion
+@@ -0,0 +1,25 @@
++#!/bin/sh
++# start script for mobileraker companion on K1 - by destinal
++
++MRC_DIR="/usr/data/mobileraker_companion"
++LOG_DIR="/usr/data/printer_data/logs"
++
++case "$1" in
++    start)
++        /usr/bin/python3 "$MRC_DIR/mobileraker.py" -c "$MRC_DIR/mobileraker.conf" -l "$LOG_DIR/mobileraker.log" >/dev/null 2>&1 &
++        ;;
++    stop)
++        MY_PID=`ps auxw|grep python3.*mobileraker_companion|grep -v grep|awk '{print $1}'`
++        if [ "$MY_PID" != "" ]; then kill -TERM $MY_PID; fi
++        ;;
++    restart|reload)
++        "$0" stop
++        "$0" start
++        ;;
++    *)
++        echo "Usage: $0 {start}"
++        exit 1
++esac
++
++exit $?
++
+--- /dev/null
++++ mobileraker_companion.new/mobileraker.conf
+@@ -0,0 +1,42 @@
++[general]
++language: en 
++# one of the supported languages defined in i18n.py#languages (de,en,...)
++# Default: en
++# timezone: Europe/Berlin 
++# correct timezone e.g. Europe/Berlin for Berlin time or US/Central. 
++# For more values see https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568
++# Default: Tries to use system timezone
++# Optional
++eta_format: %%d.%%m.%%Y, %%H:%%M:%%S
++# Format used for eta and adaptive_eta placeholder variables
++# For available options see https://strftime.org/
++# Note that you will have to escape the % char by using a 2nd one e.g.: %d/%m/%Y -> %%d/%%m/%%Y
++# Default: %%d.%%m.%%Y, %%H:%%M:%%S
++# Optional
++include_snapshot: True
++# !! SUPPORTER ONLY - This feature requires beeing a supporter of Mobileraker as of now!
++# Include a snapshot of the webcam in any print status/progress update notifications
++# Default: True
++# Optional
++
++
++
++# Add a [printer ...] section for every printer you want to add
++[printer creality]
++moonraker_uri: ws://127.0.0.1:7125/websocket
++# Define the uri to the moonraker instance.
++# Default value: ws://127.0.0.1:7125/websocket
++# Optional
++moonraker_api_key: False
++# Moonraker API key if force_logins or trusted clients is active!
++# Default value: False
++# Optional
++snapshot_uri: http://127.0.0.1:4409/webcam/?action=snapshot
++# !! SUPPORTER ONLY - This feature requires beeing a supporter of Mobileraker as of now!
++# The ABSOLUT url to the webcam, the companion should make a screenshot of. 
++# Default: 
++# Optional
++snapshot_rotation: 0
++# The rotation applied to the image. Valid values : 0, 90, 180, 270
++# Default: 0
++# Optional
+--- mobileraker_companion/mobileraker/util/configs.py
++++ mobileraker_companion.new/mobileraker/util/configs.py
+@@ -7,7 +7,7 @@
+ from typing import Any, Dict, Optional, Union
+ 
+ import pytz
+-import tzlocal
++# import tzlocal
+ 
+ home_dir = os.path.expanduser("~/")
+ companion_dir = pathlib.Path(__file__).parent.parent.parent.resolve()
+@@ -20,6 +20,11 @@
+     home_dir, "printer_data", "logs")
+ 
+ 
++def get_local_timezone():
++    local_tz_offset = -time.timezone if (time.localtime().tm_isdst == 0) else -time.altzone
++    local_tz = pytz.timezone('Etc/GMT{0:+d}'.format(local_tz_offset//3600))
++    return local_tz.zone
++
+ class CompanionRemoteConfig:
+ 
+     def __init__(self) -> None:
+@@ -73,7 +78,7 @@
+         self.language: str = self.config.get(
+             'general', 'language', fallback='en')
+         self.timezone_str: str = self.config.get(
+-            'general', 'timezone', fallback=tzlocal.get_localzone_name())  # fallback to system timezone (Hopefully)
++            'general', 'timezone', fallback=get_local_timezone())  # fallback to system timezone (Hopefully)
+         self.timezone: datetime.tzinfo = pytz.timezone(self.timezone_str if self.timezone_str is not None else "Greenwich")
+         self.eta_format: str = self.config.get(
+             'general', 'eta_format', fallback='%d.%m.%Y, %H:%M:%S')
