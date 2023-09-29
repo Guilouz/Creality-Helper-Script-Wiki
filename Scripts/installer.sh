@@ -269,7 +269,7 @@ do
                         DIR1=/usr/data/mainsail/
             			DIR2=/usr/data/fluidd/
             			DIR3=/usr/data/moonraker/
-            			URL="https://github.com/mainsail-crew/mainsail/releases/download/v2.7.1/mainsail.zip"
+            			URL="https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip"
             			if [ -d "$DIR1" ]; then
             				printf "${darkred} Mainsail is already installed!${white}\n\n"
             			elif [ ! -d "$DIR3" ]; then
@@ -467,7 +467,7 @@ do
                         ;;
                     9)
                         DIR=/etc/boot-display
-                        URL1="hhttps://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1_boot_display.tar"
+                        URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1_boot_display.tar"
                         URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1max_boot_display.tar"
             			if [ ! -d "$DIR" ]; then
             				printf "${darkred} Please use latest firmware to install Custom Boot Display!${white}\n\n"
