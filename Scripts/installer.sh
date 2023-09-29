@@ -30,7 +30,7 @@ main_menu(){
     printf " |  ${yellow} r)${white} Reload Moonraker and Nginx                            ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.0                                                       ${white}| \n"
+    printf " | ${cyan}v2.1                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -66,13 +66,14 @@ install_menu(){
     printf " |  ${yellow} 8)${white} Install ${green}Hostname Service ${white}file                         ${white}| \n"
     printf " |  ${yellow} 9)${white} Install ${green}Custom Boot Display ${white}                          ${white}| \n"
     printf " | ${yellow} 10)${white} Install ${green}Buzzer Support ${white}files                          ${white}| \n"
+    printf " | ${yellow} 11)${white} Install ${green}Nozzle Cleaning Fan Control ${white}files             ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.0                                                       ${white}| \n"
+    printf " | ${cyan}v2.1                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -107,13 +108,14 @@ uninstall_menu(){
     printf " |  ${yellow} 7)${white} Remove ${green}Hostname Service ${white}file                          ${white}| \n"
     printf " |  ${yellow} 8)${white} Remove ${green}Custom Boot Display ${white}                           ${white}| \n"
     printf " |  ${yellow} 9)${white} Remove ${green}Buzzer Support ${white}files                           ${white}| \n"
+    printf " | ${yellow} 10)${white} Remove ${green}Nozzle Cleaning Fan Control ${white}files              ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.0                                                       ${white}| \n"
+    printf " | ${cyan}v2.1                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -146,7 +148,7 @@ backup_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.0                                                       ${white}| \n"
+    printf " | ${cyan}v2.1                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -552,6 +554,31 @@ do
             			    fi
             			fi
                         ;;
+                    11)
+                        DIR=/usr/share/klipper/klippy/extras/prtouch_v2_fan
+            			if [ -d "$DIR" ]; then
+            				printf "${darkred} Nozzle Cleaning Fan Control files are already installed!${white}\n\n"
+            			else
+            			    printf " Are you sure you want to install ${green}Nozzle Cleaning Fan Control${white} files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    read confirm
+            			    printf "${white}\n"
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    printf "${green}Installing Nozzle Cleaning Fan Control files...${white}\n"
+                			    mkdir -p /usr/share/klipper/klippy/extras/prtouch_v2_fan
+                			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/prtouch_v2_fan/__init__.py -O /usr/share/klipper/klippy/extras/prtouch_v2_fan/__init__.py
+                			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/prtouch_v2_fan/prtouch_v2_fan.pyc -O /usr/share/klipper/klippy/extras/prtouch_v2_fan/prtouch_v2_fan.pyc
+                                /etc/init.d/S55klipper_service restart
+                			    printf "\n${green} Nozzle Cleaning Fan Control ${white}files have been installed ${green}successfully${white}!\n\n"
+                			    printf " Don't miss to add this in printer_params.cfg file:\n"
+                			    printf "\n${yellow} [prtouch_v2_fan]"
+                			    printf "\n${yellow} max_speed: 0.5${white}\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n"
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			    fi
+            			fi
+                        ;;
                     b)
                     	clear
                         break
@@ -772,6 +799,29 @@ do
                 			    rm -rf /usr/share/klipper/klippy/extras/gcode_shell_command.py /usr/share/klipper/klippy/extras/gcode_shell_command.pyc /usr/data/beep.mp3
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Buzzer Support ${white}files have been removed ${green}successfully${white}!\n\n"
+            			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n"
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    10)
+                        DIR=/usr/share/klipper/klippy/extras/prtouch_v2_fan
+            			if [[ ! -d "$DIR" ]]; then
+            				printf "${darkred} Nozzle Cleaning Fan Control files are not installed!\n"
+            				printf "${white}\n"
+            			else
+                            printf " Are you sure you want to remove ${green}Nozzle Cleaning Fan Control${white} files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    read confirm
+            			    printf "${white}\n"
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    rm -rf /usr/share/klipper/klippy/extras/prtouch_v2_fan
+                			    /etc/init.d/S55klipper_service restart
+                			    printf "\n${green} Nozzle Cleaning Fan Control ${white}files have been removed ${green}successfully${white}!\n\n"
+                			    printf " Don't miss to remove this in printer_params.cfg file:\n"
+                			    printf "\n${yellow} [prtouch_v2_fan]"
+                			    printf "\n${yellow} max_speed: 0.5${white}\n\n"
             			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
                 			    printf "${darkred} Deletion canceled!${white}\n\n"
                 		    else
