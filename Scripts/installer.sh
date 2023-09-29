@@ -345,6 +345,7 @@ do
                     			    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
                     			    rm -f moonraker.conf
                 			    fi
+                			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Moonraker Timelapse ${white}has been installed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to enable ${yellow}[timelapse] ${white}function in moonraker.conf file.\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
@@ -637,6 +638,7 @@ do
             			    printf "${white}\n"
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    rm -rf /usr/data/moonraker/moonraker/moonraker/components/timelapse.py /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc /usr/data/printer_data/config/timelapse.cfg
+                			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Moonraker Timelapse ${white}has been removed ${green}successfully${white}!\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
                 			    printf "${darkred} Deletion canceled!${white}\n\n"
