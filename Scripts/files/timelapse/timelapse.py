@@ -69,8 +69,8 @@ class Timelapse:
         self.config: Dict[str, Any] = {
             'enabled': True,
             'mode': "layermacro",
-            'camera': "",
-            'snapshoturl': "http://localhost::4408/webcam/?action=snapshot",
+            'camera': "Default",
+            'snapshoturl': "http://localhost:4408/webcam/?action=snapshot",
             'stream_delay_compensation': 0.05,
             'gcode_verbose': False,
             'parkhead': False,
@@ -571,7 +571,7 @@ class Timelapse:
             # prepare output filename
             now = datetime.now()
             date_time = now.strftime(self.config['time_format_code'])
-            outfile = f"timelapse_{gcodefilename}_{date_time}"
+            outfile = f"timelapse_{gcodefilename.rsplit('.', 1)[0]}_{date_time}"
             outfileFull = outfile + "_frames.zip"
 
             zipObj = ZipFile(self.out_dir + outfileFull, "w")
@@ -686,9 +686,8 @@ class Timelapse:
                 + " -i '" + inputfiles + "'" \
                 + filterParam \
                 + " -threads 2 -g 5" \
-                + " -vcodec h264" \
+                + " -vcodec mjpeg" \
                 + " -pix_fmt " + self.config['pixelformat'] \
-                + " -b:v 10M" \
                 + " -an" \
                 + " " + self.config['extraoutputparams'] \
                 + " '" + self.temp_dir + outfile + ".mp4' -y"
@@ -700,6 +699,7 @@ class Timelapse:
                 'framecount': str(self.framecount),
                 'settings': {
                     'framerate': fps,
+                    'crf': self.config['constant_rate_factor'],
                     'pixelformat': self.config['pixelformat']
                 }
             })
