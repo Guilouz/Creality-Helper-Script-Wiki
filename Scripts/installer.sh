@@ -1,15 +1,69 @@
 #!/bin/sh
 
+white=`echo "\033[m"`
+blue=`echo "\033[36m"`
+cyan=`echo "\033[1;36m"`
+yellow=`echo "\033[1;33m"`
+green=`echo "\033[01;32m"`
+red=`echo "\033[01;31m"`
+darkred=`echo "\033[31m"`
+moonraker_folder="/usr/data/moonraker/"
+moonraker_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker.tar"
+moonraker_mainsail_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_mainsail.conf"
+moonraker_fluidd_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_fluidd.conf"
+moonraker_both_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_both.conf"
+moonraker_default_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker.conf"
+nginx_folder="/usr/data/nginx/"
+fluidd_folder="/usr/data/fluidd/"
+fluidd_URL="https://github.com/fluidd-core/fluidd/releases/latest/download/fluidd.zip"
+mainsail_folder="/usr/data/mainsail/"
+mainsail_URL="https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip"
+timelapse_file="/usr/data/moonraker/moonraker/moonraker/components/timelapse.py"
+timelapse_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/timelapse/timelapse.py"
+timelapse_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/timelapse/timelapse.cfg"
+mobileraker_folder="/usr/data/mobileraker_companion/"
+mobileraker_URL1="https://github.com/Clon1998/mobileraker_companion"
+mobileraker_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/mobileraker/mobileraker-companion-k1-no-tzlocal.patch"
+kamp_folder="/usr/data/Klipper-Adaptive-Meshing-Purging"
+kamp_URL1="https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git"
+kamp_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/Adaptive_Meshing.cfg"
+kamp_URL3="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro_kamp.py"
+kamp_URL4="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro.py"
+hostname_file="/etc/init.d/S00hostname"
+hostname_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/services/S00hostname"
+buzzer_file1="/usr/share/klipper/klippy/extras/gcode_shell_command.py"
+buzzer_file_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/buzzer/gcode_shell_command.py"
+buzzer_file2="/usr/data/beep.mp3"
+buzzer_file_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/buzzer/beep.mp3"
+prtouch_folder="/usr/share/klipper/klippy/extras/prtouch_v2_fan"
+prtouch_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/prtouch_v2_fan/__init__.py"
+prtouch_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/prtouch_v2_fan/prtouch_v2_fan.pyc"
+bootdisplay_folder="/etc/boot-display"
+bootdisplay_file="/etc/boot-display/part0/pic_100.jpg"
+bootdisplay_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1_boot_display.tar"
+bootdisplay_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1max_boot_display.tar"
+bootdisplay_URL3="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/stock_boot_display.tar"
+
+check_folder() {
+    local folder_path="$1"
+    if [ -d "$folder_path" ]; then
+        printf "${green}Installed                  ${white}| \n"
+    else
+        printf "${darkred}Not Installed              ${white}| \n"
+    fi
+}
+check_file() {
+    local file_path="$1"
+    if [ -f "$file_path" ]; then
+        printf "${green}Installed                  ${white}| \n"
+    else
+        printf "${darkred}Not Installed              ${white}| \n"
+    fi
+}
+
 clear
 
 main_menu(){
-    white=`echo "\033[m"`
-    blue=`echo "\033[36m"`
-    cyan=`echo "\033[1;36m"`
-    yellow=`echo "\033[1;33m"`
-    green=`echo "\033[01;32m"`
-    red=`echo "\033[01;31m"`
-    darkred=`echo "\033[31m"`
     printf " ============================================================== \n"
     printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
     printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
@@ -24,13 +78,15 @@ main_menu(){
     printf " |  ${yellow} 1)${white} Open ${green}[Install] ${white}Menu                                   | \n"
     printf " |  ${yellow} 2)${white} Open ${green}[Remove] ${white}Menu                                    | \n"
     printf " |  ${yellow} 3)${white} Open ${green}[Backup & Restore] ${white}Menu                          | \n"
+    printf " |  ${yellow} 4)${white} Open ${green}[Customize] ${white}Menu                                 | \n"
+    printf " |  ${yellow} 5)${white} Open ${green}[Informations] ${white}Menu                              | \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} r)${white} Reload Moonraker and Nginx                            ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.1                                                       ${white}| \n"
+    printf " | ${cyan}v2.2                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -39,13 +95,6 @@ main_menu(){
 }
 
 install_menu(){
-    white=`echo "\033[m"`
-    blue=`echo "\033[36m"`
-    cyan=`echo "\033[1;36m"`
-    yellow=`echo "\033[1;33m"`
-    green=`echo "\033[01;32m"`
-    red=`echo "\033[01;31m"`
-    darkred=`echo "\033[31m"`
     printf " ============================================================== \n"
     printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
     printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
@@ -58,22 +107,21 @@ install_menu(){
     printf " |  ${yellow} 1)${white} Install ${green}Moonraker ${white}and ${green}Nginx                           ${white}| \n"
     printf " |  ${yellow} 2)${white} Install ${green}Fluidd ${white}(port 4408)                            ${white}| \n"
     printf " |  ${yellow} 3)${white} Install ${green}Mainsail ${white}(port 4409)                          ${white}| \n"
-    printf " |  ${yellow} 4)${white} Install ${green}Moonraker Timelapse                           ${white}| \n"
     printf " |                                                            | \n"
+    printf " |  ${yellow} 4)${white} Install ${green}Moonraker Timelapse                           ${white}| \n"
     printf " |  ${yellow} 5)${white} Install ${green}Entware                                       ${white}| \n"
     printf " |  ${yellow} 6)${white} Install ${green}Mobileraker Companion                         ${white}| \n"
     printf " |  ${yellow} 7)${white} Install ${green}Klipper Adaptive Meshing & Purging            ${white}| \n"
     printf " |  ${yellow} 8)${white} Install ${green}Hostname Service ${white}file                         ${white}| \n"
-    printf " |  ${yellow} 9)${white} Install ${green}Custom Boot Display ${white}                          ${white}| \n"
-    printf " | ${yellow} 10)${white} Install ${green}Buzzer Support ${white}files                          ${white}| \n"
-    printf " | ${yellow} 11)${white} Install ${green}Nozzle Cleaning Fan Control ${white}files             ${white}| \n"
+    printf " |  ${yellow} 9)${white} Install ${green}Buzzer Support ${white}files                          ${white}| \n"
+    printf " | ${yellow} 10)${white} Install ${green}Nozzle Cleaning Fan Control ${white}files             ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.1                                                       ${white}| \n"
+    printf " | ${cyan}v2.2                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -82,13 +130,6 @@ install_menu(){
 }
 
 uninstall_menu(){
-    white=`echo "\033[m"`
-    blue=`echo "\033[36m"`
-    cyan=`echo "\033[1;36m"`
-    yellow=`echo "\033[1;33m"`
-    green=`echo "\033[01;32m"`
-    red=`echo "\033[01;31m"`
-    darkred=`echo "\033[31m"`
     printf " ============================================================== \n"
     printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
     printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
@@ -98,24 +139,23 @@ uninstall_menu(){
     printf " |                     ${yellow} [ Remove Menu ]                       ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow} 1)${white} Remove ${green}Fluidd                                         ${white}| \n"
-    printf " |  ${yellow} 2)${white} Remove ${green}Mainsail                                       ${white}| \n"
-    printf " |  ${yellow} 3)${white} Remove ${green}Moonraker Timelapse                            ${white}| \n"
-    printf " |  ${yellow} 4)${white} Remove ${green}Moonraker ${white}and ${green}Nginx                            ${white}| \n"
+    printf " |  ${yellow} 1)${white} Remove ${green}Moonraker ${white}and ${green}Nginx                            ${white}| \n"
+    printf " |  ${yellow} 2)${white} Remove ${green}Fluidd                                         ${white}| \n"
+    printf " |  ${yellow} 3)${white} Remove ${green}Mainsail                                       ${white}| \n"
     printf " |                                                            | \n"
+    printf " |  ${yellow} 4)${white} Remove ${green}Moonraker Timelapse                            ${white}| \n"
     printf " |  ${yellow} 5)${white} Remove ${green}Mobileraker Companion                          ${white}| \n"
     printf " |  ${yellow} 6)${white} Remove ${green}Klipper Adaptive Meshing & Purging             ${white}| \n"
     printf " |  ${yellow} 7)${white} Remove ${green}Hostname Service ${white}file                          ${white}| \n"
-    printf " |  ${yellow} 8)${white} Remove ${green}Custom Boot Display ${white}                           ${white}| \n"
-    printf " |  ${yellow} 9)${white} Remove ${green}Buzzer Support ${white}files                           ${white}| \n"
-    printf " | ${yellow} 10)${white} Remove ${green}Nozzle Cleaning Fan Control ${white}files              ${white}| \n"
+    printf " |  ${yellow} 8)${white} Remove ${green}Buzzer Support ${white}files                           ${white}| \n"
+    printf " |  ${yellow} 9)${white} Remove ${green}Nozzle Cleaning Fan Control ${white}files              ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.1                                                       ${white}| \n"
+    printf " | ${cyan}v2.2                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -124,13 +164,6 @@ uninstall_menu(){
 }
 
 backup_menu(){
-    white=`echo "\033[m"`
-    blue=`echo "\033[36m"`
-    cyan=`echo "\033[1;36m"`
-    yellow=`echo "\033[1;33m"`
-    green=`echo "\033[01;32m"`
-    red=`echo "\033[01;31m"`
-    darkred=`echo "\033[31m"`
     printf " ============================================================== \n"
     printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
     printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
@@ -148,11 +181,73 @@ backup_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.1                                                       ${white}| \n"
+    printf " | ${cyan}v2.2                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
     read opt_backup_menu
+    printf "${white}\n"
+}
+
+customize_menu(){
+    printf " ============================================================== \n"
+    printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
+    printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
+    printf " |            ${cyan}Copyright © Cyril Guislain (Guilouz)            ${white}| \n"
+    printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
+    printf " [============================================================] \n"
+    printf " |                    ${yellow} [ Customize Menu ]                     ${white}| \n"
+    printf " [============================================================] \n"
+    printf " |                                                            | \n"
+    printf " |  ${yellow} 1)${white} Install ${green}Custom Boot Display ${white}                          ${white}| \n"
+    printf " |  ${yellow} 2)${white} Remove ${green}Custom Boot Display ${white}                           ${white}| \n"
+    printf " |                                                            | \n"
+    printf " ============================================================== \n"
+    printf " |                                                            | \n"
+    printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
+    printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
+    printf " |                                                            | \n"
+    printf " | ${cyan}v2.2                                                       ${white}| \n"
+    printf " ============================================================== \n"
+    printf "\n"
+    printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
+    read opt_customize_menu
+    printf "${white}\n"
+}
+
+info_menu(){
+    printf " ============================================================== \n"
+    printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
+    printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
+    printf " |            ${cyan}Copyright © Cyril Guislain (Guilouz)            ${white}| \n"
+    printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
+    printf " [============================================================] \n"
+    printf " |                  ${yellow} [ Informations Menu ]                    ${white}| \n"
+    printf " [============================================================] \n"
+    printf " |                                                            | \n"
+    printf " |             Moonraker & Nginx${white} → $(check_folder "$moonraker_folder")\n"
+    printf " |                        Fluidd${white} → $(check_folder "$fluidd_folder")\n"
+    printf " |                      Mainsail${white} → $(check_folder "$mainsail_folder")\n"
+    printf " |           Moonraker Timelapse${white} → $(check_file "$timelapse_file")\n"
+    printf " |                                                            | \n"
+    printf " |         Mobileraker Companion${white} → $(check_folder "$mobileraker_folder")\n"
+    printf " |                          KAMP${white} → $(check_folder "$kamp_folder")\n"
+    printf " |              Hostname Service${white} → $(check_file "$hostname_file")\n"
+    printf " |                Buzzer Support${white} → $(check_file "$buzzer_file1")\n"
+    printf " |   Nozzle Cleaning Fan Control${white} → $(check_folder "$prtouch_folder")\n"
+    printf " |                                                            | \n"
+    printf " |           Custom Boot Display${white} → $(check_file "$bootdisplay_file")\n"
+    printf " |                                                            | \n"
+    printf " ============================================================== \n"
+    printf " |                                                            | \n"
+    printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
+    printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
+    printf " |                                                            | \n"
+    printf " | ${cyan}v2.2                                                       ${white}| \n"
+    printf " ============================================================== \n"
+    printf "\n"
+    printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
+    read opt_info_menu
     printf "${white}\n"
 }
 
@@ -166,11 +261,7 @@ do
                 install_menu
                 case $opt_install_menu in
                     1)
-                        DIR1=/usr/data/moonraker/
-            			DIR2=/usr/data/fluidd/
-            			DIR3=/usr/data/mainsail/
-            			URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker.tar"
-            			if [ -d "$DIR1" ];
+            			if [ -d "$moonraker_folder" ];
             			then
             				printf "${darkred} Moonraker and Nginx are already installed!${white}\n\n"
             			else
@@ -180,28 +271,24 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Moonraker and Nginx...${white}\n"
                 			    cd /usr/data
-                			    wget --no-check-certificate "$URL"
+                			    wget --no-check-certificate "$moonraker_URL"
                 			    if [ $? -eq 0 ]; then
                 			        tar -xvf moonraker.tar
                 			        [ ! -e /etc/init.d/S50nginx ] && cp nginx/S50nginx /etc/init.d/
                 			        [ ! -e /etc/init.d/S56moonraker_service ] && cp moonraker/S56moonraker_service /etc/init.d/
                 			        rm -f moonraker.tar
-                			        if [ ! -d "$DIR2" -a -d "$DIR3" ]; then
-                    			        wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_mainsail.conf
-                    			        cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
-                    			        rm -f moonraker_mainsail.conf
-                			        elif [ -d "$DIR2" -a ! -d "$DIR3" ]; then
-                    			        wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_fluidd.conf
-                    			        cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
-                    			        rm -f moonraker_fluidd.conf
-                			        elif [ -d "$DIR2" -a -d "$DIR3" ]; then
-                    			        wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_both.conf
-                    			        cp moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
-                    			        rm -f moonraker_both.conf
+                			        if [ ! -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
+                    			        wget --no-check-certificate "$moonraker_mainsail_URL"
+                    			        mv moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
+                			        elif [ -d "$fluidd_folder" -a ! -d "$mainsail_folder" ]; then
+                    			        wget --no-check-certificate "$moonraker_fluidd_URL"
+                    			        mv moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
+                			        elif [ -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
+                    			        wget --no-check-certificate "$moonraker_both_URL"
+                    			        mv moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
                 			        else
-                    			        wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker.conf
-                    			        cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
-                    			        rm -f moonraker.conf
+                    			        wget --no-check-certificate "$moonraker_default_URL"
+                    			        mv moonraker.conf /usr/data/printer_data/config/moonraker.conf
                 			        fi
                 			        cd /usr/data/moonraker/moonraker
                 			        git stash; git checkout master; git pull
@@ -221,13 +308,9 @@ do
             			fi
                         ;;
                     2)
-                        DIR1=/usr/data/fluidd/
-            			DIR2=/usr/data/mainsail/
-            			DIR3=/usr/data/moonraker/
-            			URL="https://github.com/fluidd-core/fluidd/releases/latest/download/fluidd.zip"
-            			if [ -d "$DIR1" ]; then
+            			if [ -d "$fluidd_folder" ]; then
             				printf "${darkred} Fluidd is already installed!${white}\n\n"
-            			elif [ ! -d "$DIR3" ]; then
+            			elif [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Fluidd${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
@@ -236,20 +319,18 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Fluidd...${white}\n"
 	            			    cd /usr/data
-	            			    wget --no-check-certificate "$URL"
+	            			    wget --no-check-certificate "$fluidd_URL"
 	            			    if [ $? -eq 0 ]; then
 	            			        mkdir /usr/data/fluidd
 	            			        mv fluidd.zip fluidd
                 			        cd /usr/data/fluidd
                 			        unzip fluidd.zip && rm fluidd.zip
-                			        if [ -d "$DIR2" ]; then
-                    			        wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_both.conf
-                    			        cp moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
-                    			        rm -f moonraker_both.conf
+                			        if [ -d "$mainsail_folder" ]; then
+                    			        wget --no-check-certificate "$moonraker_both_URL"
+                    			        mv moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
                 			        else
-                    			        wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_fluidd.conf
-                    			        cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
-                    			        rm -f moonraker_fluidd.conf
+                    			        wget --no-check-certificate "$moonraker_fluidd_URL"
+                    			        mv moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
                 			        fi
                 			        /etc/init.d/S50nginx restart
                 			        sleep 1
@@ -268,13 +349,9 @@ do
             			fi
                         ;;
                     3)
-                        DIR1=/usr/data/mainsail/
-            			DIR2=/usr/data/fluidd/
-            			DIR3=/usr/data/moonraker/
-            			URL="https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip"
-            			if [ -d "$DIR1" ]; then
+            			if [ -d "$mainsail_folder" ]; then
             				printf "${darkred} Mainsail is already installed!${white}\n\n"
-            			elif [ ! -d "$DIR3" ]; then
+            			elif [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Mainsail${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
@@ -283,20 +360,18 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Mainsail...${white}\n"
                 			    cd /usr/data
-                			    wget --no-check-certificate "$URL"
+                			    wget --no-check-certificate "$mainsail_URL"
 	            			    if [ $? -eq 0 ]; then
 	            			        mkdir /usr/data/mainsail
 	            			        mv mainsail.zip mainsail
                 			        cd /usr/data/mainsail
                 			        unzip mainsail.zip && rm mainsail.zip
-                			        if [ -d "$DIR2" ]; then
-                    			        wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_both.conf
-                    			        cp moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
-                    			        rm -f moonraker_both.conf
+                			        if [ -d "$fluidd_folder" ]; then
+                    			        wget --no-check-certificate "$moonraker_both_URL"
+                    			        mv moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
                 			        else
-                    			        wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_mainsail.conf
-                    			        cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
-                    			        rm -f moonraker_mainsail.conf
+                    			        wget --no-check-certificate "$moonraker_mainsail_URL"
+                    			        mv moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
                 			        fi
                 			        /etc/init.d/S50nginx restart
                 			        sleep 1
@@ -315,10 +390,7 @@ do
             			fi
                         ;;
                     4)
-                        FILE=/usr/data/moonraker/moonraker/moonraker/components/timelapse.py
-            			DIR1=/usr/data/fluidd/
-            			DIR2=/usr/data/mainsail/
-            			if [ -f "$FILE" ]; then
+            			if [ -f "$timelapse_file" ]; then
             				printf "${darkred} Moonraker Timelapse is already installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Moonraker Timelapse${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
@@ -326,26 +398,22 @@ do
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    cd /usr/data
-                			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/timelapse/timelapse.py
-                			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/timelapse/timelapse.cfg
+                			    wget --no-check-certificate "$timelapse_URL1"
+                			    wget --no-check-certificate "$timelapse_URL2"
                 			    mv timelapse.py moonraker/moonraker/moonraker/components/
                 			    mv timelapse.cfg printer_data/config/
-                			    if [ ! -d "$DIR1" -a -d "$DIR2" ]; then
-                    			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_mainsail.conf
-                    			    cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker_mainsail.conf
-                			    elif [ -d "$DIR1" -a ! -d "$DIR2" ]; then
-                    			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_fluidd.conf
-                    			    cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker_fluidd.conf
-                			    elif [ -d "$DIR1" -a -d "$DIR2" ]; then
-                    			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_both.conf
-                    			    cp moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker_both.conf
+                			    if [ ! -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
+                    			    wget --no-check-certificate "$moonraker_mainsail_URL"
+                    			    mv moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
+                			    elif [ -d "$fluidd_folder" -a ! -d "$mainsail_folder" ]; then
+                    			    wget --no-check-certificate "$moonraker_fluidd_URL"
+                    			    mv moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
+                			    elif [ -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
+                    			    wget --no-check-certificate "$moonraker_both_URL"
+                    			    mv moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
                 			    else
-                    			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker.conf
-                    			    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker.conf
+                    			    wget --no-check-certificate "$moonraker_default_URL"
+                    			    mv moonraker.conf /usr/data/printer_data/config/moonraker.conf
                 			    fi
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Moonraker Timelapse ${white}has been installed ${green}successfully${white}!\n\n"
@@ -383,8 +451,7 @@ do
             			fi
                         ;;
                     6)
-                        DIR1=/usr/data/mobileraker_companion/
-            			if [ -d "$DIR1" ]; then
+            			if [ -d "$mobileraker_folder" ]; then
             				printf "${darkred} Mobileraker Companion is already installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Mobileraker Companion${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
@@ -397,10 +464,10 @@ do
                 			    pip3 install requests websockets pytz coloredlogs
                 			    echo "Downloading modified version of Mobileraker Companion for K1..."
                 			    echo "Cloning mobileraker_companion github repository..."
-                			    git clone --depth 1 https://github.com/Clon1998/mobileraker_companion
+                			    git clone --depth 1 "$mobileraker_URL1"
                 			    cd mobileraker_companion
                 			    echo 'Getting K1 compatibility patches...'
-                			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/mobileraker/mobileraker-companion-k1-no-tzlocal.patch
+                			    wget --no-check-certificate "$mobileraker_URL2"
                 			    echo 'Applying K1 compatibility patches...'
                 			    patch -p1 < mobileraker-companion-k1-no-tzlocal.patch
                 			    echo "Adding startup script..."
@@ -417,8 +484,7 @@ do
             			fi
                         ;;
                     7)
-                        DIR1=/usr/data/Klipper-Adaptive-Meshing-Purging
-            			if [ -d "$DIR1" ]; then
+            			if [ -d "$kamp_folder" ]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is already installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Klipper Adaptive Meshing & Purging${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
@@ -427,19 +493,16 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Klipper Adaptive Meshing & Purging...${white}\n"
                 			    cd /usr/data
-                			    git clone https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git
-                			    ln -sv /usr/data/Klipper-Adaptive-Meshing-Purging/Configuration printer_data/config/KAMP
+                			    git clone "$kamp_URL1"
+                			    wget --no-check-certificate "$kamp_URL2"
+                			    mv Adaptive_Meshing.cfg /usr/data/Klipper-Adaptive-Meshing-Purging/Configuration/Adaptive_Meshing.cfg
+                			    cp -R Klipper-Adaptive-Meshing-Purging/Configuration/ printer_data/config/KAMP/
                 			    cp Klipper-Adaptive-Meshing-Purging/Configuration/KAMP_Settings.cfg printer_data/config/KAMP_Settings.cfg
+                			    wget --no-check-certificate "$kamp_URL3"
+                			    mv custom_macro_kamp.py /usr/share/klipper/klippy/extras/custom_macro.py
+                			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Klipper Adaptive Meshing & Purging ${white}has been installed ${green}successfully${white}!\n\n"
-                			    printf " Don't miss to enable ${yellow}enable_object_processing: True ${white}in moonraker.conf file.\n\n"
-                			    printf " You can also add this for future updates of KAMP:\n"
-                			    printf "\n${yellow} [update_manager Klipper Adaptive Meshing Purging]"
-                			    printf "\n${yellow} type: git_repo"
-                			    printf "\n${yellow} channel: dev"
-                			    printf "\n${yellow} path: /usr/data/Klipper-Adaptive-Meshing-Purging"
-                			    printf "\n${yellow} origin: https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git"
-                			    printf "\n${yellow} managed_services: klipper"
-                			    printf "\n${yellow} primary_branch: main${white}\n\n"
+                			    printf " Don't miss to enable ${yellow}enable_object_processing: True ${white}in moonraker.conf file.${white}\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
                 			    printf "${darkred} Installation canceled!${white}\n\n"
                 		    else
@@ -448,8 +511,7 @@ do
             			fi
                         ;;
                     8)
-                        FILE=/etc/init.d/S00hostname
-            			if [ -f "$FILE" ]; then
+            			if [ -f "$hostname_file" ]; then
             				printf "${darkred} Hotsname Service file is already installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Hotsname Service${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
@@ -458,7 +520,7 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Hotsname Service file...${white}\n"
                 			    cd /etc/init.d/
-                			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/services/S00hostname
+                			    wget --no-check-certificate "$hostname_URL"
                 			    chmod 755 S00hostname
                 			    printf "\n${green} Hotsname Service ${white}file has been installed ${green}successfully${white}!\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
@@ -469,57 +531,7 @@ do
             			fi
                         ;;
                     9)
-                        DIR=/etc/boot-display
-                        URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1_boot_display.tar"
-                        URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1max_boot_display.tar"
-            			if [ ! -d "$DIR" ]; then
-            				printf "${darkred} Please use latest firmware to install Custom Boot Display!${white}\n\n"
-            			else
-                            printf " Are you sure you want to install ${green}Custom Boot Display${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
-            			    read confirm
-            			    printf "${white}\n"
-            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-            			        printf " Do you want install ${green}Custom Boot Display${white} for ${yellow}K1${white} or ${yellow}K1 Max${white} ? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
-            			        read confirm2
-            			        printf "${white}\n"
-            			        if [ "$confirm2" = "k1" ]; then
-                			        printf "${green}Installing Custom Boot Display for K1...${white}\n"
-                			        cd /etc/boot-display
-                			        wget --no-check-certificate "$URL1"
-                			        if [ $? -eq 0 ]; then
-                			            rm -rf part0 boot-display.conf
-                			            tar -xvf  k1_boot_display.tar
-                			            rm -f k1_boot_display.tar
-                			            printf "\n${green} Custom Boot Display ${white}for ${yellow}K1${white} has been installed ${green}successfully${white}!\n\n"
-                			        else
-                			            printf "${darkred} Download failed. Exit code: $?${white}\n\n"
-                			        fi
-            			        elif [ "$confirm2" = "k1max" ]; then
-                			        printf "${green}Installing Custom Boot Display for K1 Max...${white}\n"
-                			        cd /etc/boot-display
-                			        wget --no-check-certificate "$URL2"
-                			        if [ $? -eq 0 ]; then
-                			            rm -rf part0 boot-display.conf
-                			            tar -xvf k1max_boot_display.tar
-                			            rm -f k1max_boot_display.tar
-                			            printf "\n${green} Custom Boot Display ${white}for ${yellow}K1 Max${white} has been installed ${green}successfully${white}!\n\n"
-                			        else
-                			            printf "${darkred} Download failed. Exit code: $?${white}\n\n"
-                			        fi
-                			    else
-                			        printf "${darkred} Please select a correct choice!${white}\n\n"
-            			        fi
-            			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!${white}\n\n"
-                		    else
-                		        printf "${darkred} Please select a correct choice!${white}\n\n"
-            			    fi
-            			fi
-                        ;;
-                    10)
-                        FILE1=/usr/share/klipper/klippy/extras/gcode_shell_command.py
-                        FILE2=/usr/data/beep.mp3
-            			if [ -f "$FILE1" -a -f "$FILE2" ]; then
+            			if [ -f "$buzzer_file1" -a -f "$buzzer_file2" ]; then
             				printf "${darkred} Buzzer support files are already installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Buzzer Support${white} files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
@@ -527,11 +539,11 @@ do
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Buzzer Support files...${white}\n"
-                			    if [ ! -f "$FILE1" ]; then
-                			        wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/buzzer/gcode_shell_command.py
+                			    if [ ! -f "$buzzer_file1" ]; then
+                			        wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ "$buzzer_file_URL1"
                 			    fi
-                			    if [ ! -f "$FILE2" ]; then
-                			        wget --no-check-certificate -P /usr/data/ https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/buzzer/beep.mp3
+                			    if [ ! -f "$buzzer_file2" ]; then
+                			        wget --no-check-certificate -P /usr/data/ "$buzzer_file_URL2"
                 			    fi
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Buzzer Support ${white}files have been installed ${green}successfully${white}!\n\n"
@@ -545,7 +557,6 @@ do
                 			    printf "\n${yellow} gcode:"
                 			    printf "\n${yellow} RUN_SHELL_COMMAND CMD=beep"
                 			    printf "\n${yellow} RUN_SHELL_COMMAND CMD=beep"
-                			    printf "\n${yellow} RUN_SHELL_COMMAND CMD=beep"
                 			    printf "\n${yellow} RUN_SHELL_COMMAND CMD=beep${white}\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
                 			    printf "${darkred} Installation canceled!${white}\n\n"
@@ -554,9 +565,8 @@ do
             			    fi
             			fi
                         ;;
-                    11)
-                        DIR=/usr/share/klipper/klippy/extras/prtouch_v2_fan
-            			if [ -d "$DIR" ]; then
+                    10)
+            			if [ -d "$prtouch_folder" ]; then
             				printf "${darkred} Nozzle Cleaning Fan Control files are already installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Nozzle Cleaning Fan Control${white} files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
@@ -565,8 +575,8 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Nozzle Cleaning Fan Control files...${white}\n"
                 			    mkdir -p /usr/share/klipper/klippy/extras/prtouch_v2_fan
-                			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/prtouch_v2_fan/__init__.py -O /usr/share/klipper/klippy/extras/prtouch_v2_fan/__init__.py
-                			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/prtouch_v2_fan/prtouch_v2_fan.pyc -O /usr/share/klipper/klippy/extras/prtouch_v2_fan/prtouch_v2_fan.pyc
+                			    wget --no-check-certificate "$prtouch_URL1" -O /usr/share/klipper/klippy/extras/prtouch_v2_fan/__init__.py
+                			    wget --no-check-certificate "$prtouch_URL2" -O /usr/share/klipper/klippy/extras/prtouch_v2_fan/prtouch_v2_fan.pyc
                                 /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Nozzle Cleaning Fan Control ${white}files have been installed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to add this in printer_params.cfg file:\n"
@@ -598,86 +608,7 @@ do
                 uninstall_menu
                 case $opt_uninstall_menu in
                     1)
-                        DIR1=/usr/data/fluidd/
-            			DIR2=/usr/data/mainsail/
-            			DIR3=/usr/data/moonraker/
-            			if [ ! -d "$DIR1" ]; then
-            				printf "${darkred} Fluidd is not installed!${white}\n\n"
-            			else
-            			    printf " Are you sure you want to remove ${green}Fluidd${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
-            			    read confirm
-            			    printf "${white}\n";
-                            if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-                			    rm -rf /usr/data/fluidd
-                			    if [ -d "$DIR2" -a -d "$DIR3" ]; then
-                    			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_mainsail.conf
-                    			    cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker_mainsail.conf
-                			    elif [ -d "$DIR3" ]; then
-                    			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker.conf
-                    			    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker.conf
-                			    fi
-                			    printf "\n${green} Fluidd ${white}has been removed ${green}successfully${white}!\n\n"
-                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!${white}\n\n"
-                		    else
-                		        printf "${darkred} Please select a correct choice!${white}\n\n"
-            			    fi
-            			fi
-                        ;;
-                    2)
-                        DIR1=/usr/data/fluidd/
-            			DIR2=/usr/data/mainsail/
-            			DIR3=/usr/data/moonraker/
-            			if [ ! -d "$DIR2" ]; then
-                			printf "${darkred} Mainsail is not installed!${white}\n\n"
-            			else
-            			    printf " Are you sure you want to remove ${green}Mainsail${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-                            if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-                			    rm -rf /usr/data/mainsail
-                			    if [ -d "$DIR1" -a -d "$DIR3" ]; then
-                    			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker_fluidd.conf
-                    			    cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker_fluidd.conf
-                			    elif [ -d "$DIR3" ]; then
-                    			    wget --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/moonraker/moonraker.conf
-                    			    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker.conf
-                			    fi
-                			    printf "\n${green} Mainsail ${white}has been removed ${green}successfully${white}!\n\n"
-                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!${white}\n\n"
-                		    else
-                		        printf "${darkred} Please select a correct choice!${white}\n\n"
-            			    fi
-            			fi
-                        ;;
-                    3)
-                        FILE=/usr/data/moonraker/moonraker/moonraker/components/timelapse.py
-            			if [ ! -f "$FILE" ]; then
-                			printf "${darkred} Moonraker Timelapse is not installed!${white}\n\n"
-            			else
-            			    printf " Are you sure you want to remove ${green}Moonraker Timelapse${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-                            if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-                			    rm -rf /usr/data/moonraker/moonraker/moonraker/components/timelapse.py /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc /usr/data/printer_data/config/timelapse.cfg
-                			    /etc/init.d/S55klipper_service restart
-                			    printf "\n${green} Moonraker Timelapse ${white}has been removed ${green}successfully${white}!\n\n"
-                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!${white}\n\n"
-                		    else
-                		        printf "${darkred} Please select a correct choice!${white}\n\n"
-            			    fi
-            			fi
-                        ;;
-                    4)
-                        DIR1=/usr/data/moonraker/
-            			DIR2=/usr/data/nginx/
-            			if [[ ! -d "$DIR1" -a ! -d "$DIR2" ]]; then
+            			if [[ ! -d "$moonraker_folder" -a ! -d "$nginx_folder" ]]; then
             				printf "${darkred} Moonraker and Nginx are not installed!\n"
             				printf "${white}\n"
             			else
@@ -699,9 +630,83 @@ do
             			    fi
             			fi
                         ;;
+                    2)
+            			if [ ! -d "$fluidd_folder" ]; then
+            				printf "${darkred} Fluidd is not installed!${white}\n\n"
+            			else
+            			    printf " Are you sure you want to remove ${green}Fluidd${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    read confirm
+            			    printf "${white}\n";
+                            if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    rm -rf /usr/data/fluidd
+                			    if [ -d "$mainsail_folder" -a -d "$moonraker_folder" ]; then
+                    			    wget --no-check-certificate "$moonraker_mainsail_URL"
+                    			    cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
+                    			    rm -f moonraker_mainsail.conf
+                			    elif [ -d "$moonraker_folder" ]; then
+                    			    wget --no-check-certificate "$moonraker_default_URL"
+                    			    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
+                    			    rm -f moonraker.conf
+                			    fi
+                			    printf "\n${green} Fluidd ${white}has been removed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n"
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    3)
+            			if [ ! -d "$mainsail_folder" ]; then
+                			printf "${darkred} Mainsail is not installed!${white}\n\n"
+            			else
+            			    printf " Are you sure you want to remove ${green}Mainsail${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+                            if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    rm -rf /usr/data/mainsail
+                			    if [ -d "$fluidd_folder" -a -d "$moonraker_folder" ]; then
+                    			    wget --no-check-certificate "$moonraker_fluidd_URL"
+                    			    cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
+                    			    rm -f moonraker_fluidd.conf
+                			    elif [ -d "$moonraker_folder" ]; then
+                    			    wget --no-check-certificate "$moonraker_default_URL"
+                    			    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
+                    			    rm -f moonraker.conf
+                			    fi
+                			    printf "\n${green} Mainsail ${white}has been removed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n"
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    4)
+            			if [ ! -f "$timelapse_file" ]; then
+                			printf "${darkred} Moonraker Timelapse is not installed!${white}\n\n"
+            			else
+            			    printf " Are you sure you want to remove ${green}Moonraker Timelapse${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+                            if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    rm -rf /usr/data/moonraker/moonraker/moonraker/components/timelapse.py /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc /usr/data/printer_data/config/timelapse.cfg
+                			    /etc/init.d/S55klipper_service restart
+                			    printf "\n${green} Moonraker Timelapse ${white}has been removed ${green}successfully${white}!\n\n"
+                			    printf " Don't miss to remove this in moonraker.conf file:\n"
+                			    printf "\n${yellow} [timelapse]"
+                			    printf "\n${yellow} output_path: /usr/data/printer_data/timelapse/"
+                			    printf "\n${yellow} frame_path: /usr/data/printer_data/frames/"
+                			    printf "\n${yellow} snapshoturl: http://localhost:4408/webcam/?action=snapshot${white}\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n"
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			    fi
+            			fi
+                        ;;
                     5)
-                        DIR1=/usr/data/mobileraker_companion/
-            			if [[ ! -d "$DIR1" ]]; then
+            			if [[ ! -d "$mobileraker_folder" ]]; then
             				printf "${darkred} Mobileraker Companion is not installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Mobileraker Companion${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -721,8 +726,7 @@ do
             			fi
                         ;;
                     6)
-                        DIR1=/usr/data/Klipper-Adaptive-Meshing-Purging
-            			if [[ ! -d "$DIR1" ]]; then
+            			if [[ ! -d "$kamp_folder" ]]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is not installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Klipper Adaptive Meshing & Purging${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -731,7 +735,13 @@ do
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${white}"
                 			    rm -rf /usr/data/Klipper-Adaptive-Meshing-Purging /usr/data/printer_data/config/KAMP /usr/data/printer_data/config/KAMP_Settings.cfg
+                			    cd /usr/data
+                			    wget --no-check-certificate "$kamp_URL4"
+                			    mv custom_macro.py /usr/share/klipper/klippy/extras/custom_macro.py
+                			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Klipper Adaptive Meshing & Purging ${white}has been removed ${green}successfully${white}!\n\n"
+                			    printf " Don't miss to remove this in printer.cfg file:\n"
+                			    printf "\n${yellow} [include KAMP_Settings.cfg]${white}\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
                 			    printf "${darkred} Deletion canceled!${white}\n\n"
                 		    else
@@ -740,8 +750,7 @@ do
            				fi
                         ;;
                     7)
-                        FILE=/etc/init.d/S00hostname
-            			if [ ! -f "$FILE" ]; then
+            			if [ ! -f "$hostname_file" ]; then
             				printf "${darkred} Hotsname Service file is not already installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Hotsname Service${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -758,37 +767,8 @@ do
             			    fi
             			fi
             			;;
-            	    8)
-                        DIR=/etc/boot-display
-                        URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/stock_boot_display.tar"
-            			if [ ! -d "$DIR" ]; then
-            				printf "${darkred} Please use latest firmware to restore Stock Boot Display!${white}\n\n"
-            			else
-                            printf " Are you sure you want to remove ${green}Custom Boot Display${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
-            			    read confirm
-            			    printf "${white}\n"
-            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-                			    cd /etc/boot-display
-                			    wget --no-check-certificate "$URL"
-                                if [ $? -eq 0 ]; then
-                			        rm -rf part0 boot-display.conf
-                			        tar -xvf  stock_boot_display.tar
-                			        rm -f stock_boot_display.tar
-                			        printf "\n${green} Custom Boot Display ${white}has been removed ${green}successfully${white}!\n\n"
-                			    else
-                			        printf "${darkred} Download failed. Exit code: $?${white}\n\n"
-                			    fi
-            			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!${white}\n\n"
-                		    else
-                		        printf "${darkred} Please select a correct choice!${white}\n\n"
-            			    fi
-            			fi
-                        ;;
-                    9)
-                        FILE1=/usr/share/klipper/klippy/extras/gcode_shell_command.py
-                        FILE2=/usr/data/beep.mp3
-            			if [[ ! -f "$FILE1" -a ! -f "$FILE2" ]]; then
+                    8)
+            			if [[ ! -f "$buzzer_file1" -a ! -f "$buzzer_file2" ]]; then
             				printf "${darkred} Buzzer Support files are not installed!\n"
             				printf "${white}\n"
             			else
@@ -806,9 +786,8 @@ do
             			    fi
             			fi
                         ;;
-                    10)
-                        DIR=/usr/share/klipper/klippy/extras/prtouch_v2_fan
-            			if [[ ! -d "$DIR" ]]; then
+                    9)
+            			if [[ ! -d "$prtouch_folder" ]]; then
             				printf "${darkred} Nozzle Cleaning Fan Control files are not installed!\n"
             				printf "${white}\n"
             			else
@@ -904,11 +883,115 @@ do
                 esac
             done
             ;;
+        4)
+            while [ 1 ]
+            do
+                customize_menu
+                case $opt_customize_menu in
+                    1)
+            			if [ ! -d "$bootdisplay_folder" ]; then
+            				printf "${darkred} Please use latest firmware to install Custom Boot Display!${white}\n\n"
+            			else
+                            printf " Are you sure you want to install ${green}Custom Boot Display${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    read confirm
+            			    printf "${white}\n"
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+            			        printf " Do you want install ${green}Custom Boot Display${white} for ${yellow}K1${white} or ${yellow}K1 Max${white} ? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
+            			        read confirm2
+            			        printf "${white}\n"
+            			        if [ "$confirm2" = "k1" ]; then
+                			        printf "${green}Installing Custom Boot Display for K1...${white}\n"
+                			        cd /etc/boot-display
+                			        wget --no-check-certificate "$bootdisplay_URL1"
+                			        if [ $? -eq 0 ]; then
+                			            rm -rf part0 boot-display.conf
+                			            tar -xvf  k1_boot_display.tar
+                			            rm -f k1_boot_display.tar
+                			            printf "\n${green} Custom Boot Display ${white}for ${yellow}K1${white} has been installed ${green}successfully${white}!\n\n"
+                			        else
+                			            printf "${darkred} Download failed. Exit code: $?${white}\n\n"
+                			        fi
+            			        elif [ "$confirm2" = "k1max" ]; then
+                			        printf "${green}Installing Custom Boot Display for K1 Max...${white}\n"
+                			        cd /etc/boot-display
+                			        wget --no-check-certificate "$bootdisplay_URL2"
+                			        if [ $? -eq 0 ]; then
+                			            rm -rf part0 boot-display.conf
+                			            tar -xvf k1max_boot_display.tar
+                			            rm -f k1max_boot_display.tar
+                			            printf "\n${green} Custom Boot Display ${white}for ${yellow}K1 Max${white} has been installed ${green}successfully${white}!\n\n"
+                			        else
+                			            printf "${darkred} Download failed. Exit code: $?${white}\n\n"
+                			        fi
+                			    else
+                			        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			        fi
+            			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n"
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+            	    2)
+            			if [ ! -d "$bootdisplay_folder" ]; then
+            				printf "${darkred} Please use latest firmware to restore Stock Boot Display!${white}\n\n"
+            			else
+                            printf " Are you sure you want to remove ${green}Custom Boot Display${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    read confirm
+            			    printf "${white}\n"
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    cd /etc/boot-display
+                			    wget --no-check-certificate "$bootdisplay_URL3"
+                                if [ $? -eq 0 ]; then
+                			        rm -rf part0 boot-display.conf
+                			        tar -xvf  stock_boot_display.tar
+                			        rm -f stock_boot_display.tar
+                			        printf "\n${green} Custom Boot Display ${white}has been removed ${green}successfully${white}!\n\n"
+                			    else
+                			        printf "${darkred} Download failed. Exit code: $?${white}\n\n"
+                			    fi
+            			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n"
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    b)
+                    	clear
+                        break
+                        ;;
+                    q)
+                        exit
+                        ;;
+                    *)
+            			printf "${darkred} Please select a correct choice!${white}\n\n"
+                        ;;
+                esac
+            done
+            ;;
+        5)
+            while [ 1 ]
+            do
+                info_menu
+                case $opt_info_menu in
+                    b)
+                    	clear
+                        break
+                        ;;
+                    q)
+                        exit
+                        ;;
+                    *)
+            			printf "${darkred} Please select a correct choice!${white}\n\n"
+                        ;;
+                esac
+            done
+            ;;
         r)
-            DIR1=/usr/data/moonraker/
-            DIR2=/usr/data/nginx/
-            if [[ ! -d "$DIR1" -a ! -d "$DIR2" ]]; then
-            	printf "${darkred} Moonraker is not installed!${white}\n\n"
+            if [[ ! -d "$moonraker_folder" -a ! -d "$nginx_folder" ]]; then
+            	printf "${darkred} Moonraker and Nginx are not installed!${white}\n\n"
             else
                 printf " Do you want to reload ${green}Moonraker and Nginx${white} services ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             	read confirm
