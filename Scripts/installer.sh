@@ -31,13 +31,15 @@ kamp_URL3="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main
 kamp_URL4="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro.py"
 hostname_file="/etc/init.d/S00hostname"
 hostname_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/services/S00hostname"
-buzzer_file1="/usr/share/klipper/klippy/extras/gcode_shell_command.py"
-buzzer_file_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/buzzer/gcode_shell_command.py"
-buzzer_file2="/usr/data/beep.mp3"
-buzzer_file_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/buzzer/beep.mp3"
+shellcommand_file="/usr/share/klipper/klippy/extras/gcode_shell_command.py"
+shellcommand_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/shell-command/gcode_shell_command.py"
+buzzer_file="/usr/data/beep.mp3"
+buzzer_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/buzzer/beep.mp3"
 prtouch_folder="/usr/share/klipper/klippy/extras/prtouch_v2_fan"
 prtouch_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/prtouch_v2_fan/__init__.py"
 prtouch_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/prtouch_v2_fan/prtouch_v2_fan.pyc"
+camera_file="/usr/data/printer_data/config/camera-settings.cfg"
+camera_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/camera/camera-settings.cfg"
 bootdisplay_folder="/etc/boot-display"
 bootdisplay_file="/etc/boot-display/part0/pic_100.jpg"
 bootdisplay_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1_boot_display.tar"
@@ -86,7 +88,7 @@ main_menu(){
     printf " |  ${yellow} r)${white} Reload Moonraker and Nginx                            ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.2                                                       ${white}| \n"
+    printf " | ${cyan}v2.3                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -115,13 +117,14 @@ install_menu(){
     printf " |  ${yellow} 8)${white} Install ${green}Hostname Service ${white}file                         ${white}| \n"
     printf " |  ${yellow} 9)${white} Install ${green}Buzzer Support ${white}files                          ${white}| \n"
     printf " | ${yellow} 10)${white} Install ${green}Nozzle Cleaning Fan Control ${white}files             ${white}| \n"
+    printf " | ${yellow} 11)${white} Install ${green}Camera Settings Control ${white}files                 ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.2                                                       ${white}| \n"
+    printf " | ${cyan}v2.3                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -149,13 +152,14 @@ uninstall_menu(){
     printf " |  ${yellow} 7)${white} Remove ${green}Hostname Service ${white}file                          ${white}| \n"
     printf " |  ${yellow} 8)${white} Remove ${green}Buzzer Support ${white}files                           ${white}| \n"
     printf " |  ${yellow} 9)${white} Remove ${green}Nozzle Cleaning Fan Control ${white}files              ${white}| \n"
+    printf " | ${yellow} 10)${white} Remove ${green}Camera Settings Control ${white}files                  ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.2                                                       ${white}| \n"
+    printf " | ${cyan}v2.3                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -181,7 +185,7 @@ backup_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.2                                                       ${white}| \n"
+    printf " | ${cyan}v2.3                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -207,7 +211,7 @@ customize_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.2                                                       ${white}| \n"
+    printf " | ${cyan}v2.3                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -233,8 +237,9 @@ info_menu(){
     printf " |         Mobileraker Companion${white} → $(check_folder "$mobileraker_folder")\n"
     printf " |                          KAMP${white} → $(check_folder "$kamp_folder")\n"
     printf " |              Hostname Service${white} → $(check_file "$hostname_file")\n"
-    printf " |                Buzzer Support${white} → $(check_file "$buzzer_file1")\n"
+    printf " |                Buzzer Support${white} → $(check_file "$buzzer_file")\n"
     printf " |   Nozzle Cleaning Fan Control${white} → $(check_folder "$prtouch_folder")\n"
+    printf " |       Camera Settings Control${white} → $(check_file "$camera_file")\n"
     printf " |                                                            | \n"
     printf " |           Custom Boot Display${white} → $(check_file "$bootdisplay_file")\n"
     printf " |                                                            | \n"
@@ -243,7 +248,7 @@ info_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.2                                                       ${white}| \n"
+    printf " | ${cyan}v2.3                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -539,7 +544,7 @@ do
             			fi
                         ;;
                     9)
-            			if [ -f "$buzzer_file1" -a -f "$buzzer_file2" ]; then
+            			if [ -f "$buzzer_file" ]; then
             				printf "${darkred} Buzzer support files are already installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Buzzer Support${white} files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
@@ -547,11 +552,11 @@ do
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Buzzer Support files...${white}\n"
-                			    if [ ! -f "$buzzer_file1" ]; then
-                			        wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ "$buzzer_file_URL1"
+                			    if [ ! -f "$shellcommand_file" ]; then
+                			        wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ "$shellcommand_URL"
                 			    fi
-                			    if [ ! -f "$buzzer_file2" ]; then
-                			        wget --no-check-certificate -P /usr/data/ "$buzzer_file_URL2"
+                			    if [ ! -f "$buzzer_file" ]; then
+                			        wget --no-check-certificate -P /usr/data/ "$buzzer_URL"
                 			    fi
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Buzzer Support ${white}files have been installed ${green}successfully${white}!\n\n"
@@ -590,6 +595,32 @@ do
                 			    printf " Don't miss to add this in printer_params.cfg file:\n"
                 			    printf "\n${yellow} [prtouch_v2_fan]"
                 			    printf "\n${yellow} max_speed: 0.5${white}\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n"
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    11)
+            			if [ -f "$camera_file" ]; then
+            				printf "${darkred} Camera Settings Control files are already installed!${white}\n\n"
+            			else
+            			    printf " Are you sure you want to install ${green}Camera Settings Control${white} files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    read confirm
+            			    printf "${white}\n"
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    printf "${green}Installing Camera Settings Control files...${white}\n"
+                			    if [ ! -f "$shellcommand_file" ]; then
+                			        wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ "$shellcommand_URL"
+                			    fi
+                			    if [ ! -f "$camera_file" ]; then
+                			        wget --no-check-certificate -P /usr/data/printer_data/config/ "$camera_URL"
+                			    fi
+                			    /etc/init.d/S55klipper_service restart
+                			    printf "\n${green} Camera Settings Control ${white}files have been installed ${green}successfully${white}!\n\n"
+                			    printf " Don't miss to add this in printer.cfg file:\n"
+                			    printf "\n${yellow} [include camera-settings.cfg]${white}\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
                 			    printf "${darkred} Installation canceled!${white}\n\n"
                 		    else
@@ -776,7 +807,7 @@ do
             			fi
             			;;
                     8)
-            			if [[ ! -f "$buzzer_file1" -a ! -f "$buzzer_file2" ]]; then
+            			if [[ ! -f "$buzzer_file" ]]; then
             				printf "${darkred} Buzzer Support files are not installed!\n"
             				printf "${white}\n"
             			else
@@ -784,7 +815,10 @@ do
             			    read confirm
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-                			    rm -rf /usr/share/klipper/klippy/extras/gcode_shell_command.py /usr/share/klipper/klippy/extras/gcode_shell_command.pyc /usr/data/beep.mp3
+            			        if [ ! -f "$camera_file" ]; then
+                			        rm -rf /usr/share/klipper/klippy/extras/gcode_shell_command.py /usr/share/klipper/klippy/extras/gcode_shell_command.pyc
+                			    fi
+                			    rm -rf /usr/data/beep.mp3
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Buzzer Support ${white}files have been removed ${green}successfully${white}!\n\n"
             			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
@@ -809,6 +843,30 @@ do
                 			    printf " Don't miss to remove this in printer_params.cfg file:\n"
                 			    printf "\n${yellow} [prtouch_v2_fan]"
                 			    printf "\n${yellow} max_speed: 0.5${white}\n\n"
+            			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n"
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    10)
+            			if [[ ! -f "$camera_file" ]]; then
+            				printf "${darkred} Camera Settings Control files are not installed!\n"
+            				printf "${white}\n"
+            			else
+                            printf " Are you sure you want to remove ${green}Camera Settings Control${white} files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    read confirm
+            			    printf "${white}\n"
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+            			        if [ ! -f "$buzzer_file" ]; then
+                			        rm -rf /usr/share/klipper/klippy/extras/gcode_shell_command.py /usr/share/klipper/klippy/extras/gcode_shell_command.pyc
+                			    fi
+                			    rm -rf /usr/data/printer_data/config/camera-settings.cfg
+                			    /etc/init.d/S55klipper_service restart
+                			    printf "\n${green} Camera Settings Control ${white}files have been removed ${green}successfully${white}!\n\n"
+                			    printf " Don't miss to remove this in printer.cfg file:\n"
+                			    printf "\n${yellow} [include camera-settings.cfg]${white}\n\n"
             			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
                 			    printf "${darkred} Deletion canceled!${white}\n\n"
                 		    else
