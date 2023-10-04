@@ -261,8 +261,7 @@ do
                 install_menu
                 case $opt_install_menu in
                     1)
-            			if [ -d "$moonraker_folder" ];
-            			then
+            			if [ -d "$moonraker_folder" ]; then
             				printf "${darkred} Moonraker and Nginx are already installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Moonraker and Nginx${white} ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
@@ -271,6 +270,9 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Moonraker and Nginx...${white}\n"
                 			    cd /usr/data
+                			    if [ -f "moonraker.tar" ]; then
+                			        rm -f moonraker.tar
+                			    fi
                 			    wget --no-check-certificate "$moonraker_URL"
                 			    if [ $? -eq 0 ]; then
                 			        tar -xvf moonraker.tar
@@ -319,6 +321,9 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Fluidd...${white}\n"
 	            			    cd /usr/data
+	            			    if [ -f "fluidd.zip" ]; then
+                			        rm -f fluidd.zip
+                			    fi
 	            			    wget --no-check-certificate "$fluidd_URL"
 	            			    if [ $? -eq 0 ]; then
 	            			        mkdir /usr/data/fluidd
@@ -360,6 +365,9 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Mainsail...${white}\n"
                 			    cd /usr/data
+                			    if [ -f "mainsail.zip" ]; then
+                			        rm -f mainsail.zip
+                			    fi
                 			    wget --no-check-certificate "$mainsail_URL"
 	            			    if [ $? -eq 0 ]; then
 	            			        mkdir /usr/data/mainsail
