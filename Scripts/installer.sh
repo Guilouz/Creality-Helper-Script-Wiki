@@ -21,6 +21,7 @@ mainsail_URL="https://github.com/mainsail-crew/mainsail/releases/latest/download
 timelapse_file="/usr/data/moonraker/moonraker/moonraker/components/timelapse.py"
 timelapse_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/timelapse/timelapse.py"
 timelapse_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/timelapse/timelapse.cfg"
+entware_folder="/usr/data/opt/"
 mobileraker_folder="/usr/data/mobileraker_companion/"
 mobileraker_URL1="https://github.com/Clon1998/mobileraker_companion"
 mobileraker_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/mobileraker/mobileraker-companion-k1-no-tzlocal.patch"
@@ -88,7 +89,7 @@ main_menu(){
     printf " |  ${yellow} r)${white} Reload Moonraker and Nginx                            ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.3                                                       ${white}| \n"
+    printf " | ${cyan}v2.4                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -124,7 +125,7 @@ install_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.3                                                       ${white}| \n"
+    printf " | ${cyan}v2.4                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -147,19 +148,20 @@ uninstall_menu(){
     printf " |  ${yellow} 3)${white} Remove ${green}Mainsail                                       ${white}| \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} 4)${white} Remove ${green}Moonraker Timelapse                            ${white}| \n"
-    printf " |  ${yellow} 5)${white} Remove ${green}Mobileraker Companion                          ${white}| \n"
-    printf " |  ${yellow} 6)${white} Remove ${green}Klipper Adaptive Meshing & Purging             ${white}| \n"
-    printf " |  ${yellow} 7)${white} Remove ${green}Hostname Service ${white}file                          ${white}| \n"
-    printf " |  ${yellow} 8)${white} Remove ${green}Buzzer Support ${white}files                           ${white}| \n"
-    printf " |  ${yellow} 9)${white} Remove ${green}Nozzle Cleaning Fan Control ${white}files              ${white}| \n"
-    printf " | ${yellow} 10)${white} Remove ${green}Camera Settings Control ${white}files                  ${white}| \n"
+    printf " |  ${yellow} 5)${white} Remove ${green}Entware                                        ${white}| \n"
+    printf " |  ${yellow} 6)${white} Remove ${green}Mobileraker Companion                          ${white}| \n"
+    printf " |  ${yellow} 7)${white} Remove ${green}Klipper Adaptive Meshing & Purging             ${white}| \n"
+    printf " |  ${yellow} 8)${white} Remove ${green}Hostname Service ${white}file                          ${white}| \n"
+    printf " |  ${yellow} 9)${white} Remove ${green}Buzzer Support ${white}files                           ${white}| \n"
+    printf " | ${yellow} 10)${white} Remove ${green}Nozzle Cleaning Fan Control ${white}files              ${white}| \n"
+    printf " | ${yellow} 11)${white} Remove ${green}Camera Settings Control ${white}files                  ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.3                                                       ${white}| \n"
+    printf " | ${cyan}v2.4                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -185,7 +187,7 @@ backup_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.3                                                       ${white}| \n"
+    printf " | ${cyan}v2.4                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -211,7 +213,7 @@ customize_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.3                                                       ${white}| \n"
+    printf " | ${cyan}v2.4                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -234,6 +236,7 @@ info_menu(){
     printf " |                      Mainsail${white} → $(check_folder "$mainsail_folder")\n"
     printf " |                                                            | \n"
     printf " |           Moonraker Timelapse${white} → $(check_file "$timelapse_file")\n"
+    printf " |                       Entware${white} → $(check_folder "$entware_folder")\n"
     printf " |         Mobileraker Companion${white} → $(check_folder "$mobileraker_folder")\n"
     printf " |                          KAMP${white} → $(check_folder "$kamp_folder")\n"
     printf " |              Hostname Service${white} → $(check_file "$hostname_file")\n"
@@ -248,7 +251,7 @@ info_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.3                                                       ${white}| \n"
+    printf " | ${cyan}v2.4                                                       ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -278,27 +281,40 @@ do
                 			    if [ -f "moonraker.tar" ]; then
                 			        rm -f moonraker.tar
                 			    fi
+                			    printf "Downloading Moonraker and Nginx file...\n"
                 			    wget --no-check-certificate "$moonraker_URL"
                 			    if [ $? -eq 0 ]; then
+                			        printf "Installing files...\n"
                 			        tar -xvf moonraker.tar
                 			        [ ! -e /etc/init.d/S50nginx ] && cp nginx/S50nginx /etc/init.d/
                 			        [ ! -e /etc/init.d/S56moonraker_service ] && cp moonraker/S56moonraker_service /etc/init.d/
+                			        printf "Deleting file...\n"
                 			        rm -f moonraker.tar
                 			        if [ ! -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
+                			            printf "Downloading Moonraker configuration file...\n"
                     			        wget --no-check-certificate "$moonraker_mainsail_URL"
+                    			        printf "Copying file...\n"
                     			        mv moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
                 			        elif [ -d "$fluidd_folder" -a ! -d "$mainsail_folder" ]; then
+                			            printf "Downloading Moonraker configuration file...\n"
                     			        wget --no-check-certificate "$moonraker_fluidd_URL"
+                    			        printf "Copying file...\n"
                     			        mv moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
                 			        elif [ -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
+                			            printf "Downloading Moonraker configuration file...\n"
                     			        wget --no-check-certificate "$moonraker_both_URL"
+                    			        printf "Copying file...\n"
                     			        mv moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
                 			        else
+                			            printf "Downloading Moonraker configuration file...\n"
                     			        wget --no-check-certificate "$moonraker_default_URL"
+                    			        printf "Copying file...\n"
                     			        mv moonraker.conf /usr/data/printer_data/config/moonraker.conf
                 			        fi
                 			        cd /usr/data/moonraker/moonraker
+                			        printf "Applying changes...\n"
                 			        git stash; git checkout master; git pull
+                			        printf "Restarting services...\n"
                 			        /etc/init.d/S50nginx start
                 			        sleep 1
                 			        /etc/init.d/S56moonraker_service start
@@ -329,19 +345,28 @@ do
 	            			    if [ -f "fluidd.zip" ]; then
                 			        rm -f fluidd.zip
                 			    fi
+                			    printf "Downloading Fluidd file...\n"
 	            			    wget --no-check-certificate "$fluidd_URL"
 	            			    if [ $? -eq 0 ]; then
+	            			        printf "Copying files...\n"
 	            			        mkdir /usr/data/fluidd
 	            			        mv fluidd.zip fluidd
                 			        cd /usr/data/fluidd
-                			        unzip fluidd.zip && rm fluidd.zip
+                			        unzip fluidd.zip
+                			        printf "Deleting file...\n"
+                			        rm -f fluidd.zip
                 			        if [ -d "$mainsail_folder" ]; then
+                			            printf "Downloading Moonraker configuration file...\n"
                     			        wget --no-check-certificate "$moonraker_both_URL"
+                    			        printf "Copying file...\n"
                     			        mv moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
                 			        else
+                			            printf "Downloading Moonraker configuration file...\n"
                     			        wget --no-check-certificate "$moonraker_fluidd_URL"
+                    			        printf "Copying file...\n"
                     			        mv moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
                 			        fi
+                			        printf "Restarting services...\n"
                 			        /etc/init.d/S50nginx restart
                 			        sleep 1
                 			        /etc/init.d/S56moonraker_service restart
@@ -373,19 +398,28 @@ do
                 			    if [ -f "mainsail.zip" ]; then
                 			        rm -f mainsail.zip
                 			    fi
+                			    printf "Downloading Mainsail file...\n"
                 			    wget --no-check-certificate "$mainsail_URL"
 	            			    if [ $? -eq 0 ]; then
+	            			        printf "Copying files...\n"
 	            			        mkdir /usr/data/mainsail
 	            			        mv mainsail.zip mainsail
                 			        cd /usr/data/mainsail
-                			        unzip mainsail.zip && rm mainsail.zip
+                			        unzip mainsail.zip
+                			        printf "Deleting file...\n"
+                			        rm -f mainsail.zip
                 			        if [ -d "$fluidd_folder" ]; then
+                			            printf "Downloading Moonraker configuration file...\n"
                     			        wget --no-check-certificate "$moonraker_both_URL"
+                    			        printf "Copying file...\n"
                     			        mv moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
                 			        else
+                			            printf "Downloading Moonraker configuration file...\n"
                     			        wget --no-check-certificate "$moonraker_mainsail_URL"
+                    			        printf "Copying file...\n"
                     			        mv moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
                 			        fi
+                			        printf "Restarting services...\n"
                 			        /etc/init.d/S50nginx restart
                 			        sleep 1
                 			        /etc/init.d/S56moonraker_service restart
@@ -411,23 +445,34 @@ do
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    cd /usr/data
+                			    printf "Downloading Moonraker Timelapse files...\n"
                 			    wget --no-check-certificate "$timelapse_URL1"
                 			    wget --no-check-certificate "$timelapse_URL2"
+                			    printf "Copying files...\n"
                 			    mv timelapse.py moonraker/moonraker/moonraker/components/
                 			    mv timelapse.cfg printer_data/config/
                 			    if [ ! -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
+                			        printf "Downloading Moonraker configuration file...\n"
                     			    wget --no-check-certificate "$moonraker_mainsail_URL"
+                    			    printf "Copying file...\n"
                     			    mv moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
                 			    elif [ -d "$fluidd_folder" -a ! -d "$mainsail_folder" ]; then
+                			        printf "Downloading Moonraker configuration file...\n"
                     			    wget --no-check-certificate "$moonraker_fluidd_URL"
+                    			    printf "Copying file...\n"
                     			    mv moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
                 			    elif [ -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
+                			        printf "Downloading Moonraker configuration file...\n"
                     			    wget --no-check-certificate "$moonraker_both_URL"
+                    			    printf "Copying file...\n"
                     			    mv moonraker_both.conf /usr/data/printer_data/config/moonraker.conf
                 			    else
+                			        printf "Downloading Moonraker configuration file...\n"
                     			    wget --no-check-certificate "$moonraker_default_URL"
+                    			    printf "Copying file...\n"
                     			    mv moonraker.conf /usr/data/printer_data/config/moonraker.conf
                 			    fi
+                			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Moonraker Timelapse ${white}has been installed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to enable ${yellow}[timelapse] ${white}function in moonraker.conf file.\n\n"
@@ -476,7 +521,6 @@ do
                 			    echo "Installing prerequisite python packages..."
                 			    pip3 install requests websockets pytz coloredlogs
                 			    echo "Downloading modified version of Mobileraker Companion for K1..."
-                			    echo "Cloning mobileraker_companion github repository..."
                 			    git clone --depth 1 "$mobileraker_URL1"
                 			    cd mobileraker_companion
                 			    echo 'Getting K1 compatibility patches...'
@@ -506,13 +550,18 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Klipper Adaptive Meshing & Purging...${white}\n"
                 			    cd /usr/data
+                			    printf "Downloading Klipper Adaptive Meshing & Purging files...\n"
                 			    git clone "$kamp_URL1"
                 			    wget --no-check-certificate "$kamp_URL2"
+                			    printf "Copying files...\n"
                 			    mv Adaptive_Meshing.cfg /usr/data/Klipper-Adaptive-Meshing-Purging/Configuration/Adaptive_Meshing.cfg
                 			    cp -R Klipper-Adaptive-Meshing-Purging/Configuration/ printer_data/config/KAMP/
                 			    cp Klipper-Adaptive-Meshing-Purging/Configuration/KAMP_Settings.cfg printer_data/config/KAMP_Settings.cfg
+                			    printf "Downloading fix for K1 Series...\n"
                 			    wget --no-check-certificate "$kamp_URL3"
+                			    printf "Copying file...\n"
                 			    mv custom_macro_kamp.py /usr/share/klipper/klippy/extras/custom_macro.py
+                			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Klipper Adaptive Meshing & Purging ${white}has been installed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to enable ${yellow}enable_object_processing: True ${white}in moonraker.conf file.${white}\n\n"
@@ -533,7 +582,9 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Hotsname Service file...${white}\n"
                 			    cd /etc/init.d/
+                			    printf "Downloading Hotsname Service file...\n"
                 			    wget --no-check-certificate "$hostname_URL"
+                			    printf "Applying permissions...\n"
                 			    chmod 755 S00hostname
                 			    printf "\n${green} Hotsname Service ${white}file has been installed ${green}successfully${white}!\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
@@ -553,11 +604,14 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Buzzer Support files...${white}\n"
                 			    if [ ! -f "$shellcommand_file" ]; then
+                			        printf "Downloading Klipper Shell Command file...\n"
                 			        wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ "$shellcommand_URL"
                 			    fi
                 			    if [ ! -f "$buzzer_file" ]; then
+                			        printf "Downloading Buzzer support file...\n"
                 			        wget --no-check-certificate -P /usr/data/ "$buzzer_URL"
                 			    fi
+                			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Buzzer Support ${white}files have been installed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to add this in gcode_macro.cfg file:\n"
@@ -588,8 +642,10 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Nozzle Cleaning Fan Control files...${white}\n"
                 			    mkdir -p /usr/share/klipper/klippy/extras/prtouch_v2_fan
+                			    printf "${green}Downloading Nozzle Cleaning Fan Control files...${white}\n"
                 			    wget --no-check-certificate "$prtouch_URL1" -O /usr/share/klipper/klippy/extras/prtouch_v2_fan/__init__.py
                 			    wget --no-check-certificate "$prtouch_URL2" -O /usr/share/klipper/klippy/extras/prtouch_v2_fan/prtouch_v2_fan.pyc
+                			    printf "Restarting services...\n"
                                 /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Nozzle Cleaning Fan Control ${white}files have been installed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to add this in printer_params.cfg file:\n"
@@ -612,11 +668,14 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Camera Settings Control files...${white}\n"
                 			    if [ ! -f "$shellcommand_file" ]; then
+                			        printf "Downloading Klipper Shell Command file...\n"
                 			        wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ "$shellcommand_URL"
                 			    fi
                 			    if [ ! -f "$camera_file" ]; then
+                			        printf "Downloading Camera Settings Control file...\n"
                 			        wget --no-check-certificate -P /usr/data/printer_data/config/ "$camera_URL"
                 			    fi
+                			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Camera Settings Control ${white}files have been installed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to add this in printer.cfg file:\n"
@@ -656,9 +715,11 @@ do
             			    printf "${white}\n";
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${white}"
+                			    printf "Stopping services...\n"
                 			    cd /overlay/upper
                 			    /etc/init.d/S50nginx stop
                 			    /etc/init.d/S56moonraker_service stop
+                			    printf "Deleting Moonraker and Nginx files...\n"
                 			    rm -rf /etc/init.d/S50nginx /etc/init.d/S56moonraker_service 
                 			    rm -rf /usr/data/printer_data/config/moonraker.conf /usr/data/printer_data/config/.moonraker.conf.bkp /usr/data/printer_data/.moonraker.uuid /usr/data/printer_data/moonraker.asvc /usr/data/nginx /usr/data/moonraker
                 			    printf "\n${green} Moonraker ${white}and ${green}Nginx ${white}have been removed ${green}successfully${white}!\n\n"
@@ -677,15 +738,18 @@ do
             			    read confirm
             			    printf "${white}\n";
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                                printf "Deleting Fluidd files...\n"
                 			    rm -rf /usr/data/fluidd
                 			    if [ -d "$mainsail_folder" -a -d "$moonraker_folder" ]; then
+                			        printf "Downloading Moonraker configuration file...\n"
                     			    wget --no-check-certificate "$moonraker_mainsail_URL"
-                    			    cp moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker_mainsail.conf
+                    			    printf "Copying file...\n"
+                    			    mv moonraker_mainsail.conf /usr/data/printer_data/config/moonraker.conf
                 			    elif [ -d "$moonraker_folder" ]; then
+                			        printf "Downloading Moonraker configuration file...\n"
                     			    wget --no-check-certificate "$moonraker_default_URL"
-                    			    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker.conf
+                    			    printf "Copying file...\n"
+                    			    mv moonraker.conf /usr/data/printer_data/config/moonraker.conf
                 			    fi
                 			    printf "\n${green} Fluidd ${white}has been removed ${green}successfully${white}!\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
@@ -703,15 +767,18 @@ do
             			    read confirm
             			    printf "${white}\n"
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                                printf "Deleting Mainsail files...\n"
                 			    rm -rf /usr/data/mainsail
                 			    if [ -d "$fluidd_folder" -a -d "$moonraker_folder" ]; then
+                			        printf "Downloading Moonraker configuration file...\n"
                     			    wget --no-check-certificate "$moonraker_fluidd_URL"
-                    			    cp moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker_fluidd.conf
+                    			    printf "Copying file...\n"
+                    			    mv moonraker_fluidd.conf /usr/data/printer_data/config/moonraker.conf
                 			    elif [ -d "$moonraker_folder" ]; then
+                			        printf "Downloading Moonraker configuration file...\n"
                     			    wget --no-check-certificate "$moonraker_default_URL"
-                    			    cp moonraker.conf /usr/data/printer_data/config/moonraker.conf
-                    			    rm -f moonraker.conf
+                    			    printf "Copying file...\n"
+                    			    mv moonraker.conf /usr/data/printer_data/config/moonraker.conf
                 			    fi
                 			    printf "\n${green} Mainsail ${white}has been removed ${green}successfully${white}!\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
@@ -729,7 +796,9 @@ do
             			    read confirm
             			    printf "${white}\n"
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                                printf "Deleting Moonraker Timelapse files...\n"
                 			    rm -rf /usr/data/moonraker/moonraker/moonraker/components/timelapse.py /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc /usr/data/printer_data/config/timelapse.cfg
+                			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Moonraker Timelapse ${white}has been removed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to remove this in moonraker.conf file:\n"
@@ -745,6 +814,32 @@ do
             			fi
                         ;;
                     5)
+                        printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			read confirm
+            			printf "${white}\n"
+            			if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+            			    printf "Removing startup script...\n"
+                            rm -f /etc/init.d/S50unslung
+                            printf "Removing opt directory...\n"
+                            rm -rf /usr/data/opt
+                            printf "Removing /opt symbolic link and replacing with stock empty directory...\n"
+                            if [ -L /opt ]; then
+                                rm /opt
+                                mkdir -p /opt
+                                chmod 755 /opt
+                            fi
+                            printf "Removing SFTP server symlink if it exists...\n"
+                            [ -L /usr/libexec/sftp-server ] && rm /usr/libexec/sftp-server
+                            printf "Removing /opt/bin and /opt/sbin from PATH in the system profile...\n"
+                            sed -i 's/\/opt\/bin:\/opt\/sbin:\/bin:/\/bin:/' /etc/profile
+            			    printf "\n${green} Entware ${white}has been removed ${green}successfully${white}!\n\n"
+            			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			printf "${darkred} Deletion canceled!${white}\n\n"
+                	    else
+                		    printf "${darkred} Please select a correct choice!${white}\n\n"
+            			fi
+                        ;;
+                    6)
             			if [[ ! -d "$mobileraker_folder" ]]; then
             				printf "${darkred} Mobileraker Companion is not installed!${white}\n\n"
             			else
@@ -752,9 +847,11 @@ do
             			    read confirm
             			    printf "${white}\n"
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-                			    printf "${white}"
+                			    printf "Stopping services...\n"
                 			    /etc/init.d/S80mobileraker_companion stop
+                			    printf "Deleting Mobileraker Companion files...\n"
                 			    rm -rf /etc/init.d/S80mobileraker_companion /usr/data/mobileraker_companion
+                			    printf "Deleting dependencies...\n"
                 			    pip3 uninstall -y requests websockets pytz coloredlogs
                 			    printf "\n${green} Mobileraker Companion ${white}has been removed ${green}successfully${white}!\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
@@ -764,7 +861,7 @@ do
             			    fi
             			fi
                         ;;
-                    6)
+                    7)
             			if [[ ! -d "$kamp_folder" ]]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is not installed!${white}\n\n"
             			else
@@ -772,11 +869,14 @@ do
             			    read confirm
             			    printf "${white}\n"
                             if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-                			    printf "${white}"
+                                printf "Deleting Klipper Adaptive Meshing & Purging files...\n"
                 			    rm -rf /usr/data/Klipper-Adaptive-Meshing-Purging /usr/data/printer_data/config/KAMP /usr/data/printer_data/config/KAMP_Settings.cfg
                 			    cd /usr/data
+                			    printf "Downloading restoration file...\n"
                 			    wget --no-check-certificate "$kamp_URL4"
+                			    printf "Copying file...\n"
                 			    mv custom_macro.py /usr/share/klipper/klippy/extras/custom_macro.py
+                			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Klipper Adaptive Meshing & Purging ${white}has been removed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to remove this in printer.cfg file:\n"
@@ -788,7 +888,7 @@ do
                 			fi
            				fi
                         ;;
-                    7)
+                    8)
             			if [ ! -f "$hostname_file" ]; then
             				printf "${darkred} Hotsname Service file is not already installed!${white}\n\n"
             			else
@@ -796,7 +896,7 @@ do
             			    read confirm
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-            			        printf "${white}"
+            			        printf "Deleting Hotsname Service file...\n"
                 			    rm -rf /etc/init.d/S00hostname
                 			    printf "\n${green} Hotsname Service ${white}file has been removed ${green}successfully${white}!\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
@@ -806,7 +906,7 @@ do
             			    fi
             			fi
             			;;
-                    8)
+                    9)
             			if [[ ! -f "$buzzer_file" ]]; then
             				printf "${darkred} Buzzer Support files are not installed!\n"
             				printf "${white}\n"
@@ -816,9 +916,12 @@ do
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
             			        if [ ! -f "$camera_file" ]; then
+            			            printf "Deleting Klipper Shell Command file...\n"
                 			        rm -rf /usr/share/klipper/klippy/extras/gcode_shell_command.py /usr/share/klipper/klippy/extras/gcode_shell_command.pyc
                 			    fi
+                			    printf "Deleting Buzzer Support  file...\n"
                 			    rm -rf /usr/data/beep.mp3
+                			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Buzzer Support ${white}files have been removed ${green}successfully${white}!\n\n"
             			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
@@ -828,7 +931,7 @@ do
             			    fi
             			fi
                         ;;
-                    9)
+                    10)
             			if [[ ! -d "$prtouch_folder" ]]; then
             				printf "${darkred} Nozzle Cleaning Fan Control files are not installed!\n"
             				printf "${white}\n"
@@ -837,7 +940,9 @@ do
             			    read confirm
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+            			        printf "Deleting Nozzle Cleaning Fan Control files...\n"
                 			    rm -rf /usr/share/klipper/klippy/extras/prtouch_v2_fan
+                			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Nozzle Cleaning Fan Control ${white}files have been removed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to remove this in printer_params.cfg file:\n"
@@ -850,7 +955,7 @@ do
             			    fi
             			fi
                         ;;
-                    10)
+                    11)
             			if [[ ! -f "$camera_file" ]]; then
             				printf "${darkred} Camera Settings Control files are not installed!\n"
             				printf "${white}\n"
@@ -860,9 +965,12 @@ do
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
             			        if [ ! -f "$buzzer_file" ]; then
+            			            printf "Deleting Klipper Shell Command file...\n"
                 			        rm -rf /usr/share/klipper/klippy/extras/gcode_shell_command.py /usr/share/klipper/klippy/extras/gcode_shell_command.pyc
                 			    fi
+                			    printf "Deleting Camera Settings Control file...\n"
                 			    rm -rf /usr/data/printer_data/config/camera-settings.cfg
+                			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Camera Settings Control ${white}files have been removed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to remove this in printer.cfg file:\n"
@@ -968,8 +1076,10 @@ do
             			        if [ "$confirm2" = "k1" ]; then
                 			        printf "${green}Installing Custom Boot Display for K1...${white}\n"
                 			        cd /etc/boot-display
+                			        printf "Downloading Custom Boot Display file...\n"
                 			        wget --no-check-certificate "$bootdisplay_URL1"
                 			        if [ $? -eq 0 ]; then
+                			            printf "Copying files...\n"
                 			            rm -rf part0 boot-display.conf
                 			            tar -xvf  k1_boot_display.tar
                 			            rm -f k1_boot_display.tar
@@ -980,8 +1090,10 @@ do
             			        elif [ "$confirm2" = "k1max" ]; then
                 			        printf "${green}Installing Custom Boot Display for K1 Max...${white}\n"
                 			        cd /etc/boot-display
+                			        printf "Downloading Custom Boot Display file...\n"
                 			        wget --no-check-certificate "$bootdisplay_URL2"
                 			        if [ $? -eq 0 ]; then
+                			            printf "Copying files...\n"
                 			            rm -rf part0 boot-display.conf
                 			            tar -xvf k1max_boot_display.tar
                 			            rm -f k1max_boot_display.tar
@@ -1008,8 +1120,10 @@ do
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    cd /etc/boot-display
+                			    printf "Downloading Stock Boot Display file...\n"
                 			    wget --no-check-certificate "$bootdisplay_URL3"
                                 if [ $? -eq 0 ]; then
+                                    printf "Copying files...\n"
                 			        rm -rf part0 boot-display.conf
                 			        tar -xvf  stock_boot_display.tar
                 			        rm -f stock_boot_display.tar
