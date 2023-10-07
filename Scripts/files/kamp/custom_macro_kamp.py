@@ -70,6 +70,7 @@ class CUSTOM_MACRO:
             self.gcode.run_script_from_command('M220 S100')
             self.gcode.run_script_from_command('M221 S100')
             self.gcode.run_script_from_command('LINE_PURGE')
+            self.gcode.run_script_from_command('G21')
         pass
 
     cmd_CX_ROUGH_G28_help = "rough G28"
