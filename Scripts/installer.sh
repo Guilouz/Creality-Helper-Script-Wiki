@@ -26,10 +26,9 @@ mobileraker_folder="/usr/data/mobileraker_companion/"
 mobileraker_URL1="https://github.com/Clon1998/mobileraker_companion"
 mobileraker_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/mobileraker/mobileraker-companion-k1-no-tzlocal.patch"
 kamp_folder="/usr/data/Klipper-Adaptive-Meshing-Purging"
-kamp_URL1="https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging.git"
-kamp_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/Adaptive_Meshing.cfg"
-kamp_URL3="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro_kamp.py"
-kamp_URL4="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro.py"
+kamp_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/kamp.tar"
+kamp_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro_kamp.py"
+kamp_URL3="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro.py"
 hostname_file="/etc/init.d/S00hostname"
 hostname_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/services/S00hostname"
 shellcommand_file="/usr/share/klipper/klippy/extras/gcode_shell_command.py"
@@ -89,7 +88,7 @@ main_menu(){
     printf " |  ${yellow} r)${white} Reload Moonraker and Nginx                            ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.4                                                       ${white}| \n"
+    printf " |                                                       ${cyan}v2.5 ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -116,16 +115,17 @@ install_menu(){
     printf " |  ${yellow} 6)${white} Install ${green}Mobileraker Companion                         ${white}| \n"
     printf " |  ${yellow} 7)${white} Install ${green}Klipper Adaptive Meshing & Purging            ${white}| \n"
     printf " |  ${yellow} 8)${white} Install ${green}Hostname Service ${white}file                         ${white}| \n"
-    printf " |  ${yellow} 9)${white} Install ${green}Buzzer Support ${white}files                          ${white}| \n"
-    printf " | ${yellow} 10)${white} Install ${green}Nozzle Cleaning Fan Control ${white}files             ${white}| \n"
-    printf " | ${yellow} 11)${white} Install ${green}Camera Settings Control ${white}files                 ${white}| \n"
+    printf " |  ${yellow} 9)${white} Install ${green}Klipper Gcode Shell Command ${white}file              ${white}| \n"
+    printf " | ${yellow} 10)${white} Install ${green}Buzzer Support ${white}files                          ${white}| \n"
+    printf " | ${yellow} 11)${white} Install ${green}Nozzle Cleaning Fan Control ${white}files             ${white}| \n"
+    printf " | ${yellow} 12)${white} Install ${green}Camera Settings Control ${white}files                 ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.4                                                       ${white}| \n"
+    printf " |                                                       ${cyan}v2.5 ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -152,16 +152,17 @@ uninstall_menu(){
     printf " |  ${yellow} 6)${white} Remove ${green}Mobileraker Companion                          ${white}| \n"
     printf " |  ${yellow} 7)${white} Remove ${green}Klipper Adaptive Meshing & Purging             ${white}| \n"
     printf " |  ${yellow} 8)${white} Remove ${green}Hostname Service ${white}file                          ${white}| \n"
-    printf " |  ${yellow} 9)${white} Remove ${green}Buzzer Support ${white}files                           ${white}| \n"
-    printf " | ${yellow} 10)${white} Remove ${green}Nozzle Cleaning Fan Control ${white}files              ${white}| \n"
-    printf " | ${yellow} 11)${white} Remove ${green}Camera Settings Control ${white}files                  ${white}| \n"
+    printf " |  ${yellow} 9)${white} Remove ${green}Klipper Gcode Shell Command ${white}file               ${white}| \n"
+    printf " | ${yellow} 10)${white} Remove ${green}Buzzer Support ${white}files                           ${white}| \n"
+    printf " | ${yellow} 11)${white} Remove ${green}Nozzle Cleaning Fan Control ${white}files              ${white}| \n"
+    printf " | ${yellow} 12)${white} Remove ${green}Camera Settings Control ${white}files                  ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.4                                                       ${white}| \n"
+    printf " |                                                       ${cyan}v2.5 ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -187,7 +188,7 @@ backup_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.4                                                       ${white}| \n"
+    printf " |                                                       ${cyan}v2.5 ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -213,7 +214,7 @@ customize_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.4                                                       ${white}| \n"
+    printf " |                                                       ${cyan}v2.5 ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -240,6 +241,7 @@ info_menu(){
     printf " |         Mobileraker Companion${white} → $(check_folder "$mobileraker_folder")\n"
     printf " |                          KAMP${white} → $(check_folder "$kamp_folder")\n"
     printf " |              Hostname Service${white} → $(check_file "$hostname_file")\n"
+    printf " |   Klipper Gcode Shell Command${white} → $(check_file "$shellcommand_file")\n"
     printf " |                Buzzer Support${white} → $(check_file "$buzzer_file")\n"
     printf " |   Nozzle Cleaning Fan Control${white} → $(check_folder "$prtouch_folder")\n"
     printf " |       Camera Settings Control${white} → $(check_file "$camera_file")\n"
@@ -251,7 +253,7 @@ info_menu(){
     printf " |  ${yellow} b)${white} Back to ${yellow}[Main Menu]                                   ${white}| \n"
     printf " |  ${red} q)${white} Exit                                                  ${white}| \n"
     printf " |                                                            | \n"
-    printf " | ${cyan}v2.4                                                       ${white}| \n"
+    printf " |                                                       ${cyan}v2.5 ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -549,22 +551,25 @@ do
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Klipper Adaptive Meshing & Purging...${white}\n"
-                			    cd /usr/data
+                			    cd /usr/data/printer_data/config
                 			    printf "Downloading Klipper Adaptive Meshing & Purging files...\n"
-                			    git clone "$kamp_URL1"
-                			    wget --no-check-certificate "$kamp_URL2"
+                			    wget --no-check-certificate "$kamp_URL1"
                 			    printf "Copying files...\n"
-                			    mv Adaptive_Meshing.cfg /usr/data/Klipper-Adaptive-Meshing-Purging/Configuration/Adaptive_Meshing.cfg
-                			    cp -R Klipper-Adaptive-Meshing-Purging/Configuration/ printer_data/config/KAMP/
-                			    cp Klipper-Adaptive-Meshing-Purging/Configuration/KAMP_Settings.cfg printer_data/config/KAMP_Settings.cfg
+                			    tar -xvf kamp.tar
+                			    printf "Deleting file...\n"
+                			    rm -f kamp.tar
+                			    printf "Moving file...\n"
+                			    cp KAMP/KAMP_Settings.cfg /usr/data/printer_data/config/KAMP_Settings.cfg
                 			    printf "Downloading fix for K1 Series...\n"
-                			    wget --no-check-certificate "$kamp_URL3"
+                			    wget --no-check-certificate "$kamp_URL2"
                 			    printf "Copying file...\n"
                 			    mv custom_macro_kamp.py /usr/share/klipper/klippy/extras/custom_macro.py
                 			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n${green} Klipper Adaptive Meshing & Purging ${white}has been installed ${green}successfully${white}!\n\n"
                 			    printf " Don't miss to enable ${yellow}enable_object_processing: True ${white}in moonraker.conf file.${white}\n\n"
+                			    printf " And add this in printer.cfg file:\n"
+                			    printf "\n${yellow} [include KAMP_Settings.cfg]${white}\n\n"
                 			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
                 			    printf "${darkred} Installation canceled!${white}\n\n"
                 		    else
@@ -595,18 +600,34 @@ do
             			fi
                         ;;
                     9)
+            			if [ -f "$shellcommand_file" ]; then
+            				printf "${darkred} Klipper Gcode Shell Command file is already installed!${white}\n\n"
+            			else
+            			    printf " Are you sure you want to install ${green}Klipper Gcode Shell Command${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    read confirm
+            			    printf "${white}\n"
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    printf "Downloading Klipper Gcode Shell Command file...\n"
+                			        wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ "$shellcommand_URL"
+                			    printf "\n${green} Klipper Gcode Shell Command ${white}file has been installed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!${white}\n\n"
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    10)
             			if [ -f "$buzzer_file" ]; then
             				printf "${darkred} Buzzer support files are already installed!${white}\n\n"
+            			elif [ ! -f "$shellcommand_file" ]; then
+            				printf "${darkred} Please install Klipper Gcode Shell Command file first!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Buzzer Support${white} files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			    read confirm
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Buzzer Support files...${white}\n"
-                			    if [ ! -f "$shellcommand_file" ]; then
-                			        printf "Downloading Klipper Shell Command file...\n"
-                			        wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ "$shellcommand_URL"
-                			    fi
                 			    if [ ! -f "$buzzer_file" ]; then
                 			        printf "Downloading Buzzer support file...\n"
                 			        wget --no-check-certificate -P /usr/data/ "$buzzer_URL"
@@ -632,7 +653,7 @@ do
             			    fi
             			fi
                         ;;
-                    10)
+                    11)
             			if [ -d "$prtouch_folder" ]; then
             				printf "${darkred} Nozzle Cleaning Fan Control files are already installed!${white}\n\n"
             			else
@@ -658,19 +679,17 @@ do
             			    fi
             			fi
                         ;;
-                    11)
+                    12)
             			if [ -f "$camera_file" ]; then
             				printf "${darkred} Camera Settings Control files are already installed!${white}\n\n"
+            			elif [ ! -f "$shellcommand_file" ]; then
+            				printf "${darkred} Please install Klipper Gcode Shell Command file first!${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Camera Settings Control${white} files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			    read confirm
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green}Installing Camera Settings Control files...${white}\n"
-                			    if [ ! -f "$shellcommand_file" ]; then
-                			        printf "Downloading Klipper Shell Command file...\n"
-                			        wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ "$shellcommand_URL"
-                			    fi
                 			    if [ ! -f "$camera_file" ]; then
                 			        printf "Downloading Camera Settings Control file...\n"
                 			        wget --no-check-certificate -P /usr/data/printer_data/config/ "$camera_URL"
@@ -873,7 +892,7 @@ do
                 			    rm -rf /usr/data/Klipper-Adaptive-Meshing-Purging /usr/data/printer_data/config/KAMP /usr/data/printer_data/config/KAMP_Settings.cfg
                 			    cd /usr/data
                 			    printf "Downloading restoration file...\n"
-                			    wget --no-check-certificate "$kamp_URL4"
+                			    wget --no-check-certificate "$kamp_URL3"
                 			    printf "Copying file...\n"
                 			    mv custom_macro.py /usr/share/klipper/klippy/extras/custom_macro.py
                 			    printf "Restarting services...\n"
@@ -890,7 +909,7 @@ do
                         ;;
                     8)
             			if [ ! -f "$hostname_file" ]; then
-            				printf "${darkred} Hotsname Service file is not already installed!${white}\n\n"
+            				printf "${darkred} Hotsname Service file is not installed!${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Hotsname Service${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
@@ -907,6 +926,28 @@ do
             			fi
             			;;
                     9)
+            			if [ ! -f "$shellcommand_file" ]; then
+            				printf "${darkred} Klipper Gcode Shell Command file is not installed!${white}\n\n"
+            			elif [ -f "$buzzer_file" ]; then
+            				printf "${darkred} Klipper Gcode Shell Command is needed to use Buzzer Support, please uninstall it first!${white}\n\n"
+            			elif [ -f "$camera_file" ]; then
+            				printf "${darkred} Klipper Gcode Shell Command is needed to use Camera Settings Control, please uninstall it first!${white}\n\n"
+            			else
+            			    printf " Are you sure you want to remove ${green}Klipper Gcode Shell Command${white} file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+            			        printf "Deleting Klipper Gcode Shell Command file...\n"
+                			        rm -rf /usr/share/klipper/klippy/extras/gcode_shell_command.py /usr/share/klipper/klippy/extras/gcode_shell_command.pyc
+                			    printf "\n${green} Klipper Gcode Shell Command ${white}file has been removed ${green}successfully${white}!\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!${white}\n\n"
+                		    else
+                		        printf "${darkred} Please select a correct choice!${white}\n\n"
+            			    fi
+            			fi
+            			;;
+                    10)
             			if [[ ! -f "$buzzer_file" ]]; then
             				printf "${darkred} Buzzer Support files are not installed!\n"
             				printf "${white}\n"
@@ -915,10 +956,6 @@ do
             			    read confirm
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-            			        if [ ! -f "$camera_file" ]; then
-            			            printf "Deleting Klipper Shell Command file...\n"
-                			        rm -rf /usr/share/klipper/klippy/extras/gcode_shell_command.py /usr/share/klipper/klippy/extras/gcode_shell_command.pyc
-                			    fi
                 			    printf "Deleting Buzzer Support  file...\n"
                 			    rm -rf /usr/data/beep.mp3
                 			    printf "Restarting services...\n"
@@ -931,7 +968,7 @@ do
             			    fi
             			fi
                         ;;
-                    10)
+                    11)
             			if [[ ! -d "$prtouch_folder" ]]; then
             				printf "${darkred} Nozzle Cleaning Fan Control files are not installed!\n"
             				printf "${white}\n"
@@ -955,7 +992,7 @@ do
             			    fi
             			fi
                         ;;
-                    11)
+                    12)
             			if [[ ! -f "$camera_file" ]]; then
             				printf "${darkred} Camera Settings Control files are not installed!\n"
             				printf "${white}\n"
@@ -964,10 +1001,6 @@ do
             			    read confirm
             			    printf "${white}\n"
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-            			        if [ ! -f "$buzzer_file" ]; then
-            			            printf "Deleting Klipper Shell Command file...\n"
-                			        rm -rf /usr/share/klipper/klippy/extras/gcode_shell_command.py /usr/share/klipper/klippy/extras/gcode_shell_command.pyc
-                			    fi
                 			    printf "Deleting Camera Settings Control file...\n"
                 			    rm -rf /usr/data/printer_data/config/camera-settings.cfg
                 			    printf "Restarting services...\n"
