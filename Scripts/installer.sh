@@ -1,5 +1,7 @@
 #!/bin/sh
 
+VERSION=v2.5
+
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
 cyan=`echo "\033[1;36m"`
