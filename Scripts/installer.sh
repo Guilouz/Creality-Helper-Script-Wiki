@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v2.6
+VERSION=v2.7
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -128,6 +128,7 @@ main_menu(){
     printf " |  ${yellow}3) ${white}Open ${green}[Backup & Restore] ${white}Menu                           | \n"
     printf " |  ${yellow}4) ${white}Open ${green}[Customize] ${white}Menu                                  | \n"
     printf " |  ${yellow}5) ${white}Open ${green}[Informations] ${white}Menu                               | \n"
+    printf " |  ${yellow}6) ${white}Open ${green}[System] ${white}Menu                                     | \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
@@ -154,9 +155,9 @@ install_menu(){
     printf " |                     ${yellow}[ Install Menu ]                       ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow}1) ${white} Install ${green}Moonraker ${white}and ${green}Nginx                           ${white}| \n"
-    printf " |  ${yellow}2) ${white} Install ${green}Fluidd ${white}(port 4408)                            | \n"
-    printf " |  ${yellow}3) ${white} Install ${green}Mainsail ${white}(port 4409)                          | \n"
+    printf " |  ${yellow}1) ${white}Install ${green}Moonraker ${white}and ${green}Nginx                            ${white}| \n"
+    printf " |  ${yellow}2) ${white}Install ${green}Fluidd ${white}(port 4408)                             | \n"
+    printf " |  ${yellow}3) ${white}Install ${green}Mainsail ${white}(port 4409)                           | \n"
     printf " |                                                            | \n"
     printf " |  ${yellow}4) ${white}Install ${green}Moonraker Timelapse                            ${white}| \n"
     printf " |  ${yellow}5) ${white}Install ${green}Entware                                        ${white}| \n"
@@ -230,8 +231,8 @@ backup_menu(){
     printf " |                ${yellow}[ Backup & Restore Menu ]                   ${white}| \n"
     printf " [============================================================] \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow}1) ${white}Backup configuration files                             | \n"
-    printf " |  ${yellow}2) ${white}Restore configuration files                            | \n"
+    printf " |  ${yellow}1) ${green}Backup ${white}configuration files                             | \n"
+    printf " |  ${yellow}2) ${green}Restore ${white}configuration files                            | \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
@@ -311,6 +312,50 @@ info_menu(){
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
     read -rp "" opt_info_menu
     opt_info_menu=$(echo "$opt_info_menu" | tr '[:lower:]' '[:upper:]')
+    printf "${white}\n"
+}
+
+system_menu(){
+    ipaddress=`ip route | grep -oP 'src \K\S+'`
+    memfree=`cat /proc/meminfo | grep MemFree | awk {'print $2'}`
+    memtotal=`cat /proc/meminfo | grep MemTotal | awk {'print $2'}`
+    pourcent=$((($memfree * 100)/$memtotal))
+    diskused=`df -h | grep /dev/mmcblk0p10 | awk {'print $3 " / " $2 " (" $4 " available)" '}`
+    process=`ps ax | wc -l | tr -d " "`
+    uptime=`cat /proc/uptime | cut -f1 -d.`
+    upDays=$((uptime/60/60/24))
+    upHours=$((uptime/60/60%24))
+    upMins=$((uptime/60%60))
+    load=`cat /proc/loadavg | awk {'print $1 " (1 min.) / " $2 " (5 min.) / " $3 " (15 min.)"'}`
+    printf " ============================================================== \n"
+    printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
+    printf " |         ${blue}Installation Helper for Creality K1 Series         ${white}| \n"
+    printf " |            ${cyan}Copyright © Cyril Guislain (Guilouz)            ${white}| \n"
+    printf " |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     | \n"
+    printf " [============================================================] \n"
+    printf " |                      ${yellow}[ System Menu ]                       ${white}| \n"
+    printf " [============================================================] \n"
+    printf "                                                                \n"
+    printf "        ${green}System: ${white}\e[97m$(uname -s) (Kernel $(uname -r)) \n"
+    printf "      ${green}Hostname: ${white}\e[97m$(uname -n) \n"
+    printf "    ${green}IP Address: ${white}\e[97m$ipaddress \n"
+    printf "     ${green}RAM Usage: ${white}\e[97m$(($memfree/1024)) MB / $(($memtotal/1024)) MB ($pourcent%% available) \n"
+    printf "    ${green}Disk Usage: ${white}\e[97m$diskused \n"
+    printf "        ${green}Uptime: ${white}\e[97m$upDays days $upHours hours $upMins minutes \n"
+    printf "     ${green}Processes: ${white}\e[97m$process running process \n"
+    printf "   ${green}System Load: ${white}\e[97m$load \n"
+    printf "                                                                \n"
+    printf " ============================================================== \n"
+    printf " |                                                            | \n"
+    printf " |  ${yellow}b) ${white}Back to ${yellow}[Main Menu]                                    ${white}| \n"
+    printf " |  ${red}q) ${white}Exit                                                   | \n"
+    printf " |                                                            | \n"
+    printf " |                                                       ${cyan}$VERSION ${white}| \n"
+    printf " ============================================================== \n"
+    printf "\n"
+    printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
+    read -rp "" opt_system_menu
+    opt_system_menu=$(echo "$opt_system_menu" | tr '[:lower:]' '[:upper:]')
     printf "${white}\n"
 }
 
@@ -1563,6 +1608,25 @@ do
             do
                 info_menu
                 case $opt_info_menu in
+                    B)
+                    	clear
+                        break
+                        ;;
+                    Q)
+                        exit
+                        ;;
+                    *)
+            			printf "${darkred} Please select a correct choice!"
+            			printf "${white}\n\n"
+                        ;;
+                esac
+            done
+            ;;
+        6)
+            while [ 1 ]
+            do
+                system_menu
+                case $opt_system_menu in
                     B)
                     	clear
                         break
