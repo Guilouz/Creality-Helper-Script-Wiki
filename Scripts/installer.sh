@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v2.7
+VERSION=v2.8
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -647,7 +647,7 @@ do
                             printf "${green} Installing Entware..."
                             printf "${white}\n\n"
             			    echo "Making /opt directory on data partition where there is space, and adding a symbolic link..."
-            			    rm -rf /opt/*
+            			    rm -rf /opt /usr/data/opt
             			    mkdir /usr/data/opt
             			    ln -nsf /usr/data/opt /opt
             			    echo "Installing Entware using generic installer script..."
