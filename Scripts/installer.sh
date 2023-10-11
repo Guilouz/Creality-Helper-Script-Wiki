@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v2.8
+VERSION=v2.9
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -653,7 +653,7 @@ do
             			    echo "Installing Entware using generic installer script..."
             			    wget --no-check-certificate -O - http://bin.entware.net/mipselsf-k3.4/installer/generic.sh | /bin/sh
             			    echo "Adding /opt/bin and /opt/sbin to the start of the PATH in the system profile..."
-            			    sed -i 's/export PATH="\/bin:/export PATH="\/opt\/bin:\/opt\/sbin:\/bin:/' /etc/profile
+            			    echo 'export PATH="/opt/bin:/opt/sbin:$PATH"' > /etc/profile.d/entware.sh
             			    echo "Adding startup script..."
             			    echo -e '#!/bin/sh\n/opt/etc/init.d/rc.unslung "$1"' > /etc/init.d/S50unslung
             			    chmod 755 /etc/init.d/S50unslung
@@ -1141,6 +1141,7 @@ do
                             printf "Removing SFTP server symlink if it exists...\n"
                             [ -L /usr/libexec/sftp-server ] && rm /usr/libexec/sftp-server
                             printf "Removing /opt/bin and /opt/sbin from PATH in the system profile...\n"
+                            rm -f /etc/profile.d/entware.sh
                             sed -i 's/\/opt\/bin:\/opt\/sbin:\/bin:/\/bin:/' /etc/profile
                             printf "\n"
             			    printf "${green} Entware has been removed successfully!"
