@@ -1661,9 +1661,9 @@ do
                     printf "Restarting services...\n"
                     /etc/init.d/S50nginx stop
                     /etc/init.d/S56moonraker_service stop
-                    /etc/init.d/S56moonraker_service start
-                    sleep 1
                     /etc/init.d/S50nginx start
+                    sleep 1
+                    /etc/init.d/S56moonraker_service start
                     sleep 1
                     printf "\n"
                     printf "${green} Moonraker and Nginx services have been reloaded!"
