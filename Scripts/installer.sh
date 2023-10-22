@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v2.9
+VERSION=v3.0
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -31,8 +31,8 @@ kamp_folder="/usr/data/printer_data/config/KAMP/"
 kamp_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/kamp.tar"
 kamp_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro_kamp.py"
 kamp_URL3="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro.py"
-hostname_file="/etc/init.d/S00hostname"
-hostname_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/services/S00hostname"
+hostname_file="/etc/init.d/S01hostname"
+hostname_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/services/S01hostname"
 shellcommand_file="/usr/share/klipper/klippy/extras/gcode_shell_command.py"
 shellcommand_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/shell-command/gcode_shell_command.py"
 buzzer_file="/usr/data/beep.mp3"
@@ -779,7 +779,7 @@ do
                 			    printf "Downloading Hotsname Service file...\n"
                 			    wget --no-check-certificate "$hostname_URL"
                 			    printf "Applying permissions...\n"
-                			    chmod 755 S00hostname
+                			    chmod 755 S01hostname
                 			    printf "\n"
                 			    printf "${green} Hotsname Service file has been installed successfully!"
                 			    printf "${white}\n\n"
@@ -1236,7 +1236,7 @@ do
             			        printf "${green} Removing Hotsname Service..."
                 			    printf "${white}\n\n"
             			        printf "Deleting file...\n"
-                			    rm -rf /etc/init.d/S00hostname
+                			    rm -rf /etc/init.d/S01hostname
                 			    printf "\n"
                 			    printf "${green} Hotsname Service file has been removed successfully!"
                 			    printf "${white}\n\n"
