@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# Starts hostname service.
+#
+
+set_hostname_with_model_mac()
+{
+    local mac=$(/usr/bin/get_sn_mac.sh mac 2>&1)
+    local id=${mac:0-4}
+    local model=$(/usr/bin/get_sn_mac.sh model 2>&1)
+
+    if [ "x$id" != "x" -a "x$model" != "x" ]; then
+        case $model in
+            "CR-K1")
+                model="K1"
+                ;;
+            "CR-K1 Max")
+                model="K1Max"
+                ;;
+            "K1 Max SE")
+                model="K1MaxSE"
+                ;;
+            *)
+                ;;
+        esac
+
+        echo "$model-$id" > /etc/hostname
+    fi
+}
+
+set_hostname()
+{
+    /usr/bin/cmp -s /rom/etc/hostname /etc/hostname
+    if [ $? -eq 0 ]; then
+        set_hostname_with_model_mac
+    fi
+
+    # set host name after overlayfs mounted
+    /bin/hostname -F /etc/hostname
+}
+
+case "$1" in
+    start)
+        set_hostname
+        ;;
+    *)
+        echo "Usage: $0 {start}"
+        exit 1
+esac
+
+exit $?
