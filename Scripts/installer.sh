@@ -728,6 +728,7 @@ do
                 			    printf "${green} Installing Klipper Adaptive Meshing & Purging..."
                 			    printf "${white}\n\n"
                 			    cd /usr/data/printer_data/config
+                			    rm -rf KAMP
                 			    printf "Downloading Klipper Adaptive Meshing & Purging files...\n"
                 			    wget --no-check-certificate "$kamp_URL1"
                 			    printf "Copying files...\n"
