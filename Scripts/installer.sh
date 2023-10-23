@@ -1,6 +1,7 @@
 #!/bin/sh
 
 VERSION=v3.0
+CHANGELOG=- Updated KAMP to latest version. Please uninstalle and reinstall it.
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -53,7 +54,8 @@ check_updates() {
     current_script=$(cat /root/installer.sh)
     if [ "$github_script" != "$current_script" ]; then
         current_version=$(echo "$github_script" | sed -n '3s/VERSION=//p')
-        printf " ${green}A new script version ($current_version) is available! ${white}Do you want to update? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+        printf " ${green}A new script version ($current_version) is available! ${white}See changelog here: ${yellow}https://tinyurl.com/w7d9k5bt\n\n"
+        printf " ${white}Do you want to update? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
         read confirm
         printf "${white}\n"
         while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
