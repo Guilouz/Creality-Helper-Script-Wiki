@@ -1,7 +1,7 @@
 #!/bin/sh
 
 VERSION=v3.0
-CHANGELOG=- Updated KAMP to latest version. Please uninstalle and reinstall it.
+CHANGELOG=- Updated KAMP to latest version. Please uninstall and reinstall it\n- Added changelog when new script version is available.
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
