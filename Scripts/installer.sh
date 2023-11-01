@@ -53,7 +53,7 @@ check_updates() {
     current_script=$(cat /root/installer.sh)
     if [ "$github_script" != "$current_script" ]; then
         current_version=$(echo "$github_script" | sed -n '3s/VERSION=//p')
-        changelog=$(echo "$github_script" | sed -n '/CHANGELOG=/,/^$/p' | sed 's/CHANGELOG=//')
+        changelog=$(echo "$github_script" | sed -n '/CHANGELOG=/,/^$/p')
         printf " ${green}A new script version ($current_version) is available!\n\n"
         printf " ${white}Changelog:\n\n"
         printf " ${yellow}$changelog${white}\n\n"
