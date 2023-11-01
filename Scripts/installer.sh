@@ -1,7 +1,7 @@
 #!/bin/sh
 
-VERSION=v3.1
-CHANGELOG=- Updated KAMP to latest version. Please uninstall and reinstall it.\n - Added changelog when new script version is available.
+VERSION=v3.2
+CHANGELOG=- Updated KAMP to fix of out range error. Please uninstall and reinstall it.
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -30,8 +30,7 @@ mobileraker_URL1="https://github.com/Clon1998/mobileraker_companion"
 mobileraker_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/mobileraker/mobileraker-companion-k1-no-tzlocal.patch"
 kamp_folder="/usr/data/printer_data/config/KAMP/"
 kamp_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/kamp.tar"
-kamp_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro_kamp.py"
-kamp_URL3="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro.py"
+kamp_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/kamp/custom_macro.py"
 hostname_file="/etc/init.d/S01hostname"
 hostname_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/services/S01hostname"
 shellcommand_file="/usr/share/klipper/klippy/extras/gcode_shell_command.py"
@@ -741,10 +740,6 @@ do
                 			    rm -f kamp.tar
                 			    printf "Moving file...\n"
                 			    cp KAMP/KAMP_Settings.cfg /usr/data/printer_data/config/KAMP_Settings.cfg
-                			    printf "Downloading fix for K1 Series...\n"
-                			    wget --no-check-certificate "$kamp_URL2"
-                			    printf "Copying file...\n"
-                			    mv custom_macro_kamp.py /usr/share/klipper/klippy/extras/custom_macro.py
                 			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n"
@@ -1204,7 +1199,7 @@ do
                 			    rm -rf /usr/data/Klipper-Adaptive-Meshing-Purging /usr/data/printer_data/config/KAMP /usr/data/printer_data/config/KAMP_Settings.cfg
                 			    cd /usr/data
                 			    printf "Downloading restoration file...\n"
-                			    wget --no-check-certificate "$kamp_URL3"
+                			    wget --no-check-certificate "$kamp_URL2"
                 			    printf "Copying file...\n"
                 			    mv custom_macro.py /usr/share/klipper/klippy/extras/custom_macro.py
                 			    printf "Restarting services...\n"
