@@ -1,7 +1,7 @@
 #!/bin/sh
 
 VERSION=v3.2
-CHANGELOG=- Updated KAMP to fix of out range error. Please uninstall and reinstall it.
+CHANGELOG=- Updated KAMP to fix of out range error. Please uninstall and reinstall it.\n
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
