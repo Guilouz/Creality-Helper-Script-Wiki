@@ -1,0 +1,38 @@
+name: Bug report
+description: Report an issue
+title: "[BUG] <title>"
+labels: 'bug'
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        This is a bug report, please only post issue related to the Wiki.
+        
+        If you need general support, please use [Discussions](https://github.com/Guilouz/Creality-K1-and-K1-Max/discussions) section.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 'What happened?'
+      description: A clear and concise description of what the issue is.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: 'What did you expect to happen instead?'
+      description: A clear and concise description of what you expected to happen instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro-steps
+    attributes:
+      label: 'How to reproduce this issue?'
+      description: A clear and concise description with precise steps to reproduce this issue.
+    validations:
+      required: true
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: 'Additional information:'
+      description: Any additional info, screenshots or recordings which help to describe the issue.
