@@ -1,7 +1,7 @@
 #!/bin/sh
 
 VERSION=v3.2
-CHANGELOG=- Updated KAMP to fix of out range error. Please uninstall and reinstall it.\n
+CHANGELOG="- Updated KAMP to latest version. Please uninstall and reinstall it."
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -53,7 +53,7 @@ check_updates() {
     current_script=$(cat /root/installer.sh)
     if [ "$github_script" != "$current_script" ]; then
         current_version=$(echo "$github_script" | sed -n '3s/VERSION=//p')
-        changelog=$(echo "$github_script" | sed -n '/CHANGELOG=/,/^$/p')
+        changelog=$(echo "$github_script" | sed -n '/CHANGELOG=/,/^$/p' | sed 's/CHANGELOG=//')
         printf " ${green}A new script version ($current_version) is available!\n\n"
         printf " ${white}Changelog:\n\n"
         printf " ${yellow}$changelog${white}\n\n"
