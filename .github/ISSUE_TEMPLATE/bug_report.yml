@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: >-
-        This is a bug report, please only post issue related to the Wiki.
+        #**This is a bug report, please only post issue related to the Wiki.**
         
         If you need general support, please use [Discussions](https://github.com/Guilouz/Creality-K1-and-K1-Max/discussions) section.
 
