@@ -874,7 +874,7 @@ do
                 			    printf "\n"
                 			    printf "${green} Camera Settings Control files have been installed successfully!"
                 			    printf "${white}\n\n"
-                			    printf "Don't miss to add this in printer.cfg file:"
+                			    printf " Don't miss to add this in printer.cfg file:"
                 			    printf "${white}\n\n"
                 			    printf "${yellow} [include camera-settings.cfg]"
                 			    printf "${white}\n\n"
