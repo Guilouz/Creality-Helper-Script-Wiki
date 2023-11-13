@@ -20,6 +20,9 @@ set_hostname_with_model_mac()
             "K1 Max SE")
                 model="K1MaxSE"
                 ;;
+            "F003")
+                model="CR10SE"
+                ;;
             *)
                 ;;
         esac
