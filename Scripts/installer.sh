@@ -567,6 +567,7 @@ do
                 			    cd /usr/share
 								if [ -d "$octoeverywhere_folder" ]; then
 									printf "${darkred} OctoEverywhere is already installed. Skipping Download."
+                			    	printf "${white}\n\n"
 								else
                 			    	echo "Downloading OctoEverywhere for Klipper..."
                 			    	git clone $octoeverywhere_URL octoeverywhere
