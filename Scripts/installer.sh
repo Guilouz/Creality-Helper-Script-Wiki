@@ -290,6 +290,7 @@ info_menu(){
     printf " |                        Fluidd ${white}→ $(check_folder "$fluidd_folder")\n"
     printf " |                      Mainsail ${white}→ $(check_folder "$mainsail_folder")\n"
     printf " |                                                            | \n"
+    printf " |                OctoEverywhere ${white}→ $(check_file "$octoeverywhere_folder")\n"
     printf " |           Moonraker Timelapse ${white}→ $(check_file "$timelapse_file")\n"
     printf " |                       Entware ${white}→ $(check_folder "$entware_folder")\n"
     printf " |         Mobileraker Companion ${white}→ $(check_folder "$mobileraker_folder")\n"
