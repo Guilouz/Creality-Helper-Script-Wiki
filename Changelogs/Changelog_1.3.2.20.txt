@@ -1,0 +1,11 @@
+V1.3.2.20 Firmware Update
+
+1. Added support for firmware root function, system settings added a way to view the root account password.
+2. Added support for model object exclusion feature, object exclusion can be set in Creality Print.
+3. Added support for firmware rollback feature, K1 firmware rollback version v1.3.1.28.
+4. Added support for connecting to hidden networks, and open networks.
+5. Added memory usage detection and insufficient space alarm function.
+6. Fixed other known bugs.
+
+Upgrade Guide:
+Click on the screen for upgrade, wait for the upgrade to complete, then click on Settings - Device Self-Check - check Input Shaping and Auto Bed Leveling, click on Self-Check, wait for self-check to complete, then use the machine.
