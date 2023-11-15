@@ -42,6 +42,8 @@ bootdisplay_file="/etc/boot-display/part0/pic_100.jpg"
 bootdisplay_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1_boot_display.tar"
 bootdisplay_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1max_boot_display.tar"
 bootdisplay_URL3="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/stock_boot_display.tar"
+octoeverywhere_folder="/usr/share/octoeverywhere/"
+octoeverywhere_URL="https://github.com/QuinnDamerell/OctoPrint-OctoEverywhere.git"
 
 check_updates() {
     github_script=$(wget --no-check-certificate -qO- https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh)
@@ -156,15 +158,16 @@ install_menu(){
     printf " |  ${yellow}2) ${white}Install ${green}Fluidd ${white}(port 4408)                             | \n"
     printf " |  ${yellow}3) ${white}Install ${green}Mainsail ${white}(port 4409)                           | \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow}4) ${white}Install ${green}Moonraker Timelapse                            ${white}| \n"
-    printf " |  ${yellow}5) ${white}Install ${green}Entware                                        ${white}| \n"
-    printf " |  ${yellow}6) ${white}Install ${green}Mobileraker Companion                          ${white}| \n"
-    printf " |  ${yellow}7) ${white}Install ${green}Klipper Adaptive Meshing & Purging             ${white}| \n"
-    printf " |  ${yellow}8) ${white}Install ${green}Hostname Service ${white}file                          | \n"
-    printf " |  ${yellow}9) ${white}Install ${green}Klipper Gcode Shell Command ${white}file               | \n"
-    printf " | ${yellow}10) ${white}Install ${green}Buzzer Support ${white}files                           | \n"
-    printf " | ${yellow}11) ${white}Install ${green}Nozzle Cleaning Fan Control ${white}files              | \n"
-    printf " | ${yellow}12) ${white}Install ${green}Camera Settings Control ${white}files                  | \n"
+    printf " |  ${yellow}4) ${white}Install ${green}OctoEverywhere - Free Remote Access And AI     ${white}| \n"
+    printf " |  ${yellow}5) ${white}Install ${green}Moonraker Timelapse                            ${white}| \n"
+    printf " |  ${yellow}6) ${white}Install ${green}Entware                                        ${white}| \n"
+    printf " |  ${yellow}7) ${white}Install ${green}Mobileraker Companion                          ${white}| \n"
+    printf " |  ${yellow}8) ${white}Install ${green}Klipper Adaptive Meshing & Purging             ${white}| \n"
+    printf " |  ${yellow}9) ${white}Install ${green}Hostname Service ${white}file                          | \n"
+    printf " | ${yellow}10) ${white}Install ${green}Klipper Gcode Shell Command ${white}file               | \n"
+    printf " | ${yellow}11) ${white}Install ${green}Buzzer Support ${white}files                           | \n"
+    printf " | ${yellow}12) ${white}Install ${green}Nozzle Cleaning Fan Control ${white}files              | \n"
+    printf " | ${yellow}13) ${white}Install ${green}Camera Settings Control ${white}files                  | \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
@@ -194,15 +197,16 @@ uninstall_menu(){
     printf " |  ${yellow}2) ${white}Remove ${green}Fluidd                                          ${white}| \n"
     printf " |  ${yellow}3) ${white}Remove ${green}Mainsail                                        ${white}| \n"
     printf " |                                                            | \n"
-    printf " |  ${yellow}4) ${white}Remove ${green}Moonraker Timelapse                             ${white}| \n"
-    printf " |  ${yellow}5) ${white}Remove ${green}Entware                                         ${white}| \n"
-    printf " |  ${yellow}6) ${white}Remove ${green}Mobileraker Companion                           ${white}| \n"
-    printf " |  ${yellow}7) ${white}Remove ${green}Klipper Adaptive Meshing & Purging              ${white}| \n"
-    printf " |  ${yellow}8) ${white}Remove ${green}Hostname Service ${white}file                           | \n"
-    printf " |  ${yellow}9) ${white}Remove ${green}Klipper Gcode Shell Command ${white}file                | \n"
-    printf " | ${yellow}10) ${white}Remove ${green}Buzzer Support ${white}files                            | \n"
-    printf " | ${yellow}11) ${white}Remove ${green}Nozzle Cleaning Fan Control ${white}files               | \n"
-    printf " | ${yellow}12) ${white}Remove ${green}Camera Settings Control ${white}files                   | \n"
+    printf " |  ${yellow}4) ${white}Remove ${green}OctoEverywhere                                  ${white}| \n"
+    printf " |  ${yellow}5) ${white}Remove ${green}Moonraker Timelapse                             ${white}| \n"
+    printf " |  ${yellow}6) ${white}Remove ${green}Entware                                         ${white}| \n"
+    printf " |  ${yellow}7) ${white}Remove ${green}Mobileraker Companion                           ${white}| \n"
+    printf " |  ${yellow}8) ${white}Remove ${green}Klipper Adaptive Meshing & Purging              ${white}| \n"
+    printf " |  ${yellow}9) ${white}Remove ${green}Hostname Service ${white}file                           | \n"
+    printf " | ${yellow}10) ${white}Remove ${green}Klipper Gcode Shell Command ${white}file                | \n"
+    printf " | ${yellow}11) ${white}Remove ${green}Buzzer Support ${white}files                            | \n"
+    printf " | ${yellow}12) ${white}Remove ${green}Nozzle Cleaning Fan Control ${white}files               | \n"
+    printf " | ${yellow}13) ${white}Remove ${green}Camera Settings Control ${white}files                   | \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
@@ -539,7 +543,47 @@ do
             			    fi
             			fi
                         ;;
-                    4)
+					4)
+						if [ ! -d "$moonraker_folder" ]; then
+            				printf "${darkred} Please install Moonraker and Nginx first!"
+            				printf "${white}\n\n"
+						elif [ ! -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
+            				printf "${darkred} Please install Fluidd and/or Mainsail first!"
+            				printf "${white}\n\n"
+            			else
+            			    printf " Are you sure you want to install ${green}OctoEverywhere${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to install ${green}OctoEverywhere ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    printf "${green} Installing OctoEverywhere..."
+                			    printf "${white}\n\n"
+                			    cd /usr/share
+								if [ -d "$octoeverywhere_folder" ]; then
+									printf "${darkred} OctoEverywhere is already installed. Skipping Download."
+								else
+                			    	echo "Downloading OctoEverywhere for Klipper..."
+                			    	git clone $octoeverywhere_URL octoeverywhere
+								fi
+                			    cd octoeverywhere
+                			    echo "Running the OctoEverywhere installer..."
+								sh ./install.sh
+                			    printf "\n"
+                			    printf "${green} OctoEverywhere has been installed successfully!"
+                			    printf "${white}\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    5)
             			if [ -f "$timelapse_file" ]; then
             				printf "${darkred} Moonraker Timelapse is already installed!"
             				printf "${white}\n\n"
@@ -577,7 +621,7 @@ do
             			    fi
             			fi
                         ;;
-                    5)
+                    6)
                         printf " Are you sure you want to install ${green}Entware ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
             			read confirm
             			printf "${white}\n"
@@ -612,7 +656,7 @@ do
                 			printf "${white}\n\n"
             			fi
                         ;;
-                    6)
+                    7)
             			if [ -d "$mobileraker_folder" ]; then
             				printf "${darkred} Mobileraker Companion is already installed!"
             				printf "${white}\n\n"
@@ -654,7 +698,7 @@ do
             			    fi
             			fi
                         ;;
-                    7)
+                    8)
             			if [ -d "$kamp_folder" ]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is already installed!"
             				printf "${white}\n\n"
@@ -697,7 +741,7 @@ do
             			    fi
             			fi
                         ;;
-                    8)
+                    9)
             			if [ -f "$hostname_file" ]; then
             				printf "${darkred} Hotsname Service file is already installed!"
             				printf "${white}\n\n"
@@ -729,7 +773,7 @@ do
             			    fi
             			fi
                         ;;
-                    9)
+                    10)
             			if [ -f "$shellcommand_file" ]; then
             				printf "${darkred} Klipper Gcode Shell Command file is already installed!"
             				printf "${white}\n\n"
@@ -758,7 +802,7 @@ do
             			    fi
             			fi
                         ;;
-                    10)
+                    11)
             			if [ -f "$buzzer_file" ]; then
             				printf "${darkred} Buzzer support files are already installed!"
             				printf "${white}\n\n"
@@ -807,7 +851,7 @@ do
             			    fi
             			fi
                         ;;
-                    11)
+                    12)
             			if [ -d "$prtouch_folder" ]; then
             				printf "${darkred} Nozzle Cleaning Fan Control files are already installed!"
             				 printf "${white}\n\n"
@@ -844,7 +888,7 @@ do
             			    fi
             			fi
                         ;;
-                    12)
+                    13)
             			if [ -f "$camera_file" ]; then
             				printf "${darkred} Camera Settings Control files are already installed!"
             				 printf "${white}\n\n"
@@ -1002,7 +1046,35 @@ do
             			    fi
             			fi
                         ;;
-                    4)
+					4)
+            			if [[ ! -d "$octoeverywhere_folder" ]]; then
+            				printf "${darkred} OctoEverywhere is not installed!"
+            				printf "${white}\n\n"
+            			else
+            			    printf " Are you sure you want to remove ${green}OctoEverywhere ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to remove ${green}OctoEverywhere ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+                            if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                                printf "${green} Removing OctoEverywhere..."
+                			    printf "${white}\n\n"
+								cd $octoeverywhere_folder
+								sh ./uninstall.sh
+                			    printf "${green} OctoEverywhere has been removed successfully!"
+                			    printf "${white}\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    5)
             			if [ ! -f "$timelapse_file" ]; then
                 			printf "${darkred} Moonraker Timelapse is not installed!"
                 			printf "${white}\n\n"
@@ -1040,7 +1112,7 @@ do
             			    fi
             			fi
                         ;;
-                    5)
+                    6)
                         printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			read confirm
             			printf "${white}\n"
@@ -1077,7 +1149,7 @@ do
                 			printf "${white}\n\n"
             			fi
                         ;;
-                    6)
+                    7)
             			if [[ ! -d "$mobileraker_folder" ]]; then
             				printf "${darkred} Mobileraker Companion is not installed!"
             				printf "${white}\n\n"
@@ -1110,7 +1182,7 @@ do
             			    fi
             			fi
                         ;;
-                    7)
+                    8)
             			if [[ ! -d "$kamp_folder" ]]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is not installed!"
             				printf "${white}\n\n"
@@ -1138,7 +1210,7 @@ do
                 			fi
            				fi
                         ;;
-                    8)
+                    9)
             			if [ ! -f "$hostname_file" ]; then
             				printf "${darkred} Hotsname Service file is not installed!"
             				printf "${white}\n\n"
@@ -1167,7 +1239,7 @@ do
             			    fi
             			fi
             			;;
-                    9)
+                    10)
             			if [ ! -f "$shellcommand_file" ]; then
             				printf "${darkred} Klipper Gcode Shell Command file is not installed!"
             				printf "${white}\n\n"
@@ -1201,7 +1273,7 @@ do
             			    fi
             			fi
             			;;
-                    10)
+                    11)
             			if [[ ! -f "$buzzer_file" ]]; then
             				printf "${darkred} Buzzer Support files are not installed!"
             				printf "${white}\n\n"
@@ -1232,7 +1304,7 @@ do
             			    fi
             			fi
                         ;;
-                    11)
+                    12)
             			if [[ ! -d "$prtouch_folder" ]]; then
             				printf "${darkred} Nozzle Cleaning Fan Control files are not installed!"
             				printf "${white}\n\n"
@@ -1268,7 +1340,7 @@ do
             			    fi
             			fi
                         ;;
-                    12)
+                    13)
             			if [[ ! -f "$camera_file" ]]; then
             				printf "${darkred} Camera Settings Control files are not installed!"
             				printf "${white}\n\n"
