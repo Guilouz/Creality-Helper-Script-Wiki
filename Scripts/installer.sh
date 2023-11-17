@@ -414,7 +414,7 @@ do
                 			        /etc/init.d/S56moonraker_service start
                 			        sleep 1
                 			        printf "\n"
-                			        printf "${green} Moonraker and }Nginx have been installed successfully!"
+                			        printf "${green} Moonraker and Nginx have been installed successfully!"
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${darkred} Download failed. Exit code: $?"
