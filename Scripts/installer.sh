@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v3.4
+VERSION=v3.5
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -318,7 +318,7 @@ info_menu(){
 }
 
 system_menu(){
-    ipaddress=`ip route | grep -oP 'src \K\S+'`
+    ipaddress=`ip route | grep -o 'src [0-9.]\+' | awk '{print $2}'`
     memfree=`cat /proc/meminfo | grep MemFree | awk {'print $2'}`
     memtotal=`cat /proc/meminfo | grep MemTotal | awk {'print $2'}`
     pourcent=$((($memfree * 100)/$memtotal))
