@@ -18,6 +18,7 @@ fluidd_URL="https://github.com/fluidd-core/fluidd/releases/latest/download/fluid
 mainsail_folder="/usr/data/mainsail/"
 mainsail_URL="https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip"
 octoeverywhere_folder="/usr/data/octoeverywhere/"
+octoeverywhere_folder2="/usr/share/octoeverywhere/"
 octoeverywhere_URL="https://github.com/QuinnDamerell/OctoPrint-OctoEverywhere.git"
 timelapse_file="/usr/data/moonraker/moonraker/moonraker/components/timelapse.py"
 timelapse_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/timelapse/timelapse.py"
@@ -548,7 +549,7 @@ do
 						if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
-						elif [ ! -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
+						elif [ ! -d "$fluidd_folder" ] || [ ! -d "$mainsail_folder" ]; then
             				printf "${darkred} Please install Fluidd and/or Mainsail first!"
             				printf "${white}\n\n"
             			else
@@ -1048,7 +1049,7 @@ do
             			fi
                         ;;
 					4)
-            			if [[ ! -d "$octoeverywhere_folder" ]]; then
+            			if [ ! -d "$octoeverywhere_folder" ] || [ ! -d "$octoeverywhere_folder2" ]; then
             				printf "${darkred} OctoEverywhere is not installed!"
             				printf "${white}\n\n"
             			else
