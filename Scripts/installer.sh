@@ -565,7 +565,7 @@ do
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
                 			    printf "${green} Installing OctoEverywhere..."
                 			    printf "${white}\n\n"
-                			    cd /usr/share
+                			    cd /usr/data
 								if [ -d "$octoeverywhere_folder" ]; then
 									printf "OctoEverywhere is already installed. Download skipped."
 								else
