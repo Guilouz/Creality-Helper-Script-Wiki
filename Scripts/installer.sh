@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v3.5
+VERSION=v3.6
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
