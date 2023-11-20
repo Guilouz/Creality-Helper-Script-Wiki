@@ -565,17 +565,20 @@ do
                                 printf "${white}\n"
                             done
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-                			    printf "${green} Downloading Obico..."
+                			    printf "${green} Installing Obico..."
                 			    printf "${white}\n\n"
                 			    cd /usr/data
 													if [ -d "$moonraker_obico_folder" ]; then
                 			        printf "Obico has been downloaded."
+                			        printf "${white}\n\n"
                 			    else
                 			        printf "Downloading Obico for Klipper..."
+                			        printf "${white}\n\n"
                 			        git clone $moonraker_obico_URL moonraker-obico
                 			    fi
                 			    cd moonraker-obico
-                			    printf "Installing Obico..."
+                			    printf "Installing dependencies and configuring Obico..."
+                			    printf "${white}\n\n"
                 			    sh ./scripts/install_creality.sh -k
                 			    printf "\n"
                 			    printf "${green} Obico has been installed successfully!"
