@@ -550,6 +550,43 @@ do
             			fi
                         ;;
                     4)
+            			if [ ! -d "$moonraker_folder" ]; then
+            				printf "${darkred} Please install Moonraker and Nginx first!"
+            				printf "${white}\n\n"
+            			else
+            			    printf " Are you sure you want to install ${green}Obico ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to install ${green}Obico ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    printf "${green} Downloading Obico..."
+                			    printf "${white}\n\n"
+                			    cd /usr/data
+													if [ -d "$moonraker_obico_folder" ]; then
+                			        printf "Obico has been downloaded."
+                			    else
+                			        printf "Downloading Obico for Klipper..."
+                			        git clone $moonraker_obico_URL moonraker-obico
+                			    fi
+                			    cd moonraker-obico
+                			    printf "Installing Obico..."
+                			    sh ./scripts/install_creality.sh -k
+                			    printf "\n"
+                			    printf "${green} Obico has been installed successfully!"
+                			    printf "${white}\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    5)
 						if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
@@ -589,7 +626,7 @@ do
             			    fi
             			fi
                         ;;
-                    5)
+                    6)
             			if [ -f "$timelapse_file" ]; then
             				printf "${darkred} Moonraker Timelapse is already installed!"
             				printf "${white}\n\n"
@@ -627,8 +664,8 @@ do
             			    fi
             			fi
                         ;;
-                    6)
-                        printf " Are you sure you want to install ${green}Entware ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                    7)
+                        printf " Are you sure you want to install ${green}Entware ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			read confirm
             			printf "${white}\n"
             			while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
@@ -662,7 +699,7 @@ do
                 			printf "${white}\n\n"
             			fi
                         ;;
-                    7)
+                    8)
             			if [ -d "$mobileraker_folder" ]; then
             				printf "${darkred} Mobileraker Companion is already installed!"
             				printf "${white}\n\n"
@@ -704,7 +741,7 @@ do
             			    fi
             			fi
                         ;;
-                    8)
+                    9)
             			if [ -d "$kamp_folder" ]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is already installed!"
             				printf "${white}\n\n"
@@ -747,7 +784,7 @@ do
             			    fi
             			fi
                         ;;
-                    9)
+                    10)
             			if [ -f "$hostname_file" ]; then
             				printf "${darkred} Hotsname Service file is already installed!"
             				printf "${white}\n\n"
@@ -779,7 +816,7 @@ do
             			    fi
             			fi
                         ;;
-                    10)
+                    11)
             			if [ -f "$shellcommand_file" ]; then
             				printf "${darkred} Klipper Gcode Shell Command file is already installed!"
             				printf "${white}\n\n"
@@ -808,7 +845,7 @@ do
             			    fi
             			fi
                         ;;
-                    11)
+                    12)
             			if [ -f "$buzzer_file" ]; then
             				printf "${darkred} Buzzer support files are already installed!"
             				printf "${white}\n\n"
@@ -857,7 +894,7 @@ do
             			    fi
             			fi
                         ;;
-                    12)
+                    13)
             			if [ -d "$prtouch_folder" ]; then
             				printf "${darkred} Nozzle Cleaning Fan Control files are already installed!"
             				 printf "${white}\n\n"
@@ -894,7 +931,7 @@ do
             			    fi
             			fi
                         ;;
-                    13)
+                    14)
             			if [ -f "$camera_file" ]; then
             				printf "${darkred} Camera Settings Control files are already installed!"
             				 printf "${white}\n\n"
@@ -1052,7 +1089,40 @@ do
             			    fi
             			fi
                         ;;
-					4)
+                    4)
+            			if [ ! -d "$moonraker_obico_folder" ]; then
+                			printf "${darkred} Obico is not installed!"
+                			printf "${white}\n\n"
+            			else
+            			    printf " Are you sure you want to remove ${green}Obico ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to remove ${green}Obico ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+                            if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                                printf "${green} Removing Obico..."
+                			    printf "${white}\n\n"
+                                printf "Deleting files...\n"
+                			    rm -rf $moonraker_obico_folder
+                			    rm -rf /usr/data/moonraker-obico-env
+                			    printf "Removing service file...\n"
+                    			rm -f /etc/init.d/S99moonraker_obico
+                			    printf "\n"
+                			    printf "${green} Obico has been removed successfully!"
+                			    printf "${white}\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+
+					5)
             			if [ ! -d "$octoeverywhere_folder" ]; then
             				printf "${darkred} OctoEverywhere is not installed!"
             				printf "${white}\n\n"
@@ -1081,7 +1151,7 @@ do
             			    fi
             			fi
                         ;;
-                    5)
+                    6)
             			if [ ! -f "$timelapse_file" ]; then
                 			printf "${darkred} Moonraker Timelapse is not installed!"
                 			printf "${white}\n\n"
@@ -1119,7 +1189,7 @@ do
             			    fi
             			fi
                         ;;
-                    6)
+                    7)
                         printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			read confirm
             			printf "${white}\n"
@@ -1156,7 +1226,7 @@ do
                 			printf "${white}\n\n"
             			fi
                         ;;
-                    7)
+                    8)
             			if [[ ! -d "$mobileraker_folder" ]]; then
             				printf "${darkred} Mobileraker Companion is not installed!"
             				printf "${white}\n\n"
@@ -1189,7 +1259,7 @@ do
             			    fi
             			fi
                         ;;
-                    8)
+                    9)
             			if [[ ! -d "$kamp_folder" ]]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is not installed!"
             				printf "${white}\n\n"
@@ -1217,7 +1287,7 @@ do
                 			fi
            				fi
                         ;;
-                    9)
+                    10)
             			if [ ! -f "$hostname_file" ]; then
             				printf "${darkred} Hotsname Service file is not installed!"
             				printf "${white}\n\n"
@@ -1246,7 +1316,7 @@ do
             			    fi
             			fi
             			;;
-                    10)
+                    11)
             			if [ ! -f "$shellcommand_file" ]; then
             				printf "${darkred} Klipper Gcode Shell Command file is not installed!"
             				printf "${white}\n\n"
@@ -1280,7 +1350,7 @@ do
             			    fi
             			fi
             			;;
-                    11)
+                    12)
             			if [[ ! -f "$buzzer_file" ]]; then
             				printf "${darkred} Buzzer Support files are not installed!"
             				printf "${white}\n\n"
@@ -1311,7 +1381,7 @@ do
             			    fi
             			fi
                         ;;
-                    12)
+                    13)
             			if [[ ! -d "$prtouch_folder" ]]; then
             				printf "${darkred} Nozzle Cleaning Fan Control files are not installed!"
             				printf "${white}\n\n"
@@ -1347,7 +1417,7 @@ do
             			    fi
             			fi
                         ;;
-                    13)
+                    14)
             			if [[ ! -f "$camera_file" ]]; then
             				printf "${darkred} Camera Settings Control files are not installed!"
             				printf "${white}\n\n"
