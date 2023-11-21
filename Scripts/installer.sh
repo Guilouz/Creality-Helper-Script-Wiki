@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v3.6
+VERSION=v3.6.1
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -548,7 +548,7 @@ do
 						if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
-						elif [ ! -d "$fluidd_folder" ] || [ ! -d "$mainsail_folder" ]; then
+						elif [ ! -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
             				printf "${darkred} Please install Fluidd and/or Mainsail first!"
             				printf "${white}\n\n"
             			else
