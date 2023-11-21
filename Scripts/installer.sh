@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v3.7
+VERSION=v3.6.1
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -380,13 +380,13 @@ do
             				printf "${darkred} Moonraker and Nginx are already installed!"
             				printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to install ${green}Moonraker and Nginx ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Moonraker and Nginx ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Moonraker and Nginx ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to install ${green}Moonraker and Nginx ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -439,13 +439,13 @@ do
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to install ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to install ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -498,13 +498,13 @@ do
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to install ${green}Mainsail ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Mainsail ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Mainsail ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to install ${green}Mainsail ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -593,7 +593,7 @@ do
 						if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
-						elif [ ! -d "$fluidd_folder" ] || [ ! -d "$mainsail_folder" ]; then
+						elif [ ! -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
             				printf "${darkred} Please install Fluidd and/or Mainsail first!"
             				printf "${white}\n\n"
             			else
@@ -634,13 +634,13 @@ do
             				printf "${darkred} Moonraker Timelapse is already installed!"
             				printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to install ${green}Moonraker Timelapse ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Moonraker Timelapse ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Moonraker Timelapse ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to install ${green}Moonraker Timelapse ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -674,7 +674,7 @@ do
             			while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                             printf "${darkred} Please select a correct choice!"
                             printf "${white}\n\n"
-                            printf " Are you sure you want to install ${green}Entware ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                            printf " Are you sure you want to install ${green}Entware ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                             read confirm
                             printf "${white}\n"
                         done
@@ -707,13 +707,13 @@ do
             				printf "${darkred} Mobileraker Companion is already installed!"
             				printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to install ${green}Mobileraker Companion ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Mobileraker Companion ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Mobileraker Companion ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to install ${green}Mobileraker Companion ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -749,13 +749,13 @@ do
             				printf "${darkred} Klipper Adaptive Meshing & Purging is already installed!"
             				printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to install ${green}Klipper Adaptive Meshing & Purging ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Klipper Adaptive Meshing & Purging ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                rintf " Are you sure you want to install ${green}Klipper Adaptive Meshing & Purging ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                rintf " Are you sure you want to install ${green}Klipper Adaptive Meshing & Purging ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -792,13 +792,13 @@ do
             				printf "${darkred} Hotsname Service file is already installed!"
             				printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to install ${green}Hotsname Service ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Hotsname Service ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Hotsname Service ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to install ${green}Hotsname Service ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -824,13 +824,13 @@ do
             				printf "${darkred} Klipper Gcode Shell Command file is already installed!"
             				printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to install ${green}Klipper Gcode Shell Command ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Klipper Gcode Shell Command ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Klipper Gcode Shell Command ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to install ${green}Klipper Gcode Shell Command ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -856,13 +856,13 @@ do
             				printf " ${darkred}Please install Klipper Gcode Shell Command file first!"
             				printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to install ${green}Buzzer Support ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Buzzer Support ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Buzzer Support ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to install ${green}Buzzer Support ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -902,13 +902,13 @@ do
             				printf "${darkred} Nozzle Cleaning Fan Control files are already installed!"
             				 printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to install ${green}Nozzle Cleaning Fan Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Nozzle Cleaning Fan Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Nozzle Cleaning Fan Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to install ${green}Nozzle Cleaning Fan Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -942,13 +942,13 @@ do
             				printf " ${darkred}Please install Klipper Gcode Shell Command file first!"
             				 printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to install ${green}Camera Settings Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to install ${green}Camera Settings Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Camera Settings Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to install ${green}Camera Settings Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -1016,7 +1016,7 @@ do
                 			    /etc/init.d/S50nginx stop
                 			    /etc/init.d/S56moonraker_service stop
                 			    printf "Deleting files...\n"
-                			    rm -rf /etc/init.d/S50nginx /etc/init.d/S56moonraker_service 
+                			    rm -rf /etc/init.d/S50nginx /etc/init.d/S56moonraker_service
                 			    rm -rf /usr/data/printer_data/config/moonraker.conf /usr/data/printer_data/config/.moonraker.conf.bkp /usr/data/printer_data/.moonraker.uuid /usr/data/printer_data/moonraker.asvc /usr/data/nginx /usr/data/moonraker
                 			    printf "\n"
                 			    printf "${green} Moonraker and Nginx }have been removed successfully!"
@@ -1032,12 +1032,12 @@ do
             				printf "${darkred} Fluidd is not installed!"
             				printf "${white}\n\n"
             			else
-            			    printf " Are you sure you want to remove ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+            			    printf " Are you sure you want to remove ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n";
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf " ${darkred}Please select a correct choice! ${white}\n\n"
-                                printf " Are you sure you want to remove ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to remove ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -1358,13 +1358,13 @@ do
             				printf "${darkred} Buzzer Support files are not installed!"
             				printf "${white}\n\n"
             			else
-                            printf " Are you sure you want to remove ${green}Buzzer Support ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                            printf " Are you sure you want to remove ${green}Buzzer Support ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to remove ${green}Buzzer Support ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to remove ${green}Buzzer Support ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -1389,13 +1389,13 @@ do
             				printf "${darkred} Nozzle Cleaning Fan Control files are not installed!"
             				printf "${white}\n\n"
             			else
-                            printf " Are you sure you want to remove ${green}Nozzle Cleaning Fan Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                            printf " Are you sure you want to remove ${green}Nozzle Cleaning Fan Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to remove ${green}Nozzle Cleaning Fan Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to remove ${green}Nozzle Cleaning Fan Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -1425,13 +1425,13 @@ do
             				printf "${darkred} Camera Settings Control files are not installed!"
             				printf "${white}\n\n"
             			else
-                            printf " Are you sure you want to remove ${green}Camera Settings Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                            printf " Are you sure you want to remove ${green}Camera Settings Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to remove ${green}Camera Settings Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to remove ${green}Camera Settings Control ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -1561,24 +1561,24 @@ do
             				printf "${darkred} Please use latest firmware to install Custom Boot Display!"
             				printf "${white}\n\n"
             			else
-                            printf " Are you sure you want to install ${green}Custom Boot Display ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                            printf " Are you sure you want to install ${green}Custom Boot Display ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Custom Boot Display ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to install ${green}Custom Boot Display ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
             			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
-            			        printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
+            			        printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
             			        read confirm2
             			        printf "${white}\n"
             			        while [ "$confirm2" != "k1" ] && [ "$confirm2" != "K1" ] && [ "$confirm2" != "k1max" ] && [ "$confirm2" != "K1MAX" ]; do
                                     printf "${darkred} Please select a correct choice!"
                                     printf "${white}\n\n"
-                                    printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
+                                    printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
                                     read confirm
                                     printf "${white}\n"
                                 done
@@ -1629,13 +1629,13 @@ do
             				printf "${darkred} Please use latest firmware to restore Stock Boot Display!"
             				printf "${white}\n\n"
             			else
-                            printf " Are you sure you want to remove ${green}Custom Boot Display ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                            printf " Are you sure you want to remove ${green}Custom Boot Display ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to remove ${green}Custom Boot Display ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}" 
+                                printf " Are you sure you want to remove ${green}Custom Boot Display ${white}file ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
