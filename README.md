@@ -1,6 +1,6 @@
 # Installation Helper Script for Creality K1 Series
 
-<img width="1102" alt="Capture d’écran 2023-08-03 à 21 37 06" src="https://github.com/Guilouz/Creality-K1-and-K1-Max/assets/12702322/c0815e43-74c2-45ce-bf22-3827034d51cb">
+<img width="1102" src="https://github.com/Guilouz/Creality-K1-and-K1-Max/blob/main/images/Home/Home.png">
 
 ## About
 
