@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v3.7
+VERSION=v3.7.1
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -920,6 +920,9 @@ do
                     13)
             			if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!"
+            				printf "${white}\n\n"
+            			elif [ ! -d "$entware_folder" ]; then
+            				printf "${darkred} Please install Entware first!"
             				printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to install ${green}Obico ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
