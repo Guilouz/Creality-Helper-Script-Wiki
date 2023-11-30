@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v3.8
+VERSION=v3.8.1
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -517,7 +517,7 @@ do
                 			        printf "\n"
                 			        printf "${green} Fluidd has been installed successfully!"
                 			        printf "${white}\n\n"
-                			        printf " You can now connect to Fluidd Web Interface with ${yellow}https://$ipaddress:4408"
+                			        printf " You can now connect to Fluidd Web Interface with ${yellow}http://$ipaddress:4408"
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${darkred} Download failed. Exit code: $?"
@@ -576,7 +576,7 @@ do
                 			        printf "\n"
                 			        printf "${green} Mainsail has been installed successfully!"
                 			        printf "${white}\n\n"
-                			        printf " You can now connect to Mainsail Web Interface with ${yellow}https://$ipaddress:4409"
+                			        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$ipaddress:4409"
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${darkred} Download failed. Exit code: $?"
@@ -1734,7 +1734,7 @@ do
                                     printf "\n"
                                     printf "${green} Creality Web Interface has been removed successfully!"
                 			        printf "${white}\n\n"
-                			        printf " You can now connect to Fluidd Web Interface with ${yellow}https://$ipaddress"
+                			        printf " You can now connect to Fluidd Web Interface with ${yellow}http://$ipaddress"
                 			        printf "${white}\n\n"
             			        elif [ ! -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
             			            printf "${green} Removing Creality Web Interface..."
@@ -1748,7 +1748,7 @@ do
                                     printf "\n"
                                     printf "${green} Creality Web Interface has been removed successfully!"
                 			        printf "${white}\n\n"
-                			        printf " You can now connect to Mainsail Web Interface with ${yellow}https://$ipaddress"
+                			        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$ipaddress"
                 			        printf "${white}\n\n"
             			        elif [ -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
             			            printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}" 
@@ -1773,7 +1773,7 @@ do
                                         printf "\n"
                                         printf "${green} Creality Web Interface has been removed successfully!"
                 			            printf "${white}\n\n"
-                			            printf " You can now connect to Fluidd Web Interface with: ${yellow}https://$ipaddress ${white}or ${yellow}https://$ipaddress:4408"
+                			            printf " You can now connect to Fluidd Web Interface with: ${yellow}http://$ipaddress ${white}or ${yellow}http://$ipaddress:4408"
                 			            printf "${white}\n\n"
             			            elif [ "$confirm2" = "mainsail" -o "$confirm2" = "MAINSAIL" ]; then
                 			            printf "${green} Removing Creality Web Interface..."
@@ -1787,7 +1787,7 @@ do
                                         printf "\n"
                                         printf "${green} Creality Web Interface has been removed successfully!"
                 			            printf "${white}\n\n"
-                			            printf " You can now connect to Mainsail Web Interface with ${yellow}https://$ipaddress ${white}or ${yellow}https://$ipaddress:4409"
+                			            printf " You can now connect to Mainsail Web Interface with ${yellow}http://$ipaddress ${white}or ${yellow}http://$ipaddress:4409"
                 			            printf "${white}\n\n"
                 			        fi
             			        fi
@@ -1825,7 +1825,7 @@ do
                                 printf "\n"
                                 printf "${green} Creality Web Interface has been restored successfully!"
                                 printf "${white}\n\n"
-                			    printf " You can now connect to Creality Web Interface with ${yellow}https://$ipaddress ${white}and with ${yellow}Creality Print"
+                			    printf " You can now connect to Creality Web Interface with ${yellow}http://$ipaddress ${white}and with ${yellow}Creality Print"
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
                 			    printf "${darkred} Restoration canceled!"
