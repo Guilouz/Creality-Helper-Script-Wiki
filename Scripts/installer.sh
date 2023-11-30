@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v3.8.1
+VERSION=v3.8.2
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -47,7 +47,6 @@ bootdisplay_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-M
 bootdisplay_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1max_boot_display.tar"
 bootdisplay_URL3="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/stock_boot_display.tar"
 crealityweb_file="/usr/bin/web-server"
-ipaddress=`ip route | grep -o 'src [0-9.]\+' | awk '{print $2}'`
 
 check_updates() {
     github_script=$(wget --no-check-certificate -qO- https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh)
@@ -103,6 +102,7 @@ check_folder() {
         printf "${darkred}Not Installed ${white}\n"
     fi
 }
+
 check_file() {
     local file_path="$1"
     if [ -f "$file_path" ]; then
@@ -111,12 +111,37 @@ check_file() {
         printf "${darkred}Not Installed ${white}\n"
     fi
 }
+
 check_crealityweb() {
     local file_path="$1"
     if [ -f "$file_path" ]; then
         printf "${green}Present ${white}\n"
     else
         printf "${darkred}Removed ${white}\n"
+    fi
+}
+
+check_ipaddress() {
+    eth0_ip=$(ip -4 addr show eth0 | grep -o -E '(inet\s)([0-9]+\.){3}[0-9]+' | cut -d ' ' -f 2 | head -n 1)
+    wlan0_ip=$(ip -4 addr show wlan0 | grep -o -E '(inet\s)([0-9]+\.){3}[0-9]+' | cut -d ' ' -f 2 | head -n 1)
+    if [ -n "$eth0_ip" ]; then
+        printf "$eth0_ip"
+    elif [ -n "$wlan0_ip" ]; then
+        printf "$wlan0_ip"
+    else
+        printf "xxx.xxx.xxx.xxx"
+    fi
+}
+
+check_connection() {
+    eth0_ip=$(ip -4 addr show eth0 | grep -o -E '(inet\s)([0-9]+\.){3}[0-9]+' | cut -d ' ' -f 2 | head -n 1)
+    wlan0_ip=$(ip -4 addr show wlan0 | grep -o -E '(inet\s)([0-9]+\.){3}[0-9]+' | cut -d ' ' -f 2 | head -n 1)
+    if [ -n "$eth0_ip" ]; then
+        printf "$eth0_ip (ETHERNET)"
+    elif [ -n "$wlan0_ip" ]; then
+        printf "$wlan0_ip (WLAN)"
+    else
+        printf "xxx.xxx.xxx.xxx"
     fi
 }
 
@@ -147,7 +172,7 @@ main_menu(){
     printf " |  ${yellow}u) ${white}Check Script Updates                                   | \n"
     printf " |  ${red}q) ${white}Exit                                                   | \n"
     printf " |                                                            | \n"
-    printf " |                                                       ${cyan}$VERSION ${white}| \n"
+    printf " |                                                     ${cyan}$VERSION ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -195,7 +220,7 @@ install_menu(){
     printf " |  ${yellow}b) ${white}Back to ${yellow}[Main Menu]                                    ${white}| \n"
     printf " |  ${red}q) ${white}Exit                                                   | \n"
     printf " |                                                            | \n"
-    printf " |                                                       ${cyan}$VERSION ${white}| \n"
+    printf " |                                                     ${cyan}$VERSION ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -243,7 +268,7 @@ uninstall_menu(){
     printf " |  ${yellow}b) ${white}Back to ${yellow}[Main Menu]                                    ${white}| \n"
     printf " |  ${red}q) ${white}Exit                                                   | \n"
     printf " |                                                            | \n"
-    printf " |                                                       ${cyan}$VERSION ${white}| \n"
+    printf " |                                                     ${cyan}$VERSION ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -270,7 +295,7 @@ backup_menu(){
     printf " |  ${yellow}b) ${white}Back to ${yellow}[Main Menu]                                    ${white}| \n"
     printf " |  ${red}q) ${white}Exit                                                   | \n"
     printf " |                                                            | \n"
-    printf " |                                                       ${cyan}$VERSION ${white}| \n"
+    printf " |                                                     ${cyan}$VERSION ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -300,7 +325,7 @@ customize_menu(){
     printf " |  ${yellow}b) ${white}Back to ${yellow}[Main Menu]                                    ${white}| \n"
     printf " |  ${red}q) ${white}Exit                                                   | \n"
     printf " |                                                            | \n"
-    printf " |                                                       ${cyan}$VERSION ${white}| \n"
+    printf " |                                                     ${cyan}$VERSION ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -352,7 +377,7 @@ info_menu(){
     printf " |  ${yellow}b) ${white}Back to ${yellow}[Main Menu]                                    ${white}| \n"
     printf " |  ${red}q) ${white}Exit                                                   | \n"
     printf " |                                                            | \n"
-    printf " |                                                       ${cyan}$VERSION ${white}| \n"
+    printf " |                                                     ${cyan}$VERSION ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -362,7 +387,6 @@ info_menu(){
 }
 
 system_menu(){
-    ipaddress=`ip route | grep -o 'src [0-9.]\+' | awk '{print $2}'`
     memfree=`cat /proc/meminfo | grep MemFree | awk {'print $2'}`
     memtotal=`cat /proc/meminfo | grep MemTotal | awk {'print $2'}`
     pourcent=$((($memfree * 100)/$memtotal))
@@ -384,7 +408,7 @@ system_menu(){
     printf "                                                                \n"
     printf "        ${green}System: ${white}\e[97m$(uname -s) (Kernel $(uname -r)) \n"
     printf "      ${green}Hostname: ${white}\e[97m$(uname -n) \n"
-    printf "    ${green}IP Address: ${white}\e[97m$ipaddress \n"
+    printf "    ${green}IP Address: ${white}\e[97m$(check_connection) \n"
     printf "     ${green}RAM Usage: ${white}\e[97m$(($memfree/1024)) MB / $(($memtotal/1024)) MB ($pourcent%% available) \n"
     printf "    ${green}Disk Usage: ${white}\e[97m$diskused \n"
     printf "        ${green}Uptime: ${white}\e[97m$upDays days $upHours hours $upMins minutes \n"
@@ -396,7 +420,7 @@ system_menu(){
     printf " |  ${yellow}b) ${white}Back to ${yellow}[Main Menu]                                    ${white}| \n"
     printf " |  ${red}q) ${white}Exit                                                   | \n"
     printf " |                                                            | \n"
-    printf " |                                                       ${cyan}$VERSION ${white}| \n"
+    printf " |                                                     ${cyan}$VERSION ${white}| \n"
     printf " ============================================================== \n"
     printf "\n"
     printf " ${white}Please enter your choice and validate with Enter: ${yellow}"
@@ -517,7 +541,7 @@ do
                 			        printf "\n"
                 			        printf "${green} Fluidd has been installed successfully!"
                 			        printf "${white}\n\n"
-                			        printf " You can now connect to Fluidd Web Interface with ${yellow}http://$ipaddress:4408"
+                			        printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress):4408"
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${darkred} Download failed. Exit code: $?"
@@ -576,7 +600,7 @@ do
                 			        printf "\n"
                 			        printf "${green} Mainsail has been installed successfully!"
                 			        printf "${white}\n\n"
-                			        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$ipaddress:4409"
+                			        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress):4409"
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${darkred} Download failed. Exit code: $?"
@@ -1734,7 +1758,7 @@ do
                                     printf "\n"
                                     printf "${green} Creality Web Interface has been removed successfully!"
                 			        printf "${white}\n\n"
-                			        printf " You can now connect to Fluidd Web Interface with ${yellow}http://$ipaddress"
+                			        printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress)"
                 			        printf "${white}\n\n"
             			        elif [ ! -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
             			            printf "${green} Removing Creality Web Interface..."
@@ -1748,7 +1772,7 @@ do
                                     printf "\n"
                                     printf "${green} Creality Web Interface has been removed successfully!"
                 			        printf "${white}\n\n"
-                			        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$ipaddress"
+                			        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress)"
                 			        printf "${white}\n\n"
             			        elif [ -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
             			            printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}" 
@@ -1773,7 +1797,7 @@ do
                                         printf "\n"
                                         printf "${green} Creality Web Interface has been removed successfully!"
                 			            printf "${white}\n\n"
-                			            printf " You can now connect to Fluidd Web Interface with: ${yellow}http://$ipaddress ${white}or ${yellow}http://$ipaddress:4408"
+                			            printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress) ${white}or ${yellow}http://$(check_ipaddress):4408"
                 			            printf "${white}\n\n"
             			            elif [ "$confirm2" = "mainsail" -o "$confirm2" = "MAINSAIL" ]; then
                 			            printf "${green} Removing Creality Web Interface..."
@@ -1787,7 +1811,7 @@ do
                                         printf "\n"
                                         printf "${green} Creality Web Interface has been removed successfully!"
                 			            printf "${white}\n\n"
-                			            printf " You can now connect to Mainsail Web Interface with ${yellow}http://$ipaddress ${white}or ${yellow}http://$ipaddress:4409"
+                			            printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress) ${white}or ${yellow}http://$(check_ipaddress):4409"
                 			            printf "${white}\n\n"
                 			        fi
             			        fi
@@ -1825,7 +1849,7 @@ do
                                 printf "\n"
                                 printf "${green} Creality Web Interface has been restored successfully!"
                                 printf "${white}\n\n"
-                			    printf " You can now connect to Creality Web Interface with ${yellow}http://$ipaddress ${white}and with ${yellow}Creality Print"
+                			    printf " You can now connect to Creality Web Interface with ${yellow}http://$(check_ipaddress) ${white}and with ${yellow}Creality Print"
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
                 			    printf "${darkred} Restoration canceled!"
