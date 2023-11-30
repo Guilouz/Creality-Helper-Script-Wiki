@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v3.7.1
+VERSION=v3.8
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -46,6 +46,8 @@ bootdisplay_file="/etc/boot-display/part0/pic_100.jpg"
 bootdisplay_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1_boot_display.tar"
 bootdisplay_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/k1max_boot_display.tar"
 bootdisplay_URL3="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/boot-display/stock_boot_display.tar"
+crealityweb_file="/usr/bin/web-server"
+ipaddress=`ip route | grep -o 'src [0-9.]\+' | awk '{print $2}'`
 
 check_updates() {
     github_script=$(wget --no-check-certificate -qO- https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh)
@@ -107,6 +109,14 @@ check_file() {
         printf "${green}Installed ${white}\n"
     else
         printf "${darkred}Not Installed ${white}\n"
+    fi
+}
+check_crealityweb() {
+    local file_path="$1"
+    if [ -f "$file_path" ]; then
+        printf "${green}Present ${white}\n"
+    else
+        printf "${darkred}Removed ${white}\n"
     fi
 }
 
@@ -282,6 +292,9 @@ customize_menu(){
     printf " |  ${yellow}1) ${white}Install ${green}Custom Boot Display                            ${white}| \n"
     printf " |  ${yellow}2) ${white}Remove ${green}Custom Boot Display                             ${white}| \n"
     printf " |                                                            | \n"
+    printf " |  ${yellow}3) ${white}Remove ${green}Creality Web Interface                          ${white}| \n"
+    printf " |  ${yellow}4) ${white}Restore ${green}Creality Web Interface                         ${white}| \n"
+    printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
     printf " |  ${yellow}b) ${white}Back to ${yellow}[Main Menu]                                    ${white}| \n"
@@ -332,6 +345,7 @@ info_menu(){
     printf "\n"
     printf "  ${blue}Customization: ${white}\n"
     printf "    Custom Boot Display ${white}→ $(check_file "$bootdisplay_file")\n"
+    printf "    Creality Web Interface ${white}→ $(check_crealityweb "$crealityweb_file")\n"
     printf "\n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
@@ -503,7 +517,7 @@ do
                 			        printf "\n"
                 			        printf "${green} Fluidd has been installed successfully!"
                 			        printf "${white}\n\n"
-                			        printf " You can now connect to Fluidd Web Interface with: ${yellow}https://xxx.xxx.xxx.xxx:4408"
+                			        printf " You can now connect to Fluidd Web Interface with ${yellow}https://$ipaddress:4408"
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${darkred} Download failed. Exit code: $?"
@@ -562,7 +576,7 @@ do
                 			        printf "\n"
                 			        printf "${green} Mainsail has been installed successfully!"
                 			        printf "${white}\n\n"
-                			        printf " You can now connect to Mainsail Web Interface with: ${yellow}https://xxx.xxx.xxx.xxx:4409"
+                			        printf " You can now connect to Mainsail Web Interface with ${yellow}https://$ipaddress:4409"
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${darkred} Download failed. Exit code: $?"
@@ -1603,7 +1617,7 @@ do
                                     printf "${darkred} Please select a correct choice!"
                                     printf "${white}\n\n"
                                     printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
-                                    read confirm
+                                    read confirm2
                                     printf "${white}\n"
                                 done
             			        if [ "$confirm2" = "k1" -o "$confirm2" = "K1" ]; then
@@ -1644,7 +1658,7 @@ do
                 			        fi
             			        fi
             			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
-                			    printf " ${darkred}Installation canceled! ${white}\n\n"
+                			    printf "${darkred} Installation canceled! ${white}\n\n"
             			    fi
             			fi
                         ;;
@@ -1683,6 +1697,138 @@ do
                 			    fi
             			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
                 			    printf "${darkred} Deletion canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    3)
+            			if [ ! -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
+            				printf "${darkred} Please install Fluidd and/or Mainsail first!"
+            				printf "${white}\n\n"
+            			elif [ ! -f "$crealityweb_file" ]; then
+            			    printf "${darkred} Creality Web Interface is already removed!"
+            			    printf "\n"
+            			    printf "${darkred} If you want to change the default Web Interface please restore Creality Web Interface first."
+            				printf "${white}\n\n"
+            			else
+                            printf " Are you sure you want to remove ${green}Creality Web Interface ${white}?\n ${darkred}Note that you will no longer be able to print via WiFi with Creality Print ${white}(${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to remove ${green}Creality Web Interface ${white}?\n ${darkred}Note that you will no longer be able to print via WiFi with Creality Print ${white}(${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+            			        if [ -d "$fluidd_folder" -a ! -d "$mainsail_folder" ]; then
+            			            printf "${green} Removing Creality Web Interface..."
+                			        printf "${white}\n\n"
+                			        mv /usr/bin/web-server /usr/bin/web-server.disabled
+                                    mv /usr/bin/Monitor /usr/bin/Monitor.disabled
+                                    sed -i '/listen 4408 default_server;/a \        listen 80;' /usr/data/nginx/nginx/nginx.conf
+                                    killall -q Monitor
+                                    killall -q web-server
+                                    /etc/init.d/S50nginx restart
+                                    printf "\n"
+                                    printf "${green} Creality Web Interface has been removed successfully!"
+                			        printf "${white}\n\n"
+                			        printf " You can now connect to Fluidd Web Interface with ${yellow}https://$ipaddress"
+                			        printf "${white}\n\n"
+            			        elif [ ! -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
+            			            printf "${green} Removing Creality Web Interface..."
+                			        printf "${white}\n\n"
+                			        mv /usr/bin/web-server /usr/bin/web-server.disabled
+                                    mv /usr/bin/Monitor /usr/bin/Monitor.disabled
+                                    sed -i '/listen 4409 default_server;/a \        listen 80;' /usr/data/nginx/nginx/nginx.conf
+                                    killall -q Monitor
+                                    killall -q web-server
+                                    /etc/init.d/S50nginx restart
+                                    printf "\n"
+                                    printf "${green} Creality Web Interface has been removed successfully!"
+                			        printf "${white}\n\n"
+                			        printf " You can now connect to Mainsail Web Interface with ${yellow}https://$ipaddress"
+                			        printf "${white}\n\n"
+            			        elif [ -d "$fluidd_folder" -a -d "$mainsail_folder" ]; then
+            			            printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}" 
+            			            read confirm2
+            			            printf "${white}\n"
+            			            while [ "$confirm2" != "FLUIDD" ] && [ "$confirm2" != "MAINSAIL" ] && [ "$confirm2" != "fluidd" ] && [ "$confirm2" != "mainsail" ]; do
+                                        printf "${darkred} Please select a correct choice!"
+                                        printf "${white}\n\n"
+                                        printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}" 
+                                        read confirm2
+                                        printf "${white}\n"
+                                    done
+            			            if [ "$confirm2" = "fluidd" -o "$confirm2" = "FLUIDD" ]; then
+                			            printf "${green} Removing Creality Web Interface..."
+                			            printf "${white}\n\n"
+                			            mv /usr/bin/web-server /usr/bin/web-server.disabled
+                                        mv /usr/bin/Monitor /usr/bin/Monitor.disabled
+                                        sed -i '/listen 4408 default_server;/a \        listen 80;' /usr/data/nginx/nginx/nginx.conf
+                                        killall -q Monitor
+                                        killall -q web-server
+                                        /etc/init.d/S50nginx restart
+                                        printf "\n"
+                                        printf "${green} Creality Web Interface has been removed successfully!"
+                			            printf "${white}\n\n"
+                			            printf " You can now connect to Fluidd Web Interface with: ${yellow}https://$ipaddress ${white}or ${yellow}https://$ipaddress:4408"
+                			            printf "${white}\n\n"
+            			            elif [ "$confirm2" = "mainsail" -o "$confirm2" = "MAINSAIL" ]; then
+                			            printf "${green} Removing Creality Web Interface..."
+                			            printf "${white}\n\n"
+                			            mv /usr/bin/web-server /usr/bin/web-server.disabled
+                                        mv /usr/bin/Monitor /usr/bin/Monitor.disabled
+                                        sed -i '/listen 4409 default_server;/a \        listen 80;' /usr/data/nginx/nginx/nginx.conf
+                                        killall -q Monitor
+                                        killall -q web-server
+                                        /etc/init.d/S50nginx restart
+                                        printf "\n"
+                                        printf "${green} Creality Web Interface has been removed successfully!"
+                			            printf "${white}\n\n"
+                			            printf " You can now connect to Mainsail Web Interface with ${yellow}https://$ipaddress ${white}or ${yellow}https://$ipaddress:4409"
+                			            printf "${white}\n\n"
+                			        fi
+            			        fi
+            			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled! ${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+            	    4)
+            			if [ -f "$crealityweb_file" ]; then
+            				printf "${darkred} Creality Web Interface is already present!"
+            				printf "${white}\n\n"
+            			else
+                            printf " Are you sure you want to restore ${green}Creality Web Interface ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to restore ${green}Creality Web Interface ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+            			        printf "${green} Restoring Creality Web Interface..."
+                			    printf "${white}\n\n"
+                			    mv /usr/bin/web-server.disabled /usr/bin/web-server
+                                mv /usr/bin/Monitor.disabled /usr/bin/Monitor
+                                sed -i '/listen 80;/d' /usr/data/nginx/nginx/nginx.conf
+                                /etc/init.d/S50nginx restart
+                                killall -q Monitor
+                                killall -q web-server
+                                /usr/bin/web-server > /dev/null 2>&1 &
+                                /usr/bin/Monitor > /dev/null 2>&1 &
+                                printf "\n"
+                                printf "${green} Creality Web Interface has been restored successfully!"
+                                printf "${white}\n\n"
+                			    printf " You can now connect to Creality Web Interface with ${yellow}https://$ipaddress ${white}and with ${yellow}Creality Print"
+                			    printf "${white}\n\n"
+            			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Restoration canceled!"
                 			    printf "${white}\n\n"
             			    fi
             			fi
