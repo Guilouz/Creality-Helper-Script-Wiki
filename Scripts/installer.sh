@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v3.8.2
+VERSION=v3.9.0
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -32,6 +32,8 @@ kamp_folder="/usr/data/KAMP-for-K1-Series/"
 kamp_URL="https://github.com/Guilouz/KAMP-for-K1-Series.git"
 hostname_file="/etc/init.d/S01hostname"
 hostname_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/services/S01hostname"
+systemctl_file="/usr/bin/systemctl"
+systemctl_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/fixes/systemctl"
 shellcommand_file="/usr/share/klipper/klippy/extras/gcode_shell_command.py"
 shellcommand_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/shell-command/gcode_shell_command.py"
 buzzer_file="/usr/data/beep.mp3"
@@ -200,20 +202,21 @@ install_menu(){
     printf " |   ${yellow}4) ${white}Install ${green}Entware                                       ${white}| \n"
     printf " |   ${yellow}5) ${white}Install ${green}Klipper Gcode Shell Command ${white}file              | \n"
     printf " |   ${yellow}6) ${white}Install ${green}Hostname Service ${white}file                         | \n"
+    printf " |   ${yellow}7) ${white}Install ${green}Fix for Reboot/Shutdown functions ${white}            | \n"
     printf " |                                                            | \n"
     printf " | ${blue}Improvements:                                              ${white}| \n"
-    printf " |   ${yellow}7) ${white}Install ${green}Klipper Adaptive Meshing & Purging            ${white}| \n"
-    printf " |   ${yellow}8) ${white}Install ${green}Buzzer Support ${white}files                          | \n"
-    printf " |   ${yellow}9) ${white}Install ${green}Nozzle Cleaning Fan Control ${white}files             | \n"
+    printf " |   ${yellow}8) ${white}Install ${green}Klipper Adaptive Meshing & Purging            ${white}| \n"
+    printf " |   ${yellow}9) ${white}Install ${green}Buzzer Support ${white}files                          | \n"
+    printf " |  ${yellow}10) ${white}Install ${green}Nozzle Cleaning Fan Control ${white}files             | \n"
     printf " |                                                            | \n"
     printf " | ${blue}Camera:                                                    ${white}| \n"
-    printf " |  ${yellow}10) ${white}Install ${green}Moonraker Timelapse                           ${white}| \n"
-    printf " |  ${yellow}11) ${white}Install ${green}Camera Settings Control ${white}files                 | \n"
+    printf " |  ${yellow}11) ${white}Install ${green}Moonraker Timelapse                           ${white}| \n"
+    printf " |  ${yellow}12) ${white}Install ${green}Camera Settings Control ${white}files                 | \n"
     printf " |                                                            | \n"
     printf " | ${blue}Remote Access and AI Detection:                            ${white}| \n"
-    printf " |  ${yellow}12) ${white}Install ${green}OctoEverywhere                                ${white}| \n"
-    printf " |  ${yellow}13) ${white}Install ${green}Obico                                         ${white}| \n"
-    printf " |  ${yellow}14) ${white}Install ${green}Mobileraker Companion                         ${white}| \n"
+    printf " |  ${yellow}13) ${white}Install ${green}OctoEverywhere                                ${white}| \n"
+    printf " |  ${yellow}14) ${white}Install ${green}Obico                                         ${white}| \n"
+    printf " |  ${yellow}15) ${white}Install ${green}Mobileraker Companion                         ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
@@ -248,20 +251,21 @@ uninstall_menu(){
     printf " |   ${yellow}4) ${white}Remove ${green}Entware                                        ${white}| \n"
     printf " |   ${yellow}5) ${white}Remove ${green}Klipper Gcode Shell Command ${white}file               | \n"
     printf " |   ${yellow}6) ${white}Remove ${green}Hostname Service ${white}file                          | \n"
+    printf " |   ${yellow}7) ${white}Remove ${green}Fix for Reboot/Shutdown functions ${white}             | \n"
     printf " |                                                            | \n"
     printf " | ${blue}Improvements:                                              ${white}| \n"
-    printf " |   ${yellow}7) ${white}Remove ${green}Klipper Adaptive Meshing & Purging             ${white}| \n"
-    printf " |   ${yellow}8) ${white}Remove ${green}Buzzer Support ${white}files                           | \n"
-    printf " |   ${yellow}9) ${white}Remove ${green}Nozzle Cleaning Fan Control ${white}files              | \n"
+    printf " |   ${yellow}8) ${white}Remove ${green}Klipper Adaptive Meshing & Purging             ${white}| \n"
+    printf " |   ${yellow}9) ${white}Remove ${green}Buzzer Support ${white}files                           | \n"
+    printf " |  ${yellow}10) ${white}Remove ${green}Nozzle Cleaning Fan Control ${white}files              | \n"
     printf " |                                                            | \n"
     printf " | ${blue}Camera:                                                    ${white}| \n"
-    printf " |  ${yellow}10) ${white}Remove ${green}Moonraker Timelapse                            ${white}| \n"
-    printf " |  ${yellow}11) ${white}Remove ${green}Camera Settings Control ${white}files                  | \n"
+    printf " |  ${yellow}11) ${white}Remove ${green}Moonraker Timelapse                            ${white}| \n"
+    printf " |  ${yellow}12) ${white}Remove ${green}Camera Settings Control ${white}files                  | \n"
     printf " |                                                            | \n"
     printf " | ${blue}Remote Access and AI Detection:                            ${white}| \n"
-    printf " |  ${yellow}12) ${white}Remove ${green}OctoEverywhere                                 ${white}| \n"
-    printf " |  ${yellow}13) ${white}Remove ${green}Obico                                          ${white}| \n"
-    printf " |  ${yellow}14) ${white}Remove ${green}Mobileraker Companion                          ${white}| \n"
+    printf " |  ${yellow}13) ${white}Remove ${green}OctoEverywhere                                 ${white}| \n"
+    printf " |  ${yellow}14) ${white}Remove ${green}Obico                                          ${white}| \n"
+    printf " |  ${yellow}15) ${white}Remove ${green}Mobileraker Companion                          ${white}| \n"
     printf " |                                                            | \n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
@@ -345,32 +349,33 @@ info_menu(){
     printf " [============================================================] \n"
     printf "\n"
     printf "  ${blue}Essentials: ${white}\n"
-    printf "    Moonraker & Nginx ${white}→ $(check_folder "$moonraker_folder")\n"
-    printf "    Fluidd ${white}→ $(check_folder "$fluidd_folder")\n"
-    printf "    Mainsail ${white}→ $(check_folder "$mainsail_folder")\n"
+    printf "    ${white}Moonraker & Nginx → $(check_folder "$moonraker_folder")\n"
+    printf "    ${white}Fluidd → $(check_folder "$fluidd_folder")\n"
+    printf "    ${white}Mainsail → $(check_folder "$mainsail_folder")\n"
     printf "\n"
     printf "  ${blue}Utilities: ${white}\n"
-    printf "    Entware ${white}→ $(check_folder "$entware_folder")\n"
-    printf "    Klipper Gcode Shell Command ${white}→ $(check_file "$shellcommand_file")\n"
-    printf "    Hostname Service ${white}→ $(check_file "$hostname_file")\n"
+    printf "    ${white}Entware → $(check_folder "$entware_folder")\n"
+    printf "    ${white}Klipper Gcode Shell Command → $(check_file "$shellcommand_file")\n"
+    printf "    ${white}Hostname Service → $(check_file "$hostname_file")\n"
+    printf "    ${white}Fix for ${yellow}Reboot${white}/Shutdown functions → $(check_file "$systemctl_file")\n"
     printf "\n"
     printf "  ${blue}Improvements: ${white}\n"
-    printf "    Klipper Adaptive Meshing & Purging ${white}→ $(check_folder "$kamp_folder")\n"
-    printf "    Buzzer Support ${white}→ $(check_file "$buzzer_file")\n"
-    printf "    Nozzle Cleaning Fan Control ${white}→ $(check_folder "$prtouch_folder")\n"
+    printf "    ${white}Klipper Adaptive Meshing & Purging → $(check_folder "$kamp_folder")\n"
+    printf "    ${white}Buzzer Support → $(check_file "$buzzer_file")\n"
+    printf "    ${white}Nozzle Cleaning Fan Control → $(check_folder "$prtouch_folder")\n"
     printf "\n"
     printf "  ${blue}Camera: ${white}\n"
-    printf "    Moonraker Timelapse ${white}→ $(check_file "$timelapse_file")\n"
-    printf "    Camera Settings Control ${white}→ $(check_file "$camera_file")\n"
+    printf "    ${white}Moonraker Timelapse → $(check_file "$timelapse_file")\n"
+    printf "    ${white}Camera Settings Control → $(check_file "$camera_file")\n"
     printf "\n"
     printf "  ${blue}Remote Access and AI Detection: ${white}\n"
-    printf "    OctoEverywhere ${white}→ $(check_folder "$octoeverywhere_folder")\n"
-    printf "    Obico ${white}→ $(check_folder "$moonraker_obico_folder")\n"
-    printf "    Mobileraker Companion ${white}→ $(check_folder "$mobileraker_folder")\n"
+    printf "    ${white}OctoEverywhere → $(check_folder "$octoeverywhere_folder")\n"
+    printf "    ${white}Obico → $(check_folder "$moonraker_obico_folder")\n"
+    printf "    ${white}Mobileraker Companion → $(check_folder "$mobileraker_folder")\n"
     printf "\n"
     printf "  ${blue}Customization: ${white}\n"
-    printf "    Custom Boot Display ${white}→ $(check_file "$bootdisplay_file")\n"
-    printf "    Creality Web Interface ${white}→ $(check_crealityweb "$crealityweb_file")\n"
+    printf "    ${white}Custom Boot Display → $(check_file "$bootdisplay_file")\n"
+    printf "    ${white}Creality Web Interface → $(check_crealityweb "$crealityweb_file")\n"
     printf "\n"
     printf " ============================================================== \n"
     printf " |                                                            | \n"
@@ -709,6 +714,43 @@ do
             			fi
                         ;;
                     7)
+            			if [ -f "$systemctl_file" ]; then
+            				printf "${darkred} Fix for Reboot/Shutdown functions is already installed!"
+            				printf "${white}\n\n"
+            			elif [ ! -d "$entware_folder" ]; then
+            				printf "${darkred} Please install Entware first!"
+            				printf "${white}\n\n"
+            			else
+            			    printf " Are you sure you want to install ${green}Fix for Reboot/Shutdown functions ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to install ${green}Fix for Reboot/Shutdown functions ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+                			    printf "${green} Installing Fix for Reboot/Shutdown functions..."
+                			    printf "${white}\n\n"
+								opkg install sudo
+								printf "Downloading systemctl file...\n"
+								wget --no-check-certificate -P /usr/bin/ "$systemctl_URL"
+								printf "Applying permissions...\n"
+                			    chmod 755 /usr/bin/systemctl
+                			    printf "Linking file...\n"
+                			    ln -s /opt/bin/sudo /usr/bin/sudo
+                			    printf "\n"
+                			    printf "${green} Fix for Reboot/Shutdown functions has been installed successfully!"
+                			    printf "${white}\n\n"
+                			elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    8)
             			if [ -d "$kamp_folder" ]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is already installed!"
             				printf "${white}\n\n"
@@ -751,7 +793,7 @@ do
             			    fi
             			fi
                         ;;
-                    8)
+                    9)
             			if [ -f "$buzzer_file" ]; then
             				printf "${darkred} Buzzer support files are already installed!"
             				printf "${white}\n\n"
@@ -800,7 +842,7 @@ do
             			    fi
             			fi
                         ;;
-                    9)
+                    10)
             			if [ -d "$prtouch_folder" ]; then
             				printf "${darkred} Nozzle Cleaning Fan Control files are already installed!"
             				 printf "${white}\n\n"
@@ -837,7 +879,7 @@ do
             			    fi
             			fi
                         ;;
-                    10)
+                    11)
             			if [ -f "$timelapse_file" ]; then
             				printf "${darkred} Moonraker Timelapse is already installed!"
             				printf "${white}\n\n"
@@ -875,7 +917,7 @@ do
             			    fi
             			fi
                         ;;
-                    11)
+                    12)
             			if [ -f "$camera_file" ]; then
             				printf "${darkred} Camera Settings Control files are already installed!"
             				 printf "${white}\n\n"
@@ -915,7 +957,7 @@ do
             			    fi
             			fi
                         ;;
-                    12)
+                    13)
 						if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
@@ -955,7 +997,7 @@ do
             			    fi
             			fi
                         ;;
-                    13)
+                    14)
             			if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
@@ -995,7 +1037,7 @@ do
             			    fi
             			fi
                         ;;
-                    14)
+                    15)
             			if [ -d "$mobileraker_folder" ]; then
             				printf "${darkred} Mobileraker Companion is already installed!"
             				printf "${white}\n\n"
@@ -1255,7 +1297,37 @@ do
             			    fi
             			fi
             			;;
-                    7)
+            		7)
+            			if [[ ! -f "$systemctl_file" ]]; then
+            				printf "${darkred} Fix for Reboot/Shutdown functions is not installed!"
+            				printf "${white}\n\n"
+            			else
+                            printf " Are you sure you want to remove ${green}Fix for Reboot/Shutdown functions ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to remove ${green}Fix for Reboot/Shutdown functions ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" -o "$confirm" = "Y" ]; then
+            			        printf "${green} Removing Fix for Reboot/Shutdown functions..."
+                			    printf "${white}\n\n"
+                			    opkg remove sudo
+                			    printf "Removing files...\n"
+                			    rm /usr/bin/sudo /usr/bin/systemctl
+                			    printf "\n"
+                			    printf "${green} Fix for Reboot/Shutdown functions has been removed successfully!"
+                			    printf "${white}\n\n"
+            			    elif [ "$confirm" = "n" -o "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    8)
             			if [[ ! -d "$kamp_folder" ]]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is not installed!"
             				printf "${white}\n\n"
@@ -1283,7 +1355,7 @@ do
                 			fi
            				fi
                         ;;
-					8)
+					9)
             			if [[ ! -f "$buzzer_file" ]]; then
             				printf "${darkred} Buzzer Support files are not installed!"
             				printf "${white}\n\n"
@@ -1314,7 +1386,7 @@ do
             			    fi
             			fi
                         ;;
-					9)
+					10)
             			if [[ ! -d "$prtouch_folder" ]]; then
             				printf "${darkred} Nozzle Cleaning Fan Control files are not installed!"
             				printf "${white}\n\n"
@@ -1350,7 +1422,7 @@ do
             			    fi
             			fi
                         ;;
-                    10)
+                    11)
             			if [ ! -f "$timelapse_file" ]; then
                 			printf "${darkred} Moonraker Timelapse is not installed!"
                 			printf "${white}\n\n"
@@ -1388,7 +1460,7 @@ do
             			    fi
             			fi
                         ;;
-                    11)
+                    12)
             			if [[ ! -f "$camera_file" ]]; then
             				printf "${darkred} Camera Settings Control files are not installed!"
             				printf "${white}\n\n"
@@ -1423,7 +1495,7 @@ do
             			    fi
             			fi
                         ;;
-					12)
+					13)
             			if [ ! -d "$octoeverywhere_folder" ]; then
             				printf "${darkred} OctoEverywhere is not installed!"
             				printf "${white}\n\n"
@@ -1452,7 +1524,7 @@ do
             			    fi
             			fi
                         ;;
-                    13)
+                    14)
             			if [ ! -d "$moonraker_obico_folder" ]; then
                 			printf "${darkred} Obico is not installed!"
                 			printf "${white}\n\n"
@@ -1484,7 +1556,7 @@ do
             			    fi
             			fi
                         ;;
-                    14)
+                    15)
             			if [[ ! -d "$mobileraker_folder" ]]; then
             				printf "${darkred} Mobileraker Companion is not installed!"
             				printf "${white}\n\n"
