@@ -666,7 +666,7 @@ do
             			        printf "${green} Installing Klipper Gcode Shell Command file..."
             			        printf "${white}\n\n"
                 			    printf "Downloading Klipper Gcode Shell Command file...\n"
-                			        wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ "$shellcommand_URL"
+                			    wget --no-check-certificate -P /usr/share/klipper/klippy/extras/ "$shellcommand_URL"
                 			    printf "\n"
                 			    printf "${green} Klipper Gcode Shell Command file has been installed successfully!"
                 			    printf "${white}\n\n"
