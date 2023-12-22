@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v3.9.0
+VERSION=v3.9.1
 
 white=`echo "\033[m"`
 blue=`echo "\033[36m"`
@@ -39,8 +39,8 @@ shellcommand_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-M
 buzzer_file="/usr/data/beep.mp3"
 buzzer_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/buzzer/beep.mp3"
 prtouch_folder="/usr/share/klipper/klippy/extras/prtouch_v2_fan"
-prtouch_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/prtouch_v2_fan/__init__.py"
-prtouch_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/prtouch_v2_fan/prtouch_v2_fan.pyc"
+prtouch_URL1="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/nozzle-cleaning-fan-control/__init__.py"
+prtouch_URL2="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/nozzle-cleaning-fan-control/prtouch_v2_fan.pyc"
 camera_file="/usr/data/printer_data/config/camera-settings.cfg"
 camera_URL="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/camera/camera-settings.cfg"
 bootdisplay_folder="/etc/boot-display"
