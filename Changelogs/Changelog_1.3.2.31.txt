@@ -1,6 +1,10 @@
 V1.3.2.31 Firmware Update
 
-Initial firmware for K1C.
+- Initial firmware for K1C
+- Added chamber temp control
+- Changes in Qmode macros
+- Changes in M204 macro
+- Changes in M106 macro
 
 Known Issues:
 1. Updating the firmware from V1.3.0.x will disconnect the printer from Creality Cloud. To reconnect, please bind them again.
