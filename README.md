@@ -4,7 +4,7 @@
 
 ## About
 
-This guide explains the whole process to root Creality K1 and K1 Max and add good stuffs to your printer.
+This guide explains the whole process to root Creality K1, K1C and K1 Max and add good stuffs to your printer.
 
 The advantage is to have full access to the firmware and configuration files in order to be able to make changes to them.
 
