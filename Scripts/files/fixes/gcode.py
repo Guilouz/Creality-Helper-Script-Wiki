@@ -115,6 +115,7 @@ class GCodeDispatch:
             desc = getattr(self, 'cmd_' + cmd + '_help', None)
             self.register_command(cmd, func, True, desc)
         self.last_temperature_info = "/usr/data/creality/userdata/config/temperature_info.json"
+        self.exclude_object_info = "/usr/data/creality/userdata/config/exclude_object_info.json"
     def is_traditional_gcode(self, cmd):
         # A "traditional" g-code command is a letter and followed by a number
         try:
@@ -213,7 +214,9 @@ class GCodeDispatch:
                 if not need_ack:
                     raise
             gcmd.ack()
-            if line.startswith("M104"):
+            if line.startswith("G1") or line.startswith("G0"):
+                pass
+            elif line.startswith("M104"):
                 self.set_temperature("extruder", line)
             elif line.startswith("M140"):
                 self.set_temperature("bed", line)
@@ -221,6 +224,8 @@ class GCodeDispatch:
                 self.set_temperature("extruder", line)
             elif line.startswith("M190"):
                 self.set_temperature("bed", line)
+            elif line.startswith("EXCLUDE_OBJECT_DEFINE") or line.startswith("EXCLUDE_OBJECT NAME"):
+                self.record_exclude_object_info(line)
     def set_temperature(self, key, value):
         import json
         try:
@@ -251,7 +256,33 @@ class GCodeDispatch:
                 f.flush()
         except Exception as err:
             logging.error("set_temperature error: %s" % err)
-
+    def record_exclude_object_info(self, line):
+        import json
+        try:
+            if not os.path.exists(self.exclude_object_info):
+                with open(self.exclude_object_info, "w") as f:
+                    data = {}
+                    data["EXCLUDE_OBJECT_DEFINE"] = []
+                    data["EXCLUDE_OBJECT"] = []
+                    f.write(json.dumps(data))
+                    f.flush()
+            with open(self.exclude_object_info, "r") as f:
+                ret = f.read()
+                if len(ret) > 0:
+                    ret = eval(ret)
+                else:
+                    ret = {}
+            if line.startswith("EXCLUDE_OBJECT_DEFINE"):
+                if line not in ret["EXCLUDE_OBJECT_DEFINE"]:
+                    ret["EXCLUDE_OBJECT_DEFINE"].append(line)
+            elif line.startswith("EXCLUDE_OBJECT NAME"):
+                if line not in ret["EXCLUDE_OBJECT"]:
+                    ret["EXCLUDE_OBJECT"].append(line)
+            with open(self.exclude_object_info, "w") as f:
+                f.write(json.dumps(ret))
+                f.flush()
+        except Exception as err:
+            logging.error("record_exclude_object_info error: %s" % err)
     def run_script_from_command(self, script):
         self._process_commands(script.split('\n'), need_ack=False)
     def run_script(self, script):
@@ -271,11 +302,19 @@ class GCodeDispatch:
         lines = [l.strip() for l in msg.strip().split('\n')]
         self.respond_raw("// " + "\n// ".join(lines))
     def _respond_error(self, msg):
+        from extras.tool import reportInformation
         try:
             v_sd = self.printer.lookup_object('virtual_sdcard')
-            if v_sd.print_id and "key" in msg and re.findall('key(\d+)', msg):
+            if v_sd.print_id and "key" in msg and re.findall('key(\d+)', msg) and v_sd.cur_print_data:
                 v_sd.update_print_history_info(only_update_status=True, state="error", error_msg=eval(msg))
                 v_sd.print_id = ""
+                reportInformation("key701", data=v_sd.cur_print_data)
+                v_sd.cur_print_data = {}
+        except Exception as err:
+            logging.error(err)
+        try:
+            if "key" in msg and re.findall('key(\d+)', msg):
+                reportInformation(msg)
         except Exception as err:
             logging.error(err)
         logging.warning(msg)
@@ -497,8 +536,8 @@ class GCodeIO:
         if self.pipe_is_active:
             try:
                 os.write(self.fd, (msg+"\n").encode())
-                if 'key506' not in msg and 'key507' not in msg and 'key3"' not in msg and "key" in msg:
-                    reportInformation(msg)
+                # if 'key506' not in msg and 'key507' not in msg and 'key3"' not in msg and "key" in msg:
+                #     reportInformation(msg)
             except os.error:
                 logging.exception("Write g-code response")
                 self.pipe_is_active = False
