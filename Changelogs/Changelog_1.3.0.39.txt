@@ -1,6 +1,0 @@
-Version Update V1.3.0.39 (Only for K1 Max)
-
-- Initial release
-
-Upgrade Guide:
-Click on the screen for upgrade, wait for the upgrade to complete, then click on Settings - Device Self-Check - check Input Shaping and Auto Bed Leveling, click on Self-Check, wait for self-check to complete, then use the machine.

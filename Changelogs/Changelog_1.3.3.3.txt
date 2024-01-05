@@ -17,6 +17,3 @@ Fixes:
 - Fixes inconsistent display between Web UI and LCD display of maximum hot bed temperature.
 - Fixes time sync and Creality Cloud app not displaying camera problem in some rare cases.
 - Fixes special characters file name cause print task cannot be completed.
-
-Upgrade Guide:
-Click on the screen for upgrade, wait for the upgrade to complete, then click on Settings - Device Self-Check - check Input Shaping and Auto Bed Leveling, click on Self-Check, wait for self-check to complete, then use the machine.

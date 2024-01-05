@@ -50,6 +50,3 @@ Increased the number of error history records to 500.
 Added export log, upload log status, progress.
 Support for connecting to hidden networks.
 Support for connecting to open networks.
-
-Upgrade Guide:
-Click on the screen for upgrade, wait for the upgrade to complete, then click on Settings - Device Self-Check - check Input Shaping and Auto Bed Leveling, click on Self-Check, wait for self-check to complete, then use the machine.

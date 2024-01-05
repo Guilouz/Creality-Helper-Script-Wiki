@@ -9,6 +9,3 @@ V1.3.2.31 Firmware Update
 Known Issues:
 1. Updating the firmware from V1.3.0.x will disconnect the printer from Creality Cloud. To reconnect, please bind them again.
 2. The system may freeze if you try to upload a file when the 8G storage space is already filled up. In this case, you need to flash the firmware via a USB cable. To avoid this risk, please delete useless G-code files regularly.
-
-Upgrade Guide:
-Click on the screen for upgrade, wait for the upgrade to complete, then click on Settings - Device Self-Check - check Input Shaping and Auto Bed Leveling, click on Self-Check, wait for self-check to complete, then use the machine.
