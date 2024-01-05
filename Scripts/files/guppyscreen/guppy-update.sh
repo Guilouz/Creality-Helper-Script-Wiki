@@ -35,7 +35,7 @@ tar xf /tmp/guppyscreen.tar.gz -C "$GUPPY_DIR/.."
 
 if [ -f "$CUSTOM_UPGRADE_SCRIPT" ]; then
     echo "Running custom_upgrade.sh for release $latest_version..."
-    ./"$CUSTOM_UPGRADE_SCRIPT"
+    "$CUSTOM_UPGRADE_SCRIPT"
 fi
 
 echo "Guppy Screen have been updated to version $latest_version!"
