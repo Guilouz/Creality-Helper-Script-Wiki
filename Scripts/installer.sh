@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.0.0
+VERSION=v4.0.1
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -157,7 +157,7 @@ check_ipaddress() {
     if [ -n "$eth0_ip" ]; then
         printf "$eth0_ip"
     elif [ -n "$wlan0_ip" ]; then
-        printf "$wlan0_ip"  
+        printf "$wlan0_ip"
     else
         printf "xxx.xxx.xxx.xxx"
     fi
@@ -988,7 +988,7 @@ do
                 			    git clone "$kamp_URL"
                 			    if [ $? -eq 0 ]; then
                 			        if [ -d "$helper_script"/KAMP ]; then
-                			            rm -rf "$helper_script"/KAMP 
+                			            rm -rf "$helper_script"/KAMP
                 			        fi
                 			        if [ -f "$helper_script"/KAMP_Settings.cfg ]; then
                 			            rm -f "$helper_script"/KAMP_Settings.cfg
@@ -1326,7 +1326,7 @@ do
                                         mv /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so /usr/data/shapers-configs/backup
                                     fi
                 			        printf "Configuring files...\n"
-                			        cp "$shaperconfig_folder"calibrate_shaper_config.py "$klipper_extra_folder" 
+                			        cp "$shaperconfig_folder"calibrate_shaper_config.py "$klipper_extra_folder"
                 			        if [ ! -d "/usr/lib/python3.8/site-packages/matplotlib-2.2.3-py3.8.egg-info" ]; then
                                         printf "mathplotlib ft2font module is not replaced. PSD graphs might not work.\n"
                                     else
@@ -1425,7 +1425,7 @@ do
                 			        printf "${white}\n\n"
                 			        printf "${darkred} Download failed!"
                 			        printf "${white}\n\n"
-                			    fi        
+                			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} Installation canceled!"
                 			    printf "${white}\n\n"
@@ -1477,7 +1477,7 @@ do
                 			        printf "${white}\n\n"
                 			        printf "${darkred} Download failed!"
                 			        printf "${white}\n\n"
-                			    fi        
+                			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} Installation canceled!"
                 			    printf "${white}\n\n"
@@ -1502,13 +1502,13 @@ do
                                 printf "${white}\n"
                             done
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf " Do you want install ${green}Screws Tilt Adjust Support ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
+            			        printf " Do you want install ${green}Screws Tilt Adjust Support ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
             			        read confirm2
             			        printf "${white}\n"
             			        while [ "$confirm2" != "k1" ] && [ "$confirm2" != "K1" ] && [ "$confirm2" != "k1max" ] && [ "$confirm2" != "K1MAX" ]; do
                                     printf "${darkred} Please select a correct choice!"
                                     printf "${white}\n\n"
-                                    printf " Do you want install ${green}Screws Tilt Adjust Support ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
+                                    printf " Do you want install ${green}Screws Tilt Adjust Support ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
                                     read confirm2
                                     printf "${white}\n"
                                 done
@@ -1658,7 +1658,7 @@ do
                 			            printf "${white}\n\n"
                 			            printf "${darkred} Download failed!"
                 			            printf "${white}\n\n"
-                			        fi 
+                			        fi
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} Download failed!"
@@ -2741,13 +2741,13 @@ do
                                 printf "${white}\n"
                             done
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
+            			        printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
             			        read confirm2
             			        printf "${white}\n"
             			        while [ "$confirm2" != "k1" ] && [ "$confirm2" != "K1" ] && [ "$confirm2" != "k1max" ] && [ "$confirm2" != "K1MAX" ]; do
                                     printf "${darkred} Please select a correct choice!"
                                     printf "${white}\n\n"
-                                    printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}" 
+                                    printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
                                     read confirm2
                                     printf "${white}\n"
                                 done
@@ -2863,7 +2863,7 @@ do
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "fluidd" ] || [ "$confirm" = "FLUIDD" ]; then
+            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
             			        if [ -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
             			            printf "${green} Removing Creality Web Interface..."
                 			        printf "${white}\n\n"
@@ -2901,13 +2901,13 @@ do
                 			        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress)"
                 			        printf "${white}\n\n"
             			        elif [ -d "$fluidd_folder" ] && [ -d "$mainsail_folder" ]; then
-            			            printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}" 
+            			            printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}"
             			            read confirm2
             			            printf "${white}\n"
             			            while [ "$confirm2" != "FLUIDD" ] && [ "$confirm2" != "MAINSAIL" ] && [ "$confirm2" != "fluidd" ] && [ "$confirm2" != "mainsail" ]; do
                                         printf "${darkred} Please select a correct choice!"
                                         printf "${white}\n\n"
-                                        printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}" 
+                                        printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}"
                                         read confirm2
                                         printf "${white}\n"
                                     done
@@ -3032,13 +3032,13 @@ do
                                 printf "${white}\n"
                             done
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf " Do you want install ${green}Guppy Screen ${white}with ${yellow}Material Design${white} or ${yellow}Z-Bolt ${white}theme ? (${yellow}material${white}/${yellow}zbolt${white}): ${yellow}" 
+            			        printf " Do you want install ${green}Guppy Screen ${white}with ${yellow}Material Design${white} or ${yellow}Z-Bolt ${white}theme ? (${yellow}material${white}/${yellow}zbolt${white}): ${yellow}"
             			        read confirm2
             			        printf "${white}\n"
             			        while [ "$confirm2" != "material" ] && [ "$confirm2" != "MATERIAL" ] && [ "$confirm2" != "zbolt" ] && [ "$confirm2" != "ZBOLT" ]; do
                                     printf "${darkred} Please select a correct choice!"
                                     printf "${white}\n\n"
-                                    printf " Do you want install ${green}Guppy Screen ${white}with ${yellow}Material Design${white} or ${yellow}Z-Bolt ${white}theme ? (${yellow}material${white}/${yellow}zbolt${white}): ${yellow}" 
+                                    printf " Do you want install ${green}Guppy Screen ${white}with ${yellow}Material Design${white} or ${yellow}Z-Bolt ${white}theme ? (${yellow}material${white}/${yellow}zbolt${white}): ${yellow}"
                                     read confirm2
                                     printf "${white}\n"
                                 done
@@ -3307,7 +3307,7 @@ do
                                 printf "Restarting services...\n"
                                 /etc/init.d/S55klipper_service restart
                                 if [ -f /usr/bin/Monitor.disable ]; then
-                                    mv /usr/bin/Monitor.disable /usr/bin/Monitor   
+                                    mv /usr/bin/Monitor.disable /usr/bin/Monitor
                                 fi
                                 if [ -f /usr/bin/display-server.disable ]; then
                                     mv /usr/bin/display-server.disable /usr/bin/display-server
