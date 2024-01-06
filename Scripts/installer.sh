@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.0.1
+VERSION=v4.0.2
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -1779,7 +1779,7 @@ do
             			else
             			    printf "${cyan} Obico is a Moonraker plugin that allows you to monitor"
             			    printf "\n"
-            			    printf" and control your 3D printer from anywhere."
+            			    printf " and control your 3D printer from anywhere."
             			    printf "${white}\n\n"
             			    printf " Are you sure you want to install ${green}Obico ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
