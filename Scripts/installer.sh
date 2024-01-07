@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.0.2
+VERSION=v4.0.3
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -61,7 +61,8 @@ guppyscreen_folder="/usr/data/guppyscreen/"
 guppyscreen_URL1="${download_URL}guppyscreen/guppy_update.cfg"
 guppyscreen_URL2="${download_URL}guppyscreen/guppy-update.sh"
 shaperconfig_folder="/usr/data/shapers-configs/"
-shaperconfig_URL="${download_URL}shapers-configs/shapers-configs.tar"
+shaperconfig_URL1="${download_URL}shapers-configs/shapers-configs.tar"
+shaperconfig_URL2="${download_URL}shapers-configs/shapers-configs.cfg"
 fancontrols_URL1="${download_URL}macros/fans-control-not-upgrade.cfg"
 fancontrols_URL2="${download_URL}macros/fans-control-upgrade.cfg"
 fancontrols_file="${helper_script}/fans-control.cfg"
@@ -1317,7 +1318,7 @@ do
                 			        rm -f shapers-configs.tar
                 			    fi
                 			    printf "Downloading Improved Shapers Calibrations file...\n"
-                			    /tmp/curl -s -L "$shaperconfig_URL" -o shapers-configs.tar
+                			    /tmp/curl -s -L "$shaperconfig_URL1" -o shapers-configs.tar
                 			    if [ $? -eq 0 ]; then
                 			        tar -xvf shapers-configs.tar
                 			        rm -f shapers-configs.tar
@@ -1333,43 +1334,52 @@ do
                                         printf "Replacing mathplotlib ft2font module to generate PSD graphs...\n"
                                         cp "$shaperconfig_folder"ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
                                     fi
-                                    if [ -f "$helper_script"/shapers-configs/shapers-configs.cfg ]; then
-                                        rm -f "$helper_script"/shapers-configs/shapers-configs.cfg
-                                    fi
-                			        if [ ! -d "$helper_script"/shapers-configs/scripts ]; then
-                			            mkdir -p "$helper_script"/shapers-configs/scripts
+                                    printf "Downloading configurations file...\n"
+                			        /tmp/curl -s -L "$shaperconfig_URL2" -o "$shaperconfig_folder"scripts/shapers-configs.cfg
+                			        if [ $? -eq 0 ]; then
+                                        if [ -f "$helper_script"/shapers-configs/shapers-configs.cfg ]; then
+                                            rm -f "$helper_script"/shapers-configs/shapers-configs.cfg
+                                        fi
+                			            if [ ! -d "$helper_script"/shapers-configs/scripts ]; then
+                			                mkdir -p "$helper_script"/shapers-configs/scripts
+                			            fi
+                			            cp "$shaperconfig_folder"scripts/*.cfg "$helper_script"/shapers-configs
+                                        cp "$shaperconfig_folder"scripts/*.py "$helper_script"/shapers-configs/scripts
+                                        if grep -q 'variable_autotune_shapers:' "$macro_config" ; then
+                                            sed -i 's/variable_autotune_shapers:/#&/' "$macro_config"
+                                            printf "Disabling stock configuration in gcode_macro.cfg file...\n"
+                                        else
+                                            printf "Stock configuration is already disabled in gcode_macro.cfg file.\n"
+                                        fi
+                                        if grep -q '\[gcode_macro INPUTSHAPER\]' "$macro_config" ; then
+                                            sed -i 's/SHAPER_CALIBRATE AXIS=y/SHAPER_CALIBRATE/' "$macro_config"
+                                            printf "Replacing stock configuration in gcode_macro.cfg file...\n"
+                                        else
+                                            printf "Stock configuration is already replaced in gcode_macro.cfg file.\n"
+                                        fi
+                                        if grep -q "include Helper-Script/shapers-configs/shapers-configs" "$printer_config" ; then
+                                            printf "Improved Shapers Calibration configurations are already enabled in printer.cfg file.\n"
+                                        else
+                                            printf "Adding Improved Shapers Calibration configurations in printer.cfg file...\n"
+                                            sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/shapers-configs/shapers-configs\.cfg\]' "$printer_config"
+                                        fi
+                			            printf "Restarting services...\n"
+                			            /etc/init.d/S55klipper_service restart
+                			            /etc/init.d/S56moonraker_service restart
+                			            sleep 1
+                			            /etc/init.d/S56moonraker_service restart
+                			            sleep 1
+                			            printf "\n"
+                			            printf "${green} Improved Shapers Calibrations have been installed successfully!"
+                			            printf "${white}\n\n"
+                			        else
+                			            cp -f "$shaperconfig_folder"backup/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
+                			            rm -rf "$shaperconfig_folder"
+                			            printf "${white}\n\n"
+                			            printf "${darkred} Download failed!"
+                			            printf "${white}\n\n"
                 			        fi
-                			        cp "$shaperconfig_folder"scripts/*.cfg "$helper_script"/shapers-configs
-                                    cp "$shaperconfig_folder"scripts/*.py "$helper_script"/shapers-configs/scripts
-                                    if grep -q 'variable_autotune_shapers:' "$macro_config" ; then
-                                        sed -i 's/variable_autotune_shapers:/#&/' "$macro_config"
-                                        printf "Disabling stock configuration in gcode_macro.cfg file...\n"
-                                    else
-                                        printf "Stock configuration is already disabled in gcode_macro.cfg file.\n"
-                                    fi
-                                    if grep -q '\[gcode_macro INPUTSHAPER\]' "$macro_config" ; then
-                                        sed -i 's/SHAPER_CALIBRATE AXIS=y/SHAPER_CALIBRATE/' "$macro_config"
-                                        printf "Replacing stock configuration in gcode_macro.cfg file...\n"
-                                    else
-                                        printf "Stock configuration is already replaced in gcode_macro.cfg file.\n"
-                                    fi
-                                    if grep -q "include Helper-Script/shapers-configs/shapers-configs" "$printer_config" ; then
-                                        printf "Improved Shapers Calibration configurations are already enabled in printer.cfg file.\n"
-                                    else
-                                        printf "Adding Improved Shapers Calibration configurations in printer.cfg file...\n"
-                                        sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/shapers-configs/shapers-configs\.cfg\]' "$printer_config"
-                                    fi
-                			        printf "Restarting services...\n"
-                			        /etc/init.d/S55klipper_service restart
-                			        /etc/init.d/S56moonraker_service restart
-                			        sleep 1
-                			        /etc/init.d/S56moonraker_service restart
-                			        sleep 1
-                			        printf "\n"
-                			        printf "${green} Improved Shapers Calibrations have been installed successfully!"
-                			        printf "${white}\n\n"
                 			    else
-                			        rmdir "$helper_script" 2>/dev/null
                 			        printf "${white}\n\n"
                 			        printf "${darkred} Download failed!"
                 			        printf "${white}\n\n"
