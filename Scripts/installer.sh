@@ -1203,10 +1203,10 @@ do
             				printf "${darkred} Fans Control Macros are already installed!"
             				printf "${white}\n\n"
             			else
-            			    if [ "$firmware_version" == "1.3.2.31" ] || [ "$firmware_version" == "1.3.3.3" ]; then
-            			        printf "${cyan} This allows to control Motherboard fan with slicers."
-            			    else
+            			    if [ "$firmware_version" == "1.3.2.1" ] || [ "$firmware_version" == "1.3.2.20" ]; then
             			        printf "${cyan} This allows to control Chamber and Motherboard fans with slicers."
+            			    else
+            			        printf "${cyan} This allows to control Motherboard fan with slicers."
             			    fi
             			    printf "${white}\n\n"
             			    printf " Are you sure you want to install ${green}Fans Control Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -1229,10 +1229,10 @@ do
                                 if [ ! -d "$helper_script" ]; then
                 			        mkdir -p "$helper_script"
                 			    fi
-                			    if [ "$firmware_version" == "1.3.2.31" ] || [ "$firmware_version" == "1.3.3.3" ]; then
-                			        /tmp/curl -s -L "$fancontrols_URL2" -o "$helper_script"/fans-control.cfg
-                			    else
+                			    if [ "$firmware_version" == "1.3.2.1" ] || [ "$firmware_version" == "1.3.2.20" ]; then
                 			        /tmp/curl -s -L "$fancontrols_URL1" -o "$helper_script"/fans-control.cfg
+                			    else
+                			        /tmp/curl -s -L "$fancontrols_URL2" -o "$helper_script"/fans-control.cfg
                 			    fi
                 			    if [ $? -eq 0 ]; then
                 			        if grep -q "include Helper-Script/fans-control" "$printer_config" ; then
