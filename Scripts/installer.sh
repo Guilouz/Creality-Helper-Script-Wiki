@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.0.3
+VERSION=v4.0.4
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -1203,7 +1203,7 @@ do
             				printf "${darkred} Fans Control Macros are already installed!"
             				printf "${white}\n\n"
             			else
-            			    if [[ "$firmware_version" == "1.3.2.31" || "$(printf '%s\n' "1.3.2.31" "$firmware_version" | sort -V | tail -n 1)" == "1.3.2.31" ]]; then
+            			    if [ "$firmware_version" == "1.3.2.31" ] || [ "$firmware_version" == "1.3.3.3" ]; then
             			        printf "${cyan} This allows to control Motherboard fan with slicers."
             			    else
             			        printf "${cyan} This allows to control Chamber and Motherboard fans with slicers."
@@ -1229,7 +1229,7 @@ do
                                 if [ ! -d "$helper_script" ]; then
                 			        mkdir -p "$helper_script"
                 			    fi
-                			    if [[ "$firmware_version" == "1.3.2.31" || "$(printf '%s\n' "1.3.2.31" "$firmware_version" | sort -V | tail -n 1)" == "1.3.2.31" ]]; then
+                			    if [ "$firmware_version" == "1.3.2.31" ] || [ "$firmware_version" == "1.3.3.3" ]; then
                 			        /tmp/curl -s -L "$fancontrols_URL2" -o "$helper_script"/fans-control.cfg
                 			    else
                 			        /tmp/curl -s -L "$fancontrols_URL1" -o "$helper_script"/fans-control.cfg
