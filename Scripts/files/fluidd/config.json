@@ -1,0 +1,167 @@
+{
+  "blacklist": [
+    "fluidd.xyz",
+    "fluidd.net"
+  ],
+  "endpoints": [
+  ],
+  "hosted": false,
+  "themePresets": [
+    {
+      "name": "Fluidd",
+      "color": "#2196F3",
+      "isDark": true,
+      "logo": {
+        "src": "logo_fluidd.svg"
+      }
+    },
+    {
+      "name": "Annex",
+      "color": "#96CC4A",
+      "isDark": true,
+      "logo": {
+        "src": "logo_annex.svg"
+      }
+    },
+    {
+      "name": "BTT",
+      "color": "#475A91",
+      "isDark": true,
+      "logo": {
+        "src": "logo_btt.svg"
+      }
+    },
+    {
+      "name": "Creality V1",
+      "color": "#2196F3",
+      "isDark": true,
+      "logo": {
+        "src": "logo_creality_v1.svg"
+      }
+    },
+    {
+      "name": "Creality V2",
+      "color": "#2196F3",
+      "isDark": true,
+      "logo": {
+        "src": "logo_creality_v2.svg"
+      }
+    },
+    {
+      "name": "EVA",
+      "color": "#76FB00",
+      "isDark": true,
+      "logo": {
+        "src": "logo_eva.svg",
+        "dark": "#232323",
+        "light": "#ffffff"
+      }
+    },
+    {
+      "name": "HevORT",
+      "color": "#dfff3e",
+      "isDark": true,
+      "logo": {
+        "src": "logo_hevort.svg"
+      }
+    },
+    {
+      "name": "Kingroon",
+      "color": "#DA7A2C",
+      "isDark": true,
+      "logo": {
+        "src": "logo_kingroon.svg"
+      }
+    },
+    {
+      "name": "Klipper",
+      "color": "#B12F36",
+      "isDark": true,
+      "logo": {
+        "src": "logo_klipper.svg"
+      }
+    },
+    {
+      "name": "LDO",
+      "color": "#326799",
+      "isDark": true,
+      "logo": {
+        "src": "logo_ldo.svg"
+      }
+    },
+    {
+      "name": "Peopoly",
+      "color": "#007CC2",
+      "isDark": true,
+      "logo": {
+        "src": "logo_peopoly.svg"
+      }
+    },
+    {
+      "name": "Prusa",
+      "color": "#E05D2D",
+      "isDark": false,
+      "logo": {
+        "src": "logo_prusa.svg"
+      }
+    },
+    {
+      "name": "Qidi Tech",
+      "color": "#5B7AEA",
+      "isDark": true,
+      "logo": {
+        "src": "logo_qidi.svg"
+      }
+    },
+    {
+      "name": "RatRig",
+      "color": "#76FB00",
+      "isDark": true,
+      "logo": {
+        "src": "logo_ratrig.svg",
+        "dark": "#232323",
+        "light": "#ffffff"
+      }
+    },
+    {
+      "name": "Siboor",
+      "color": "#32E0DF",
+      "isDark": true,
+      "logo": {
+        "src": "logo_siboor.svg"
+      }
+    },
+    {
+      "name": "Voron",
+      "color": "#FF2300",
+      "isDark": true,
+      "logo": {
+        "src": "logo_voron.svg"
+      }
+    },
+    {
+      "name": "VzBot",
+      "color": "#FF2300",
+      "isDark": true,
+      "logo": {
+        "src": "logo_vzbot.svg"
+      }
+    },
+    {
+      "name": "ZeroG",
+      "color": "#e34234",
+      "isDark": true,
+      "logo": {
+        "src": "logo_zerog.svg"
+      }
+    },
+    {
+      "name": "SnakeOil",
+      "color": "#4bc3ca",
+      "isDark": true,
+      "logo": {
+        "src": "logo_snakeoil.svg"
+      }
+    }
+  ]
+}
