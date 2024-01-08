@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.0.4
+VERSION=v4.1.0
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -74,8 +74,10 @@ screwsadjust_URL1="${download_URL}screws-tilt-adjust/screws_tilt_adjust.py"
 screwsadjust_URL2="${download_URL}screws-tilt-adjust/screws-tilt-adjust-k1.cfg"
 screwsadjust_URL3="${download_URL}screws-tilt-adjust/screws-tilt-adjust-k1max.cfg"
 screwsadjust_file="${helper_script}/screws-tilt-adjust.cfg"
-fluiddlogo_URL="${download_URL}fluidd/logo_creality.svg"
-fluiddlogo_file="/usr/data/fluidd/logo_creality.svg"
+fluiddlogo_URL1="${download_URL}fluidd/logo_creality_v1.svg"
+fluiddlogo_URL2="${download_URL}fluidd/logo_creality_v2.svg"
+fluiddlogo_URL3="${download_URL}fluidd/config.json"
+fluiddlogo_file="/usr/data/fluidd/logo_creality_v2.svg"
 entware_URL="${download_URL}entware/generic.sh"
 firmware_version="$(cat /usr/data/creality/userdata/config/system_version.json | jq -r '.sys_version')"
 
@@ -435,7 +437,7 @@ customize_menu(){
     menu_option '5' 'Install' 'Guppy Screen'
     menu_option '6' 'Remove' 'Guppy Screen'
     hr
-    menu_option '7' 'Install' 'Creality Dynamic Logo for Fluidd'
+    menu_option '7' 'Install' 'Creality Dynamic Logos for Fluidd'
     hr
     innerline
     hr
@@ -514,7 +516,7 @@ info_menu(){
     infoline 'Custom Boot Display' "$(check_file "$bootdisplay_file")" "$white"
     infoline 'Creality Web Interface' "$(check_crealityweb "$crealityweb_file")" "$white"
     infoline 'Guppy Screen' "$(check_folder "$guppyscreen_folder")" "$white"
-    infoline 'Creality Dynamic Logo for Fluidd' "$(check_file "$fluiddlogo_file")" "$white"
+    infoline 'Creality Dynamic Logos for Fluidd' "$(check_file "$fluiddlogo_file")" "$white"
     hr
     innerline
     hr
@@ -1293,7 +1295,7 @@ do
             			    printf "${darkred} Make sure you're running 1.3.x.x firmware version!"
             			    printf "${white}\n\n"
             			elif [ ! -f "$shellcommand_file" ]; then
-            				printf " ${darkred}Please install Klipper Gcode Shell Command first!"
+            				printf "${darkred} Please install Klipper Gcode Shell Command first!"
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} Improved Shapers Calibrations allows to calibrate"
@@ -3343,36 +3345,49 @@ do
                         ;;
                     7)
             			if [ -f "$fluiddlogo_file" ]; then
-            				printf "${darkred} Creality Dynamic Logo for Fluidd is already installed!"
+            				printf "${darkred} Creality Dynamic Logos for Fluidd is already installed!"
             				printf "${white}\n\n"
             			else
-            			    printf "${cyan} This allows you to have the dynamic Creality logo on the Fluidd Web interface."
+            			    printf "${cyan} This allows you to have the dynamic Creality logos on the Fluidd Web interface."
             			    printf "${white}\n\n"
-                            printf " Are you sure you want to install ${green}Creality Dynamic Logo for Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            printf " Are you sure you want to install ${green}Creality Dynamic Logos for Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Creality Dynamic Logo for Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                printf " Are you sure you want to install ${green}Creality Dynamic Logos for Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf "${green} Installing Creality Dynamic Logo for Fluidd..."
+            			        printf "${green} Installing Creality Dynamic Logos for Fluidd..."
                 			    printf "${white}\n\n"
-                                printf "Downloading file...\n"
-                			    /tmp/curl -s -L "$fluiddlogo_URL" -o /usr/data/fluidd/logo_creality.svg
+                                printf "Downloading files...\n"
+                			    /tmp/curl -s -L "$fluiddlogo_URL1" -o /usr/data/fluidd/logo_creality_v1.svg
                 			    if [ $? -eq 0 ]; then
-                			        printf "Configuring file...\n"
-                			        if ! grep -q '"name": "Creality",' /usr/data/fluidd/config.json; then
-                			            sed -i '/"themePresets": \[/a\ \ \ \ {\n\ \ \ \ \ \ "name": "Creality",\n\ \ \ \ \ \ "color": "#2196F3",\n\ \ \ \ \ \ "isDark": true,\n\ \ \ \ \ \ "logo": {\n\ \ \ \ \ \ \ \ "src": "logo_creality.svg"\n\ \ \ \ \ \ }\n\ \ \ \ },' /usr/data/fluidd/config.json
+                			        /tmp/curl -s -L "$fluiddlogo_URL2" -o /usr/data/fluidd/logo_creality_v2.svg
+                			        if [ $? -eq 0 ]; then
+                			            /tmp/curl -s -L "$fluiddlogo_URL3" -o /usr/data/fluidd/config.json
+                			            if [ $? -eq 0 ]; then
+                			                printf "\n"
+                                            printf "${green} Creality Dynamic Logos for Fluidd has been installed successfully!"
+                			                printf "${white}\n\n"
+                			                printf " You can now select Creality V1 or V2 theme in Fluidd settings."
+                			                printf "${white}\n\n"
+                			            else
+                			                rm -f /usr/data/fluidd/logo_creality_v1.svg
+                			                rm -f /usr/data/fluidd/logo_creality_v2.svg
+                			                printf "${white}\n\n"
+                			                printf "${darkred} Download failed!"
+                			                printf "${white}\n\n"
+                			            fi
+                			        else
+                			            rm -f /usr/data/fluidd/logo_creality_v1.svg
+                			            printf "${white}\n\n"
+                			            printf "${darkred} Download failed!"
+                			            printf "${white}\n\n"
                 			        fi
-                			        printf "\n"
-                                    printf "${green} Creality Dynamic Logo for Fluidd has been restored successfully!"
-                			        printf "${white}\n\n"
-                			        printf " You can now select Creality theme in Fluidd settings."
-                			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} Download failed!"
