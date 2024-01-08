@@ -3345,7 +3345,7 @@ do
                         ;;
                     7)
             			if [ -f "$fluiddlogo_file" ]; then
-            				printf "${darkred} Creality Dynamic Logos for Fluidd is already installed!"
+            				printf "${darkred} Creality Dynamic Logos for Fluidd are already installed!"
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows you to have the dynamic Creality logos on the Fluidd Web interface."
@@ -3371,7 +3371,7 @@ do
                 			            /tmp/curl -s -L "$fluiddlogo_URL3" -o /usr/data/fluidd/config.json
                 			            if [ $? -eq 0 ]; then
                 			                printf "\n"
-                                            printf "${green} Creality Dynamic Logos for Fluidd has been installed successfully!"
+                                            printf "${green} Creality Dynamic Logos for Fluidd have been installed successfully!"
                 			                printf "${white}\n\n"
                 			                printf " You can now select Creality V1 or V2 theme in Fluidd settings."
                 			                printf "${white}\n\n"
