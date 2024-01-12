@@ -36,7 +36,7 @@ done
 echo 'Info: Opkg package manager deployment...'
 URL=http://bin.entware.net/${ARCH}/installer
 REPLACE_OPKG_MIRROR=0
-/tmp/curl -q -L $URL/opkg --connect-timeout 10 -o /opt/bin/opkg >/dev/null 2>&1
+/tmp/curl -s -L $URL/opkg --connect-timeout 10 -o /opt/bin/opkg >/dev/null 2>&1
 if [ $? -ne 0 ]; then
   echo 'Warning: Trying mirrors.bfsu.edu.cn mirror repo...'
   URL=http://mirrors.bfsu.edu.cn/entware/${ARCH}/installer
