@@ -35,9 +35,20 @@ done
 
 echo 'Info: Opkg package manager deployment...'
 URL=http://bin.entware.net/${ARCH}/installer
-wget $URL/opkg -O /opt/bin/opkg
+REPLACE_OPKG_MIRROR=0
+/tmp/curl -q -L $URL/opkg --connect-timeout 10 -o /opt/bin/opkg >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo 'Warning: Trying mirrors.bfsu.edu.cn mirror repo...'
+  URL=http://mirrors.bfsu.edu.cn/entware/${ARCH}/installer
+  /tmp/curl -s -L $URL/opkg -o /opt/bin/opkg >/dev/null 2>&1
+  REPLACE_OPKG_MIRROR=1
+fi
 chmod 755 /opt/bin/opkg
-wget $URL/opkg.conf -O /opt/etc/opkg.conf
+/tmp/curl -s -L $URL/opkg.conf -o /opt/etc/opkg.conf
+
+if [ $REPLACE_OPKG_MIRROR = '1' ]; then
+  sed -i "s,http://bin.entware.net/${ARCH},http://mirrors.bfsu.edu.cn/entware/${ARCH},g" /opt/etc/opkg.conf
+fi
 
 echo 'Info: Basic packages installation...'
 /opt/bin/opkg update
