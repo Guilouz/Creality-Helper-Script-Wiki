@@ -70,7 +70,7 @@ class Timelapse:
             'enabled': True,
             'mode': "layermacro",
             'camera': "",
-            'snapshoturl': "http://localhost:4408/webcam/?action=snapshot",
+            'snapshoturl': "http://localhost:8080/?action=snapshot",
             'stream_delay_compensation': 0.05,
             'gcode_verbose': False,
             'parkhead': False,

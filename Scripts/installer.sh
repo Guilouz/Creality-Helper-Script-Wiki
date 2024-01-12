@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.1.0
+VERSION=v4.2.0
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -942,7 +942,6 @@ do
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                 			    printf "${green} Installing Fix for Reboot/Shutdown functions..."
                 			    printf "${white}\n\n"
-								opkg install sudo
 								printf "Downloading systemctl file...\n"
 								/tmp/curl -s -L "$systemctl_URL" -o "$systemctl_file"
 								if [ $? -eq 0 ]; then
@@ -950,6 +949,8 @@ do
                 			        chmod 755 /usr/bin/systemctl
                 			        printf "Linking file...\n"
                 			        ln -s /opt/bin/sudo /usr/bin/sudo
+                			        printf "Installing sudo...\n"
+                			        opkg update && opkg install sudo
                 			        printf "\n"
                 			        printf "${green} Fix for Reboot/Shutdown functions has been installed successfully!"
                 			        printf "${white}\n\n"
@@ -1614,6 +1615,9 @@ do
             			if [ -f "$timelapse_file" ]; then
             				printf "${darkred} Moonraker Timelapse is already installed!"
             				printf "${white}\n\n"
+            			elif [ ! -d "$entware_folder" ]; then
+            				printf "${darkred} Please install Entware first!"
+            				printf "${white}\n\n"
             			else
             			    printf "${cyan} Moonraker Timelapse is a 3rd party Moonraker component"
             			    printf "\n"
@@ -1655,6 +1659,8 @@ do
                                         else
                                             printf "Moonraker Timelapse configurations are already enabled in moonraker.conf file.\n"
                                         fi
+                                        printf "Updating ffmpeg...\n"
+                                        opkg update && opkg upgrade ffmpeg
                 			            printf "Restarting services...\n"
                 			            /etc/init.d/S55klipper_service restart
                 			            /etc/init.d/S56moonraker_service restart
@@ -2674,6 +2680,24 @@ do
                 			    rm -rf /usr/data/moonraker-obico-env
                 			    printf "Removing service file...\n"
                     			rm -f /etc/init.d/S99moonraker_obico
+                    			if grep -q "include moonraker_obico_macros" "$printer_config" ; then
+                                    printf "Removing Obico configurations in printer.cfg file...\n"
+                                    sed -i '/include moonraker_obico_macros\.cfg/d' "$printer_config"
+                                else
+                                    printf "Obico configurations are already removed in printer.cfg file.\n"
+                                fi
+                                if grep -q "\[include moonraker-obico-update.cfg\]" "$moonraker_config" ; then
+                                    printf "Removing Obico configurations in moonraker.conf file...\n"
+                                    sed -i '/include moonraker-obico-update\.cfg/d' "$moonraker_config"
+                                else
+                                    printf "Obico configurations are already removed in moonraker.conf file.\n"
+                                fi
+                    			printf "Restarting services...\n"
+                			    /etc/init.d/S55klipper_service restart
+                			    /etc/init.d/S56moonraker_service restart
+                			    sleep 1
+                			    /etc/init.d/S56moonraker_service restart
+                			    sleep 1
                 			    printf "\n"
                 			    printf "${green} Obico has been removed successfully!"
                 			    printf "${white}\n\n"
