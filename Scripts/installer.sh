@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.2.0
+VERSION=v4.2.1
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -2562,6 +2562,11 @@ do
                 			    printf "${white}\n\n"
                                 printf "Deleting files...\n"
                 			    rm -f "$helper_script"/timelapse.cfg
+                			    rm -f /usr/data/moonraker/moonraker/moonraker/components/timelapse.py
+                			    rm -f /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc
+                			    if [ -f /opt/bin/ffmpeg ]; then
+                			        opkg remove ffmpeg
+                			    fi
                 			    if grep -q "include Helper-Script/timelapse" "$printer_config" ; then
                                     printf "Removing Moonraker Timelapse configurations in printer.cfg file...\n"
                                     sed -i '/include Helper-Script\/timelapse\.cfg/d' "$printer_config"
