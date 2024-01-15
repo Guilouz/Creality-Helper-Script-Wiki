@@ -61,7 +61,7 @@ class Timelapse:
         temp_dir_cfg = confighelper.get(
             "frame_path", "/tmp/timelapse/")
         self.ffmpeg_binary_path = confighelper.get(
-            "ffmpeg_binary_path", "/usr/bin/ffmpeg")
+            "ffmpeg_binary_path", "/opt/bin/ffmpeg")
         self.wget_skip_cert = confighelper.getboolean(
             "wget_skip_cert_check", False)
 
@@ -571,7 +571,7 @@ class Timelapse:
             # prepare output filename
             now = datetime.now()
             date_time = now.strftime(self.config['time_format_code'])
-            outfile = f"timelapse_{gcodefilename}_{date_time}"
+            outfile = f"k1_{gcodefilename}_{date_time}"
             outfileFull = outfile + "_frames.zip"
 
             zipObj = ZipFile(self.out_dir + outfileFull, "w")
@@ -627,7 +627,7 @@ class Timelapse:
             now = datetime.now()
             date_time = now.strftime(self.config['time_format_code'])
             inputfiles = self.temp_dir + "frame%6d.jpg"
-            outfile = f"timelapse_{gcodefilename}_{date_time}"
+            outfile = f"k1_{gcodefilename}_{date_time}"
 
             # dublicate last frame
             duplicates = []
@@ -686,9 +686,10 @@ class Timelapse:
                 + " -i '" + inputfiles + "'" \
                 + filterParam \
                 + " -threads 2 -g 5" \
-                + " -vcodec mjpeg" \
+                + " -crf " + str(self.config['constant_rate_factor']) \
+                + " -vcodec libx264" \
                 + " -pix_fmt " + self.config['pixelformat'] \
-                + " -b:v 7M" \
+                + " -preset superfast" \
                 + " -an" \
                 + " " + self.config['extraoutputparams'] \
                 + " '" + self.temp_dir + outfile + ".mp4' -y"
@@ -700,6 +701,7 @@ class Timelapse:
                 'framecount': str(self.framecount),
                 'settings': {
                     'framerate': fps,
+                    'crf': self.config['constant_rate_factor'],
                     'pixelformat': self.config['pixelformat']
                 }
             })
