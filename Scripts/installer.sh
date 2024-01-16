@@ -38,6 +38,8 @@ kamp_folder="/usr/data/KAMP-for-K1-Series/"
 kamp_URL="https://github.com/Guilouz/KAMP-for-K1-Series.git"
 hostname_file="/etc/init.d/S01hostname"
 hostname_URL="${download_URL}services/S01hostname"
+samba_file="/opt/etc/samba/smb.conf"
+samba_URL="${download_URL}/samba/smb.conf"
 systemctl_file="/usr/bin/systemctl"
 systemctl_URL="${download_URL}fixes/systemctl"
 sudo_file="/usr/bin/sudo"
@@ -326,25 +328,26 @@ install_menu(){
     menu_option ' 6' 'Install' 'Hostname Service'
     menu_option ' 7' 'Install' 'Supervisor Lite'
     menu_option ' 8' 'Install' 'Host Controls Support'
+    menu_option ' 9' 'Install' 'Samba (Remote filesystem access)'
     hr
     subtitle '•IMPROVEMENTS:'
-    menu_option ' 9' 'Install' 'Klipper Adaptive Meshing & Purging'
-    menu_option '10' 'Install' 'Buzzer Support'
-    menu_option '11' 'Install' 'Nozzle Cleaning Fan Control'
-    menu_option '12' 'Install' 'Fans Control Macros'
-    menu_option '13' 'Install' 'Improved Shapers Calibrations'
-    menu_option '14' 'Install' 'Usefull Macros'
-    menu_option '15' 'Install' 'Save Z-Offset Macros'
-    menu_option '16' 'Install' 'Screws Tilt Adjust Support'
+    menu_option '10' 'Install' 'Klipper Adaptive Meshing & Purging'
+    menu_option '11' 'Install' 'Buzzer Support'
+    menu_option '12' 'Install' 'Nozzle Cleaning Fan Control'
+    menu_option '13' 'Install' 'Fans Control Macros'
+    menu_option '14' 'Install' 'Improved Shapers Calibrations'
+    menu_option '15' 'Install' 'Usefull Macros'
+    menu_option '16' 'Install' 'Save Z-Offset Macros'
+    menu_option '17' 'Install' 'Screws Tilt Adjust Support'
     hr
     subtitle '•CAMERA:'
-    menu_option '17' 'Install' 'Moonraker Timelapse '
-    menu_option '18' 'Install' 'Camera Settings Control'
+    menu_option '18' 'Install' 'Moonraker Timelapse '
+    menu_option '19' 'Install' 'Camera Settings Control'
     hr
     subtitle '•REMOTE ACCESS AND AI DETECTION:'
-    menu_option '19' 'Install' 'OctoEverywhere'
-    menu_option '20' 'Install' 'Obico'
-    menu_option '21' 'Install' 'Mobileraker Companion'
+    menu_option '20' 'Install' 'OctoEverywhere'
+    menu_option '21' 'Install' 'Obico'
+    menu_option '22' 'Install' 'Mobileraker Companion'
     hr
     innerline
     hr
@@ -375,25 +378,26 @@ uninstall_menu(){
     menu_option ' 6' 'Remove' 'Hostname Service'
     menu_option ' 7' 'Remove' 'Supervisor Lite'
     menu_option ' 8' 'Remove' 'Host Controls Support'
+    menu_option ' 9' 'Remove' 'Samba (Remote filesystem access)'
     hr
     subtitle '•IMPROVEMENTS:'
-    menu_option ' 9' 'Remove' 'Klipper Adaptive Meshing & Purging'
-    menu_option '10' 'Remove' 'Buzzer Support'
-    menu_option '11' 'Remove' 'Nozzle Cleaning Fan Control'
-    menu_option '12' 'Remove' 'Fans Control Macros'
-    menu_option '13' 'Remove' 'Improved Shapers Calibrations'
-    menu_option '14' 'Remove' 'Usefull Macros'
-    menu_option '15' 'Remove' 'Save Z-Offset Macros'
-    menu_option '16' 'Remove' 'Screws Tilt Adjust Support'
+    menu_option '10' 'Remove' 'Klipper Adaptive Meshing & Purging'
+    menu_option '11' 'Remove' 'Buzzer Support'
+    menu_option '12' 'Remove' 'Nozzle Cleaning Fan Control'
+    menu_option '13' 'Remove' 'Fans Control Macros'
+    menu_option '14' 'Remove' 'Improved Shapers Calibrations'
+    menu_option '15' 'Remove' 'Usefull Macros'
+    menu_option '16' 'Remove' 'Save Z-Offset Macros'
+    menu_option '17' 'Remove' 'Screws Tilt Adjust Support'
     hr
     subtitle '•CAMERA:'
-    menu_option '17' 'Remove' 'Moonraker Timelapse '
-    menu_option '18' 'Remove' 'Camera Settings Control'
+    menu_option '18' 'Remove' 'Moonraker Timelapse '
+    menu_option '19' 'Remove' 'Camera Settings Control'
     hr
     subtitle '•REMOTE ACCESS AND AI DETECTION:'
-    menu_option '19' 'Remove' 'OctoEverywhere'
-    menu_option '20' 'Remove' 'Obico'
-    menu_option '21' 'Remove' 'Mobileraker Companion'
+    menu_option '20' 'Remove' 'OctoEverywhere'
+    menu_option '21' 'Remove' 'Obico'
+    menu_option '22' 'Remove' 'Mobileraker Companion'
     hr
     innerline
     hr
@@ -499,6 +503,7 @@ info_menu(){
     infoline 'Hostname Service' "$(check_file "$hostname_file")"
     infoline 'Supervisor Lite' "$(check_file "$supervisor_file")"
     infoline 'Host Controls Support' "$(check_file "$systemctl_file")"
+    infoline 'Samba (Remote filesystem service)' "$(check_file "$samba_file")"
     hr
     subtitle '•IMPROVEMENTS:'
     infoline 'Klipper Adaptive Meshing & Purging' "$(check_folder "$kamp_folder")"
@@ -603,18 +608,18 @@ do
                 install_menu
                 case $opt_install_menu in
                     1)
-            			if [ -d "$moonraker_folder" ]; then
-            				printf "${darkred} Moonraker and Nginx are already installed!"
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} Moonraker is a Python 3 based web server that exposes APIs with"
-            			    printf "\n"
-            			    printf " which client applications may use to interact with Klipper firmware."
-            			    printf "${white}\n\n"
-            			    printf " Are you sure you want to install ${green}Moonraker and Nginx ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        if [ -d "$moonraker_folder" ]; then
+                            printf "${darkred} Moonraker and Nginx are already installed!"
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} Moonraker is a Python 3 based web server that exposes APIs with"
+                            printf "\n"
+                            printf " which client applications may use to interact with Klipper firmware."
+                            printf "${white}\n\n"
+                            printf " Are you sure you want to install ${green}Moonraker and Nginx ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to install ${green}Moonraker and Nginx ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -643,46 +648,46 @@ do
                                         printf "Fixing Nginx configurations...\n"
                                         sed -i '/keepalive_timeout  65;/a \    proxy_connect_timeout 1600;\n    proxy_send_timeout 1600;\n    proxy_read_timeout 1600;\n    send_timeout 1600;' /usr/data/nginx/nginx/nginx.conf
                                     fi
-                			        printf "Downloading Moonraker configuration file...\n"
-                    			    /tmp/curl -s -L "$moonraker_config_URL" -o "$moonraker_config"
-                			        printf "Applying changes...\n"
-                			        cd /usr/data/moonraker/moonraker
-                			        git stash; git checkout master; git pull
-                			        printf "Restarting services...\n"
-                			        /etc/init.d/S50nginx start
-                			        sleep 1
-                			        /etc/init.d/S56moonraker_service start
-                			        sleep 1
-                			        printf "\n"
-                			        printf "${green} Moonraker and Nginx have been installed successfully!"
-                			        printf "${white}\n\n"
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                    printf "Downloading Moonraker configuration file...\n"
+                                    /tmp/curl -s -L "$moonraker_config_URL" -o "$moonraker_config"
+                                    printf "Applying changes...\n"
+                                    cd /usr/data/moonraker/moonraker
+                                    git stash; git checkout master; git pull
+                                    printf "Restarting services...\n"
+                                    /etc/init.d/S50nginx start
+                                    sleep 1
+                                    /etc/init.d/S56moonraker_service start
+                                    sleep 1
+                                    printf "\n"
+                                    printf "${green} Moonraker and Nginx have been installed successfully!"
+                                    printf "${white}\n\n"
+                                else
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     2)
-            			if [ -d "$fluidd_folder" ]; then
-            				printf "${darkred} Fluidd is already installed!"
-            				printf "${white}\n\n"
-            			elif [ ! -d "$moonraker_folder" ]; then
-            				printf "${darkred} Please install Moonraker and Nginx first!"
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} Fluidd is a free and open-source Klipper Web interface for"
-            			    printf "\n"
-            			    printf " managing your 3d printer."
-            			    printf "${white}\n\n"
-            			    printf " Are you sure you want to install ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        if [ -d "$fluidd_folder" ]; then
+                            printf "${darkred} Fluidd is already installed!"
+                            printf "${white}\n\n"
+                        elif [ ! -d "$moonraker_folder" ]; then
+                            printf "${darkred} Please install Moonraker and Nginx first!"
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} Fluidd is a free and open-source Klipper Web interface for"
+                            printf "\n"
+                            printf " managing your 3d printer."
+                            printf "${white}\n\n"
+                            printf " Are you sure you want to install ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to install ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -712,45 +717,45 @@ do
                                     else
                                         printf "Fluidd configurations are already enabled in moonraker.conf file.\n"
                                     fi
-                			        printf "Restarting services...\n"
-                			        /etc/init.d/S50nginx restart
-                			        sleep 1
-                			        /etc/init.d/S56moonraker_service restart
-                			        sleep 1
-                			        /etc/init.d/S56moonraker_service restart
-                			        sleep 1
-                			        printf "\n"
-                			        printf "${green} Fluidd has been installed successfully!"
-                			        printf "${white}\n\n"
-                			        printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress):4408"
-                			        printf "${white}\n\n"
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                    printf "Restarting services...\n"
+                                    /etc/init.d/S50nginx restart
+                                    sleep 1
+                                    /etc/init.d/S56moonraker_service restart
+                                    sleep 1
+                                    /etc/init.d/S56moonraker_service restart
+                                    sleep 1
+                                    printf "\n"
+                                    printf "${green} Fluidd has been installed successfully!"
+                                    printf "${white}\n\n"
+                                    printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress):4408"
+                                    printf "${white}\n\n"
+                                else
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     3)
-            			if [ -d "$mainsail_folder" ]; then
-            				printf "${darkred} Mainsail is already installed!"
-            				printf "${white}\n\n"
-            			elif [ ! -d "$moonraker_folder" ]; then
-            				printf "${darkred} Please install Moonraker and Nginx first!"
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} Mainsail is the popular Web interface for managing and"
-            			    printf "\n"
-            			    printf " controlling 3D printers with Klipper."
-            			    printf "${white}\n\n"
-            			    printf " Are you sure you want to install ${green}Mainsail ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        if [ -d "$mainsail_folder" ]; then
+                            printf "${darkred} Mainsail is already installed!"
+                            printf "${white}\n\n"
+                        elif [ ! -d "$moonraker_folder" ]; then
+                            printf "${darkred} Please install Moonraker and Nginx first!"
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} Mainsail is the popular Web interface for managing and"
+                            printf "\n"
+                            printf " controlling 3D printers with Klipper."
+                            printf "${white}\n\n"
+                            printf " Are you sure you want to install ${green}Mainsail ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to install ${green}Mainsail ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -780,151 +785,151 @@ do
                                     else
                                         printf "Mainsail configurations are already enabled in moonraker.conf file.\n"
                                     fi
-                			        printf "Restarting services...\n"
-                			        /etc/init.d/S50nginx restart
-                			        sleep 1
-                			        /etc/init.d/S56moonraker_service restart
-                			        sleep 1
-                			        /etc/init.d/S56moonraker_service restart
-                			        sleep 1
-                			        printf "\n"
-                			        printf "${green} Mainsail has been installed successfully!"
-                			        printf "${white}\n\n"
-                			        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress):4409"
-                			        printf "${white}\n\n"
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                    printf "Restarting services...\n"
+                                    /etc/init.d/S50nginx restart
+                                    sleep 1
+                                    /etc/init.d/S56moonraker_service restart
+                                    sleep 1
+                                    /etc/init.d/S56moonraker_service restart
+                                    sleep 1
+                                    printf "\n"
+                                    printf "${green} Mainsail has been installed successfully!"
+                                    printf "${white}\n\n"
+                                    printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress):4409"
+                                    printf "${white}\n\n"
+                                else
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     4)
                         printf "${cyan} Entware is a software repository for devices which use the Linux kernel."
                         printf "\n"
                         printf " It allows packages to be added to your printer."
-            			printf "${white}\n\n"
+                        printf "${white}\n\n"
                         printf " Are you sure you want to install ${green}Entware ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			read confirm
-            			printf "${white}\n"
-            			while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        read confirm
+                        printf "${white}\n"
+                        while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                             printf "${darkred} Please select a correct choice!"
                             printf "${white}\n\n"
                             printf " Are you sure you want to install ${green}Entware ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                             read confirm
                             printf "${white}\n"
                         done
-            			if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                        if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                             printf "${green} Installing Entware..."
                             printf "${white}\n\n"
-            			    echo "Making /opt directory on data partition where there is space, and adding a symbolic link..."
-            			    rm -rf /opt /usr/data/opt
-            			    mkdir -p /usr/data/opt
-            			    ln -nsf /usr/data/opt /opt
-            			    echo "Downloading generic installer script..."
-            			    wget --no-check-certificate -O - "$entware_URL" | /bin/sh
-            			    if [ $? -eq 0 ]; then
-            			        echo "Adding /opt/bin and /opt/sbin to the start of the PATH in the system profile..."
-            			        echo 'export PATH="/opt/bin:/opt/sbin:$PATH"' > /etc/profile.d/entware.sh
-            			        echo "Adding startup script..."
-            			        echo -e '#!/bin/sh\n/opt/etc/init.d/rc.unslung "$1"' > /etc/init.d/S50unslung
-            			        chmod 755 /etc/init.d/S50unslung
-            			        printf "\n"
-            			        printf "${green} Entware has been installed successfully!"
-            			        printf "${white}\n\n"
-            			        printf " Log out and log back in, and you can now install packages with: ${yellow}opkg install <packagename>"
-            			        printf "${white}\n\n"
-            			    else
-            			        printf "${white}\n\n"
-                			    printf "${darkred} Download failed!"
-                			    printf "${white}\n\n"
-                			fi
-            			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			printf "${darkred} Installation canceled!"
-                			printf "${white}\n\n"
-            			fi
+                            echo "Making /opt directory on data partition where there is space, and adding a symbolic link..."
+                            rm -rf /opt /usr/data/opt
+                            mkdir -p /usr/data/opt
+                            ln -nsf /usr/data/opt /opt
+                            echo "Downloading generic installer script..."
+                            wget --no-check-certificate -O - "$entware_URL" | /bin/sh
+                            if [ $? -eq 0 ]; then
+                                echo "Adding /opt/bin and /opt/sbin to the start of the PATH in the system profile..."
+                                echo 'export PATH="/opt/bin:/opt/sbin:$PATH"' > /etc/profile.d/entware.sh
+                                echo "Adding startup script..."
+                                echo -e '#!/bin/sh\n/opt/etc/init.d/rc.unslung "$1"' > /etc/init.d/S50unslung
+                                chmod 755 /etc/init.d/S50unslung
+                                printf "\n"
+                                printf "${green} Entware has been installed successfully!"
+                                printf "${white}\n\n"
+                                printf " Log out and log back in, and you can now install packages with: ${yellow}opkg install <packagename>"
+                                printf "${white}\n\n"
+                            else
+                                printf "${white}\n\n"
+                                printf "${darkred} Download failed!"
+                                printf "${white}\n\n"
+                            fi
+                        elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                            printf "${darkred} Installation canceled!"
+                            printf "${white}\n\n"
+                        fi
                         ;;
                     5)
-            			if [ -f "$shellcommand_file" ]; then
-            				printf "${darkred} Klipper Gcode Shell Command is already installed!"
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} This allows to run Linux commands or even scripts from Klipper."
-            			    printf "${white}\n\n"
-            			    printf " Are you sure you want to install ${green}Klipper Gcode Shell Command ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        if [ -f "$shellcommand_file" ]; then
+                            printf "${darkred} Klipper Gcode Shell Command is already installed!"
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} This allows to run Linux commands or even scripts from Klipper."
+                            printf "${white}\n\n"
+                            printf " Are you sure you want to install ${green}Klipper Gcode Shell Command ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to install ${green}Klipper Gcode Shell Command ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf "${green} Installing Klipper Gcode Shell Command..."
-            			        printf "${white}\n\n"
-                			    printf "Downloading Klipper Gcode Shell Command...\n"
-                			    /tmp/curl -s -L "$shellcommand_URL" -o "$shellcommand_file"
-                			    if [ $? -eq 0 ]; then
-                			        printf "Restarting services...\n"
-                			        /etc/init.d/S55klipper_service restart
-                			        printf "\n"
-                			        printf "${green} Klipper Gcode Shell Command has been installed successfully!"
-                			        printf "${white}\n\n"
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Klipper Gcode Shell Command..."
+                                printf "${white}\n\n"
+                                printf "Downloading Klipper Gcode Shell Command...\n"
+                                /tmp/curl -s -L "$shellcommand_URL" -o "$shellcommand_file"
+                                if [ $? -eq 0 ]; then
+                                    printf "Restarting services...\n"
+                                    /etc/init.d/S55klipper_service restart
+                                    printf "\n"
+                                    printf "${green} Klipper Gcode Shell Command has been installed successfully!"
+                                    printf "${white}\n\n"
+                                else
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     6)
-            			if [ -f "$hostname_file" ]; then
-            				printf "${darkred} Hostname Service is already installed!"
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} This allows to change the hostname of the machine for firmwares < 1.3.2.20."
-            			    printf "${white}\n\n"
-            			    printf " Are you sure you want to install ${green}Hostname Service ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        if [ -f "$hostname_file" ]; then
+                            printf "${darkred} Hostname Service is already installed!"
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} This allows to change the hostname of the machine for firmwares < 1.3.2.20."
+                            printf "${white}\n\n"
+                            printf " Are you sure you want to install ${green}Hostname Service ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to install ${green}Hostname Service ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Hostname Service..."
-                			    printf "${white}\n\n"
-                			    printf "Downloading Hostname Service file...\n"
-                			    /tmp/curl -s -L "$hostname_URL" -o "$hostname_file"
-                			    if [ $? -eq 0 ]; then
-                			        printf "Applying permissions...\n"
-                			        chmod 755 S01hostname
-                			        printf "\n"
-                			        printf "${green} Hostname Service has been installed successfully!"
-                			        printf "${white}\n\n"
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Hostname Service..."
+                                printf "${white}\n\n"
+                                printf "Downloading Hostname Service file...\n"
+                                /tmp/curl -s -L "$hostname_URL" -o "$hostname_file"
+                                if [ $? -eq 0 ]; then
+                                    printf "Applying permissions...\n"
+                                    chmod 755 S01hostname
+                                    printf "\n"
+                                    printf "${green} Hostname Service has been installed successfully!"
+                                    printf "${white}\n\n"
+                                else
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     7)
             			if [ -f "$supervisor_file" ]; then
@@ -1033,6 +1038,70 @@ do
             			fi
                         ;;
                     9)
+                        if [ -f "$samba_file" ]; then
+                            printf "${darkred} Fix for Samba (Remote filesystem access) is already installed!"
+                            printf "${white}\n\n"
+                        elif [ ! -d "$entware_folder" ]; then
+                            printf "${darkred} Please install Entware first!"
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} This allows to access the filesystem of your printer via Samba."
+                            printf "${white}\n\n"
+                            printf " Are you sure you want to install ${green}Samba (Remote filesystem access) ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to install ${green}Samba (Remote filesystem access) ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Samba (Remote filesystem access)..."
+                                printf "${white}\n\n"
+                                printf "Installing samba4-server...\n"
+                                opkg update && opkg install samba4-server
+                                printf "\n"
+                                perform_rollback=0
+                                printf "Downloading samba config file...\n"
+                                /tmp/curl -s -L "${samba_URL}" -o "$samba_file"
+                                if [ $(grep -c "404:" "$samba_file") -eq 0 ]; then
+                                    printf "Creating directories...\n"
+                                    mkdir -p /opt/var/log/samba
+                                    mkdir -p /opt/var/lib/samba
+                                    printf "Creating the samba user, please enter the password for user root...\n"
+                                    smbpasswd -a root
+                                    printf "Starting the samba service...\n"
+                                    if smbd -D; then
+                                        printf "${green} Installation successful!${white}\n\n"
+                                    else
+                                        printf "${darkred} Failed to start samba service. Installation canceled!"
+                                        printf "${white}\n"
+                                        perform_rollback=1
+                                    fi
+                                else
+                                    printf "${darkred} Failed to download samba config file. Installation canceled!"
+                                    printf "${white}\n"
+                                    perform_rollback=1
+                                fi
+                                if [ ${perform_rollback} -eq 1 ]; then
+                                    printf "Rollback by removing samba4-server package...\n"
+                                    opkg remove samba4-server --autoremove
+                                    printf "Rollback by deleting directories...\n"
+                                    rm -Rf /opt/var/log/samba \
+                                        /opt/var/lib/samba \
+                                        /usr/data/opt/var/lock/samba \
+                                        /usr/data/opt/lib/samba \
+                                        /usr/data/opt/var/run/samba \
+                                        /usr/data/opt/var/lock/samba
+                                    printf "Rollback by removing samba configuration...\n"
+                                    rm -Rf "$(dirname "${samba_file}")"
+                                fi
+                            fi
+                        fi
+                        ;;
+                    10)
             			if [ -d "$kamp_folder" ]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is already installed!"
             				printf "${white}\n\n"
@@ -1051,33 +1120,33 @@ do
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Klipper Adaptive Meshing & Purging..."
-                			    printf "${white}\n\n"
-                			    cd /usr/data
-                			    printf "Cloning repository...\n"
-                			    git clone "$kamp_URL"
-                			    if [ $? -eq 0 ]; then
-                			        if [ -d "$helper_script"/KAMP ]; then
-                			            rm -rf "$helper_script"/KAMP
-                			        fi
-                			        if [ -f "$helper_script"/KAMP_Settings.cfg ]; then
-                			            rm -f "$helper_script"/KAMP_Settings.cfg
-                			        fi
-                			        if [ ! -d "$helper_script" ]; then
-                			            mkdir -p "$helper_script"
-                			        fi
-                			        printf "Linking files...\n"
-                			        ln -s ../../../KAMP-for-K1-Series/Configuration /usr/data/printer_data/config/Helper-Script/KAMP
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Klipper Adaptive Meshing & Purging..."
+                                printf "${white}\n\n"
+                                cd /usr/data
+                                printf "Cloning repository...\n"
+                                git clone "$kamp_URL"
+                                if [ $? -eq 0 ]; then
+                                    if [ -d "$helper_script"/KAMP ]; then
+                                        rm -rf "$helper_script"/KAMP
+                                    fi
+                                    if [ -f "$helper_script"/KAMP_Settings.cfg ]; then
+                                        rm -f "$helper_script"/KAMP_Settings.cfg
+                                    fi
+                                    if [ ! -d "$helper_script" ]; then
+                                        mkdir -p "$helper_script"
+                                    fi
+                                    printf "Linking files...\n"
+                                    ln -s ../../../KAMP-for-K1-Series/Configuration /usr/data/printer_data/config/Helper-Script/KAMP
                                     printf "Moving file...\n"
-                			        cp KAMP-for-K1-Series/Configuration/KAMP_Settings.cfg "$helper_script"/KAMP_Settings.cfg
-                			        if grep -q "#\[include .*/KAMP/Start_Print.cfg\]" "$helper_script"/KAMP_Settings.cfg ; then
+                                    cp KAMP-for-K1-Series/Configuration/KAMP_Settings.cfg "$helper_script"/KAMP_Settings.cfg
+                                    if grep -q "#\[include .*/KAMP/Start_Print.cfg\]" "$helper_script"/KAMP_Settings.cfg ; then
                                         printf "Enabling [include .*/KAMP/Start_Print.cfg] in KAMP_Settings.cfg file...\n"
                                         sed -i 's/^#\[include \.\/KAMP\/Start_Print\.cfg\]/[include .\/KAMP\/Start_Print.cfg]/' "$helper_script"/KAMP_Settings.cfg
                                     else
                                         printf "[include .*/KAMP/Start_Print.cfg] is already enabled in KAMP_Settings.cfg file.\n"
                                     fi
-                			        if grep -q "include KAMP_Settings" "$printer_config" ; then
+                                    if grep -q "include KAMP_Settings" "$printer_config" ; then
                                         printf "KAMP configurations are already enabled in printer.cfg file.\n"
                                     else
                                         printf "Adding KAMP configurations in printer.cfg file...\n"
@@ -1121,29 +1190,29 @@ do
                                             printf "[include .*/KAMP/Prusa_Slicer.cfg] is already enabled in KAMP_Settings.cfg file.\n"
                                         fi
                                     fi
-                			        printf "Restarting services...\n"
-                			        /etc/init.d/S55klipper_service restart
-                			        /etc/init.d/S56moonraker_service restart
+                                    printf "Restarting services...\n"
+                                    /etc/init.d/S55klipper_service restart
+                                    /etc/init.d/S56moonraker_service restart
                                     sleep 1
                                     /etc/init.d/S56moonraker_service restart
-                			        sleep 1
-                			        printf "\n"
-                			        printf "${green} Klipper Adaptive Meshing & Purging has been installed successfully!"
-                			        printf "${white}\n\n"
-                			        printf " Make sure Label Objects setting is enabled in your slicer."
-                			        printf "${white}\n\n"
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                    sleep 1
+                                    printf "\n"
+                                    printf "${green} Klipper Adaptive Meshing & Purging has been installed successfully!"
+                                    printf "${white}\n\n"
+                                    printf " Make sure Label Objects setting is enabled in your slicer."
+                                    printf "${white}\n\n"
+                                else
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    10)
+                    11)
             			if [ -f "$buzzer_file" ]; then
             				printf "${darkred} Buzzer Support is already installed!"
             				printf "${white}\n\n"
@@ -1163,51 +1232,51 @@ do
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Buzzer Support..."
-                			    printf "${white}\n\n"
-                			    printf "Downloading Buzzer Support files...\n"
-                			    if [ -f "$helper_script"/buzzer-support.cfg ]; then
-                			        rm -f "$helper_script"/buzzer-support.cfg
-                			    fi
-                			    /tmp/curl -s -L "$buzzer_URL1" -o "$buzzer_file"
-                			    if [ $? -eq 0 ]; then
-                			        if [ ! -d "$helper_script" ]; then
-                			            mkdir -p "$helper_script"
-                			        fi
-                			        /tmp/curl -s -L "$buzzer_URL2" -o "$helper_script"/buzzer-support.cfg
-                			        if [ $? -eq 0 ]; then
-                			            if grep -q "include Helper-Script/buzzer-support" "$printer_config" ; then
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Buzzer Support..."
+                                printf "${white}\n\n"
+                                printf "Downloading Buzzer Support files...\n"
+                                if [ -f "$helper_script"/buzzer-support.cfg ]; then
+                                    rm -f "$helper_script"/buzzer-support.cfg
+                                fi
+                                /tmp/curl -s -L "$buzzer_URL1" -o "$buzzer_file"
+                                if [ $? -eq 0 ]; then
+                                    if [ ! -d "$helper_script" ]; then
+                                        mkdir -p "$helper_script"
+                                    fi
+                                    /tmp/curl -s -L "$buzzer_URL2" -o "$helper_script"/buzzer-support.cfg
+                                    if [ $? -eq 0 ]; then
+                                        if grep -q "include Helper-Script/buzzer-support" "$printer_config" ; then
                                             printf "Buzzer Support configurations are already enabled in printer.cfg file.\n"
                                         else
                                             printf "Adding Buzzer Support configurations in printer.cfg file...\n"
                                             sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/buzzer-support\.cfg\]' "$printer_config"
                                         fi
-                			            printf "Restarting services...\n"
-                			            /etc/init.d/S55klipper_service restart
-                			            printf "\n"
-                			            printf " ${green}Buzzer Support has been installed successfully!"
-                			            printf "${white}\n\n"
-                			            printf " You can now use ${yellow}BEEP ${white}command in your macros to play sound."
-                			            printf "${white}\n\n"
-                			        else
-                			            rm -f "$buzzer_file" 2>/dev/null
-                			            printf "${white}\n\n"
-                			            printf "${darkred} Download failed!"
-                			            printf "${white}\n\n"
-                			        fi
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                        printf "Restarting services...\n"
+                                        /etc/init.d/S55klipper_service restart
+                                        printf "\n"
+                                        printf " ${green}Buzzer Support has been installed successfully!"
+                                        printf "${white}\n\n"
+                                        printf " You can now use ${yellow}BEEP ${white}command in your macros to play sound."
+                                        printf "${white}\n\n"
+                                    else
+                                        rm -f "$buzzer_file" 2>/dev/null
+                                        printf "${white}\n\n"
+                                        printf "${darkred} Download failed!"
+                                        printf "${white}\n\n"
+                                    fi
+                                else
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    11)
+                    12)
             			if [ -d "$prtouch_folder" ]; then
             				printf "${darkred} Nozzle Cleaning Fan Control is already installed!"
             				 printf "${white}\n\n"
@@ -1224,51 +1293,51 @@ do
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Nozzle Cleaning Fan Control..."
-                			    printf "${white}\n\n"
-                			    mkdir -p "$klipper_extra_folder"prtouch_v2_fan
-                			    printf "Downloading Nozzle Cleaning Fan Control files...\n"
-                			    /tmp/curl -s -L "$prtouch_URL1" -o "$klipper_extra_folder"prtouch_v2_fan/__init__.py
-                			    /tmp/curl -s -L "$prtouch_URL2" -o "$klipper_extra_folder"prtouch_v2_fan/prtouch_v2_fan.pyc
-                			    if [ $? -eq 0 ]; then
-                			        if [ -f "$helper_script"/nozzle-cleaning-fan-control.cfg ]; then
-                			            rm -f "$helper_script"/nozzle-cleaning-fan-control.cfg
-                			        fi
-                			        if [ ! -d "$helper_script" ]; then
-                			            mkdir -p "$helper_script"
-                			        fi
-                			        /tmp/curl -s -L "$prtouch_URL3" -o "$helper_script"/nozzle-cleaning-fan-control.cfg
-                			        if [ $? -eq 0 ]; then
-                			            if grep -q "include Helper-Script/nozzle-cleaning-fan-control" "$printer_config" ; then
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Nozzle Cleaning Fan Control..."
+                                printf "${white}\n\n"
+                                mkdir -p "$klipper_extra_folder"prtouch_v2_fan
+                                printf "Downloading Nozzle Cleaning Fan Control files...\n"
+                                /tmp/curl -s -L "$prtouch_URL1" -o "$klipper_extra_folder"prtouch_v2_fan/__init__.py
+                                /tmp/curl -s -L "$prtouch_URL2" -o "$klipper_extra_folder"prtouch_v2_fan/prtouch_v2_fan.pyc
+                                if [ $? -eq 0 ]; then
+                                    if [ -f "$helper_script"/nozzle-cleaning-fan-control.cfg ]; then
+                                        rm -f "$helper_script"/nozzle-cleaning-fan-control.cfg
+                                    fi
+                                    if [ ! -d "$helper_script" ]; then
+                                        mkdir -p "$helper_script"
+                                    fi
+                                    /tmp/curl -s -L "$prtouch_URL3" -o "$helper_script"/nozzle-cleaning-fan-control.cfg
+                                    if [ $? -eq 0 ]; then
+                                        if grep -q "include Helper-Script/nozzle-cleaning-fan-control" "$printer_config" ; then
                                             printf "Nozzle Cleaning Fan Control configurations are already enabled in printer.cfg file.\n"
                                         else
                                             printf "Adding Nozzle Cleaning Fan Control configurations in printer.cfg file...\n"
                                             sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/nozzle-cleaning-fan-control\.cfg\]' "$printer_config"
                                         fi
-                			            printf "Restarting services...\n"
+                                        printf "Restarting services...\n"
                                         /etc/init.d/S55klipper_service restart
                                         printf "\n"
-                			            printf "${green} Nozzle Cleaning Fan Control has been installed successfully!"
-                			            printf "${white}\n\n"
-                			        else
-                			            rm -rf "$klipper_extra_folder"prtouch_v2_fan 2>/dev/null
-                			            printf "${white}\n\n"
-                			            printf "${darkred} Download failed!"
-                			            printf "${white}\n\n"
-                			        fi
-                			    else
-                			        rm -rf "$klipper_extra_folder"prtouch_v2_fan 2>/dev/null
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf " ${darkred}Installation canceled! ${white}\n\n"
-            			    fi
-            			fi
+                                        printf "${green} Nozzle Cleaning Fan Control has been installed successfully!"
+                                        printf "${white}\n\n"
+                                    else
+                                        rm -rf "$klipper_extra_folder"prtouch_v2_fan 2>/dev/null
+                                        printf "${white}\n\n"
+                                        printf "${darkred} Download failed!"
+                                        printf "${white}\n\n"
+                                    fi
+                                else
+                                    rm -rf "$klipper_extra_folder"prtouch_v2_fan 2>/dev/null
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf " ${darkred}Installation canceled! ${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    12)
+                    13)
             			if [ -f "$fancontrols_file" ]; then
             				printf "${darkred} Fans Control Macros are already installed!"
             				printf "${white}\n\n"
@@ -1289,23 +1358,23 @@ do
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Fans Control Macros..."
-                			    printf "${white}\n\n"
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Fans Control Macros..."
+                                printf "${white}\n\n"
                                 printf "Downloading Fans Control Macros...\n"
                                 if [ -f "$helper_script"/fans-control.cfg ]; then
                                     rm -f "$helper_script"/fans-control.cfg
                                 fi
                                 if [ ! -d "$helper_script" ]; then
-                			        mkdir -p "$helper_script"
-                			    fi
-                			    if [ "$firmware_version" == "1.3.2.1" ] || [ "$firmware_version" == "1.3.2.20" ]; then
-                			        /tmp/curl -s -L "$fancontrols_URL1" -o "$helper_script"/fans-control.cfg
-                			    else
-                			        /tmp/curl -s -L "$fancontrols_URL2" -o "$helper_script"/fans-control.cfg
-                			    fi
-                			    if [ $? -eq 0 ]; then
-                			        if grep -q "include Helper-Script/fans-control" "$printer_config" ; then
+                                    mkdir -p "$helper_script"
+                                fi
+                                if [ "$firmware_version" == "1.3.2.1" ] || [ "$firmware_version" == "1.3.2.20" ]; then
+                                    /tmp/curl -s -L "$fancontrols_URL1" -o "$helper_script"/fans-control.cfg
+                                else
+                                    /tmp/curl -s -L "$fancontrols_URL2" -o "$helper_script"/fans-control.cfg
+                                fi
+                                if [ $? -eq 0 ]; then
+                                    if grep -q "include Helper-Script/fans-control" "$printer_config" ; then
                                         printf "Fans Control Macros configurations are already enabled in printer.cfg file.\n"
                                     else
                                         printf "Adding Fans Control Macros configurations in printer.cfg file...\n"
@@ -1335,24 +1404,24 @@ do
                                     else
                                         printf "[gcode_macro M141] macro is already disabled in gcode_macro.cfg file.\n"
                                     fi
-                			        printf "Restarting services...\n"
-                			        /etc/init.d/S55klipper_service restart
-                			        printf "\n"
-                			        printf " ${green}Fans Control Macros have been installed successfully!"
-                			        printf "${white}\n\n"
-                			    else
-                			        rmdir "$helper_script" 2>/dev/null
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                    printf "Restarting services...\n"
+                                    /etc/init.d/S55klipper_service restart
+                                    printf "\n"
+                                    printf " ${green}Fans Control Macros have been installed successfully!"
+                                    printf "${white}\n\n"
+                                else
+                                    rmdir "$helper_script" 2>/dev/null
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    13)
+                    14)
             			if [ -d "$shaperconfig_folder" ]; then
             				printf "${darkred} Improved Shapers Calibrations are already installed!"
             				printf "${white}\n\n"
@@ -1371,49 +1440,49 @@ do
             			    printf " Input Shaper, Belts Tension and Generate Graphs."
             			    printf "${white}\n\n"
                             printf " Are you sure you want to install ${green}Improved Shapers Calibrations ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to install ${green}Improved Shapers Calibrations ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf "${green} Installing Improved Shapers Calibrations..."
-                			    printf "${white}\n\n"
-                			    cd /usr/data
-                			    if [ -f "shapers-configs.tar" ]; then
-                			        rm -f shapers-configs.tar
-                			    fi
-                			    printf "Downloading Improved Shapers Calibrations file...\n"
-                			    /tmp/curl -s -L "$shaperconfig_URL1" -o shapers-configs.tar
-                			    if [ $? -eq 0 ]; then
-                			        tar -xvf shapers-configs.tar
-                			        rm -f shapers-configs.tar
-                			        printf "Backing up original files...\n"
-                			        if [ ! -f /usr/data/shapers-configs/backup/ft2font.cpython-38-mipsel-linux-gnu.so ]; then
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Improved Shapers Calibrations..."
+                                printf "${white}\n\n"
+                                cd /usr/data
+                                if [ -f "shapers-configs.tar" ]; then
+                                    rm -f shapers-configs.tar
+                                fi
+                                printf "Downloading Improved Shapers Calibrations file...\n"
+                                /tmp/curl -s -L "$shaperconfig_URL1" -o shapers-configs.tar
+                                if [ $? -eq 0 ]; then
+                                    tar -xvf shapers-configs.tar
+                                    rm -f shapers-configs.tar
+                                    printf "Backing up original files...\n"
+                                    if [ ! -f /usr/data/shapers-configs/backup/ft2font.cpython-38-mipsel-linux-gnu.so ]; then
                                         mv /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so /usr/data/shapers-configs/backup
                                     fi
-                			        printf "Configuring files...\n"
-                			        cp "$shaperconfig_folder"calibrate_shaper_config.py "$klipper_extra_folder"
-                			        if [ ! -d "/usr/lib/python3.8/site-packages/matplotlib-2.2.3-py3.8.egg-info" ]; then
+                                    printf "Configuring files...\n"
+                                    cp "$shaperconfig_folder"calibrate_shaper_config.py "$klipper_extra_folder"
+                                    if [ ! -d "/usr/lib/python3.8/site-packages/matplotlib-2.2.3-py3.8.egg-info" ]; then
                                         printf "mathplotlib ft2font module is not replaced. PSD graphs might not work.\n"
                                     else
                                         printf "Replacing mathplotlib ft2font module to generate PSD graphs...\n"
                                         cp "$shaperconfig_folder"ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
                                     fi
                                     printf "Downloading configurations file...\n"
-                			        /tmp/curl -s -L "$shaperconfig_URL2" -o "$shaperconfig_folder"scripts/shapers-configs.cfg
-                			        if [ $? -eq 0 ]; then
+                                    /tmp/curl -s -L "$shaperconfig_URL2" -o "$shaperconfig_folder"scripts/shapers-configs.cfg
+                                    if [ $? -eq 0 ]; then
                                         if [ -f "$helper_script"/shapers-configs/shapers-configs.cfg ]; then
                                             rm -f "$helper_script"/shapers-configs/shapers-configs.cfg
                                         fi
-                			            if [ ! -d "$helper_script"/shapers-configs/scripts ]; then
-                			                mkdir -p "$helper_script"/shapers-configs/scripts
-                			            fi
-                			            cp "$shaperconfig_folder"scripts/*.cfg "$helper_script"/shapers-configs
+                                        if [ ! -d "$helper_script"/shapers-configs/scripts ]; then
+                                            mkdir -p "$helper_script"/shapers-configs/scripts
+                                        fi
+                                        cp "$shaperconfig_folder"scripts/*.cfg "$helper_script"/shapers-configs
                                         cp "$shaperconfig_folder"scripts/*.py "$helper_script"/shapers-configs/scripts
                                         if grep -q 'variable_autotune_shapers:' "$macro_config" ; then
                                             sed -i 's/variable_autotune_shapers:/#&/' "$macro_config"
@@ -1433,34 +1502,34 @@ do
                                             printf "Adding Improved Shapers Calibration configurations in printer.cfg file...\n"
                                             sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/shapers-configs/shapers-configs\.cfg\]' "$printer_config"
                                         fi
-                			            printf "Restarting services...\n"
-                			            /etc/init.d/S55klipper_service restart
-                			            /etc/init.d/S56moonraker_service restart
-                			            sleep 1
-                			            /etc/init.d/S56moonraker_service restart
-                			            sleep 1
-                			            printf "\n"
-                			            printf "${green} Improved Shapers Calibrations have been installed successfully!"
-                			            printf "${white}\n\n"
-                			        else
-                			            cp -f "$shaperconfig_folder"backup/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
-                			            rm -rf "$shaperconfig_folder"
-                			            printf "${white}\n\n"
-                			            printf "${darkred} Download failed!"
-                			            printf "${white}\n\n"
-                			        fi
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                        printf "Restarting services...\n"
+                                        /etc/init.d/S55klipper_service restart
+                                        /etc/init.d/S56moonraker_service restart
+                                        sleep 1
+                                        /etc/init.d/S56moonraker_service restart
+                                        sleep 1
+                                        printf "\n"
+                                        printf "${green} Improved Shapers Calibrations have been installed successfully!"
+                                        printf "${white}\n\n"
+                                    else
+                                        cp -f "$shaperconfig_folder"backup/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
+                                        rm -rf "$shaperconfig_folder"
+                                        printf "${white}\n\n"
+                                        printf "${darkred} Download failed!"
+                                        printf "${white}\n\n"
+                                    fi
+                                else
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    14)
+                    15)
             			if [ -f "$usefullmacros_file" ]; then
             				printf "${darkred} Usefull Macros are already installed!"
             				printf "${white}\n\n"
@@ -1477,42 +1546,42 @@ do
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Usefull Macros..."
-                			    printf "${white}\n\n"
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Usefull Macros..."
+                                printf "${white}\n\n"
                                 printf "Downloading Usefull Macros...\n"
                                 if [ -f "$helper_script"/usefull-macros.cfg ]; then
                                     rm -f "$helper_script"/usefull-macros.cfg
                                 fi
                                 if [ ! -d "$helper_script" ]; then
-                			        mkdir -p "$helper_script"
-                			    fi
-                			    /tmp/curl -s -L "$usefullmacros_URL" -o "$helper_script"/usefull-macros.cfg
-                			    if [ $? -eq 0 ]; then
-                			        if grep -q "include Helper-Script/usefull-macros" "$printer_config" ; then
+                                    mkdir -p "$helper_script"
+                                fi
+                                /tmp/curl -s -L "$usefullmacros_URL" -o "$helper_script"/usefull-macros.cfg
+                                if [ $? -eq 0 ]; then
+                                    if grep -q "include Helper-Script/usefull-macros" "$printer_config" ; then
                                         printf "Usefull Macros configurations are already enabled in printer.cfg file.\n"
                                     else
                                         printf "Adding Usefull Macros configurations in printer.cfg file...\n"
                                         sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/usefull-macros\.cfg\]' "$printer_config"
                                     fi
-                			        printf "Restarting services...\n"
-                			        /etc/init.d/S55klipper_service restart
-                			        printf "\n"
-                			        printf " ${green}Usefull Macros have been installed successfully!"
-                			        printf "${white}\n\n"
-                			    else
-                			        rmdir "$helper_script" 2>/dev/null
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                    printf "Restarting services...\n"
+                                    /etc/init.d/S55klipper_service restart
+                                    printf "\n"
+                                    printf " ${green}Usefull Macros have been installed successfully!"
+                                    printf "${white}\n\n"
+                                else
+                                    rmdir "$helper_script" 2>/dev/null
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    15)
+                    16)
             			if [ -f "$savezoffset_file" ]; then
             				printf "${darkred} Save Z-Offset Macros are already installed!"
             				printf "${white}\n\n"
@@ -1529,42 +1598,42 @@ do
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Save Z-Offset Macros..."
-                			    printf "${white}\n\n"
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Save Z-Offset Macros..."
+                                printf "${white}\n\n"
                                 printf "Downloading Save Z-Offset Macros...\n"
                                 if [ -f "$helper_script"/save-zoffset.cfg ]; then
                                     rm -f "$helper_script"/save-zoffset.cfg
                                 fi
                                 if [ ! -d "$helper_script" ]; then
-                			        mkdir -p "$helper_script"
-                			    fi
-                			    /tmp/curl -s -L "$savezoffset_URL" -o "$helper_script"/save-zoffset.cfg
-                			    if [ $? -eq 0 ]; then
-                			        if grep -q "include Helper-Script/save-zoffset" "$printer_config" ; then
+                                    mkdir -p "$helper_script"
+                                fi
+                                /tmp/curl -s -L "$savezoffset_URL" -o "$helper_script"/save-zoffset.cfg
+                                if [ $? -eq 0 ]; then
+                                    if grep -q "include Helper-Script/save-zoffset" "$printer_config" ; then
                                         printf "Save Z-Offset Macros configurations are already enabled in printer.cfg file.\n"
                                     else
                                         printf "Adding Save Z-Offset Macros configurations in printer.cfg file...\n"
                                         sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/save-zoffset\.cfg\]' "$printer_config"
                                     fi
-                			        printf "Restarting services...\n"
-                			        /etc/init.d/S55klipper_service restart
-                			        printf "\n"
-                			        printf " ${green}Save Z-Offset Macros have been installed successfully!"
-                			        printf "${white}\n\n"
-                			    else
-                			        rmdir "$helper_script" 2>/dev/null
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                    printf "Restarting services...\n"
+                                    /etc/init.d/S55klipper_service restart
+                                    printf "\n"
+                                    printf " ${green}Save Z-Offset Macros have been installed successfully!"
+                                    printf "${white}\n\n"
+                                else
+                                    rmdir "$helper_script" 2>/dev/null
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    16)
+                    17)
             			if [ -f "$screwsadjust_file" ]; then
             				printf "${darkred} Screws Tilt Adjust Support is already installed!"
             				printf "${white}\n\n"
@@ -1572,113 +1641,113 @@ do
             			    printf "${cyan} This allows to add support for Screws Tilt Adjust functionality."
             			    printf "${white}\n\n"
                             printf " Are you sure you want to install ${green}Screws Tilt Adjust Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to install ${green}Screws Tilt Adjust Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf " Do you want install ${green}Screws Tilt Adjust Support ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
-            			        read confirm2
-            			        printf "${white}\n"
-            			        while [ "$confirm2" != "k1" ] && [ "$confirm2" != "K1" ] && [ "$confirm2" != "k1max" ] && [ "$confirm2" != "K1MAX" ]; do
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf " Do you want install ${green}Screws Tilt Adjust Support ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
+                                read confirm2
+                                printf "${white}\n"
+                                while [ "$confirm2" != "k1" ] && [ "$confirm2" != "K1" ] && [ "$confirm2" != "k1max" ] && [ "$confirm2" != "K1MAX" ]; do
                                     printf "${darkred} Please select a correct choice!"
                                     printf "${white}\n\n"
                                     printf " Do you want install ${green}Screws Tilt Adjust Support ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
                                     read confirm2
                                     printf "${white}\n"
                                 done
-            			        if [ "$confirm2" = "k1" ] || [ "$confirm2" = "K1" ]; then
-                			        printf "${green} Installing Screws Tilt Adjust Support for K1..."
-                			        printf "${white}\n\n"
-                			        printf "Downloading Screws Tilt Adjust Support files...\n"
-                			        if [ -f "$klipper_extra_folder"screws_tilt_adjust.py ]; then
-                			            rm -rf "$klipper_extra_folder"screws_tilt_adjust.py "$klipper_extra_folder"screws_tilt_adjust.pyc
-                			        fi
-                			        /tmp/curl -s -L "$screwsadjust_URL1" -o "$klipper_extra_folder"screws_tilt_adjust.py
-                			        if [ $? -eq 0 ]; then
-                			            if [ -f "$helper_script"/screws-tilt-adjust.cfg ]; then
-                                            rm -f "$helper_script"/screws-tilt-adjust.cfg
-                                        fi
-                                        if [ ! -d "$helper_script" ]; then
-                			                mkdir -p "$helper_script"
-                			            fi
-                			            /tmp/curl -s -L "$screwsadjust_URL2" -o "$helper_script"/screws-tilt-adjust.cfg
-                			                if [ $? -eq 0 ]; then
-                			                    if grep -q "include Helper-Script/screws-tilt-adjust" "$printer_config" ; then
-                                                    printf "Screws Tilt Adjust Support configurations are already enabled in printer.cfg file.\n"
-                                                else
-                                                    printf "Adding Screws Tilt Adjust Support configurations in printer.cfg file...\n"
-                                                    sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/screws-tilt-adjust\.cfg\]' "$printer_config"
-                                                fi
-                			                    printf "Restarting services...\n"
-                			                    /etc/init.d/S55klipper_service restart
-                			                    printf "\n"
-                			                    printf "${green} Screws Tilt Adjust Support for ${yellow}K1 ${green}has been installed successfully!"
-                			                    printf "${white}\n\n"
-                			                else
-                			                    rm -rf "$klipper_extra_folder"screws_tilt_adjust.py "$klipper_extra_folder"screws_tilt_adjust.pyc 2>/dev/null
-                			                    rmdir "$helper_script" 2>/dev/null
-                			                    printf "${white}\n\n"
-                			                    printf "${darkred} Download failed!"
-                			                    printf "${white}\n\n"
-                			                fi
-                			        else
-                			            printf "${white}\n\n"
-                			            printf "${darkred} Download failed!"
-                			            printf "${white}\n\n"
-                			        fi
-            			        elif [ "$confirm2" = "k1max" ] || [ "$confirm2" = "K1MAX" ]; then
-                			        printf "${green} Installing Screws Tilt Adjust Support for K1 Max..."
-                			        printf "${white}\n\n"
-                			        printf "Downloading Screws Tilt Adjust Support files...\n"
-                			        if [ -f "$klipper_extra_folder"screws_tilt_adjust.py ]; then
-                			            rm -rf "$klipper_extra_folder"screws_tilt_adjust.py "$klipper_extra_folder"screws_tilt_adjust.pyc
-                			        fi
-                			        /tmp/curl -s -L "$screwsadjust_URL1" -o "$klipper_extra_folder"screws_tilt_adjust.py
-                			        if [ $? -eq 0 ]; then
+                                if [ "$confirm2" = "k1" ] || [ "$confirm2" = "K1" ]; then
+                                    printf "${green} Installing Screws Tilt Adjust Support for K1..."
+                                    printf "${white}\n\n"
+                                    printf "Downloading Screws Tilt Adjust Support files...\n"
+                                    if [ -f "$klipper_extra_folder"screws_tilt_adjust.py ]; then
+                                        rm -rf "$klipper_extra_folder"screws_tilt_adjust.py "$klipper_extra_folder"screws_tilt_adjust.pyc
+                                    fi
+                                    /tmp/curl -s -L "$screwsadjust_URL1" -o "$klipper_extra_folder"screws_tilt_adjust.py
+                                    if [ $? -eq 0 ]; then
                                         if [ -f "$helper_script"/screws-tilt-adjust.cfg ]; then
                                             rm -f "$helper_script"/screws-tilt-adjust.cfg
                                         fi
                                         if [ ! -d "$helper_script" ]; then
-                			                mkdir -p "$helper_script"
-                			            fi
-                			            /tmp/curl -s -L "$screwsadjust_URL3" -o "$helper_script"/screws-tilt-adjust.cfg
-                			                if [ $? -eq 0 ]; then
-                			                    if grep -q "include Helper-Script/screws-tilt-adjust" "$printer_config" ; then
+                                            mkdir -p "$helper_script"
+                                        fi
+                                        /tmp/curl -s -L "$screwsadjust_URL2" -o "$helper_script"/screws-tilt-adjust.cfg
+                                            if [ $? -eq 0 ]; then
+                                                if grep -q "include Helper-Script/screws-tilt-adjust" "$printer_config" ; then
                                                     printf "Screws Tilt Adjust Support configurations are already enabled in printer.cfg file.\n"
                                                 else
                                                     printf "Adding Screws Tilt Adjust Support configurations in printer.cfg file...\n"
                                                     sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/screws-tilt-adjust\.cfg\]' "$printer_config"
                                                 fi
-                			                    printf "Restarting services...\n"
-                			                    /etc/init.d/S55klipper_service restart
-                			                    printf "\n"
-                			                    printf "${green} Screws Tilt Adjust Support for ${yellow}K1 Max ${green}has been installed successfully!"
-                			                    printf "${white}\n\n"
-                			                else
-                			                    rm -rf "$klipper_extra_folder"screws_tilt_adjust.py "$klipper_extra_folder"screws_tilt_adjust.pyc 2>/dev/null
-                			                    rmdir "$helper_script" 2>/dev/null
-                			                    printf "${white}\n\n"
-                			                    printf "${darkred} Download failed!"
-                			                    printf "${white}\n\n"
-                			                fi
-                			        else
-                			            printf "${white}\n\n"
-                			            printf "${darkred} Download failed!"
-                			            printf "${white}\n\n"
-                			        fi
-            			        fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled! ${white}\n\n"
-            			    fi
-            			fi
+                                                printf "Restarting services...\n"
+                                                /etc/init.d/S55klipper_service restart
+                                                printf "\n"
+                                                printf "${green} Screws Tilt Adjust Support for ${yellow}K1 ${green}has been installed successfully!"
+                                                printf "${white}\n\n"
+                                            else
+                                                rm -rf "$klipper_extra_folder"screws_tilt_adjust.py "$klipper_extra_folder"screws_tilt_adjust.pyc 2>/dev/null
+                                                rmdir "$helper_script" 2>/dev/null
+                                                printf "${white}\n\n"
+                                                printf "${darkred} Download failed!"
+                                                printf "${white}\n\n"
+                                            fi
+                                    else
+                                        printf "${white}\n\n"
+                                        printf "${darkred} Download failed!"
+                                        printf "${white}\n\n"
+                                    fi
+                                elif [ "$confirm2" = "k1max" ] || [ "$confirm2" = "K1MAX" ]; then
+                                    printf "${green} Installing Screws Tilt Adjust Support for K1 Max..."
+                                    printf "${white}\n\n"
+                                    printf "Downloading Screws Tilt Adjust Support files...\n"
+                                    if [ -f "$klipper_extra_folder"screws_tilt_adjust.py ]; then
+                                        rm -rf "$klipper_extra_folder"screws_tilt_adjust.py "$klipper_extra_folder"screws_tilt_adjust.pyc
+                                    fi
+                                    /tmp/curl -s -L "$screwsadjust_URL1" -o "$klipper_extra_folder"screws_tilt_adjust.py
+                                    if [ $? -eq 0 ]; then
+                                        if [ -f "$helper_script"/screws-tilt-adjust.cfg ]; then
+                                            rm -f "$helper_script"/screws-tilt-adjust.cfg
+                                        fi
+                                        if [ ! -d "$helper_script" ]; then
+                                            mkdir -p "$helper_script"
+                                        fi
+                                        /tmp/curl -s -L "$screwsadjust_URL3" -o "$helper_script"/screws-tilt-adjust.cfg
+                                            if [ $? -eq 0 ]; then
+                                                if grep -q "include Helper-Script/screws-tilt-adjust" "$printer_config" ; then
+                                                    printf "Screws Tilt Adjust Support configurations are already enabled in printer.cfg file.\n"
+                                                else
+                                                    printf "Adding Screws Tilt Adjust Support configurations in printer.cfg file...\n"
+                                                    sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/screws-tilt-adjust\.cfg\]' "$printer_config"
+                                                fi
+                                                printf "Restarting services...\n"
+                                                /etc/init.d/S55klipper_service restart
+                                                printf "\n"
+                                                printf "${green} Screws Tilt Adjust Support for ${yellow}K1 Max ${green}has been installed successfully!"
+                                                printf "${white}\n\n"
+                                            else
+                                                rm -rf "$klipper_extra_folder"screws_tilt_adjust.py "$klipper_extra_folder"screws_tilt_adjust.pyc 2>/dev/null
+                                                rmdir "$helper_script" 2>/dev/null
+                                                printf "${white}\n\n"
+                                                printf "${darkred} Download failed!"
+                                                printf "${white}\n\n"
+                                            fi
+                                    else
+                                        printf "${white}\n\n"
+                                        printf "${darkred} Download failed!"
+                                        printf "${white}\n\n"
+                                    fi
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled! ${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    17)
+                    18)
             			if [ -f "$timelapse_file" ]; then
             				printf "${darkred} Moonraker Timelapse is already installed!"
             				printf "${white}\n\n"
@@ -1700,21 +1769,21 @@ do
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf "${green} Installing Moonraker Timelapse..."
-            			        printf "${white}\n\n"
-                			    printf "Downloading Moonraker Timelapse files...\n"
-                			    /tmp/curl -s -L "$timelapse_URL1" -o "$timelapse_file"
-                			    if [ $? -eq 0 ]; then
-                			        if [ -f "$helper_script"/timelapse.cfg ]; then
-                			            rm -f "$helper_script"/timelapse.cfg
-                			        fi
-                			        if [ ! -d "$helper_script" ]; then
-                			            mkdir -p "$helper_script"
-                			        fi
-                			        /tmp/curl -s -L "$timelapse_URL2" -o "$helper_script"/timelapse.cfg
-                			        if [ $? -eq 0 ]; then
-                			            if grep -q "include Helper-Script/timelapse" "$printer_config" ; then
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Moonraker Timelapse..."
+                                printf "${white}\n\n"
+                                printf "Downloading Moonraker Timelapse files...\n"
+                                /tmp/curl -s -L "$timelapse_URL1" -o "$timelapse_file"
+                                if [ $? -eq 0 ]; then
+                                    if [ -f "$helper_script"/timelapse.cfg ]; then
+                                        rm -f "$helper_script"/timelapse.cfg
+                                    fi
+                                    if [ ! -d "$helper_script" ]; then
+                                        mkdir -p "$helper_script"
+                                    fi
+                                    /tmp/curl -s -L "$timelapse_URL2" -o "$helper_script"/timelapse.cfg
+                                    if [ $? -eq 0 ]; then
+                                        if grep -q "include Helper-Script/timelapse" "$printer_config" ; then
                                             printf "Moonraker Timelapse configurations are already enabled in printer.cfg file.\n"
                                         else
                                             printf "Adding Moonraker Timelapse configurations in printer.cfg file...\n"
@@ -1728,34 +1797,34 @@ do
                                         fi
                                         printf "Updating ffmpeg...\n"
                                         opkg update && opkg upgrade ffmpeg
-                			            printf "Restarting services...\n"
-                			            /etc/init.d/S55klipper_service restart
-                			            /etc/init.d/S56moonraker_service restart
-                			            sleep 1
-                			            /etc/init.d/S56moonraker_service restart
-                			            sleep 1
-                			            printf "\n"
-                			            printf "${green} Moonraker Timelapse has been installed successfully!"
-                			            printf "${white}\n\n"
-                			        else
-                			            rmdir "$helper_script" 2>/dev/null
-                			            rm -rf "$timelapse_file" /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc
-                			            printf "${white}\n\n"
-                			            printf "${darkred} Download failed!"
-                			            printf "${white}\n\n"
-                			        fi
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                        printf "Restarting services...\n"
+                                        /etc/init.d/S55klipper_service restart
+                                        /etc/init.d/S56moonraker_service restart
+                                        sleep 1
+                                        /etc/init.d/S56moonraker_service restart
+                                        sleep 1
+                                        printf "\n"
+                                        printf "${green} Moonraker Timelapse has been installed successfully!"
+                                        printf "${white}\n\n"
+                                    else
+                                        rmdir "$helper_script" 2>/dev/null
+                                        rm -rf "$timelapse_file" /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc
+                                        printf "${white}\n\n"
+                                        printf "${darkred} Download failed!"
+                                        printf "${white}\n\n"
+                                    fi
+                                else
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    18)
+                    19)
             			if [ -f "$camera_file" ]; then
             				printf "${darkred} Camera Settings Control is already installed!"
             				 printf "${white}\n\n"
@@ -1775,42 +1844,42 @@ do
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Camera Settings Control..."
-                			    printf "${white}\n\n"
-                			    if [ -f "$helper_script"/camera-settings.cfg ]; then
-                			        rm -f "$helper_script"/camera-settings.cfg
-                			    fi
-                			    if [ ! -d "$helper_script" ]; then
-                			        mkdir -p "$helper_script"
-                			    fi
-                			    printf "Downloading Camera Settings Control file...\n"
-                			    /tmp/curl -s -L "$camera_URL" -o "$camera_file"
-                			    if [ $? -eq 0 ]; then
-                			        if grep -q "include Helper-Script/camera-settings" "$printer_config" ; then
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Camera Settings Control..."
+                                printf "${white}\n\n"
+                                if [ -f "$helper_script"/camera-settings.cfg ]; then
+                                    rm -f "$helper_script"/camera-settings.cfg
+                                fi
+                                if [ ! -d "$helper_script" ]; then
+                                    mkdir -p "$helper_script"
+                                fi
+                                printf "Downloading Camera Settings Control file...\n"
+                                /tmp/curl -s -L "$camera_URL" -o "$camera_file"
+                                if [ $? -eq 0 ]; then
+                                    if grep -q "include Helper-Script/camera-settings" "$printer_config" ; then
                                         printf "Camera Settings configurations are already enabled in printer.cfg file.\n"
                                     else
                                         printf "Adding Camera Settings configurations in printer.cfg file...\n"
                                         sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/camera-settings\.cfg\]' "$printer_config"
                                     fi
-                			        printf "Restarting services...\n"
-                			        /etc/init.d/S55klipper_service restart
-                			        printf "\n"
-                			        printf "${green} Camera Settings Control has been installed successfully!"
-                			        printf "${white}\n\n"
-                			    else
-                			        rmdir "$helper_script" 2>/dev/null
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                    printf "Restarting services...\n"
+                                    /etc/init.d/S55klipper_service restart
+                                    printf "\n"
+                                    printf "${green} Camera Settings Control has been installed successfully!"
+                                    printf "${white}\n\n"
+                                else
+                                    rmdir "$helper_script" 2>/dev/null
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    19)
+                    20)
 						if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
@@ -1832,29 +1901,29 @@ do
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing OctoEverywhere..."
-                			    printf "${white}\n\n"
-                			    cd /usr/data
-								if [ -d "$octoeverywhere_folder" ]; then
-									printf "OctoEverywhere is already installed. Download skipped."
-								else
-                			    	printf "Downloading OctoEverywhere for Klipper..."
-                			    	git clone $octoeverywhere_URL octoeverywhere
-								fi
-                			    cd octoeverywhere
-                			    printf "Running the OctoEverywhere installer..."
-								sh ./install.sh
-                			    printf "\n"
-                			    printf "${green} OctoEverywhere has been installed successfully!"
-                			    printf "${white}\n\n"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing OctoEverywhere..."
+                                printf "${white}\n\n"
+                                cd /usr/data
+                                if [ -d "$octoeverywhere_folder" ]; then
+                                    printf "OctoEverywhere is already installed. Download skipped."
+                                else
+                                    printf "Downloading OctoEverywhere for Klipper..."
+                                    git clone $octoeverywhere_URL octoeverywhere
+                                fi
+                                cd octoeverywhere
+                                printf "Running the OctoEverywhere installer..."
+                                sh ./install.sh
+                                printf "\n"
+                                printf "${green} OctoEverywhere has been installed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    20)
+                    21)
             			if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
@@ -1876,29 +1945,29 @@ do
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Obico..."
-                			    printf "${white}\n\n"
-                			    cd /usr/data
-								if [ -d "$moonraker_obico_folder" ]; then
-                			        printf "Obico is already installed. Download skipped."
-                			    else
-                			        printf "Downloading Obico..."
-                			        git clone $moonraker_obico_URL moonraker-obico
-                			    fi
-                			    cd moonraker-obico
-                			    printf "Installing dependencies and configuring Obico..."
-                			    sh ./scripts/install_creality.sh -k
-                			    printf "\n"
-                			    printf "${green} Obico has been installed successfully!"
-                			    printf "${white}\n\n"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Obico..."
+                                printf "${white}\n\n"
+                                cd /usr/data
+                                if [ -d "$moonraker_obico_folder" ]; then
+                                    printf "Obico is already installed. Download skipped."
+                                else
+                                    printf "Downloading Obico..."
+                                    git clone $moonraker_obico_URL moonraker-obico
+                                fi
+                                cd moonraker-obico
+                                printf "Installing dependencies and configuring Obico..."
+                                sh ./scripts/install_creality.sh -k
+                                printf "\n"
+                                printf "${green} Obico has been installed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    21)
+                    22)
             			if [ -d "$mobileraker_folder" ]; then
             				printf "${darkred} Mobileraker Companion is already installed!"
             				printf "${white}\n\n"
@@ -1969,16 +2038,16 @@ do
             			fi
                         ;;
                     B)
-                    	clear
+                        clear
                         break
                         ;;
                     Q)
                         exit
                         ;;
                     *)
-            			printf "${darkred} Please select a correct choice!"
-            			printf "${white}\n\n"
-            			;;
+                        printf "${darkred} Please select a correct choice!"
+                        printf "${white}\n\n"
+                        ;;
                 esac
             done
             ;;
@@ -1988,14 +2057,14 @@ do
                 uninstall_menu
                 case $opt_uninstall_menu in
                     1)
-            			if [ ! -d "$moonraker_folder" ] && [ ! -d "$nginx_folder" ]; then
-            				printf "${darkred} Moonraker and Nginx are not installed!"
-            				printf "${white}\n\n"
-            			else
-            			    printf " Are you sure you want to remove ${green}Moonraker and Nginx ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n";
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        if [ ! -d "$moonraker_folder" ] && [ ! -d "$nginx_folder" ]; then
+                            printf "${darkred} Moonraker and Nginx are not installed!"
+                            printf "${white}\n\n"
+                        else
+                            printf " Are you sure you want to remove ${green}Moonraker and Nginx ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n";
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Moonraker and Nginx ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2022,19 +2091,19 @@ do
             			fi
                         ;;
                     2)
-            			if [ ! -d "$fluidd_folder" ]; then
-            				printf "${darkred} Fluidd is not installed!"
-            				printf "${white}\n\n"
-            			elif [ ! -f "$crealityweb_file" ]; then
-            			    printf "${darkred} Creality Web Interface is removed!"
-            			    printf "\n"
-            			    printf "${darkred} If you want to remove Fluidd please restore Creality Web Interface first."
-            				printf "${white}\n\n"
-            			else
-            			    printf " Are you sure you want to remove ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n";
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        if [ ! -d "$fluidd_folder" ]; then
+                            printf "${darkred} Fluidd is not installed!"
+                            printf "${white}\n\n"
+                        elif [ ! -f "$crealityweb_file" ]; then
+                            printf "${darkred} Creality Web Interface is removed!"
+                            printf "\n"
+                            printf "${darkred} If you want to remove Fluidd please restore Creality Web Interface first."
+                            printf "${white}\n\n"
+                        else
+                            printf " Are you sure you want to remove ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n";
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf " ${darkred}Please select a correct choice! ${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
@@ -2050,37 +2119,37 @@ do
                                     sed -i '/^\[update_manager fluidd\]/,/^\s*$/ s/^\(\s*\)\([^#]\)/#\1\2/' "$moonraker_config"
                                     printf "Restarting services...\n"
                                     /etc/init.d/S50nginx restart
-                			        sleep 1
-                			        /etc/init.d/S56moonraker_service restart
-                			        sleep 1
-                			        /etc/init.d/S56moonraker_service restart
-                			        sleep 1
+                                    sleep 1
+                                    /etc/init.d/S56moonraker_service restart
+                                    sleep 1
+                                    /etc/init.d/S56moonraker_service restart
+                                    sleep 1
                                 else
                                     printf "Fluidd configurations are already disabled in moonraker.conf file.\n"
                                 fi
-                			    printf "\n"
-                			    printf "${green} Fluidd has been removed successfully!"
-                			    printf "${white}\n\n"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "\n"
+                                printf "${green} Fluidd has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     3)
-            			if [ ! -d "$mainsail_folder" ]; then
-                			printf "${darkred} Mainsail is not installed!"
-                			printf "${white}\n\n"
-            			elif [ ! -f "$crealityweb_file" ]; then
-            			    printf "${darkred} Creality Web Interface is removed!"
-            			    printf "\n"
-            			    printf "${darkred} If you want to remove Mainsail please restore Creality Web Interface first."
-            				printf "${white}\n\n"
-            			else
-            			    printf " Are you sure you want to remove ${green}Mainsail ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        if [ ! -d "$mainsail_folder" ]; then
+                            printf "${darkred} Mainsail is not installed!"
+                            printf "${white}\n\n"
+                        elif [ ! -f "$crealityweb_file" ]; then
+                            printf "${darkred} Creality Web Interface is removed!"
+                            printf "\n"
+                            printf "${darkred} If you want to remove Mainsail please restore Creality Web Interface first."
+                            printf "${white}\n\n"
+                        else
+                            printf " Are you sure you want to remove ${green}Mainsail ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Mainsail ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2097,38 +2166,38 @@ do
                                     sed -i '/^\[update_manager mainsail\]/,/^\s*$/ s/^\(\s*\)\([^#]\)/#\1\2/' "$moonraker_config"
                                     printf "Restarting services...\n"
                                     /etc/init.d/S50nginx restart
-                			        sleep 1
-                			        /etc/init.d/S56moonraker_service restart
-                			        sleep 1
-                			        /etc/init.d/S56moonraker_service restart
-                			        sleep 1
+                                    sleep 1
+                                    /etc/init.d/S56moonraker_service restart
+                                    sleep 1
+                                    /etc/init.d/S56moonraker_service restart
+                                    sleep 1
                                 else
                                     printf "Mainsail configurations are already disabled in moonraker.conf file.\n"
                                 fi
-                			    printf "\n"
-                			    printf "${green} Mainsail has been removed successfully!"
-                			    printf "${white}\n\n"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "\n"
+                                printf "${green} Mainsail has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     4)
                         printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			read confirm
-            			printf "${white}\n"
-            			while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        read confirm
+                        printf "${white}\n"
+                        while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                             printf "${darkred} Please select a correct choice!"
                             printf "${white}\n\n"
                             printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                             read confirm
                             printf "${white}\n"
                         done
-            			if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			    printf "${green} Removing Entware..."
-                			printf "${white}\n\n"
-            			    printf "Removing startup script...\n"
+                        if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                            printf "${green} Removing Entware..."
+                            printf "${white}\n\n"
+                            printf "Removing startup script...\n"
                             rm -f /etc/init.d/S50unslung
                             printf "Removing opt directory...\n"
                             rm -rf /usr/data/opt
@@ -2144,34 +2213,34 @@ do
                             rm -f /etc/profile.d/entware.sh
                             sed -i 's/\/opt\/bin:\/opt\/sbin:\/bin:/\/bin:/' /etc/profile
                             printf "\n"
-            			    printf "${green} Entware has been removed successfully!"
-            			    printf "${white}\n\n"
-            			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			printf "${darkred} Deletion canceled!"
-                			printf "${white}\n\n"
-            			fi
+                            printf "${green} Entware has been removed successfully!"
+                            printf "${white}\n\n"
+                        elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                            printf "${darkred} Deletion canceled!"
+                            printf "${white}\n\n"
+                        fi
                         ;;
-					5)
-            			if [ ! -f "$shellcommand_file" ]; then
-            				printf "${darkred} Klipper Gcode Shell Command is not installed!"
-            				printf "${white}\n\n"
-            			elif [ -f "$buzzer_file" ]; then
-            				printf "${darkred} Klipper Gcode Shell Command is needed to use Buzzer Support, please uninstall it first!"
-            				printf "${white}\n\n"
-            			elif [ -f "$camera_file" ]; then
-            				printf "${darkred} Klipper Gcode Shell Command is needed to use Camera Settings Control, please uninstall it first!"
-            				printf "${white}\n\n"
-            			elif [ -d "$guppyscreen_folder" ]; then
-            				printf "${darkred} Klipper Gcode Shell Command is needed to use Guppy Screen, please uninstall it first!"
-            				printf "${white}\n\n"
-            			elif [ -d "$shaperconfig_folder" ]; then
-            				printf "${darkred} Klipper Gcode Shell Command is needed to use Improved Shapers Calibrations, please uninstall it first!"
-            				printf "${white}\n\n"
-            			else
-            			    printf " Are you sure you want to remove ${green}Klipper Gcode Shell Command ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                    5)
+                        if [ ! -f "$shellcommand_file" ]; then
+                            printf "${darkred} Klipper Gcode Shell Command is not installed!"
+                            printf "${white}\n\n"
+                        elif [ -f "$buzzer_file" ]; then
+                            printf "${darkred} Klipper Gcode Shell Command is needed to use Buzzer Support, please uninstall it first!"
+                            printf "${white}\n\n"
+                        elif [ -f "$camera_file" ]; then
+                            printf "${darkred} Klipper Gcode Shell Command is needed to use Camera Settings Control, please uninstall it first!"
+                            printf "${white}\n\n"
+                        elif [ -d "$guppyscreen_folder" ]; then
+                            printf "${darkred} Klipper Gcode Shell Command is needed to use Guppy Screen, please uninstall it first!"
+                            printf "${white}\n\n"
+                        elif [ -d "$shaperconfig_folder" ]; then
+                            printf "${darkred} Klipper Gcode Shell Command is needed to use Improved Shapers Calibrations, please uninstall it first!"
+                            printf "${white}\n\n"
+                        else
+                            printf " Are you sure you want to remove ${green}Klipper Gcode Shell Command ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Klipper Gcode Shell Command ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2194,14 +2263,14 @@ do
             			fi
             			;;
                     6)
-            			if [ ! -f "$hostname_file" ]; then
-            				printf "${darkred} Hostname Service is not installed!"
-            				printf "${white}\n\n"
-            			else
-            			    printf " Are you sure you want to remove ${green}Hostname Service ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        if [ ! -f "$hostname_file" ]; then
+                            printf "${darkred} Hostname Service is not installed!"
+                            printf "${white}\n\n"
+                        else
+                            printf " Are you sure you want to remove ${green}Hostname Service ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Hostname Service ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2298,6 +2367,45 @@ do
             			fi
                         ;;
                     9)
+                        if [ ! -f "$samba_file" ]; then
+                            printf "${darkred} Samba (Remote filesystem access) is not installed!"
+                            printf "${white}\n\n"
+                        else
+                            printf " Are you sure you want to remove ${green}Samba (Remote filesystem access) ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to remove ${green}Samba (Remote filesystem access) ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Removing Samba (Remote filesystem access)..."
+                                printf "${white}\n\n"
+                                printf "Stopping smbd service...\n"
+                                killall smbd
+                                printf "Removing samba4-server package...."
+                                opkg remove samba4-server --autoremove
+                                printf "Deleting configuration files...\n"
+                                rm -Rf "$(dirname "${samba_file}")"
+                                printf "Deleting directories...\n"
+                                rm -Rf /opt/var/log/samba \
+                                    /opt/var/lib/samba \
+                                    /usr/data/opt/var/lock/samba \
+                                    /usr/data/opt/lib/samba \
+                                    /usr/data/opt/var/run/samba \
+                                    /usr/data/opt/var/lock/samba
+                                printf "${green} Samba (Remote filesystem access) has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
+                        ;;
+                    10)
             			if [ ! -d "$kamp_folder" ]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is not installed!"
             				printf "${white}\n\n"
@@ -2342,30 +2450,30 @@ do
                                     printf "[gcode_macro START_PRINT] is already enabled in gcode_macro.cfg file.\n"
                                 fi
                                 rmdir "$helper_script" 2>/dev/null
-                			    printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
+                                printf "Restarting services...\n"
+                                /etc/init.d/S55klipper_service restart
                                 /etc/init.d/S56moonraker_service restart
                                 sleep 1
                                 /etc/init.d/S56moonraker_service restart
-                			    sleep 1
-                			    printf "\n"
-                			    printf "${green} Klipper Adaptive Meshing & Purging has been removed successfully!"
-                			    printf "${white}\n\n"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-                			fi
-           				fi
+                                sleep 1
+                                printf "\n"
+                                printf "${green} Klipper Adaptive Meshing & Purging has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                           fi
                         ;;
-					10)
+					11)
             			if [ ! -f "$buzzer_file" ]; then
             				printf "${darkred} Buzzer Support is not installed!"
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Buzzer Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Buzzer Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2384,26 +2492,26 @@ do
                                     printf "Buzzer Support configurations are already removed in printer.cfg file.\n"
                                 fi
                                 rmdir "$helper_script" 2>/dev/null
-                			    printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
-                			    printf "\n"
-                			    printf "${green} Buzzer Support has been removed successfully!"
-                			    printf "${white}\n\n"
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "Restarting services...\n"
+                                /etc/init.d/S55klipper_service restart
+                                printf "\n"
+                                printf "${green} Buzzer Support has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-					11)
+					12)
             			if [ ! -d "$prtouch_folder" ]; then
             				printf "${darkred} Nozzle Cleaning Fan Control is not installed!"
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Nozzle Cleaning Fan Control ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Nozzle Cleaning Fan Control ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2422,26 +2530,26 @@ do
                                     printf "Nozzle Cleaning Fan Control configurations are already removed in printer.cfg file.\n"
                                 fi
                                 rmdir "$helper_script" 2>/dev/null
-                			    printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
-                			    printf "\n"
-                			    printf "${green} Nozzle Cleaning Fan Control has been removed successfully!"
-                			    printf "${white}\n\n"
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "Restarting services...\n"
+                                /etc/init.d/S55klipper_service restart
+                                printf "\n"
+                                printf "${green} Nozzle Cleaning Fan Control has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    12)
+                    13)
             			if [ ! -f "$fancontrols_file" ]; then
             				printf "${darkred} Fans Control Macros are not installed!"
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Fans Control Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Fans Control Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2484,18 +2592,18 @@ do
                                     printf "[gcode_macro M141] is already enabled in gcode_macro.cfg file.\n"
                                 fi
                                 rmdir "$helper_script" 2>/dev/null
-                			    printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
-                			    printf "\n"
-                			    printf "${green} Fans Control Macros have been removed successfully!"
-                			    printf "${white}\n\n"
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "Restarting services...\n"
+                                /etc/init.d/S55klipper_service restart
+                                printf "\n"
+                                printf "${green} Fans Control Macros have been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    13)
+                    14)
             			if [ ! -d "$shaperconfig_folder" ]; then
                 			printf "${darkred} Improved Shapers Calibrations are not installed!"
                 			printf "${white}\n\n"
@@ -2512,7 +2620,7 @@ do
                             done
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                                 printf "${green} Removing Improved Shapers Calibrations..."
-                			    printf "${white}\n\n"
+                                printf "${white}\n\n"
                                 printf "Restoring files...\n"
                 			    cp -f "$shaperconfig_folder"backup/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
                 			    printf "Removing files...\n"
@@ -2536,30 +2644,30 @@ do
                                     printf "Improved Shapers Calibrations are already removed in printer.cfg file.\n"
                                 fi
                                 rmdir "$helper_script" 2>/dev/null
-                			    printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
-                			    /etc/init.d/S56moonraker_service restart
-                			    sleep 1
-                			    /etc/init.d/S56moonraker_service restart
-                			    sleep 1
-                			    printf "\n"
-                			    printf "${green} Improved Shapers Calibrations have been removed successfully!"
-                			    printf "${white}\n\n"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "Restarting services...\n"
+                                /etc/init.d/S55klipper_service restart
+                                /etc/init.d/S56moonraker_service restart
+                                sleep 1
+                                /etc/init.d/S56moonraker_service restart
+                                sleep 1
+                                printf "\n"
+                                printf "${green} Improved Shapers Calibrations have been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    14)
+                    15)
             			if [ ! -f "$usefullmacros_file" ]; then
             				printf "${darkred} Usefull Macros are not installed!"
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Usefull Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Usefull Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2578,26 +2686,26 @@ do
                                     printf "Usefull Macros configurations are already removed in printer.cfg file.\n"
                                 fi
                                 rmdir "$helper_script" 2>/dev/null
-                			    printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
-                			    printf "\n"
-                			    printf "${green} Usefull Macros have been removed successfully!"
-                			    printf "${white}\n\n"
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "Restarting services...\n"
+                                /etc/init.d/S55klipper_service restart
+                                printf "\n"
+                                printf "${green} Usefull Macros have been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    15)
+                    16)
             			if [ ! -f "$savezoffset_file" ]; then
             				printf "${darkred} Save Z-Offset Macros are not installed!"
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Save Z-Offset Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Save Z-Offset Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2616,26 +2724,26 @@ do
                                     printf "Save Z-Offset Macros configurations are already removed in printer.cfg file.\n"
                                 fi
                                 rmdir "$helper_script" 2>/dev/null
-                			    printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
-                			    printf "\n"
-                			    printf "${green} Save Z-Offset Macros have been removed successfully!"
-                			    printf "${white}\n\n"
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "Restarting services...\n"
+                                /etc/init.d/S55klipper_service restart
+                                printf "\n"
+                                printf "${green} Save Z-Offset Macros have been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    16)
+                    17)
             			if [ ! -f "$screwsadjust_file" ]; then
             				printf "${darkred} Screws Tilt Adjust Support is not installed!"
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Screws Tilt Adjust Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Screws Tilt Adjust Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2654,18 +2762,18 @@ do
                                     printf "Screws Tilt Adjust Support configurations are already removed in printer.cfg file.\n"
                                 fi
                                 rmdir "$helper_script" 2>/dev/null
-                			    printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
-                			    printf "\n"
-                			    printf "${green} Screws Tilt Adjust Support has been removed successfully!"
-                			    printf "${white}\n\n"
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "Restarting services...\n"
+                                /etc/init.d/S55klipper_service restart
+                                printf "\n"
+                                printf "${green} Screws Tilt Adjust Support has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    17)
+                    18)
             			if [ ! -f "$timelapse_file" ]; then
                 			printf "${darkred} Moonraker Timelapse is not installed!"
                 			printf "${white}\n\n"
@@ -2703,30 +2811,30 @@ do
                                     printf "Moonraker Timelapse configurations are already disabled in moonraker.conf file.\n"
                                 fi
                                 rmdir "$helper_script" 2>/dev/null
-                			    printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
-                			    /etc/init.d/S56moonraker_service restart
-                			    sleep 1
-                			    /etc/init.d/S56moonraker_service restart
-                			    sleep 1
-                			    printf "\n"
-                			    printf "${green} Moonraker Timelapse has been removed successfully!"
-                			    printf "${white}\n\n"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "Restarting services...\n"
+                                /etc/init.d/S55klipper_service restart
+                                /etc/init.d/S56moonraker_service restart
+                                sleep 1
+                                /etc/init.d/S56moonraker_service restart
+                                sleep 1
+                                printf "\n"
+                                printf "${green} Moonraker Timelapse has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    18)
+                    19)
             			if [ ! -f "$camera_file" ]; then
             				printf "${darkred} Camera Settings Control is not installed!"
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Camera Settings Control ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Camera Settings Control ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2745,18 +2853,18 @@ do
                                     printf "Camera Settings configurations are already removed in printer.cfg file.\n"
                                 fi
                                 rmdir "$helper_script" 2>/dev/null
-                			    printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
-                			    printf "\n"
-                			    printf "${green} Camera Settings Control has been removed successfully!"
-                			    printf "${white}\n\n"
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "Restarting services...\n"
+                                /etc/init.d/S55klipper_service restart
+                                printf "\n"
+                                printf "${green} Camera Settings Control has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-					19)
+					20)
             			if [ ! -d "$octoeverywhere_folder" ]; then
             				printf "${darkred} OctoEverywhere is not installed!"
             				printf "${white}\n\n"
@@ -2773,19 +2881,19 @@ do
                             done
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                                 printf "${green} Removing OctoEverywhere..."
-                			    printf "${white}\n\n"
-								cd $octoeverywhere_folder
-								printf "Running the OctoEverywhere uninstaller..."
-								sh ./uninstall.sh
-                			    printf "${green} OctoEverywhere has been removed successfully!"
-                			    printf "${white}\n\n"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "${white}\n\n"
+                                cd $octoeverywhere_folder
+                                printf "Running the OctoEverywhere uninstaller..."
+                                sh ./uninstall.sh
+                                printf "${green} OctoEverywhere has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    20)
+                    21)
             			if [ ! -d "$moonraker_obico_folder" ]; then
                 			printf "${darkred} Obico is not installed!"
                 			printf "${white}\n\n"
@@ -2820,22 +2928,22 @@ do
                                 else
                                     printf "Obico configurations are already removed in moonraker.conf file.\n"
                                 fi
-                    			printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
-                			    /etc/init.d/S56moonraker_service restart
-                			    sleep 1
-                			    /etc/init.d/S56moonraker_service restart
-                			    sleep 1
-                			    printf "\n"
-                			    printf "${green} Obico has been removed successfully!"
-                			    printf "${white}\n\n"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "Restarting services...\n"
+                                /etc/init.d/S55klipper_service restart
+                                /etc/init.d/S56moonraker_service restart
+                                sleep 1
+                                /etc/init.d/S56moonraker_service restart
+                                sleep 1
+                                printf "\n"
+                                printf "${green} Obico has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
-                    21)
+                    22)
             			if [ ! -d "$mobileraker_folder" ]; then
             				printf "${darkred} Mobileraker Companion is not installed!"
             				printf "${white}\n\n"
@@ -2881,16 +2989,16 @@ do
             			fi
                         ;;
                     B)
-                    	clear
+                        clear
                         break
                         ;;
                     Q)
                         exit
                         ;;
                     *)
-            			printf "${darkred} Please select a correct choice!"
-            			printf "${white}\n\n"
-            		;;
+                        printf "${darkred} Please select a correct choice!"
+                        printf "${white}\n\n"
+                    ;;
                 esac
             done
             ;;
@@ -2900,153 +3008,153 @@ do
                 customize_menu
                 case $opt_customize_menu in
                     1)
-            			if [ ! -d "$bootdisplay_folder" ]; then
-            				printf "${darkred} Please use latest firmware to install Custom Boot Display!"
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} This allows to install a custom Creality-themed boot display."
-            			    printf "${white}\n\n"
+                        if [ ! -d "$bootdisplay_folder" ]; then
+                            printf "${darkred} Please use latest firmware to install Custom Boot Display!"
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} This allows to install a custom Creality-themed boot display."
+                            printf "${white}\n\n"
                             printf " Are you sure you want to install ${green}Custom Boot Display ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to install ${green}Custom Boot Display ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
-            			        read confirm2
-            			        printf "${white}\n"
-            			        while [ "$confirm2" != "k1" ] && [ "$confirm2" != "K1" ] && [ "$confirm2" != "k1max" ] && [ "$confirm2" != "K1MAX" ]; do
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
+                                read confirm2
+                                printf "${white}\n"
+                                while [ "$confirm2" != "k1" ] && [ "$confirm2" != "K1" ] && [ "$confirm2" != "k1max" ] && [ "$confirm2" != "K1MAX" ]; do
                                     printf "${darkred} Please select a correct choice!"
                                     printf "${white}\n\n"
                                     printf " Do you want install ${green}Custom Boot Display ${white}for ${yellow}K1${white} or ${yellow}K1 Max ${white}? (${yellow}k1${white}/${yellow}k1max${white}): ${yellow}"
                                     read confirm2
                                     printf "${white}\n"
                                 done
-            			        if [ "$confirm2" = "k1" ] || [ "$confirm2" = "K1" ]; then
-                			        printf "${green} Installing Custom Boot Display for K1..."
-                			        printf "${white}\n\n"
-                			        cd /etc/boot-display
-                			        printf "Downloading Custom Boot Display file... Please wait...\n"
-                			        /tmp/curl -s -L "$bootdisplay_URL1" -o k1_boot_display.tar
-                			        if [ $? -eq 0 ]; then
-                			            printf "Copying files...\n"
-                			            rm -rf part0 boot-display.conf
-                			            tar -xvf k1_boot_display.tar
-                			            rm -f k1_boot_display.tar
-                			            printf "\n"
-                			            printf "${green} Custom Boot Display for ${yellow}K1 ${green}has been installed successfully!"
-                			            printf "${white}\n\n"
-                			        else
-                			            printf "${white}\n\n"
-                			            printf "${darkred} Download failed!"
-                			            printf "${white}\n\n"
-                			        fi
-            			        elif [ "$confirm2" = "k1max" ] || [ "$confirm2" = "K1MAX" ]; then
-                			        printf "${green} Installing Custom Boot Display for K1 Max..."
-                			        printf "${white}\n\n"
-                			        cd /etc/boot-display
-                			        printf "Downloading Custom Boot Display file... Please wait...\n"
-                			        /tmp/curl -s -L "$bootdisplay_URL2" -o k1max_boot_display.tar
-                			        if [ $? -eq 0 ]; then
-                			            printf "Copying files...\n"
-                			            rm -rf part0 boot-display.conf
-                			            tar -xvf k1max_boot_display.tar
-                			            rm -f k1max_boot_display.tar
-                			            printf "\n"
-                			            printf "${green} Custom Boot Display for ${yellow}K1 Max ${green}has been installed successfully!"
-                			            printf "${white}\n\n"
-                			        else
-                			            printf "${white}\n\n"
-                			            printf "${darkred} Download failed!"
-                			            printf "${white}\n\n"
-                			        fi
-            			        fi
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled! ${white}\n\n"
-            			    fi
-            			fi
+                                if [ "$confirm2" = "k1" ] || [ "$confirm2" = "K1" ]; then
+                                    printf "${green} Installing Custom Boot Display for K1..."
+                                    printf "${white}\n\n"
+                                    cd /etc/boot-display
+                                    printf "Downloading Custom Boot Display file... Please wait...\n"
+                                    /tmp/curl -s -L "$bootdisplay_URL1" -o k1_boot_display.tar
+                                    if [ $? -eq 0 ]; then
+                                        printf "Copying files...\n"
+                                        rm -rf part0 boot-display.conf
+                                        tar -xvf k1_boot_display.tar
+                                        rm -f k1_boot_display.tar
+                                        printf "\n"
+                                        printf "${green} Custom Boot Display for ${yellow}K1 ${green}has been installed successfully!"
+                                        printf "${white}\n\n"
+                                    else
+                                        printf "${white}\n\n"
+                                        printf "${darkred} Download failed!"
+                                        printf "${white}\n\n"
+                                    fi
+                                elif [ "$confirm2" = "k1max" ] || [ "$confirm2" = "K1MAX" ]; then
+                                    printf "${green} Installing Custom Boot Display for K1 Max..."
+                                    printf "${white}\n\n"
+                                    cd /etc/boot-display
+                                    printf "Downloading Custom Boot Display file... Please wait...\n"
+                                    /tmp/curl -s -L "$bootdisplay_URL2" -o k1max_boot_display.tar
+                                    if [ $? -eq 0 ]; then
+                                        printf "Copying files...\n"
+                                        rm -rf part0 boot-display.conf
+                                        tar -xvf k1max_boot_display.tar
+                                        rm -f k1max_boot_display.tar
+                                        printf "\n"
+                                        printf "${green} Custom Boot Display for ${yellow}K1 Max ${green}has been installed successfully!"
+                                        printf "${white}\n\n"
+                                    else
+                                        printf "${white}\n\n"
+                                        printf "${darkred} Download failed!"
+                                        printf "${white}\n\n"
+                                    fi
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled! ${white}\n\n"
+                            fi
+                        fi
                         ;;
-            	    2)
-            			if [ ! -d "$bootdisplay_folder" ]; then
-            				printf "${darkred} Please use latest firmware to restore Stock Boot Display!"
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} This allows to restore stock boot display."
-            			    printf "${white}\n\n"
+                    2)
+                        if [ ! -d "$bootdisplay_folder" ]; then
+                            printf "${darkred} Please use latest firmware to restore Stock Boot Display!"
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} This allows to restore stock boot display."
+                            printf "${white}\n\n"
                             printf " Are you sure you want to remove ${green}Custom Boot Display ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Custom Boot Display ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf "${green} Removing Custom Boot Display..."
-                			    printf "${white}\n\n"
-                			    cd /etc/boot-display
-                			    printf "Downloading Stock Boot Display file... Please wait...\n"
-                			    /tmp/curl -s -L "$bootdisplay_URL3" -o stock_boot_display.tar
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Removing Custom Boot Display..."
+                                printf "${white}\n\n"
+                                cd /etc/boot-display
+                                printf "Downloading Stock Boot Display file... Please wait...\n"
+                                /tmp/curl -s -L "$bootdisplay_URL3" -o stock_boot_display.tar
                                 if [ $? -eq 0 ]; then
                                     printf "Copying files...\n"
-                			        rm -rf part0 boot-display.conf
-                			        tar -xvf stock_boot_display.tar
-                			        rm -f stock_boot_display.tar
-                			        printf "\n"
-                			        printf "${green} Custom Boot Display has been removed successfully!"
-                			        printf "${white}\n\n"
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                    rm -rf part0 boot-display.conf
+                                    tar -xvf stock_boot_display.tar
+                                    rm -f stock_boot_display.tar
+                                    printf "\n"
+                                    printf "${green} Custom Boot Display has been removed successfully!"
+                                    printf "${white}\n\n"
+                                else
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     3)
-            			if [ ! -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
-            				printf "${darkred} Please install Fluidd and/or Mainsail first!"
-            				printf "${white}\n\n"
-            			elif [ ! -f "$crealityweb_file" ]; then
-            			    printf "${darkred} Creality Web Interface is already removed!"
-            			    printf "\n"
-            			    printf "${darkred} If you want to change the default Web Interface please restore Creality Web Interface first."
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} This allows to remove Creality Web Interface"
-            			    printf "\n"
-            			    printf " and replace it with Fluidd or Mainsail on port 80."
-            			    printf "${white}\n"
-            			    printf "${darkred} Note that you will no longer be able to print via WiFi with Creality Print."
-            			    printf "${white}\n\n"
+                        if [ ! -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
+                            printf "${darkred} Please install Fluidd and/or Mainsail first!"
+                            printf "${white}\n\n"
+                        elif [ ! -f "$crealityweb_file" ]; then
+                            printf "${darkred} Creality Web Interface is already removed!"
+                            printf "\n"
+                            printf "${darkred} If you want to change the default Web Interface please restore Creality Web Interface first."
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} This allows to remove Creality Web Interface"
+                            printf "\n"
+                            printf " and replace it with Fluidd or Mainsail on port 80."
+                            printf "${white}\n"
+                            printf "${darkred} Note that you will no longer be able to print via WiFi with Creality Print."
+                            printf "${white}\n\n"
                             printf " Are you sure you want to remove ${green}Creality Web Interface ${white}? ${white}(${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Creality Web Interface ${white}? ${white}(${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        if [ -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
-            			            printf "${green} Removing Creality Web Interface..."
-                			        printf "${white}\n\n"
-                			        if [ -f /usr/bin/web-server ]; then
-                			            mv /usr/bin/web-server /usr/bin/web-server.disabled
-                			        fi
-                			        if [ -f /usr/bin/Monitor ]; then
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                if [ -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
+                                    printf "${green} Removing Creality Web Interface..."
+                                    printf "${white}\n\n"
+                                    if [ -f /usr/bin/web-server ]; then
+                                        mv /usr/bin/web-server /usr/bin/web-server.disabled
+                                    fi
+                                    if [ -f /usr/bin/Monitor ]; then
                                         mv /usr/bin/Monitor /usr/bin/Monitor.disabled
                                     fi
                                     killall -q Monitor
@@ -3055,45 +3163,45 @@ do
                                     /etc/init.d/S50nginx restart
                                     printf "\n"
                                     printf "${green} Creality Web Interface has been removed successfully!"
-                			        printf "${white}\n\n"
-                			        printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress)"
-                			        printf "${white}\n\n"
-            			        elif [ ! -d "$fluidd_folder" ] && [ -d "$mainsail_folder" ]; then
-            			            printf "${green} Removing Creality Web Interface..."
-                			        printf "${white}\n\n"
-                			        if [ -f /usr/bin/web-server ]; then
-                			            mv /usr/bin/web-server /usr/bin/web-server.disabled
-                			        fi
-                			        if [ -f /usr/bin/Monitor ]; then
+                                    printf "${white}\n\n"
+                                    printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress)"
+                                    printf "${white}\n\n"
+                                elif [ ! -d "$fluidd_folder" ] && [ -d "$mainsail_folder" ]; then
+                                    printf "${green} Removing Creality Web Interface..."
+                                    printf "${white}\n\n"
+                                    if [ -f /usr/bin/web-server ]; then
+                                        mv /usr/bin/web-server /usr/bin/web-server.disabled
+                                    fi
+                                    if [ -f /usr/bin/Monitor ]; then
                                         mv /usr/bin/Monitor /usr/bin/Monitor.disabled
                                     fi
-                			        killall -q Monitor
+                                    killall -q Monitor
                                     killall -q web-server
                                     sed -i '/listen 4409 default_server;/a \        listen 80;' /usr/data/nginx/nginx/nginx.conf
                                     /etc/init.d/S50nginx restart
                                     printf "\n"
                                     printf "${green} Creality Web Interface has been removed successfully!"
-                			        printf "${white}\n\n"
-                			        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress)"
-                			        printf "${white}\n\n"
-            			        elif [ -d "$fluidd_folder" ] && [ -d "$mainsail_folder" ]; then
-            			            printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}"
-            			            read confirm2
-            			            printf "${white}\n"
-            			            while [ "$confirm2" != "FLUIDD" ] && [ "$confirm2" != "MAINSAIL" ] && [ "$confirm2" != "fluidd" ] && [ "$confirm2" != "mainsail" ]; do
+                                    printf "${white}\n\n"
+                                    printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress)"
+                                    printf "${white}\n\n"
+                                elif [ -d "$fluidd_folder" ] && [ -d "$mainsail_folder" ]; then
+                                    printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}"
+                                    read confirm2
+                                    printf "${white}\n"
+                                    while [ "$confirm2" != "FLUIDD" ] && [ "$confirm2" != "MAINSAIL" ] && [ "$confirm2" != "fluidd" ] && [ "$confirm2" != "mainsail" ]; do
                                         printf "${darkred} Please select a correct choice!"
                                         printf "${white}\n\n"
                                         printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}"
                                         read confirm2
                                         printf "${white}\n"
                                     done
-            			            if [ "$confirm2" = "fluidd" ] || [ "$confirm2" = "FLUIDD" ]; then
-                			            printf "${green} Removing Creality Web Interface..."
-                			            printf "${white}\n\n"
-                			            if [ -f /usr/bin/web-server ]; then
-                			                mv /usr/bin/web-server /usr/bin/web-server.disabled
-                			            fi
-                			            if [ -f /usr/bin/Monitor ]; then
+                                    if [ "$confirm2" = "fluidd" ] || [ "$confirm2" = "FLUIDD" ]; then
+                                        printf "${green} Removing Creality Web Interface..."
+                                        printf "${white}\n\n"
+                                        if [ -f /usr/bin/web-server ]; then
+                                            mv /usr/bin/web-server /usr/bin/web-server.disabled
+                                        fi
+                                        if [ -f /usr/bin/Monitor ]; then
                                             mv /usr/bin/Monitor /usr/bin/Monitor.disabled
                                         fi
                                         killall -q Monitor
@@ -3102,16 +3210,16 @@ do
                                         /etc/init.d/S50nginx restart
                                         printf "\n"
                                         printf "${green} Creality Web Interface has been removed successfully!"
-                			            printf "${white}\n\n"
-                			            printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress) ${white}or ${yellow}http://$(check_ipaddress):4408"
-                			            printf "${white}\n\n"
-            			            elif [ "$confirm2" = "mainsail" ] || [ "$confirm2" = "MAINSAIL" ]; then
-                			            printf "${green} Removing Creality Web Interface..."
-                			            printf "${white}\n\n"
-                			            if [ -f /usr/bin/web-server ]; then
-                			                mv /usr/bin/web-server /usr/bin/web-server.disabled
-                			            fi
-                			            if [ -f /usr/bin/Monitor ]; then
+                                        printf "${white}\n\n"
+                                        printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress) ${white}or ${yellow}http://$(check_ipaddress):4408"
+                                        printf "${white}\n\n"
+                                    elif [ "$confirm2" = "mainsail" ] || [ "$confirm2" = "MAINSAIL" ]; then
+                                        printf "${green} Removing Creality Web Interface..."
+                                        printf "${white}\n\n"
+                                        if [ -f /usr/bin/web-server ]; then
+                                            mv /usr/bin/web-server /usr/bin/web-server.disabled
+                                        fi
+                                        if [ -f /usr/bin/Monitor ]; then
                                             mv /usr/bin/Monitor /usr/bin/Monitor.disabled
                                         fi
                                         killall -q Monitor
@@ -3120,40 +3228,40 @@ do
                                         /etc/init.d/S50nginx restart
                                         printf "\n"
                                         printf "${green} Creality Web Interface has been removed successfully!"
-                			            printf "${white}\n\n"
-                			            printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress) ${white}or ${yellow}http://$(check_ipaddress):4409"
-                			            printf "${white}\n\n"
-                			        fi
-            			        fi
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled! ${white}\n\n"
-            			    fi
-            			fi
+                                        printf "${white}\n\n"
+                                        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress) ${white}or ${yellow}http://$(check_ipaddress):4409"
+                                        printf "${white}\n\n"
+                                    fi
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled! ${white}\n\n"
+                            fi
+                        fi
                         ;;
-            	    4)
-            			if [ -f "$crealityweb_file" ]; then
-            				printf "${darkred} Creality Web Interface is already present!"
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} This allows to restore Creality Web Interface on port 80."
-            			    printf "${white}\n\n"
+                    4)
+                        if [ -f "$crealityweb_file" ]; then
+                            printf "${darkred} Creality Web Interface is already present!"
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} This allows to restore Creality Web Interface on port 80."
+                            printf "${white}\n\n"
                             printf " Are you sure you want to restore ${green}Creality Web Interface ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to restore ${green}Creality Web Interface ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf "${green} Restoring Creality Web Interface..."
-                			    printf "${white}\n\n"
-                			    if [ -f /usr/bin/web-server.disabled ] && [ -f /etc/init.d/S99start_app ]; then
-                			        mv /usr/bin/web-server.disabled /usr/bin/web-server
-                			    fi
-                			    if [ -f /usr/bin/Monitor.disabled ] && [ ! -d "$guppyscreen_folder" ]; then
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Restoring Creality Web Interface..."
+                                printf "${white}\n\n"
+                                if [ -f /usr/bin/web-server.disabled ] && [ -f /etc/init.d/S99start_app ]; then
+                                    mv /usr/bin/web-server.disabled /usr/bin/web-server
+                                fi
+                                if [ -f /usr/bin/Monitor.disabled ] && [ ! -d "$guppyscreen_folder" ]; then
                                     mv /usr/bin/Monitor.disabled /usr/bin/Monitor
                                 fi
                                 sed -i '/listen 80;/d' /usr/data/nginx/nginx/nginx.conf
@@ -3169,66 +3277,66 @@ do
                                 printf "\n"
                                 printf "${green} Creality Web Interface has been restored successfully!"
                                 printf "${white}\n\n"
-                			    printf " You can now connect to Creality Web Interface with ${yellow}http://$(check_ipaddress) ${white}and with ${yellow}Creality Print"
-                			    printf "${white}\n\n"
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Restoration canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf " You can now connect to Creality Web Interface with ${yellow}http://$(check_ipaddress) ${white}and with ${yellow}Creality Print"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Restoration canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     5)
-            			if [ -d "$guppyscreen_folder" ]; then
-            				printf "${darkred} Guppy Screen is already installed!"
-            				printf "\n"
-            			    printf "${darkred} If you want to change the theme please remove Guppy Screen first."
-            				printf "${white}\n\n"
-            			elif [ -d "$shaperconfig_folder" ]; then
-            				printf "${darkred} Please remove Improved Shapers Calibrations before, Guppy Screen already use it!"
-            				printf "${white}\n\n"
-            			elif [ ! -f /lib/ld-2.29.so ]; then
-            			    printf "${darkred} Make sure you're running 1.3.x.x firmware version!"
-            			    printf "${white}\n\n"
-            			elif [ ! -f "$shellcommand_file" ]; then
-            				printf " ${darkred}Please install Klipper Gcode Shell Command first!"
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} Guppy Screen is a touch UI for Klipper using APIs"
-            			    printf "\n"
-            			    printf " exposed by Moonraker. It replace Creality touch UI."
-            			    printf "${white}\n\n"
+                        if [ -d "$guppyscreen_folder" ]; then
+                            printf "${darkred} Guppy Screen is already installed!"
+                            printf "\n"
+                            printf "${darkred} If you want to change the theme please remove Guppy Screen first."
+                            printf "${white}\n\n"
+                        elif [ -d "$shaperconfig_folder" ]; then
+                            printf "${darkred} Please remove Improved Shapers Calibrations before, Guppy Screen already use it!"
+                            printf "${white}\n\n"
+                        elif [ ! -f /lib/ld-2.29.so ]; then
+                            printf "${darkred} Make sure you're running 1.3.x.x firmware version!"
+                            printf "${white}\n\n"
+                        elif [ ! -f "$shellcommand_file" ]; then
+                            printf " ${darkred}Please install Klipper Gcode Shell Command first!"
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} Guppy Screen is a touch UI for Klipper using APIs"
+                            printf "\n"
+                            printf " exposed by Moonraker. It replace Creality touch UI."
+                            printf "${white}\n\n"
                             printf " Are you sure you want to install ${green}Guppy Screen ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to install ${green}Guppy Screen ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf " Do you want install ${green}Guppy Screen ${white}with ${yellow}Material Design${white} or ${yellow}Z-Bolt ${white}theme ? (${yellow}material${white}/${yellow}zbolt${white}): ${yellow}"
-            			        read confirm2
-            			        printf "${white}\n"
-            			        while [ "$confirm2" != "material" ] && [ "$confirm2" != "MATERIAL" ] && [ "$confirm2" != "zbolt" ] && [ "$confirm2" != "ZBOLT" ]; do
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf " Do you want install ${green}Guppy Screen ${white}with ${yellow}Material Design${white} or ${yellow}Z-Bolt ${white}theme ? (${yellow}material${white}/${yellow}zbolt${white}): ${yellow}"
+                                read confirm2
+                                printf "${white}\n"
+                                while [ "$confirm2" != "material" ] && [ "$confirm2" != "MATERIAL" ] && [ "$confirm2" != "zbolt" ] && [ "$confirm2" != "ZBOLT" ]; do
                                     printf "${darkred} Please select a correct choice!"
                                     printf "${white}\n\n"
                                     printf " Do you want install ${green}Guppy Screen ${white}with ${yellow}Material Design${white} or ${yellow}Z-Bolt ${white}theme ? (${yellow}material${white}/${yellow}zbolt${white}): ${yellow}"
                                     read confirm2
                                     printf "${white}\n"
                                 done
-            			        if [ "$confirm2" = "material" ] || [ "$confirm2" = "MATERIAL" ]; then
-                			        printf "${green} Installing Guppy Screen with Material Design theme..."
-                			        printf "${white}\n\n"
-                			        printf "Cleaning cache...\n"
+                                if [ "$confirm2" = "material" ] || [ "$confirm2" = "MATERIAL" ]; then
+                                    printf "${green} Installing Guppy Screen with Material Design theme..."
+                                    printf "${white}\n\n"
+                                    printf "Cleaning cache...\n"
                                     rm -rf /root/.cache
-                			        printf "Downloading Guppy Screen...\n"
-                			        /tmp/curl -s -L https://github.com/ballaswag/guppyscreen/releases/latest/download/guppyscreen.tar.gz -o /tmp/guppyscreen.tar.gz
-                			        if [ $? -eq 0 ]; then
-                			            printf "Installing files...\n"
-	            			            tar xf /tmp/guppyscreen.tar.gz -C /usr/data/
-	            			            if [ ! -d "/usr/data/guppyscreen-backup" ]; then
+                                    printf "Downloading Guppy Screen...\n"
+                                    /tmp/curl -s -L https://github.com/ballaswag/guppyscreen/releases/latest/download/guppyscreen.tar.gz -o /tmp/guppyscreen.tar.gz
+                                    if [ $? -eq 0 ]; then
+                                        printf "Installing files...\n"
+                                        tar xf /tmp/guppyscreen.tar.gz -C /usr/data/
+                                        if [ ! -d "/usr/data/guppyscreen-backup" ]; then
                                             printf "Backing up original files...\n"
                                             mkdir -p /usr/data/guppyscreen-backup
                                             mv /etc/init.d/S12boot_display /usr/data/guppyscreen-backup
@@ -3267,10 +3375,10 @@ do
                                             cp "$guppyscreen_folder"k1_mods/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
                                         fi
                                         printf "Downloading Guppy Screen configurations files...\n"
-                			            /tmp/curl -s -L "$guppyscreen_URL1" -o "$guppyscreen_folder"scripts/guppy_update.cfg
-                			            /tmp/curl -s -L "$guppyscreen_URL2" -o "$guppyscreen_folder"guppy-update.sh
-                			            chmod 775 "$guppyscreen_folder"guppy-update.sh
-                			            printf "Copying files...\n"
+                                        /tmp/curl -s -L "$guppyscreen_URL1" -o "$guppyscreen_folder"scripts/guppy_update.cfg
+                                        /tmp/curl -s -L "$guppyscreen_URL2" -o "$guppyscreen_folder"guppy-update.sh
+                                        chmod 775 "$guppyscreen_folder"guppy-update.sh
+                                        printf "Copying files...\n"
                                         mkdir -p /usr/data/printer_data/config/GuppyScreen/scripts
                                         cp "$guppyscreen_folder"scripts/*.cfg /usr/data/printer_data/config/GuppyScreen
                                         cp "$guppyscreen_folder"scripts/*.py /usr/data/printer_data/config/GuppyScreen/scripts
@@ -3325,25 +3433,25 @@ do
                                         /etc/init.d/S99guppyscreen restart &> /dev/null
                                         sleep 1
                                         ps auxw | grep guppyscreen | grep -v sh | grep -v grep
-                			        else
-                			            printf "${white}\n\n"
-                			            printf "${darkred} Download failed!"
-                			            printf "${white}\n\n"
-                			        fi
-                			        printf "\n"
-                			        printf "${green} Guppy Screen with ${yellow}Material Design ${green}theme has been installed successfully!"
-                			        printf "${white}\n\n"
-            			        elif [ "$confirm2" = "zbolt" ] || [ "$confirm2" = "ZBOLT" ]; then
-                			        printf "${green} Installing Guppy Screen with Z-Bolt theme..."
-                			        printf "${white}\n\n"
-                			        printf "Cleaning cache...\n"
+                                    else
+                                        printf "${white}\n\n"
+                                        printf "${darkred} Download failed!"
+                                        printf "${white}\n\n"
+                                    fi
+                                    printf "\n"
+                                    printf "${green} Guppy Screen with ${yellow}Material Design ${green}theme has been installed successfully!"
+                                    printf "${white}\n\n"
+                                elif [ "$confirm2" = "zbolt" ] || [ "$confirm2" = "ZBOLT" ]; then
+                                    printf "${green} Installing Guppy Screen with Z-Bolt theme..."
+                                    printf "${white}\n\n"
+                                    printf "Cleaning cache...\n"
                                     rm -rf /root/.cache
-                			        printf "Downloading Guppy Screen...\n"
-                			        /tmp/curl -s -L https://github.com/ballaswag/guppyscreen/releases/latest/download/guppyscreen-zbolt.tar.gz -o /tmp/guppyscreen.tar.gz
-                			        if [ $? -eq 0 ]; then
-                			            printf "Installing files...\n"
-	            			            tar xf /tmp/guppyscreen.tar.gz -C /usr/data/
-	            			            if [ ! -d "/usr/data/guppyscreen-backup" ]; then
+                                    printf "Downloading Guppy Screen...\n"
+                                    /tmp/curl -s -L https://github.com/ballaswag/guppyscreen/releases/latest/download/guppyscreen-zbolt.tar.gz -o /tmp/guppyscreen.tar.gz
+                                    if [ $? -eq 0 ]; then
+                                        printf "Installing files...\n"
+                                        tar xf /tmp/guppyscreen.tar.gz -C /usr/data/
+                                        if [ ! -d "/usr/data/guppyscreen-backup" ]; then
                                             printf "Backing up original files...\n"
                                             mkdir -p /usr/data/guppyscreen-backup
                                             mv /etc/init.d/S12boot_display /usr/data/guppyscreen-backup
@@ -3382,10 +3490,10 @@ do
                                             cp "$guppyscreen_folder"/k1_mods/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
                                         fi
                                         printf "Downloading Guppy Screen configurations files...\n"
-                			            /tmp/curl -s -L "$guppyscreen_URL1" -o "$guppyscreen_folder"scripts/guppy_update.cfg
-                			            /tmp/curl -s -L "$guppyscreen_URL2" -o "$guppyscreen_folder"guppy-update.sh
-                			            chmod 775 "$guppyscreen_folder"guppy-update.sh
-                			            printf "Copying files...\n"
+                                        /tmp/curl -s -L "$guppyscreen_URL1" -o "$guppyscreen_folder"scripts/guppy_update.cfg
+                                        /tmp/curl -s -L "$guppyscreen_URL2" -o "$guppyscreen_folder"guppy-update.sh
+                                        chmod 775 "$guppyscreen_folder"guppy-update.sh
+                                        printf "Copying files...\n"
                                         mkdir -p /usr/data/printer_data/config/GuppyScreen/scripts
                                         cp "$guppyscreen_folder"scripts/*.cfg /usr/data/printer_data/config/GuppyScreen
                                         cp "$guppyscreen_folder"scripts/*.py /usr/data/printer_data/config/GuppyScreen/scripts
@@ -3440,29 +3548,29 @@ do
                                         /etc/init.d/S99guppyscreen restart &> /dev/null
                                         sleep 1
                                         ps auxw | grep [g]uppyscreen | grep -v sh
-                			        else
-                			            printf "${white}\n\n"
-                			            printf "${darkred} Download failed!"
-                			            printf "${white}\n\n"
-                			        fi
-                			        printf "\n"
-                			        printf "${green} Guppy Screen with ${yellow}Z-Bolt ${green}theme has been installed successfully!"
-                			        printf "${white}\n\n"
-            			        fi
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled! ${white}\n\n"
-            			    fi
-            			fi
+                                    else
+                                        printf "${white}\n\n"
+                                        printf "${darkred} Download failed!"
+                                        printf "${white}\n\n"
+                                    fi
+                                    printf "\n"
+                                    printf "${green} Guppy Screen with ${yellow}Z-Bolt ${green}theme has been installed successfully!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled! ${white}\n\n"
+                            fi
+                        fi
                         ;;
                     6)
-            			if [ ! -d "$guppyscreen_folder" ]; then
-                			printf "${darkred} Guppy Screen is not installed!"
-                			printf "${white}\n\n"
-            			else
-            			    printf " Are you sure you want to remove ${green}Guppy Screen ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        if [ ! -d "$guppyscreen_folder" ]; then
+                            printf "${darkred} Guppy Screen is not installed!"
+                            printf "${white}\n\n"
+                        else
+                            printf " Are you sure you want to remove ${green}Guppy Screen ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to remove ${green}Guppy Screen ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -3471,9 +3579,9 @@ do
                             done
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                                 printf "${green} Removing Guppy Screen..."
-                			    printf "${white}\n\n"
-                			    printf "Restoring backup files...\n"
-                			    if [ -d "/usr/data/guppyscreen-backup" ]; then
+                                printf "${white}\n\n"
+                                printf "Restoring backup files...\n"
+                                if [ -d "/usr/data/guppyscreen-backup" ]; then
                                     cp /usr/data/guppyscreen-backup/S12boot_display /etc/init.d/S12boot_display
                                     cp /usr/data/guppyscreen-backup/S50dropbear /etc/init.d/S50dropbear
                                     cp /usr/data/guppyscreen-backup/S99start_app /etc/init.d/S99start_app
@@ -3528,81 +3636,81 @@ do
                                 if [ -f /usr/bin/web-server ]; then
                                     /usr/bin/web-server > /dev/null 2>&1 &
                                 fi
-                			    printf "\n"
-                			    printf "${green} Guppy Screen has been removed successfully!"
-                			    printf "${white}\n\n"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                printf "\n"
+                                printf "${green} Guppy Screen has been removed successfully!"
+                                printf "${white}\n\n"
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Deletion canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     7)
-            			if [ -f "$fluiddlogo_file" ]; then
-            				printf "${darkred} Creality Dynamic Logos for Fluidd are already installed!"
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} This allows you to have the dynamic Creality logos on the Fluidd Web interface."
-            			    printf "${white}\n\n"
+                        if [ -f "$fluiddlogo_file" ]; then
+                            printf "${darkred} Creality Dynamic Logos for Fluidd are already installed!"
+                            printf "${white}\n\n"
+                        else
+                            printf "${cyan} This allows you to have the dynamic Creality logos on the Fluidd Web interface."
+                            printf "${white}\n\n"
                             printf " Are you sure you want to install ${green}Creality Dynamic Logos for Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to install ${green}Creality Dynamic Logos for Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf "${green} Installing Creality Dynamic Logos for Fluidd..."
-                			    printf "${white}\n\n"
+                            if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                                printf "${green} Installing Creality Dynamic Logos for Fluidd..."
+                                printf "${white}\n\n"
                                 printf "Downloading files...\n"
-                			    /tmp/curl -s -L "$fluiddlogo_URL1" -o /usr/data/fluidd/logo_creality_v1.svg
-                			    if [ $? -eq 0 ]; then
-                			        /tmp/curl -s -L "$fluiddlogo_URL2" -o /usr/data/fluidd/logo_creality_v2.svg
-                			        if [ $? -eq 0 ]; then
-                			            /tmp/curl -s -L "$fluiddlogo_URL3" -o /usr/data/fluidd/config.json
-                			            if [ $? -eq 0 ]; then
-                			                printf "\n"
+                                /tmp/curl -s -L "$fluiddlogo_URL1" -o /usr/data/fluidd/logo_creality_v1.svg
+                                if [ $? -eq 0 ]; then
+                                    /tmp/curl -s -L "$fluiddlogo_URL2" -o /usr/data/fluidd/logo_creality_v2.svg
+                                    if [ $? -eq 0 ]; then
+                                        /tmp/curl -s -L "$fluiddlogo_URL3" -o /usr/data/fluidd/config.json
+                                        if [ $? -eq 0 ]; then
+                                            printf "\n"
                                             printf "${green} Creality Dynamic Logos for Fluidd have been installed successfully!"
-                			                printf "${white}\n\n"
-                			                printf " You can now select Creality V1 or V2 theme in Fluidd settings."
-                			                printf "${white}\n\n"
-                			            else
-                			                rm -f /usr/data/fluidd/logo_creality_v1.svg
-                			                rm -f /usr/data/fluidd/logo_creality_v2.svg
-                			                printf "${white}\n\n"
-                			                printf "${darkred} Download failed!"
-                			                printf "${white}\n\n"
-                			            fi
-                			        else
-                			            rm -f /usr/data/fluidd/logo_creality_v1.svg
-                			            printf "${white}\n\n"
-                			            printf "${darkred} Download failed!"
-                			            printf "${white}\n\n"
-                			        fi
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} Download failed!"
-                			        printf "${white}\n\n"
-                			    fi
-            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                            printf "${white}\n\n"
+                                            printf " You can now select Creality V1 or V2 theme in Fluidd settings."
+                                            printf "${white}\n\n"
+                                        else
+                                            rm -f /usr/data/fluidd/logo_creality_v1.svg
+                                            rm -f /usr/data/fluidd/logo_creality_v2.svg
+                                            printf "${white}\n\n"
+                                            printf "${darkred} Download failed!"
+                                            printf "${white}\n\n"
+                                        fi
+                                    else
+                                        rm -f /usr/data/fluidd/logo_creality_v1.svg
+                                        printf "${white}\n\n"
+                                        printf "${darkred} Download failed!"
+                                        printf "${white}\n\n"
+                                    fi
+                                else
+                                    printf "${white}\n\n"
+                                    printf "${darkred} Download failed!"
+                                    printf "${white}\n\n"
+                                fi
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Installation canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     B)
-                    	clear
+                        clear
                         break
                         ;;
                     Q)
                         exit
                         ;;
                     *)
-            			printf "${darkred} Please select a correct choice!"
-            			printf "${white}\n\n"
+                        printf "${darkred} Please select a correct choice!"
+                        printf "${white}\n\n"
                         ;;
                 esac
             done
@@ -3614,9 +3722,9 @@ do
                 case $opt_backup_menu in
                     1)
                         printf " Are you sure you want to backup ${green}Klipper configuration ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			read confirm
-            			printf "${white}\n"
-            			while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        read confirm
+                        printf "${white}\n"
+                        while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                             printf "${darkred} Please select a correct choice!"
                             printf "${white}\n\n"
                             printf " Are you sure you want to backup ${green}Klipper configuration ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -3624,29 +3732,29 @@ do
                             printf "${white}\n"
                         done
                         if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			    if [ -f /root/backup_config.tar ]; then
-                			    rm -f /root/backup_config.tar
-            			    fi
-            			    printf "Compressing files...\n"
-            			    cd /usr/data/printer_data
-            			    tar -czvf /root/backup_config.tar config/
-            			    printf "\n"
-            			    printf "${green} Klipper configuration files have been saved successfully in ${yellow}/root ${green}folder!"
-            			    printf "${white}\n\n"
-            			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			printf "${darkred} Backup canceled!"
-                			printf "${white}\n\n"
-            			fi
+                            if [ -f /root/backup_config.tar ]; then
+                                rm -f /root/backup_config.tar
+                            fi
+                            printf "Compressing files...\n"
+                            cd /usr/data/printer_data
+                            tar -czvf /root/backup_config.tar config/
+                            printf "\n"
+                            printf "${green} Klipper configuration files have been saved successfully in ${yellow}/root ${green}folder!"
+                            printf "${white}\n\n"
+                        elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                            printf "${darkred} Backup canceled!"
+                            printf "${white}\n\n"
+                        fi
                         ;;
                     2)
-            			if [ ! -f /root/backup_config.tar ]; then
-                			printf "${darkred} Please backup configuration files before restore!"
-                			printf "${white}\n\n"
-            			else
-            			    printf " Are you sure you want to restore ${green}Klipper configuration ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        if [ ! -f /root/backup_config.tar ]; then
+                            printf "${darkred} Please backup configuration files before restore!"
+                            printf "${white}\n\n"
+                        else
+                            printf " Are you sure you want to restore ${green}Klipper configuration ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Are you sure you want to restore ${green}Klipper configuration ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -3654,34 +3762,34 @@ do
                                 printf "${white}\n"
                             done
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        if [[ -d /usr/data/printer_data/config/ ]]; then
-                    			    rm -rf /usr/data/printer_data/config
-                			    fi
-                			    cp /root/backup_config.tar /usr/data/printer_data/
-                			    cd /usr/data/printer_data
-                			    printf "Copying files...\n"
-                			    tar -xvf backup_config.tar
-                			    rm -f backup_config.tar
-                			    printf "\n"
-                			    printf "${green} Klipper configuration files have been restored successfully!"
-                			    printf "${white}\n\n"
-                			    backup_menu
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} Restoration canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
+                                if [[ -d /usr/data/printer_data/config/ ]]; then
+                                    rm -rf /usr/data/printer_data/config
+                                fi
+                                cp /root/backup_config.tar /usr/data/printer_data/
+                                cd /usr/data/printer_data
+                                printf "Copying files...\n"
+                                tar -xvf backup_config.tar
+                                rm -f backup_config.tar
+                                printf "\n"
+                                printf "${green} Klipper configuration files have been restored successfully!"
+                                printf "${white}\n\n"
+                                backup_menu
+                            elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                                printf "${darkred} Restoration canceled!"
+                                printf "${white}\n\n"
+                            fi
+                        fi
                         ;;
                     B)
-                    	clear
+                        clear
                         break
                         ;;
                     Q)
                         exit
                         ;;
                     *)
-            			printf "${darkred} Please select a correct choice!"
-            			printf "${white}\n\n"
+                        printf "${darkred} Please select a correct choice!"
+                        printf "${white}\n\n"
                         ;;
                 esac
             done
@@ -3693,13 +3801,13 @@ do
                 case $opt_tools_menu in
                     1)
                         if [ ! -d "$moonraker_folder" ] && [ ! -d "$nginx_folder" ]; then
-            	            printf "${darkred} Moonraker and Nginx are not installed!"
-            	            printf "${white}\n\n"
+                            printf "${darkred} Moonraker and Nginx are not installed!"
+                            printf "${white}\n\n"
                         else
                             printf " Do you want to restart ${green}Moonraker and Nginx ${white}services ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            	            read confirm
-            	            printf "${white}\n"
-            	            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Do you want to restart ${green}Moonraker and Nginx ${white}services ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -3718,20 +3826,20 @@ do
                                 printf "${green} Moonraker and Nginx services have been restarted!"
                                 printf "${white}\n\n"
                             elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                	            printf "${darkred} Restart canceled!"
-                	            printf "${white}\n\n"
+                                printf "${darkred} Restart canceled!"
+                                printf "${white}\n\n"
                             fi
                         fi
                         ;;
                     2)
                         if [ ! -f /etc/init.d/S55klipper_service ]; then
-            	            printf "${darkred} Klipper service is not present!"
-            	            printf "${white}\n\n"
+                            printf "${darkred} Klipper service is not present!"
+                            printf "${white}\n\n"
                         else
                             printf " Do you want to restart ${green}Klipper ${white}service ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            	            read confirm
-            	            printf "${white}\n"
-            	            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            read confirm
+                            printf "${white}\n"
+                            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
                                 printf " Do you want to restart ${green}Klipper ${white}service ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -3745,8 +3853,8 @@ do
                                 printf "${green} Klipper service has been restarted!"
                                 printf "${white}\n\n"
                             elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                	            printf "${darkred} Restart canceled!"
-                	            printf "${white}\n\n"
+                                printf "${darkred} Restart canceled!"
+                                printf "${white}\n\n"
                             fi
                         fi
                         ;;
@@ -3760,9 +3868,9 @@ do
                         printf "${cyan} 2. ${white}Insert the USB drive into the printer."
                         printf "\n\n"
                         printf " Do you want to restore a previous firmware ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            	        read confirm
-            	        printf "${white}\n"
-            	        while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        read confirm
+                        printf "${white}\n"
+                        while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                             printf "${darkred} Please select a correct choice!"
                             printf "${white}\n\n"
                             printf " Do you want to restore a previous firmware ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -3784,15 +3892,15 @@ do
                                 printf "${white}\n\n"
                             fi
                         elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                	        printf "${darkred} Restoration canceled!"
-                	        printf "${white}\n\n"
+                            printf "${darkred} Restoration canceled!"
+                            printf "${white}\n\n"
                         fi
                         ;;
                     4)
                         printf " Do you want to clear the cache ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            	        read confirm
-            	        printf "${white}\n"
-            	        while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                        read confirm
+                        printf "${white}\n"
+                        while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                             printf "${darkred} Please select a correct choice!"
                             printf "${white}\n\n"
                             printf " Do you want to clear the cache ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -3806,20 +3914,20 @@ do
                             printf "${green} Cache has been cleared!"
                             printf "${white}\n\n"
                         elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                	        printf "${darkred} Clearing cache canceled!"
-                	        printf "${white}\n\n"
+                            printf "${darkred} Clearing cache canceled!"
+                            printf "${white}\n\n"
                         fi
                         ;;
                     B)
-                    	clear
+                        clear
                         break
                         ;;
                     Q)
                         exit
                         ;;
                     *)
-            			printf "${darkred} Please select a correct choice!"
-            			printf "${white}\n\n"
+                        printf "${darkred} Please select a correct choice!"
+                        printf "${white}\n\n"
                         ;;
                 esac
             done
@@ -3830,15 +3938,15 @@ do
                 info_menu
                 case $opt_info_menu in
                     B)
-                    	clear
+                        clear
                         break
                         ;;
                     Q)
                         exit
                         ;;
                     *)
-            			printf "${darkred} Please select a correct choice!"
-            			printf "${white}\n\n"
+                        printf "${darkred} Please select a correct choice!"
+                        printf "${white}\n\n"
                         ;;
                 esac
             done
@@ -3849,15 +3957,15 @@ do
                 system_menu
                 case $opt_system_menu in
                     B)
-                    	clear
+                        clear
                         break
                         ;;
                     Q)
                         exit
                         ;;
                     *)
-            			printf "${darkred} Please select a correct choice!"
-            			printf "${white}\n\n"
+                        printf "${darkred} Please select a correct choice!"
+                        printf "${white}\n\n"
                         ;;
                 esac
             done
