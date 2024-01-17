@@ -18,7 +18,9 @@ get_services() {
     cmdline="$(tr '\0' '\n' < /proc/"$moonraker_pid"/cmdline)"
     moonraker_dir="$(echo $cmdline | awk -F'-d ' '{print $2}' | awk '{print $1}')"
     moonraker_conf="$moonraker_dir/config/moonraker.conf"
-    services=`(printf 'klipper\nmoonraker\n'; awk '/managed_services:/ {print $2}' $moonraker_conf | sed 's/://') | sort|uniq`
+    # services="klipper moonraker $(awk '/managed_services:/ {print $2}' $moonraker_conf | sed 's/://')"
+    # services=`(printf 'klipper\nmoonraker\n'; awk '/managed_services:/ {print $2}' $moonraker_conf | sed 's/://') | sort|uniq`
+    services=$(ls -1 /etc/init.d/S*|sed 's/.*\/S..//;s/_service$//')
     echo $services
   else
     echo "Error: Invalid or missing PID file /var/run/moonraker.pid" >&2
