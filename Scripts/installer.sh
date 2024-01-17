@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.2.1
+VERSION=v4.3.0
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -40,6 +40,8 @@ hostname_file="/etc/init.d/S01hostname"
 hostname_URL="${download_URL}services/S01hostname"
 systemctl_file="/usr/bin/systemctl"
 systemctl_URL="${download_URL}fixes/systemctl"
+sudo_file="/usr/bin/sudo"
+sudo_URL="${download_URL}fixes/sudo"
 shellcommand_file="${klipper_extra_folder}gcode_shell_command.py"
 shellcommand_URL="${download_URL}shell-command/gcode_shell_command.py"
 buzzer_file="/usr/data/beep.mp3"
@@ -79,6 +81,8 @@ fluiddlogo_URL2="${download_URL}fluidd/logo_creality_v2.svg"
 fluiddlogo_URL3="${download_URL}fluidd/config.json"
 fluiddlogo_file="/usr/data/fluidd/logo_creality_v2.svg"
 entware_URL="${download_URL}entware/generic.sh"
+supervisor_file="/usr/bin/supervisorctl"
+supervisor_URL="${download_URL}fixes/supervisorctl"
 firmware_version="$(cat /usr/data/creality/userdata/config/system_version.json | jq -r '.sys_version')"
 
 check_updates() {
@@ -320,26 +324,27 @@ install_menu(){
     menu_option ' 4' 'Install' 'Entware'
     menu_option ' 5' 'Install' 'Klipper Gcode Shell Command'
     menu_option ' 6' 'Install' 'Hostname Service'
-    menu_option ' 7' 'Install' 'Fix for Reboot/Shutdown functions'
+    menu_option ' 7' 'Install' 'Supervisor Lite'
+    menu_option ' 8' 'Install' 'Host Controls Support'
     hr
     subtitle '•IMPROVEMENTS:'
-    menu_option ' 8' 'Install' 'Klipper Adaptive Meshing & Purging'
-    menu_option ' 9' 'Install' 'Buzzer Support'
-    menu_option '10' 'Install' 'Nozzle Cleaning Fan Control'
-    menu_option '11' 'Install' 'Fans Control Macros'
-    menu_option '12' 'Install' 'Improved Shapers Calibrations'
-    menu_option '13' 'Install' 'Usefull Macros'
-    menu_option '14' 'Install' 'Save Z-Offset Macros'
-    menu_option '15' 'Install' 'Screws Tilt Adjust Support'
+    menu_option ' 9' 'Install' 'Klipper Adaptive Meshing & Purging'
+    menu_option '10' 'Install' 'Buzzer Support'
+    menu_option '11' 'Install' 'Nozzle Cleaning Fan Control'
+    menu_option '12' 'Install' 'Fans Control Macros'
+    menu_option '13' 'Install' 'Improved Shapers Calibrations'
+    menu_option '14' 'Install' 'Usefull Macros'
+    menu_option '15' 'Install' 'Save Z-Offset Macros'
+    menu_option '16' 'Install' 'Screws Tilt Adjust Support'
     hr
     subtitle '•CAMERA:'
-    menu_option '16' 'Install' 'Moonraker Timelapse '
-    menu_option '17' 'Install' 'Camera Settings Control'
+    menu_option '17' 'Install' 'Moonraker Timelapse '
+    menu_option '18' 'Install' 'Camera Settings Control'
     hr
     subtitle '•REMOTE ACCESS AND AI DETECTION:'
-    menu_option '18' 'Install' 'OctoEverywhere'
-    menu_option '19' 'Install' 'Obico'
-    menu_option '20' 'Install' 'Mobileraker Companion'
+    menu_option '19' 'Install' 'OctoEverywhere'
+    menu_option '20' 'Install' 'Obico'
+    menu_option '21' 'Install' 'Mobileraker Companion'
     hr
     innerline
     hr
@@ -368,26 +373,27 @@ uninstall_menu(){
     menu_option ' 4' 'Remove' 'Entware'
     menu_option ' 5' 'Remove' 'Klipper Gcode Shell Command'
     menu_option ' 6' 'Remove' 'Hostname Service'
-    menu_option ' 7' 'Remove' 'Fix for Reboot/Shutdown functions'
+    menu_option ' 7' 'Remove' 'Supervisor Lite'
+    menu_option ' 8' 'Remove' 'Host Controls Support'
     hr
     subtitle '•IMPROVEMENTS:'
-    menu_option ' 8' 'Remove' 'Klipper Adaptive Meshing & Purging'
-    menu_option ' 9' 'Remove' 'Buzzer Support'
-    menu_option '10' 'Remove' 'Nozzle Cleaning Fan Control'
-    menu_option '11' 'Remove' 'Fans Control Macros'
-    menu_option '12' 'Remove' 'Improved Shapers Calibrations'
-    menu_option '13' 'Remove' 'Usefull Macros'
-    menu_option '14' 'Remove' 'Save Z-Offset Macros'
-    menu_option '15' 'Remove' 'Screws Tilt Adjust Support'
+    menu_option ' 9' 'Remove' 'Klipper Adaptive Meshing & Purging'
+    menu_option '10' 'Remove' 'Buzzer Support'
+    menu_option '11' 'Remove' 'Nozzle Cleaning Fan Control'
+    menu_option '12' 'Remove' 'Fans Control Macros'
+    menu_option '13' 'Remove' 'Improved Shapers Calibrations'
+    menu_option '14' 'Remove' 'Usefull Macros'
+    menu_option '15' 'Remove' 'Save Z-Offset Macros'
+    menu_option '16' 'Remove' 'Screws Tilt Adjust Support'
     hr
     subtitle '•CAMERA:'
-    menu_option '16' 'Remove' 'Moonraker Timelapse '
-    menu_option '17' 'Remove' 'Camera Settings Control'
+    menu_option '17' 'Remove' 'Moonraker Timelapse '
+    menu_option '18' 'Remove' 'Camera Settings Control'
     hr
     subtitle '•REMOTE ACCESS AND AI DETECTION:'
-    menu_option '18' 'Remove' 'OctoEverywhere'
-    menu_option '19' 'Remove' 'Obico'
-    menu_option '20' 'Remove' 'Mobileraker Companion'
+    menu_option '19' 'Remove' 'OctoEverywhere'
+    menu_option '20' 'Remove' 'Obico'
+    menu_option '21' 'Remove' 'Mobileraker Companion'
     hr
     innerline
     hr
@@ -491,7 +497,8 @@ info_menu(){
     infoline 'Entware' "$(check_folder "$entware_folder")"
     infoline 'Klipper Gcode Shell Command' "$(check_file "$shellcommand_file")"
     infoline 'Hostname Service' "$(check_file "$hostname_file")"
-    infoline 'Fix for Reboot/Shutdown functions' "$(check_file "$systemctl_file")"
+    infoline 'Supervisor Lite' "$(check_file "$supervisor_file")"
+    infoline 'Host Controls Support' "$(check_file "$systemctl_file")"
     hr
     subtitle '•IMPROVEMENTS:'
     infoline 'Klipper Adaptive Meshing & Purging' "$(check_folder "$kamp_folder")"
@@ -628,7 +635,7 @@ do
                 			        tar -xvf moonraker.tar
                 			        [ ! -e /etc/init.d/S50nginx ] && cp nginx/S50nginx /etc/init.d/
                 			        [ ! -e /etc/init.d/S56moonraker_service ] && cp moonraker/S56moonraker_service /etc/init.d/
-                			        printf "Deleting file...\n"
+                			        printf "Removing file...\n"
                 			        rm -f moonraker.tar
                 			        if grep -q "send_timeout 1600" /usr/data/nginx/nginx/nginx.conf; then
                                         printf "Nginx configurations are already fixed.\n"
@@ -697,7 +704,7 @@ do
 	            			        mv fluidd.zip fluidd
                 			        cd /usr/data/fluidd
                 			        unzip fluidd.zip
-                			        printf "Deleting file...\n"
+                			        printf "Removing file...\n"
                 			        rm -f fluidd.zip
                 			        if grep -q "#\[update_manager fluidd\]" "$moonraker_config" ; then
                                         printf "Enabling Fluidd configurations in moonraker.conf file...\n"
@@ -765,7 +772,7 @@ do
 	            			        mv mainsail.zip mainsail
                 			        cd /usr/data/mainsail
                 			        unzip mainsail.zip
-                			        printf "Deleting file...\n"
+                			        printf "Removing file...\n"
                 			        rm -f mainsail.zip
                 			        if grep -q "#\[update_manager mainsail\]" "$moonraker_config" ; then
                                         printf "Enabling Mainsail configurations in moonraker.conf file...\n"
@@ -920,39 +927,49 @@ do
             			fi
                         ;;
                     7)
-            			if [ -f "$systemctl_file" ]; then
-            				printf "${darkred} Fix for Reboot/Shutdown functions is already installed!"
-            				printf "${white}\n\n"
-            			elif [ ! -d "$entware_folder" ]; then
-            				printf "${darkred} Please install Entware first!"
+            			if [ -f "$supervisor_file" ]; then
+            				printf "${darkred} Supervisor Lite is already installed!"
             				printf "${white}\n\n"
             			else
-            			    printf "${cyan} This allows to fix Reboot and Shutdown buttons on Fluidd or Mainsail."
+            			    printf "${cyan} This allows managing services with Moonraker."
             			    printf "${white}\n\n"
-            			    printf " Are you sure you want to install ${green}Fix for Reboot/Shutdown functions ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    printf " Are you sure you want to install ${green}Supervisor Lite ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Fix for Reboot/Shutdownfunctions ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                printf " Are you sure you want to install ${green}Supervisor Lite ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Fix for Reboot/Shutdown functions..."
+                			    printf "${green} Installing Supervisor Lite..."
                 			    printf "${white}\n\n"
-								printf "Downloading systemctl file...\n"
-								/tmp/curl -s -L "$systemctl_URL" -o "$systemctl_file"
+								printf "Downloading supervisorctl file...\n"
+								/tmp/curl -s -L "$supervisor_URL" -o "$supervisor_file"
 								if [ $? -eq 0 ]; then
 								    printf "Applying permissions...\n"
-                			        chmod 755 /usr/bin/systemctl
-                			        printf "Linking file...\n"
-                			        ln -s /opt/bin/sudo /usr/bin/sudo
-                			        printf "Installing sudo...\n"
-                			        opkg update && opkg install sudo
+                			        chmod 755 /usr/bin/supervisorctl
+                			        if grep -q "provider: none" "$moonraker_config" && ! grep -q "provider: supervisord_cli" "$moonraker_config"; then
+                                        printf "Replacing provider in moonraker.conf file...\n"
+                                        sed -i 's/provider: none/provider: supervisord_cli/' "$moonraker_config"
+                                    else
+                                        printf "Provider is already replaced in moonraker.conf file.\n"
+                                    fi
+                                    if grep -q "is_system_service: False" "$moonraker_config" && ! grep -q "managed_services: klipper" "$moonraker_config"; then
+                                        printf "Replacing managed services in moonraker.conf file...\n"
+                                        sed -i 's/is_system_service: False/managed_services: klipper/' "$moonraker_config"
+                                    else
+                                        printf "Managed services are already replaced in moonraker.conf file.\n"
+                                    fi
+                                    printf "Restarting services...\n"
+                			        /etc/init.d/S56moonraker_service restart
+                                    sleep 1
+                                    /etc/init.d/S56moonraker_service restart
+                			        sleep 1
                 			        printf "\n"
-                			        printf "${green} Fix for Reboot/Shutdown functions has been installed successfully!"
+                			        printf "${green} Supervisor Lite has been installed successfully!"
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
@@ -966,6 +983,56 @@ do
             			fi
                         ;;
                     8)
+            			if [ -f "$systemctl_file" ] && [ -f "$sudo_file" ]; then
+            				printf "${darkred} Host Controls Support is already installed!"
+            				printf "${white}\n\n"
+            			else
+            			    printf "${cyan} This allows to use Reboot and Shutdown buttons on Fluidd or Mainsail."
+            			    printf "${white}\n\n"
+            			    printf " Are you sure you want to install ${green}Host Controls Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to install ${green}Host Controls Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                			    printf "${green} Installing Host Controls Support..."
+                			    printf "${white}\n\n"
+								printf "Downloading systemctl file...\n"
+								/tmp/curl -s -L "$sudo_URL" -o "$sudo_file"
+								if [ $? -eq 0 ]; then
+								    printf "Applying permissions...\n"
+                			        chmod 755 /usr/bin/sudo
+								    printf "Downloading sudo file...\n"
+								    /tmp/curl -s -L "$systemctl_URL" -o "$systemctl_file"
+								    if [ $? -eq 0 ]; then
+								        printf "Applying permissions...\n"
+                			            chmod 755 /usr/bin/systemctl
+                			            printf "\n"
+                			            printf "${green} Host Controls Support has been installed successfully!"
+                			            printf "${white}\n\n"
+                			        else
+                			            rm -f "$sudo_file"
+                			            printf "${white}\n\n"
+                			            printf "${darkred} Download failed!"
+                			            printf "${white}\n\n"
+                			        fi
+                			    else
+                			        printf "${white}\n\n"
+                			        printf "${darkred} Download failed!"
+                			        rintf "${white}\n\n"
+                			    fi
+                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                			    printf "${darkred} Installation canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    9)
             			if [ -d "$kamp_folder" ]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is already installed!"
             				printf "${white}\n\n"
@@ -1076,7 +1143,7 @@ do
             			    fi
             			fi
                         ;;
-                    9)
+                    10)
             			if [ -f "$buzzer_file" ]; then
             				printf "${darkred} Buzzer Support is already installed!"
             				printf "${white}\n\n"
@@ -1140,7 +1207,7 @@ do
             			    fi
             			fi
                         ;;
-                    10)
+                    11)
             			if [ -d "$prtouch_folder" ]; then
             				printf "${darkred} Nozzle Cleaning Fan Control is already installed!"
             				 printf "${white}\n\n"
@@ -1201,7 +1268,7 @@ do
             			    fi
             			fi
                         ;;
-                    11)
+                    12)
             			if [ -f "$fancontrols_file" ]; then
             				printf "${darkred} Fans Control Macros are already installed!"
             				printf "${white}\n\n"
@@ -1285,7 +1352,7 @@ do
             			    fi
             			fi
                         ;;
-                    12)
+                    13)
             			if [ -d "$shaperconfig_folder" ]; then
             				printf "${darkred} Improved Shapers Calibrations are already installed!"
             				printf "${white}\n\n"
@@ -1393,7 +1460,7 @@ do
             			    fi
             			fi
                         ;;
-                    13)
+                    14)
             			if [ -f "$usefullmacros_file" ]; then
             				printf "${darkred} Usefull Macros are already installed!"
             				printf "${white}\n\n"
@@ -1445,7 +1512,7 @@ do
             			    fi
             			fi
                         ;;
-                    14)
+                    15)
             			if [ -f "$savezoffset_file" ]; then
             				printf "${darkred} Save Z-Offset Macros are already installed!"
             				printf "${white}\n\n"
@@ -1497,7 +1564,7 @@ do
             			    fi
             			fi
                         ;;
-                    15)
+                    16)
             			if [ -f "$screwsadjust_file" ]; then
             				printf "${darkred} Screws Tilt Adjust Support is already installed!"
             				printf "${white}\n\n"
@@ -1611,7 +1678,7 @@ do
             			    fi
             			fi
                         ;;
-                    16)
+                    17)
             			if [ -f "$timelapse_file" ]; then
             				printf "${darkred} Moonraker Timelapse is already installed!"
             				printf "${white}\n\n"
@@ -1688,7 +1755,7 @@ do
             			    fi
             			fi
                         ;;
-                    17)
+                    18)
             			if [ -f "$camera_file" ]; then
             				printf "${darkred} Camera Settings Control is already installed!"
             				 printf "${white}\n\n"
@@ -1743,7 +1810,7 @@ do
             			    fi
             			fi
                         ;;
-                    18)
+                    19)
 						if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
@@ -1787,7 +1854,7 @@ do
             			    fi
             			fi
                         ;;
-                    19)
+                    20)
             			if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
@@ -1831,7 +1898,7 @@ do
             			    fi
             			fi
                         ;;
-                    20)
+                    21)
             			if [ -d "$mobileraker_folder" ]; then
             				printf "${darkred} Mobileraker Companion is already installed!"
             				printf "${white}\n\n"
@@ -1854,22 +1921,33 @@ do
                 			    printf "${green} Installing Mobileraker Companion..."
                 			    printf "${white}\n\n"
                 			    cd /usr/data
-                			    echo "Installing prerequisite python packages..."
+                			    printf "Installing prerequisite python packages...\n"
                 			    pip3 install requests websockets pytz coloredlogs
-                			    echo "Downloading modified version of Mobileraker Companion for K1..."
+                			    printf "Downloading Mobileraker Companion...\n"
                 			    git clone --depth 1 "$mobileraker_URL1"
                 			    if [ $? -eq 0 ]; then
                 			        cd mobileraker_companion
-                			        echo 'Getting K1 compatibility patches...'
+                			        printf "Downloading K1 compatibility patches...\n"
                 			        /tmp/curl -s -L "$mobileraker_URL2" -o mobileraker-companion-k1-no-tzlocal.patch
                 			        if [ $? -eq 0 ]; then
-                			            echo 'Applying K1 compatibility patches...'
+                			            printf "Applying K1 compatibility patches...\n"
                 			            patch -p1 < mobileraker-companion-k1-no-tzlocal.patch
-                			            echo "Adding startup script..."
+                			            printf "Adding startup script...\n"
                 			            cp S80mobileraker_companion /etc/init.d/S80mobileraker_companion
                 			            chmod 755 /etc/init.d/S80mobileraker_companion
-                			            echo "Starting service..."
+                			            if grep -q -v "mobileraker_companion" "/usr/data/printer_data/moonraker.asvc"; then
+                                            printf "Adding Mobileraker Companion to Moonraker services file...\n"
+                                            sed -i '/mobileraker_companion/!{ $a\mobileraker_companion' "/usr/data/printer_data/moonraker.asvc"
+                                        else
+                                            printf "Mobileraker Companion is already added to Moonraker services file...\n"
+                                        fi
+                			            printf "Restarting services...\n"
                 			            /etc/init.d/S80mobileraker_companion restart
+                			            /etc/init.d/S55klipper_service restart
+                			            /etc/init.d/S56moonraker_service restart
+                			            sleep 1
+                			            /etc/init.d/S56moonraker_service restart
+                			            sleep 1
                 			            printf "\n"
                 			            printf "${green} Mobileraker Companion has been installed successfully!"
                 			            printf "${white}\n\n"
@@ -1931,7 +2009,7 @@ do
                 			    cd /overlay/upper
                 			    /etc/init.d/S50nginx stop
                 			    /etc/init.d/S56moonraker_service stop
-                			    printf "Deleting files...\n"
+                			    printf "Removing files...\n"
                 			    rm -rf /etc/init.d/S50nginx /etc/init.d/S56moonraker_service
                 			    rm -rf /usr/data/printer_data/config/moonraker.conf /usr/data/printer_data/config/.moonraker.conf.bkp /usr/data/printer_data/.moonraker.uuid /usr/data/printer_data/moonraker.asvc /usr/data/nginx /usr/data/moonraker
                 			    printf "\n"
@@ -1965,7 +2043,7 @@ do
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                                 printf "${green} Removing Fluidd..."
                 			    printf "${white}\n\n"
-                                printf "Deleting files...\n"
+                                printf "Removing files...\n"
                 			    rm -rf /usr/data/fluidd
                 			    if grep -q "\[update_manager fluidd\]" "$moonraker_config" ; then
                                     printf "Disabling Fluidd configurations in moonraker.conf file...\n"
@@ -2012,7 +2090,7 @@ do
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                                 printf "${green} Removing Mainsail..."
                 			    printf "${white}\n\n"
-                                printf "Deleting files...\n"
+                                printf "Removing files...\n"
                 			    rm -rf /usr/data/mainsail
                 			    if grep -q "\[update_manager mainsail\]" "$moonraker_config" ; then
                                     printf "Disabling Mainsail configurations in moonraker.conf file...\n"
@@ -2103,7 +2181,7 @@ do
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
             			        printf "${green} Removing Klipper Gcode Shell Command..."
                 			    printf "${white}\n\n"
-            			        printf "Deleting file...\n"
+            			        printf "Removing file...\n"
                 			    rm -rf "$klipper_extra_folder"gcode_shell_command.py "$klipper_extra_folder"gcode_shell_command.pyc
                 			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
@@ -2133,7 +2211,7 @@ do
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
             			        printf "${green} Removing Hostname Service..."
                 			    printf "${white}\n\n"
-            			        printf "Deleting file...\n"
+            			        printf "Removing file...\n"
                 			    rm -f /etc/init.d/S01hostname
                 			    printf "\n"
                 			    printf "${green} Hostname Service has been removed successfully!"
@@ -2145,28 +2223,44 @@ do
             			fi
             			;;
             		7)
-            			if [ ! -f "$systemctl_file" ]; then
-            				printf "${darkred} Fix for Reboot/Shutdown functions is not installed!"
+            			if [ ! -f "$supervisor_file" ]; then
+            				printf "${darkred} Supervisor Lite is not installed!"
             				printf "${white}\n\n"
             			else
-                            printf " Are you sure you want to remove ${green}Fix for Reboot/Shutdown functions ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            printf " Are you sure you want to remove ${green}Supervisor Lite ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to remove ${green}Fix for Reboot/Shutdown functions ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                printf " Are you sure you want to remove ${green}Supervisor Lite ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf "${green} Removing Fix for Reboot/Shutdown functions..."
+            			        printf "${green} Removing Supervisor Lite..."
                 			    printf "${white}\n\n"
-                			    opkg remove sudo
                 			    printf "Removing files...\n"
-                			    rm -f /usr/bin/sudo /usr/bin/systemctl
+                			    rm -f "$supervisor_file"
+                			    if grep -q "provider: supervisord_cli" "$moonraker_config" && ! grep -q "provider: none" "$moonraker_config"; then
+                                    printf "Replacing provider in moonraker.conf file...\n"
+                                    sed -i 's/provider: supervisord_cli/provider: none/' "$moonraker_config"
+                                else
+                                    printf "Provider is already replaced in moonraker.conf file.\n"
+                                fi
+                                if grep -q "managed_services: klipper" "$moonraker_config" && ! grep -q "is_system_service: False" "$moonraker_config"; then
+                                    printf "Replacing managed services in moonraker.conf file...\n"
+                                    sed -i 's/managed_services: klipper/is_system_service: False/' "$moonraker_config"
+                                else
+                                    printf "Managed services are already replaced in moonraker.conf file.\n"
+                                fi
+                                printf "Restarting services...\n"
+                			    /etc/init.d/S56moonraker_service restart
+                                sleep 1
+                                /etc/init.d/S56moonraker_service restart
+                			    sleep 1
                 			    printf "\n"
-                			    printf "${green} Fix for Reboot/Shutdown functions has been removed successfully!"
+                			    printf "${green} Supervisor Lite has been removed successfully!"
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} Deletion canceled!"
@@ -2174,7 +2268,36 @@ do
             			    fi
             			fi
                         ;;
-                    8)
+            		8)
+            			if [ ! -f "$systemctl_file" ] && [ ! -f "$sudo_file" ]; then
+            				printf "${darkred} Host Controls Support is not installed!"
+            				printf "${white}\n\n"
+            			else
+                            printf " Are you sure you want to remove ${green}Host Controls Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to remove ${green}Host Controls Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+            			        printf "${green} Removing Host Controls Support..."
+                			    printf "${white}\n\n"
+                			    printf "Removing files...\n"
+                			    rm -f /usr/bin/sudo /usr/bin/systemctl
+                			    printf "\n"
+                			    printf "${green} Host Controls Support has been removed successfully!"
+                			    printf "${white}\n\n"
+            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                			    printf "${darkred} Deletion canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    9)
             			if [ ! -d "$kamp_folder" ]; then
             				printf "${darkred} Klipper Adaptive Meshing & Purging is not installed!"
             				printf "${white}\n\n"
@@ -2192,7 +2315,7 @@ do
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                                 printf "${green} Removing Klipper Adaptive Meshing & Purging..."
                 			    printf "${white}\n\n"
-                                printf "Deleting files...\n"
+                                printf "Removing files...\n"
                 			    rm -rf "$kamp_folder" "$helper_script"/KAMP "$helper_script"/KAMP_Settings.cfg
                 			    if grep -q "include Helper-Script/KAMP_Settings" "$printer_config" ; then
                                     printf "Removing KAMP configurations in printer.cfg file...\n"
@@ -2234,7 +2357,7 @@ do
                 			fi
            				fi
                         ;;
-					9)
+					10)
             			if [ ! -f "$buzzer_file" ]; then
             				printf "${darkred} Buzzer Support is not installed!"
             				printf "${white}\n\n"
@@ -2252,7 +2375,7 @@ do
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
             			        printf "${green} Removing Buzzer Support..."
                 			    printf "${white}\n\n"
-                			    printf "Deleting file...\n"
+                			    printf "Removing file...\n"
                 			    rm -rf "$buzzer_file" "$helper_script"/buzzer-support.cfg
                 			    if grep -q "include Helper-Script/buzzer-support" "$printer_config" ; then
                                     printf "Removing Buzzer Support configurations in printer.cfg file...\n"
@@ -2272,7 +2395,7 @@ do
             			    fi
             			fi
                         ;;
-					10)
+					11)
             			if [ ! -d "$prtouch_folder" ]; then
             				printf "${darkred} Nozzle Cleaning Fan Control is not installed!"
             				printf "${white}\n\n"
@@ -2290,7 +2413,7 @@ do
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
             			        printf "${green} Removing Nozzle Cleaning Fan Control..."
                 			    printf "${white}\n\n"
-            			        printf "Deleting files...\n"
+            			        printf "Removing files...\n"
                 			    rm -rf "$prtouch_folder" "$helper_script"/nozzle-cleaning-fan-control.cfg
                 			    if grep -q "include Helper-Script/nozzle-cleaning-fan-control" "$printer_config" ; then
                                     printf "Removing Nozzle Cleaning Fan Control configurations in printer.cfg file...\n"
@@ -2310,7 +2433,7 @@ do
             			    fi
             			fi
                         ;;
-                    11)
+                    12)
             			if [ ! -f "$fancontrols_file" ]; then
             				printf "${darkred} Fans Control Macros are not installed!"
             				printf "${white}\n\n"
@@ -2328,7 +2451,7 @@ do
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
             			        printf "${green} Removing Fans Control Macros..."
                 			    printf "${white}\n\n"
-                			    printf "Deleting file...\n"
+                			    printf "Removing file...\n"
                 			    rm -f "$helper_script"/fans-control.cfg
                 			    if grep -q "include Helper-Script/fans-control" "$printer_config" ; then
                                     printf "Removing Fans Control Macros configurations in printer.cfg file...\n"
@@ -2372,7 +2495,7 @@ do
             			    fi
             			fi
                         ;;
-                    12)
+                    13)
             			if [ ! -d "$shaperconfig_folder" ]; then
                 			printf "${darkred} Improved Shapers Calibrations are not installed!"
                 			printf "${white}\n\n"
@@ -2392,7 +2515,7 @@ do
                 			    printf "${white}\n\n"
                                 printf "Restoring files...\n"
                 			    cp -f "$shaperconfig_folder"backup/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
-                			    printf "Deleting files...\n"
+                			    printf "Removing files...\n"
                                 rm -rf "$shaperconfig_folder" "$helper_script"/shapers-configs "$klipper_extra_folder"calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.pyc
                                 if grep -q "#variable_autotune_shapers:" "$macro_config"; then
                                     printf "Enabling stock configuration in gcode_macro.cfg file...\n"
@@ -2428,7 +2551,7 @@ do
             			    fi
             			fi
                         ;;
-                    13)
+                    14)
             			if [ ! -f "$usefullmacros_file" ]; then
             				printf "${darkred} Usefull Macros are not installed!"
             				printf "${white}\n\n"
@@ -2446,7 +2569,7 @@ do
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
             			        printf "${green} Removing Usefull Macros..."
                 			    printf "${white}\n\n"
-                			    printf "Deleting file...\n"
+                			    printf "Removing file...\n"
                 			    rm -f "$helper_script"/usefull-macros.cfg
                 			    if grep -q "include Helper-Script/usefull-macros" "$printer_config" ; then
                                     printf "Removing Usefull Macros configurations in printer.cfg file...\n"
@@ -2466,7 +2589,7 @@ do
             			    fi
             			fi
                         ;;
-                    14)
+                    15)
             			if [ ! -f "$savezoffset_file" ]; then
             				printf "${darkred} Save Z-Offset Macros are not installed!"
             				printf "${white}\n\n"
@@ -2484,7 +2607,7 @@ do
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
             			        printf "${green} Removing Save Z-Offset Macros..."
                 			    printf "${white}\n\n"
-                			    printf "Deleting file...\n"
+                			    printf "Removing file...\n"
                 			    rm -f "$helper_script"/save-zoffset.cfg "$helper_script"/variables.cfg
                 			    if grep -q "include Helper-Script/save-zoffset" "$printer_config" ; then
                                     printf "Removing Save Z-Offset Macros configurations in printer.cfg file...\n"
@@ -2504,7 +2627,7 @@ do
             			    fi
             			fi
                         ;;
-                    15)
+                    16)
             			if [ ! -f "$screwsadjust_file" ]; then
             				printf "${darkred} Screws Tilt Adjust Support is not installed!"
             				printf "${white}\n\n"
@@ -2522,7 +2645,7 @@ do
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
             			        printf "${green} Removing Screws Tilt Adjust Support files..."
                 			    printf "${white}\n\n"
-                			    printf "Deleting file...\n"
+                			    printf "Removing file...\n"
                 			    rm -f "$helper_script"/screws-tilt-adjust.cfg
                 			    if grep -q "include Helper-Script/screws-tilt-adjust" "$printer_config" ; then
                                     printf "Removing Screws Tilt Adjust Support configurations in printer.cfg file...\n"
@@ -2542,7 +2665,7 @@ do
             			    fi
             			fi
                         ;;
-                    16)
+                    17)
             			if [ ! -f "$timelapse_file" ]; then
                 			printf "${darkred} Moonraker Timelapse is not installed!"
                 			printf "${white}\n\n"
@@ -2560,7 +2683,7 @@ do
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                                 printf "${green} Removing Moonraker Timelapse..."
                 			    printf "${white}\n\n"
-                                printf "Deleting files...\n"
+                                printf "Removing files...\n"
                 			    rm -f "$helper_script"/timelapse.cfg
                 			    rm -f /usr/data/moonraker/moonraker/moonraker/components/timelapse.py
                 			    rm -f /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc
@@ -2595,7 +2718,7 @@ do
             			    fi
             			fi
                         ;;
-                    17)
+                    18)
             			if [ ! -f "$camera_file" ]; then
             				printf "${darkred} Camera Settings Control is not installed!"
             				printf "${white}\n\n"
@@ -2613,7 +2736,7 @@ do
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
             			        printf "${green} Removing Camera Settings Control..."
                 			    printf "${white}\n\n"
-                			    printf "Deleting file...\n"
+                			    printf "Removing file...\n"
                 			    rm -f "$helper_script"/camera-settings.cfg
                 			    if grep -q "include Helper-Script/camera-settings" "$printer_config" ; then
                                     printf "Removing Camera Settings configurations in printer.cfg file...\n"
@@ -2633,7 +2756,7 @@ do
             			    fi
             			fi
                         ;;
-					18)
+					19)
             			if [ ! -d "$octoeverywhere_folder" ]; then
             				printf "${darkred} OctoEverywhere is not installed!"
             				printf "${white}\n\n"
@@ -2662,7 +2785,7 @@ do
             			    fi
             			fi
                         ;;
-                    19)
+                    20)
             			if [ ! -d "$moonraker_obico_folder" ]; then
                 			printf "${darkred} Obico is not installed!"
                 			printf "${white}\n\n"
@@ -2680,7 +2803,7 @@ do
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                                 printf "${green} Removing Obico..."
                 			    printf "${white}\n\n"
-                                printf "Deleting files...\n"
+                                printf "Removing files...\n"
                 			    rm -rf $moonraker_obico_folder
                 			    rm -rf /usr/data/moonraker-obico-env
                 			    printf "Removing service file...\n"
@@ -2712,7 +2835,7 @@ do
             			    fi
             			fi
                         ;;
-                    20)
+                    21)
             			if [ ! -d "$mobileraker_folder" ]; then
             				printf "${darkred} Mobileraker Companion is not installed!"
             				printf "${white}\n\n"
@@ -2732,10 +2855,22 @@ do
                 			    printf "${white}\n\n"
                 			    printf "Stopping services...\n"
                 			    /etc/init.d/S80mobileraker_companion stop
-                			    printf "Deleting files...\n"
+                			    printf "Removing files...\n"
+                			    if grep -q "mobileraker_companion" "/usr/data/printer_data/moonraker.asvc"; then
+                                    printf "Removing Mobileraker Companion from Moonraker services file...\n"
+                                    sed -i "/mobileraker_companion/d" "/usr/data/printer_data/moonraker.asvc"
+                                else
+                                    printf "Mobileraker Companion is already removed from Moonraker services files...\n"
+                                fi
                 			    rm -rf /etc/init.d/S80mobileraker_companion /usr/data/mobileraker_companion
-                			    printf "Deleting dependencies...\n"
+                			    printf "Removing dependencies...\n"
                 			    pip3 uninstall -y requests websockets pytz coloredlogs
+                			    printf "Restarting services...\n"
+                			    /etc/init.d/S55klipper_service restart
+                			    /etc/init.d/S56moonraker_service restart
+                			    sleep 1
+                			    /etc/init.d/S56moonraker_service restart
+                			    sleep 1
                 			    printf "\n"
                 			    printf "${green} Mobileraker Companion has been removed successfully!"
                 			    printf "${white}\n\n"
@@ -3157,9 +3292,19 @@ do
                                         else
                                             printf "Stock configuration is already replaced in gcode_macro.cfg file.\n"
                                         fi
+                                        if grep -q -v "guppyscreen" "/usr/data/printer_data/moonraker.asvc"; then
+                                            printf "Adding Guppy Screen to Moonraker services file...\n"
+                                            sed -i '/guppyscreen/!{ $a\guppyscreen' "/usr/data/printer_data/moonraker.asvc"
+                                        else
+                                            printf "Guppy Screen is already added to Moonraker services file...\n"
+                                        fi
                                         sync
                                         printf "Restarting services...\n"
                                         /etc/init.d/S55klipper_service restart
+                                        /etc/init.d/S56moonraker_service restart
+                			            sleep 1
+                			            /etc/init.d/S56moonraker_service restart
+                			            sleep 1
                                         if [ -f /usr/bin/Monitor ]; then
                                             mv /usr/bin/Monitor /usr/bin/Monitor.disable
                                         fi
@@ -3262,9 +3407,19 @@ do
                                         else
                                             printf "Stock configuration is already replaced in gcode_macro.cfg file.\n"
                                         fi
+                                        if grep -q -v "guppyscreen" "/usr/data/printer_data/moonraker.asvc"; then
+                                            printf "Adding Guppy Screen to Moonraker services file...\n"
+                                            sed -i '/guppyscreen/!{ $a\guppyscreen' "/usr/data/printer_data/moonraker.asvc"
+                                        else
+                                            printf "Guppy Screen is already added to Moonraker services file...\n"
+                                        fi
                                         sync
                                         printf "Restarting services...\n"
                                         /etc/init.d/S55klipper_service restart
+                                        /etc/init.d/S56moonraker_service restart
+                			            sleep 1
+                			            /etc/init.d/S56moonraker_service restart
+                			            sleep 1
                                         if [ -f /usr/bin/Monitor ]; then
                                             mv /usr/bin/Monitor /usr/bin/Monitor.disable
                                         fi
@@ -3345,8 +3500,18 @@ do
                                 else
                                     printf "Stock configuration is already restored in gcode_macro.cfg file.\n"
                                 fi
+                                if grep -q "guppyscreen" "/usr/data/printer_data/moonraker.asvc"; then
+                                    printf "Removing Guppy Screen from Moonraker services file...\n"
+                                    sed -i '/guppyscreen/d' "/usr/data/printer_data/moonraker.asvc"
+                                else
+                                    printf "Guppy Screen is already removed from Moonraker services files...\n"
+                                fi
                                 printf "Restarting services...\n"
                                 /etc/init.d/S55klipper_service restart
+                                /etc/init.d/S56moonraker_service restart
+                			    sleep 1
+                			    /etc/init.d/S56moonraker_service restart
+                			    sleep 1
                                 if [ -f /usr/bin/Monitor.disable ]; then
                                     mv /usr/bin/Monitor.disable /usr/bin/Monitor
                                 fi
