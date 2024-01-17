@@ -1,31 +1,52 @@
 --- /dev/null
 +++ mobileraker_companion.new/S80mobileraker_companion
-@@ -0,0 +1,25 @@
+@@ -0,0 +1,46 @@
 +#!/bin/sh
-+# start script for mobileraker companion on K1 - by destinal
++#
++# Starts mobileraker companion on K1 - by destinal
 +
++PROG=/usr/share/klippy-env/bin/python
++PID_FILE=/var/run/mobileraker_companion.pid
 +MRC_DIR="/usr/data/mobileraker_companion"
 +LOG_DIR="/usr/data/printer_data/logs"
++PY_SCRIPT="$MRC_DIR/mobileraker.py"
++ARGS="-c $MRC_DIR/mobileraker.conf -l $LOG_DIR/mobileraker.log"
++
++start() {
++    printf "Starting mobileraker_companion service: "
++
++    start-stop-daemon -S -b -m -p $PID_FILE \
++        --exec $PROG -- $PY_SCRIPT $ARGS
++    [ $? = 0 ] && echo "OK" || echo "FAIL"
++}
++stop() {
++    printf "Stopping mobileraker_companion service: "
++
++    start-stop-daemon -K -p $PID_FILE
++    [ $? = 0 ] && echo "OK" || echo "FAIL"
++}
++restart() {
++    stop
++    sleep 1
++    start
++}
 +
 +case "$1" in
 +    start)
-+        /usr/bin/python3 "$MRC_DIR/mobileraker.py" -c "$MRC_DIR/mobileraker.conf" -l "$LOG_DIR/mobileraker.log" >/dev/null 2>&1 &
++        start
 +        ;;
 +    stop)
-+        MY_PID=`ps auxw|grep python3.*mobileraker_companion|grep -v grep|awk '{print $1}'`
-+        if [ "$MY_PID" != "" ]; then kill -TERM $MY_PID; fi
++        stop
 +        ;;
 +    restart|reload)
-+        "$0" stop
-+        "$0" start
++        restart
 +        ;;
 +    *)
-+        echo "Usage: $0 {start}"
++        echo "Usage: $0 {start|stop|restart}"
 +        exit 1
 +esac
 +
 +exit $?
-+
 --- /dev/null
 +++ mobileraker_companion.new/mobileraker.conf
 @@ -0,0 +1,42 @@
