@@ -1,0 +1,129 @@
+#!/bin/sh
+# supervisorctl shim - by destinal 
+# this is a fake supervisorctl that provides just enough information for moonraker to think it's the real thing.
+# good enough to list the names of services in moonraker.conf, to say whether they're running or not (with false pids and times)
+# and to start and stop them by name, finding and calling the matching init scripts. 
+# installing: put this in in /usr/bin/supervisorctl and then in moonraker.conf in [machine] section, set  "provider: supervisord_cli"
+
+if [ -t 1 ]; then  # colorize only if we're on a terminal
+  GREEN='\033[32m'
+  RED='\033[31m'
+  ENDCOLOR='\033[0m'
+fi
+
+get_services() {
+  moonraker_pid="$(cat /var/run/moonraker.pid)"
+  # if moonraker is running, get its config directory from its command line
+  if [ -f /var/run/moonraker.pid ] && [ -d /proc/"$moonraker_pid" ] ; then
+    cmdline="$(tr '\0' '\n' < /proc/"$moonraker_pid"/cmdline)"
+    moonraker_dir="$(echo $cmdline | awk -F'-d ' '{print $2}' | awk '{print $1}')"
+    moonraker_conf="$moonraker_dir/config/moonraker.conf"
+    services=`(printf 'klipper\nmoonraker\n'; awk '/managed_services:/ {print $2}' $moonraker_conf | sed 's/://') | sort|uniq`
+    echo $services
+  else
+    echo "Error: Invalid or missing PID file /var/run/moonraker.pid" >&2
+    exit 1
+  fi
+}
+
+get_pid_file() {
+  service="$1"
+  [ $service == "klipper" ] && service="klippy"
+  pid_file="/var/run/$service.pid"
+  echo $pid_file
+}
+
+is_running() {
+  service="$1"
+  pid_file="$(get_pid_file "$service")"
+
+  # Check for PID file
+  if [ -f "$pid_file" ] && [ -d "/proc/$(cat $pid_file)" ]; then
+      return 0  # Running
+  fi
+
+  # Fallback to using pidof in case the service doesn't use pid files
+  if pidof "$service" &>/dev/null; then
+      return 0  # Running
+  fi
+  return 1  # Not running
+}
+
+print_process_status() {
+  if is_running "$service"; then
+    printf "%-33s$GREEN""RUNNING$ENDCOLOR\n" "$service"
+  else
+    printf "%-33s$RED""STOPPED$ENDCOLOR\n" "$service"
+  fi
+}
+
+print_usage() {
+  echo "supervisorctl shim - provide minimal support for moonraker so CrealityOS moonraker can start/stop without systemd"
+  echo "Usage: $0 [command] <service>"
+  echo "commands include status stop start restart"
+} 
+
+get_script_path() {
+  service="$1"
+  script_path="$(ls -1 /etc/init.d/S[0-9][0-9]${service}_service /etc/init.d/S[0-9][0-9]${service}* 2>/dev/null|head -1)"
+  echo "$script_path"
+}
+
+stop() {
+  service="$1"
+  script_path="$(get_script_path $service)"
+  # Check if the script exists and stop the service
+  if [[ -f "$script_path" ]]; then
+    "$script_path" stop
+  fi
+}
+
+start() {
+  service="$1"
+  script_path="$(get_script_path $service)"
+  # Check if the script exists and start the service
+  if [[ -f "$script_path" ]]; then
+    "$script_path" start
+  fi
+}
+
+restart() {
+  service="$1"
+  script_path="$(get_script_path $service)"
+  # Check if the script exists and restart the service
+  if [[ -f "$script_path" ]]; then
+    "$script_path" restart
+  fi
+}
+
+main() {
+  # echo "$0 $@" >> /tmp/supervisorctl.log
+  action="$1"; shift
+  case "$action" in
+    status)
+      if [ "$#" -lt 1 ]; then  # just status, no arguments
+        for service in $(get_services); do
+          print_process_status $service
+        done
+      else
+        for service in "$@"; do # loop through the arguments provided
+          print_process_status $service
+        done
+      fi
+      ;;
+    start)
+      start "$1"
+      ;;
+    stop)
+      stop "$1"
+      ;;
+    restart)
+      restart "$1"
+      ;;
+    *)
+      print_usage
+      exit 1
+  esac
+}
+
+main "$@"
