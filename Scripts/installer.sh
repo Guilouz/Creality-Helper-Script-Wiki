@@ -85,6 +85,23 @@ supervisor_file="/usr/bin/supervisorctl"
 supervisor_URL="${download_URL}fixes/supervisorctl"
 firmware_version="$(cat /usr/data/creality/userdata/config/system_version.json | jq -r '.sys_version')"
 
+if [ ! -f /tmp/curl ]; then
+    printf "${white}\n"
+    printf " Downloading package needed for the script..."
+    printf "${white}\n\n"
+    wget -q --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/fixes/curl -O /tmp/curl >/dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        printf "${white}\n\n"
+        printf "${darkred} Download failed!"
+        printf "${white}\n\n"
+        printf " Try to install ${green}Entware ${white}then ${green}wget-ssl ${white}with this command\n before installing anything else: ${yellow}opkg install wget-ssl"
+        printf "${white}\n\n"
+    else
+        chmod +x /tmp/curl >/dev/null 2>&1 &
+        clear
+    fi
+fi
+
 check_updates() {
     github_script=$(/tmp/curl -s -L https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh)
     current_script=$(cat /root/installer.sh)
@@ -575,23 +592,6 @@ system_menu(){
     opt_system_menu=$(echo "$opt_system_menu" | tr '[:lower:]' '[:upper:]')
     printf "${white}\n"
 }
-
-if [ ! -f /tmp/curl ]; then
-    printf "${white}\n"
-    printf " Downloading package needed for the script..."
-    printf "${white}\n\n"
-    wget -q --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/fixes/curl -O /tmp/curl >/dev/null 2>&1
-    if [ $? -ne 0 ]; then
-        printf "${white}\n\n"
-        printf "${darkred} Download failed!"
-        printf "${white}\n\n"
-        printf " Try to install ${green}Entware ${white}then ${green}wget-ssl ${white}with this command\n before installing anything else: ${yellow}opkg install wget-ssl"
-        printf "${white}\n\n"
-    else
-        chmod +x /tmp/curl >/dev/null 2>&1 &
-        clear
-    fi
-fi
 
 while [ 1 ]
 do
