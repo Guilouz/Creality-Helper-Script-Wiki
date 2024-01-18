@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.3.0
+VERSION=v4.3.1
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -102,10 +102,49 @@ if [ ! -f /tmp/curl ]; then
     fi
 fi
 
-check_updates() {
+startup_update() {
     github_script=$(/tmp/curl -s -L https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh)
     current_script=$(cat /root/installer.sh)
     if [ "$github_script" != "$current_script" ]; then
+        current_version=$(echo "$github_script" | sed -n '3s/VERSION=//p')
+        printf "${white}\n\n"
+        printf " ${green}A new script version ($current_version) is available!\n\n"
+        printf " ${white}See changelog here: ${yellow}https://tinyurl.com/w7d9k5bt\n\n"
+        printf " ${white}Do you want to update to the latest version ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+        read confirm
+        printf "${white}\n"
+        while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+            printf "${darkred} Please select a correct choice!"
+            printf "${white}\n\n"
+            printf " Do you want to update to the latest version ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            read confirm
+            printf "${white}\n"
+        done
+        if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+            echo "$github_script" > /root/installer.sh
+            printf " ${green}The script has been updated!"
+            read -p "${yellow} Press Enter to start the new version."
+            exec sh /root/installer.sh
+            printf "${white}\n\n"
+        elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+            printf "${darkred} Update canceled! ${white}Starting old script version in "
+            i=5
+            while [ $i -ge 1 ]; do
+                printf "${yellow}$i${white}..."
+                sleep 1
+                i=$((i - 1))
+            done
+            printf "${white}\n\n"
+        fi
+    fi
+}
+
+startup_update
+
+check_updates() {
+    github_script=$(/tmp/curl -s -L https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh)
+    current_script=$(cat /root/installer.sh)
+    if [ "$github_script" != "$current_script" ]; then   
         current_version=$(echo "$github_script" | sed -n '3s/VERSION=//p')
         printf " ${green}A new script version ($current_version) is available!\n\n"
         printf " ${white}See changelog here: ${yellow}https://tinyurl.com/w7d9k5bt\n\n"
@@ -143,8 +182,13 @@ check_updates() {
             printf "${white}\n\n"
         fi
     else
-        printf "${green} Your script is already up to date!\n"
-        sleep 3
+        printf "${green} Your script is already up to date! "
+            i=3
+            while [ $i -ge 1 ]; do
+                printf "${yellow}$i${white}..."
+                sleep 1
+                i=$((i - 1))
+            done
         printf "${white}\n\n"
     fi
 }
