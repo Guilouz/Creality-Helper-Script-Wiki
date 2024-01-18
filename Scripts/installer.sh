@@ -144,6 +144,7 @@ check_updates() {
         fi
     else
         printf "${green} Your script is already up to date!"
+        sleep 3
         printf "${white}\n\n"
     fi
 }
