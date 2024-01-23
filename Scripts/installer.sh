@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.3.1
+VERSION=v4.3.2
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -3311,6 +3311,8 @@ do
                                             printf "Replacing mathplotlib ft2font module to generate PSD graphs...\n"
                                             cp "$guppyscreen_folder"k1_mods/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
                                         fi
+                                        ln -sf "$guppyscreen_folder"k1_mods/respawn/libeinfo.so.1 /lib/libeinfo.so.1
+                                        ln -sf "$guppyscreen_folder"k1_mods/respawn/librc.so.1 /lib/librc.so.1
                                         printf "Downloading Guppy Screen configurations files...\n"
                 			            /tmp/curl -s -L "$guppyscreen_URL1" -o "$guppyscreen_folder"scripts/guppy_update.cfg
                 			            /tmp/curl -s -L "$guppyscreen_URL2" -o "$guppyscreen_folder"guppy-update.sh
@@ -3426,6 +3428,8 @@ do
                                             printf "Replacing mathplotlib ft2font module to generate PSD graphs...\n"
                                             cp "$guppyscreen_folder"/k1_mods/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
                                         fi
+                                        ln -sf "$guppyscreen_folder"k1_mods/respawn/libeinfo.so.1 /lib/libeinfo.so.1
+                                        ln -sf "$guppyscreen_folder"k1_mods/respawn/librc.so.1 /lib/librc.so.1
                                         printf "Downloading Guppy Screen configurations files...\n"
                 			            /tmp/curl -s -L "$guppyscreen_URL1" -o "$guppyscreen_folder"scripts/guppy_update.cfg
                 			            /tmp/curl -s -L "$guppyscreen_URL2" -o "$guppyscreen_folder"guppy-update.sh
@@ -3524,8 +3528,9 @@ do
                                     cp /usr/data/guppyscreen-backup/S99start_app /etc/init.d/S99start_app
                                     rm -rf /usr/data/guppyscreen-backup
                                 fi
-                                rm -f /etc/init.d/S99guppyscreen
+                                [ -f /etc/init.d/S99guppyscreen ] && /etc/init.d/S99guppyscreen stop &> /dev/null
                                 killall -q guppyscreen
+                                rm -f /etc/init.d/S99guppyscreen /lib/libeinfo.so.1 /lib/librc.so.1
                                 rm -rf /usr/data/guppyscreen /usr/data/printer_data/config/GuppyScreen "$klipper_extra_folder"calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.pyc
                                 if grep -q "include GuppyScreen/*" "$printer_config" ; then
                                     printf "Removing Guppy Screen configurations in printer.cfg file...\n"
