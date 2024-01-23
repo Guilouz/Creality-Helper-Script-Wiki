@@ -42,8 +42,10 @@ echo "Guppy Screen have been updated to version $latest_version!"
 
 if grep -Fqs "ID=buildroot" /etc/os-release
 then
-    rm -rf /tmp/guppyscreen.tar.gz /tmp/curl /tmp/guppy-releases.json
+    [ -f /etc/init.d/S99guppyscreen ] && /etc/init.d/S99guppyscreen stop &> /dev/null
+    killall -q guppyscreen
     /etc/init.d/S99guppyscreen restart &> /dev/null
+    rm -rf /tmp/guppyscreen.tar.gz /tmp/curl /tmp/guppy-releases.json
 fi
 
 exit 0
