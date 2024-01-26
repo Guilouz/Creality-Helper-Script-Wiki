@@ -1772,7 +1772,7 @@ do
                                             printf "Moonraker Timelapse configurations are already enabled in moonraker.conf file.\n"
                                         fi
                                         printf "Updating ffmpeg...\n"
-                                        opkg update && opkg upgrade ffmpeg
+                                        /opt/bin/opkg update && /opt/bin/opkg upgrade ffmpeg
                 			            printf "Restarting services...\n"
                 			            /etc/init.d/S55klipper_service restart
                 			            /etc/init.d/S56moonraker_service restart
@@ -2733,7 +2733,7 @@ do
                 			    rm -f /usr/data/moonraker/moonraker/moonraker/components/timelapse.py
                 			    rm -f /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc
                 			    if [ -f /opt/bin/ffmpeg ]; then
-                			        opkg remove ffmpeg
+                			        /opt/bin/opkg remove ffmpeg
                 			    fi
                 			    if grep -q "include Helper-Script/timelapse" "$printer_config" ; then
                                     printf "Removing Moonraker Timelapse configurations in printer.cfg file...\n"
