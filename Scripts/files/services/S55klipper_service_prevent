@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# Starts klipper service.
+#
+
+USER_DATA=/usr/data
+PROG=/usr/share/klippy-env/bin/python
+PY_SCRIPT=/usr/share/klipper/klippy/klippy.py
+PRINTER_DATA_DIR=$USER_DATA/printer_data
+PRINTER_CONFIG_DIR=$PRINTER_DATA_DIR/config
+PRINTER_LOGS_DIR=$PRINTER_DATA_DIR/logs
+PID_FILE=/var/run/klippy.pid
+
+mcu_reset()
+{
+    [ -z $(pidof klipper_mcu) ] || /etc/init.d/S57klipper_mcu restart
+}
+
+start() {
+
+        mcu_reset
+
+        HOME=/root start-stop-daemon -S -q -b -m -p $PID_FILE \
+                --exec $PROG -- $PY_SCRIPT \
+                $PRINTER_CONFIG_DIR/printer.cfg \
+                -l $PRINTER_LOGS_DIR/klippy.log \
+                -a /tmp/klippy_uds
+}
+stop() {
+        start-stop-daemon -K -q -p $PID_FILE
+}
+restart() {
+        stop
+        start
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        restart
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?
