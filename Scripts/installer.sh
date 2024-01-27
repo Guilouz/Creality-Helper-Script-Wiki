@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.3.3
+VERSION=v4.3.4
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -3824,11 +3824,8 @@ do
                                 printf "${white}\n"
                             done
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                                if [ ! -d "/usr/data/Helper-Script-Backup" ]; then
-                			        mkdir -p /usr/data/Helper-Script-Backup
-                			    fi
-                			    printf "Backup file in /usr/data/Helper-Script-Backup folder...\n"
-                                mv /etc/init.d/S55klipper_service /usr/data/Helper-Script-Backup/S55klipper_service
+                			    printf "Backup file...\n"
+                                mv /etc/init.d/S55klipper_service /etc/init.d/disabled.S55klipper_service
                                 printf "Downloading file...\n"
                 			    /tmp/curl -s -L "$klipperservice_URL" -o /etc/init.d/S55klipper_service
                 			    if [ $? -eq 0 ]; then
@@ -3851,8 +3848,8 @@ do
                         fi
                         ;;
                     4)
-                        if [ ! -f /usr/data/Helper-Script-Backup/S55klipper_service ]; then
-            	            printf "${darkred} ✗ Klipper service is not present!"
+                        if [ ! -f /etc/init.d/disabled.S55klipper_service ]; then
+            	            printf "${darkred} ✗ This is already applied!"
             	            printf "${white}\n\n"
                         else
                             printf "${cyan} This allows updating configuration files when Klipper restarts."
@@ -3868,9 +3865,9 @@ do
                                 printf "${white}\n"
                             done
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                                printf "Restoring file from /usr/data/Helper-Script-Backup folder...\n"
-                                mv /usr/data/Helper-Script-Backup/S55klipper_service /etc/init.d/S55klipper_service
-                                rmdir /usr/data/Helper-Script-Backup 2>/dev/null
+                                printf "Restoring file...\n"
+                                rm -f /etc/init.d/S55klipper_service
+                                mv /etc/init.d/disabled.S55klipper_service /etc/init.d/S55klipper_service
                                 printf "Restarting service...\n"
                                 /etc/init.d/S55klipper_service restart
                                 printf "\n"
