@@ -26,9 +26,11 @@ start() {
                 -l $PRINTER_LOGS_DIR/klippy.log \
                 -a /tmp/klippy_uds
 }
+
 stop() {
         start-stop-daemon -K -q -p $PID_FILE
 }
+
 restart() {
         stop
         start
