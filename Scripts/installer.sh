@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.3.4
+VERSION=v4.3.5
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -1731,7 +1731,7 @@ do
             			if [ -f "$timelapse_file" ]; then
             				printf "${darkred} ✗ Moonraker Timelapse is already installed!"
             				printf "${white}\n\n"
-            			elif [ ! -d "$entware_file" ]; then
+            			elif [ ! -f "$entware_file" ]; then
             				printf "${darkred} ✗ Please install Entware first!"
             				printf "${white}\n\n"
             			else
@@ -1869,7 +1869,7 @@ do
 						elif [ ! -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
             				printf "${darkred} ✗ Please install Fluidd and/or Mainsail first!"
             				printf "${white}\n\n"
-            			elif [ ! -d "$entware_file" ]; then
+            			elif [ ! -f "$entware_file" ]; then
             				printf "${darkred} ✗ Please install Entware first!"
             				printf "${white}\n\n"
             			else
@@ -1913,7 +1913,7 @@ do
             			if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} ✗ Please install Moonraker and Nginx first!"
             				printf "${white}\n\n"
-            			elif [ ! -d "$entware_file" ]; then
+            			elif [ ! -f "$entware_file" ]; then
             				printf "${darkred} ✗ Please install Entware first!"
             				printf "${white}\n\n"
             			else
