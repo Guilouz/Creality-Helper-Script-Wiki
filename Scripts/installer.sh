@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.3.5
+VERSION=v4.3.6
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -90,28 +90,31 @@ rm -rf /root/.cache
 
 if [ ! -f /tmp/curl ]; then
     printf "${white}\n"
-    printf " Downloading package needed for the script..."
+    printf " Downloading curl package needed for the script..."
     printf "${white}\n\n"
     wget -q --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/fixes/curl -O /tmp/curl >/dev/null 2>&1
     if [ $? -ne 0 ]; then
+        printf "${darkred} ✗ Download failed!"
+        printf "${white}\n"
+        printf "   Make sure your system date and time are correct.\n"
+        printf "   You can check this with the command: ${yellow}date\n"
+        printf "${white}   To change the date use the following command in this format: ${yellow}date -s \"YYYY-MM-DD HH:MM:SS\""
         printf "${white}\n\n"
-        printf "${darkred} ✗ ✗ Download failed!"
-        printf "${white}\n\n"
-        printf " Try to install ${green}Entware ${white}then ${green}wget-ssl ${white}with this command\n before installing anything else: ${yellow}opkg install wget-ssl"
-        printf "${white}\n\n"
+        exit 1
     else
+        printf "${green} ✓ curl package has been successfully downloaded!"
         chmod +x /tmp/curl >/dev/null 2>&1 &
         clear
     fi
 fi
 
 startup_update() {
-    github_script=$(/tmp/curl -s -L https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh)
+    github_script=$(/tmp/curl -s -f -L https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh)
     current_script=$(cat /root/installer.sh)
     if [ "$github_script" != "$current_script" ]; then
         current_version=$(echo "$github_script" | sed -n '3s/VERSION=//p')
-        printf "${white}\n\n"
-        printf "${green} A new script version ($current_version) is available!\n\n"
+        printf "${white}\n"
+        printf "${green} A new script version is available!\n\n"
         printf "${white} See changelog here: ${yellow}https://tinyurl.com/w7d9k5bt\n\n"
         printf "${white} Do you want to update ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
         read confirm
@@ -124,11 +127,18 @@ startup_update() {
             printf "${white}\n"
         done
         if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            echo "$github_script" > /root/installer.sh
-            printf "${green} ✓ The script has been updated!"
-            read -p "${white} Press Enter to start the new version! "
-            printf "${white}\n\n"
-            exec sh /root/installer.sh
+            /tmp/curl -s -f -L https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh -o /root/installer.sh
+            if [ $? -eq 0 ]; then
+                printf "${green} ✓ The script has been updated!"
+                read -p "${white} Press Enter to start the new version! "
+                printf "${white}\n\n"
+                exec sh /root/installer.sh
+            else
+                printf "${darkred} ✗ Error: Unable to retrieve script from GitHub.\n"
+                printf "${white}   Please update it manually by visiting the Wiki: ${yellow}http://tinyurl.com/684r9bt9"
+                printf "${white}\n\n"
+                exit 1
+            fi
         elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
             printf "${darkred} ✗ Update canceled! ${white}Starting old script version in "
             i=5
@@ -142,14 +152,16 @@ startup_update() {
     fi
 }
 
-startup_update
+if [ -f /tmp/curl ]; then
+    startup_update
+fi
 
 check_updates() {
     github_script=$(/tmp/curl -s -L https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh)
     current_script=$(cat /root/installer.sh)
     if [ "$github_script" != "$current_script" ]; then   
         current_version=$(echo "$github_script" | sed -n '3s/VERSION=//p')
-        printf "${green} A new script version ($current_version) is available!\n\n"
+        printf "${green} A new script version is available!\n\n"
         printf "${white} See changelog here: ${yellow}https://tinyurl.com/w7d9k5bt\n\n"
         printf "${white} Do you want to update ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
         read confirm
@@ -162,23 +174,30 @@ check_updates() {
             printf "${white}\n"
         done
         if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            echo "$github_script" > /root/installer.sh
-            printf "${green} ✓ The script has been updated! ${white}Do you want to run the new version ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            read run_confirm
-            printf "${white}\n"
-            while [ "$run_confirm" != "y" ] && [ "$run_confirm" != "Y" ] && [ "$run_confirm" != "n" ] && [ "$run_confirm" != "N" ]; do
-                printf "${darkred} ✗ Please select a correct choice!"
-                printf "${white}\n\n"
-                printf " Do you want to run the new version ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            /tmp/curl -s -f -L https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh -o /root/installer.sh
+            if [ $? -eq 0 ]; then
+                printf "${green} ✓ The script has been updated! ${white}Do you want to run the new version ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                 read run_confirm
                 printf "${white}\n"
-            done
-            if [ "$run_confirm" = "y" -o "$run_confirm" = "Y" ]; then
-                exec sh /root/installer.sh
-            elif [ "$run_confirm" = "n" -o "$run_confirm" = "N" ]; then
-                printf " You can run it next time with this command: ${yellow}cd && sh ./installer.sh"
+                while [ "$run_confirm" != "y" ] && [ "$run_confirm" != "Y" ] && [ "$run_confirm" != "n" ] && [ "$run_confirm" != "N" ]; do
+                    printf "${darkred} ✗ Please select a correct choice!"
+                    printf "${white}\n\n"
+                    printf " Do you want to run the new version ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                    read run_confirm
+                    printf "${white}\n"
+                done
+                if [ "$run_confirm" = "y" -o "$run_confirm" = "Y" ]; then
+                    exec sh /root/installer.sh
+                elif [ "$run_confirm" = "n" -o "$run_confirm" = "N" ]; then
+                    printf " You can run it next time with this command: ${yellow}cd && sh ./installer.sh"
+                    printf "${white}\n\n"
+                    exit
+                fi
+            else
+                printf "${darkred} ✗ Error: Unable to retrieve script from GitHub.\n"
+                printf "${white}   Please update it manually by visiting the Wiki: ${yellow}http://tinyurl.com/684r9bt9"
                 printf "${white}\n\n"
-                exit
+                exit 1
             fi
         elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
             printf "${darkred} ✗ Update canceled!"
@@ -693,7 +712,7 @@ do
                                         sed -i '/keepalive_timeout  65;/a \    proxy_connect_timeout 1600;\n    proxy_send_timeout 1600;\n    proxy_read_timeout 1600;\n    send_timeout 1600;' /usr/data/nginx/nginx/nginx.conf
                                     fi
                 			        printf "Downloading Moonraker configuration file...\n"
-                    			    /tmp/curl -s -L "$moonraker_config_URL" -o "$moonraker_config"
+                    			    /tmp/curl -L "$moonraker_config_URL" -o "$moonraker_config"
                 			        printf "Applying changes...\n"
                 			        cd /usr/data/moonraker/moonraker
                 			        git stash; git checkout master; git pull
@@ -1776,7 +1795,7 @@ do
                                             printf "Moonraker Timelapse configurations are already enabled in moonraker.conf file.\n"
                                         fi
                                         printf "Updating ffmpeg...\n"
-                                        opkg update && opkg upgrade ffmpeg
+                                        /opt/bin/opkg update && /opt/bin/opkg upgrade ffmpeg
                 			            printf "Restarting services...\n"
                 			            /etc/init.d/S55klipper_service restart
                 			            /etc/init.d/S56moonraker_service restart
@@ -2743,7 +2762,7 @@ do
                 			    rm -f /usr/data/moonraker/moonraker/moonraker/components/timelapse.py
                 			    rm -f /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc
                 			    if [ -f /opt/bin/ffmpeg ]; then
-                			        opkg remove ffmpeg
+                			        /opt/bin/opkg remove ffmpeg
                 			    fi
                 			    if grep -q "include Helper-Script/timelapse" "$printer_config" ; then
                                     printf "Removing Moonraker Timelapse configurations in printer.cfg file...\n"
