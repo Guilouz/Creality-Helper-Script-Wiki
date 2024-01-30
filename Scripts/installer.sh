@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.3.7
+VERSION=v4.3.8
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -963,10 +963,9 @@ do
             			if [ -f "$hostname_file" ]; then
             				printf "${darkred} ✗ Hostname Service is already installed!"
             				printf "${white}\n\n"
-            			elif [ $K1 -eq 0 ]; then 
+            			elif [ $K1 -eq 0 ]; then
                             printf "${darkred} ✗ This feature is not compatible with your printer."
                             printf "${white}\n\n"
-                        fi
             			else
             			    printf "${cyan} This allows to change the hostname of the machine for firmwares < 1.3.2.20."
             			    printf "${white}\n\n"
@@ -1223,10 +1222,9 @@ do
             			if [ -f "$buzzer_file" ]; then
             				printf "${darkred} ✗ Buzzer Support is already installed!"
             				printf "${white}\n\n"
-            			elif [ $K1 -eq 0 ]; then 
+            			elif [ $K1 -eq 0 ]; then
                             printf "${darkred} ✗ This feature is not compatible with your printer."
                             printf "${white}\n\n"
-                        fi
             			elif [ ! -f "$shellcommand_file" ]; then
             				printf "${darkred} ✗ Please install Klipper Gcode Shell Command first!"
             				printf "${white}\n\n"
@@ -1291,10 +1289,9 @@ do
             			if [ -d "$prtouch_folder" ]; then
             				printf "${darkred} ✗ Nozzle Cleaning Fan Control is already installed!"
             				printf "${white}\n\n"
-            			elif [ $K1 -eq 0 ]; then 
+            			elif [ $K1 -eq 0 ]; then
                             printf "${darkred} ✗ This feature is not compatible with your printer."
                             printf "${white}\n\n"
-                        fi
             			else
             			    printf "${cyan} This allows to control fans during nozzle cleaning."
             			    printf "${white}\n\n"
