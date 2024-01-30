@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.3.8
+VERSION=v4.3.9
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -220,27 +220,18 @@ check_updates() {
 check_folder() {
     local folder_path="$1"
     if [ -d "$folder_path" ]; then
-        printf "${green}✓ Installed"
+        printf "${green}✓"
     else
-        printf "${red}✗ Not Installed"
+        printf "${red}✗"
     fi
 }
 
 check_file() {
     local file_path="$1"
     if [ -f "$file_path" ]; then
-        printf "${green}✓ Installed"
+        printf "${green}✓"
     else
-        printf "${red}✗ Not Installed"
-    fi
-}
-
-check_crealityweb() {
-    local file_path="$1"
-    if [ -f "$file_path" ]; then
-        printf "${green}✓ Present"
-    else
-        printf "${red}✗ Removed"
+        printf "${red}✗"
     fi
 }
 
@@ -340,15 +331,13 @@ bottom_menu_option() {
 }
 
 infoline() {
-    local text1=$1
-    local status=$2
+    local status=$1
+    local text=$2
     local color=$3
-    local separator=" → "
-    local max_length=67
-    local separator_length=${#separator}
-    local remaining_length=$((max_length - ${#text1} - separator_length))
-    local status_padding=$((remaining_length - ${#status}))
-    printf " │   $color%s${yellow}%s${white}%s%*s${white}│\n" "$text1" "$separator" "$status" $status_padding ''
+    local max_length=66
+    local total_text_length=$(( ${#status} + ${#text} ))
+    local padding=$((max_length - total_text_length))
+    printf " │   $color${status} ${white}${text}%-${padding}s${white}│ \n" ''
 }
 
 system_line() {
@@ -576,41 +565,41 @@ info_menu(){
     innerline
     hr
     subtitle '•ESSENTIALS:'
-    infoline 'Moonraker & Nginx' "$(check_folder "$moonraker_folder")"
-    infoline 'Fluidd' "$(check_folder "$fluidd_folder")"
-    infoline 'Mainsail' "$(check_folder "$mainsail_folder")"
+    infoline "$(check_folder "$moonraker_folder")" 'Moonraker & Nginx'
+    infoline "$(check_folder "$fluidd_folder")" 'Fluidd'
+    infoline "$(check_folder "$mainsail_folder")" 'Mainsail'
     hr
     subtitle '•UTILITIES:'
-    infoline 'Entware' "$(check_file "$entware_file")"
-    infoline 'Klipper Gcode Shell Command' "$(check_file "$shellcommand_file")"
-    infoline 'Hostname Service' "$(check_file "$hostname_file")"
-    infoline 'Supervisor Lite' "$(check_file "$supervisor_file")"
-    infoline 'Host Controls Support' "$(check_file "$systemctl_file")"
+    infoline "$(check_file "$entware_file")" 'Entware'
+    infoline "$(check_file "$shellcommand_file")" 'Klipper Gcode Shell Command'
+    infoline "$(check_file "$hostname_file")" 'Hostname Service'
+    infoline "$(check_file "$supervisor_file")" 'Supervisor Lite'
+    infoline "$(check_file "$systemctl_file")" 'Host Controls Support'
     hr
     subtitle '•IMPROVEMENTS:'
-    infoline 'Klipper Adaptive Meshing & Purging' "$(check_folder "$kamp_folder")"
-    infoline 'Buzzer Support' "$(check_file "$buzzer_file")"
-    infoline 'Nozzle Cleaning Fan Control' "$(check_folder "$prtouch_folder")"
-    infoline 'Fans Control Macros' "$(check_file "$fancontrols_file")" "$white"
-    infoline 'Improved Shapers Calibrations' "$(check_folder "$shaperconfig_folder")"
-    infoline 'Usefull Macros' "$(check_file "$usefullmacros_file")" "$white"
-    infoline 'Save Z-Offset Macros' "$(check_file "$savezoffset_file")" "$white"
-    infoline 'Screws Tilt Adjust Support' "$(check_file "$screwsadjust_file")" "$white"
+    infoline "$(check_folder "$kamp_folder")" 'Klipper Adaptive Meshing & Purging'
+    infoline "$(check_file "$buzzer_file")" 'Buzzer Support'
+    infoline "$(check_folder "$prtouch_folder")" 'Nozzle Cleaning Fan Control'
+    infoline "$(check_file "$fancontrols_file")" 'Fans Control Macros' 
+    infoline "$(check_folder "$shaperconfig_folder")" 'Improved Shapers Calibrations'
+    infoline "$(check_file "$usefullmacros_file")" 'Usefull Macros'
+    infoline "$(check_file "$savezoffset_file")" 'Save Z-Offset Macros'
+    infoline "$(check_file "$screwsadjust_file")" 'Screws Tilt Adjust Support'
     hr
     subtitle '•CAMERA:'
-    infoline 'Moonraker Timelapse' "$(check_file "$timelapse_file")" "$white"
-    infoline 'Camera Settings Control' "$(check_file "$camera_file")" "$white"
+    infoline "$(check_file "$timelapse_file")" 'Moonraker Timelapse'
+    infoline "$(check_file "$camera_file")" 'Camera Settings Control'
     hr
     subtitle '•REMOTE ACCESS AND AI DETECTION:'
-    infoline 'OctoEverywhere' "$(check_folder "$octoeverywhere_folder")" "$white"
-    infoline 'Obico' "$(check_folder "$moonraker_obico_folder")" "$white"
-    infoline 'Mobileraker Companion' "$(check_folder "$mobileraker_folder")" "$white"
+    infoline "$(check_folder "$octoeverywhere_folder")" 'OctoEverywhere'
+    infoline "$(check_folder "$moonraker_obico_folder")" 'Obico'
+    infoline "$(check_folder "$mobileraker_folder")" 'Mobileraker Companion'
     hr
     subtitle '•CUSTOMIZATION:'
-    infoline 'Custom Boot Display' "$(check_file "$bootdisplay_file")" "$white"
-    infoline 'Creality Web Interface' "$(check_crealityweb "$crealityweb_file")" "$white"
-    infoline 'Guppy Screen' "$(check_folder "$guppyscreen_folder")" "$white"
-    infoline 'Creality Dynamic Logos for Fluidd' "$(check_file "$fluiddlogo_file")" "$white"
+    infoline "$(check_file "$bootdisplay_file")" 'Custom Boot Display'
+    infoline "$(check_file "$crealityweb_file")" 'Creality Web Interface'
+    infoline "$(check_folder "$guppyscreen_folder")" 'Guppy Screen'
+    infoline "$(check_file "$fluiddlogo_file")" 'Creality Dynamic Logos for Fluidd'
     hr
     innerline
     hr
@@ -636,6 +625,8 @@ system_menu(){
     upHours=$((uptime/60/60%24))
     upMins=$((uptime/60%60))
     load=`cat /proc/loadavg | awk {'print $1 " (1 min.) / " $2 " (5 min.) / " $3 " (15 min.)"'}`
+    device_sn=$(cat /usr/data/creality/userdata/config/system_config.json | grep -o '"device_sn":"[^"]*' | awk -F '"' '{print $4}')
+    mac_address=$(cat /usr/data/creality/userdata/config/system_config.json | grep -o '"device_mac":"[^"]*' | awk -F '"' '{print $4}' | sed 's/../&:/g; s/:$//')
     topline
     title '[ SYSTEM MENU ]' "${yellow}"
     innerline
@@ -643,7 +634,9 @@ system_menu(){
     system_line "     System" "$(uname -s) (Kernel $(uname -r))" "${green}"
     system_line "   Firmware" "$(check_version)"
     system_line "   Hostname" "$(uname -n)"
+    system_line "  Device SN" "$device_sn"
     system_line " IP Address" "$(check_connection)"
+    system_line "MAC Address" "$mac_address"
     system_line "  RAM Usage" "$(($memfree/1024)) MB / $(($memtotal/1024)) MB ($pourcent% available)"
     system_line " Disk Usage" "$diskused"
     system_line "     Uptime" "$upDays days $upHours hours $upMins minutes"
