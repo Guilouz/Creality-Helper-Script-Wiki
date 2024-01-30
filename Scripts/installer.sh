@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.3.6
+VERSION=v4.3.7
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -87,6 +87,8 @@ klipperservice_URL="${download_URL}services/S55klipper_service"
 firmware_version="$(cat /usr/data/creality/userdata/config/system_version.json | jq -r '.sys_version')"
 
 rm -rf /root/.cache
+
+if /usr/bin/get_sn_mac.sh model 2>&1 | grep -iq "K1"; then K1=1; else K1=0; fi
 
 if [ ! -f /tmp/curl ]; then
     printf "${white}\n"
@@ -469,7 +471,7 @@ uninstall_menu(){
     menu_option '16' 'Remove' 'Screws Tilt Adjust Support'
     hr
     subtitle '•CAMERA:'
-    menu_option '17' 'Remove' 'Moonraker Timelapse '
+    menu_option '17' 'Remove' 'Moonraker Timelapse'
     menu_option '18' 'Remove' 'Camera Settings Control'
     hr
     subtitle '•REMOTE ACCESS AND AI DETECTION:'
@@ -716,6 +718,8 @@ do
                 			        printf "Applying changes...\n"
                 			        cd /usr/data/moonraker/moonraker
                 			        git stash; git checkout master; git pull
+                			        printf "Installing necessary package...\n"
+                			        python3 -m pip install pyserial-asyncio==0.6
                 			        printf "Restarting services...\n"
                 			        /etc/init.d/S50nginx start
                 			        sleep 1
@@ -959,6 +963,10 @@ do
             			if [ -f "$hostname_file" ]; then
             				printf "${darkred} ✗ Hostname Service is already installed!"
             				printf "${white}\n\n"
+            			elif [ $K1 -eq 0 ]; then 
+                            printf "${darkred} ✗ This feature is not compatible with your printer."
+                            printf "${white}\n\n"
+                        fi
             			else
             			    printf "${cyan} This allows to change the hostname of the machine for firmwares < 1.3.2.20."
             			    printf "${white}\n\n"
@@ -1215,6 +1223,10 @@ do
             			if [ -f "$buzzer_file" ]; then
             				printf "${darkred} ✗ Buzzer Support is already installed!"
             				printf "${white}\n\n"
+            			elif [ $K1 -eq 0 ]; then 
+                            printf "${darkred} ✗ This feature is not compatible with your printer."
+                            printf "${white}\n\n"
+                        fi
             			elif [ ! -f "$shellcommand_file" ]; then
             				printf "${darkred} ✗ Please install Klipper Gcode Shell Command first!"
             				printf "${white}\n\n"
@@ -1278,7 +1290,11 @@ do
                     11)
             			if [ -d "$prtouch_folder" ]; then
             				printf "${darkred} ✗ Nozzle Cleaning Fan Control is already installed!"
-            				 printf "${white}\n\n"
+            				printf "${white}\n\n"
+            			elif [ $K1 -eq 0 ]; then 
+                            printf "${darkred} ✗ This feature is not compatible with your printer."
+                            printf "${white}\n\n"
+                        fi
             			else
             			    printf "${cyan} This allows to control fans during nozzle cleaning."
             			    printf "${white}\n\n"
