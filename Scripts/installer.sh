@@ -4097,6 +4097,7 @@ do
                             printf "Clearing logs files...\n"
                             rm -f /usr/data/creality/userdata/log/*.log
                             rm -f /usr/data/creality/userdata/log/*.gz
+                            rm -f /usr/data/creality/userdata/fault_code/*
                             rm -f /usr/data/printer_data/logs/*
                             printf "\n"
                             printf "${green} ✓ Logs files has been cleared!"
