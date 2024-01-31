@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.3.9
+VERSION=v4.4.0
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -104,11 +104,19 @@ if [ ! -f /tmp/curl ]; then
         printf "${white}\n\n"
         exit 1
     else
-        printf "${green} ✓ curl package has been successfully downloaded!"
         chmod +x /tmp/curl >/dev/null 2>&1 &
         clear
     fi
 fi
+
+wait() {
+    i=3
+    while [ $i -ge 1 ]; do
+        printf " ${yellow}$i${white}..."
+        sleep 1
+        i=$((i - 1))
+    done
+}
 
 startup_update() {
     github_script=$(/tmp/curl -s -f -L https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/installer.sh)
@@ -142,13 +150,8 @@ startup_update() {
                 exit 1
             fi
         elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-            printf "${darkred} ✗ Update canceled! ${white}Starting old script version in "
-            i=5
-            while [ $i -ge 1 ]; do
-                printf "${yellow}$i${white}..."
-                sleep 1
-                i=$((i - 1))
-            done
+            printf "${darkred} ✗ Update canceled! ${white}Starting old script version in"
+            wait
             printf "${white}\n\n"
         fi
     fi
@@ -206,13 +209,8 @@ check_updates() {
             printf "${white}\n\n"
         fi
     else
-        printf "${green} ✓ Your script is already up to date! "
-            i=3
-            while [ $i -ge 1 ]; do
-                printf "${yellow}$i${white}..."
-                sleep 1
-                i=$((i - 1))
-            done
+        printf "${green} ✓ Your script is already up to date!"
+        wait
         printf "${white}\n\n"
     fi
 }
@@ -486,8 +484,8 @@ backup_menu(){
     title '[ BACKUP & RESTORE MENU ]' "${yellow}"
     innerline
     hr
-    menu_option '1' 'Backup configuration files'
-    menu_option '2' 'Restore configuration files'
+    menu_option '1' 'Backup Klipper configuration files'
+    menu_option '2' 'Restore Klipper configuration files'
     hr
     innerline
     hr
@@ -539,12 +537,13 @@ tools_menu(){
     menu_option '1' 'Restart Moonraker and Nginx services'
     menu_option '2' 'Restart Klipper service'
     hr
-    menu_option '3' 'Prevent updating configuration files'
-    menu_option '4' 'Allow updating configuration files'
+    menu_option '3' 'Prevent updating Klipper configuration files'
+    menu_option '4' 'Allow updating Klipper configuration files'
     hr
     menu_option '5' 'Restore a previous firmware'
     hr
     menu_option '6' 'Clear cache'
+    menu_option '7' 'Clear logs files'
     hr
     innerline
     hr
@@ -668,6 +667,7 @@ do
                     1)
             			if [ -d "$moonraker_folder" ]; then
             				printf "${darkred} ✗ Moonraker and Nginx are already installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} Moonraker is a Python 3 based web server that exposes APIs with"
@@ -724,6 +724,7 @@ do
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -735,9 +736,11 @@ do
                     2)
             			if [ -d "$fluidd_folder" ]; then
             				printf "${darkred} ✗ Fluidd is already installed!"
+            				wait
             				printf "${white}\n\n"
             			elif [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} ✗ Please install Moonraker and Nginx first!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} Fluidd is a free and open-source Klipper Web interface for"
@@ -792,6 +795,7 @@ do
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -803,9 +807,11 @@ do
                     3)
             			if [ -d "$mainsail_folder" ]; then
             				printf "${darkred} ✗ Mainsail is already installed!"
+            				wait
             				printf "${white}\n\n"
             			elif [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} ✗ Please install Moonraker and Nginx first!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} Mainsail is the popular Web interface for managing and"
@@ -860,6 +866,7 @@ do
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -906,6 +913,7 @@ do
             			    else
             			        printf "${white}\n\n"
                 			    printf "${darkred} ✗ Download failed!"
+                			    wait
                 			    printf "${white}\n\n"
                 			fi
             			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -916,6 +924,7 @@ do
                     5)
             			if [ -f "$shellcommand_file" ]; then
             				printf "${darkred} ✗ Klipper Gcode Shell Command is already installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to run Linux commands or even scripts from Klipper."
@@ -944,6 +953,7 @@ do
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -955,9 +965,11 @@ do
                     6)
             			if [ -f "$hostname_file" ]; then
             				printf "${darkred} ✗ Hostname Service is already installed!"
+            				wait
             				printf "${white}\n\n"
             			elif [ $K1 -eq 0 ]; then
                             printf "${darkred} ✗ This feature is not compatible with your printer."
+                            wait
                             printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to change the hostname of the machine for firmwares < 1.3.2.20."
@@ -986,6 +998,7 @@ do
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -997,6 +1010,7 @@ do
                     7)
             			if [ -f "$supervisor_file" ]; then
             				printf "${darkred} ✗ Supervisor Lite is already installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows managing services with Moonraker."
@@ -1042,6 +1056,7 @@ do
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -1053,6 +1068,7 @@ do
                     8)
             			if [ -f "$systemctl_file" ] && [ -f "$sudo_file" ]; then
             				printf "${darkred} ✗ Host Controls Support is already installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to use Reboot and Shutdown buttons on Fluidd or Mainsail."
@@ -1087,11 +1103,13 @@ do
                 			            rm -f "$sudo_file"
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        rintf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -1103,6 +1121,7 @@ do
                     9)
             			if [ -d "$kamp_folder" ]; then
             				printf "${darkred} ✗ Klipper Adaptive Meshing & Purging is already installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} Klipper Adaptive Meshing & Purging is an extension that allows"
@@ -1203,6 +1222,7 @@ do
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -1214,12 +1234,15 @@ do
                     10)
             			if [ -f "$buzzer_file" ]; then
             				printf "${darkred} ✗ Buzzer Support is already installed!"
+            				wait
             				printf "${white}\n\n"
             			elif [ $K1 -eq 0 ]; then
                             printf "${darkred} ✗ This feature is not compatible with your printer."
+                            wait
                             printf "${white}\n\n"
             			elif [ ! -f "$shellcommand_file" ]; then
             				printf "${darkred} ✗ Please install Klipper Gcode Shell Command first!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows sounds to be played using the motherboard buzzer."
@@ -1265,11 +1288,13 @@ do
                 			            rm -f "$buzzer_file" 2>/dev/null
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -1281,9 +1306,11 @@ do
                     11)
             			if [ -d "$prtouch_folder" ]; then
             				printf "${darkred} ✗ Nozzle Cleaning Fan Control is already installed!"
+            				wait
             				printf "${white}\n\n"
             			elif [ $K1 -eq 0 ]; then
                             printf "${darkred} ✗ This feature is not compatible with your printer."
+                            wait
                             printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to control fans during nozzle cleaning."
@@ -1329,12 +1356,14 @@ do
                 			            rm -rf "$klipper_extra_folder"prtouch_v2_fan 2>/dev/null
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
                 			    else
                 			        rm -rf "$klipper_extra_folder"prtouch_v2_fan 2>/dev/null
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -1345,6 +1374,7 @@ do
                     12)
             			if [ -f "$fancontrols_file" ]; then
             				printf "${darkred} ✗ Fans Control Macros are already installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    if [ "$firmware_version" == "1.3.2.1" ] || [ "$firmware_version" == "1.3.2.20" ]; then
@@ -1418,6 +1448,7 @@ do
                 			        rmdir "$helper_script" 2>/dev/null
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -1429,15 +1460,19 @@ do
                     13)
             			if [ -d "$shaperconfig_folder" ]; then
             				printf "${darkred} ✗ Improved Shapers Calibrations are already installed!"
+            				wait
             				printf "${white}\n\n"
             			elif [ -d "$guppyscreen_folder" ]; then
             				printf "${darkred} ✗ GuppyScreen already have this functionalities!"
+            				wait
             				printf "${white}\n\n"
             			elif [ ! -f /lib/ld-2.29.so ]; then
             			    printf "${darkred} ✗ Make sure you're running 1.3.x.x firmware version!"
+            			    wait
             			    printf "${white}\n\n"
             			elif [ ! -f "$shellcommand_file" ]; then
             				printf "${darkred} ✗ Please install Klipper Gcode Shell Command first!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} Improved Shapers Calibrations allows to calibrate"
@@ -1521,11 +1556,13 @@ do
                 			            rm -rf "$shaperconfig_folder"
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -1537,6 +1574,7 @@ do
                     14)
             			if [ -f "$usefullmacros_file" ]; then
             				printf "${darkred} ✗ Usefull Macros are already installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to install usefull macros like Bed Leveling and PID."
@@ -1578,6 +1616,7 @@ do
                 			        rmdir "$helper_script" 2>/dev/null
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -1589,6 +1628,7 @@ do
                     15)
             			if [ -f "$savezoffset_file" ]; then
             				printf "${darkred} ✗ Save Z-Offset Macros are already installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows the Z-Offset to be automatically saved and loaded."
@@ -1630,6 +1670,7 @@ do
                 			        rmdir "$helper_script" 2>/dev/null
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -1641,6 +1682,7 @@ do
                     16)
             			if [ -f "$screwsadjust_file" ]; then
             				printf "${darkred} ✗ Screws Tilt Adjust Support is already installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to add support for Screws Tilt Adjust functionality."
@@ -1699,11 +1741,13 @@ do
                 			                    rmdir "$helper_script" 2>/dev/null
                 			                    printf "${white}\n\n"
                 			                    printf "${darkred} ✗ Download failed!"
+                			                    wait
                 			                    printf "${white}\n\n"
                 			                fi
                 			        else
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
             			        elif [ "$confirm2" = "k1max" ] || [ "$confirm2" = "K1MAX" ]; then
@@ -1739,11 +1783,13 @@ do
                 			                    rmdir "$helper_script" 2>/dev/null
                 			                    printf "${white}\n\n"
                 			                    printf "${darkred} ✗ Download failed!"
+                			                    wait
                 			                    printf "${white}\n\n"
                 			                fi
                 			        else
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
             			        fi
@@ -1755,9 +1801,11 @@ do
                     17)
             			if [ -f "$timelapse_file" ]; then
             				printf "${darkred} ✗ Moonraker Timelapse is already installed!"
+            				wait
             				printf "${white}\n\n"
             			elif [ ! -f "$entware_file" ]; then
             				printf "${darkred} ✗ Please install Entware first!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} Moonraker Timelapse is a 3rd party Moonraker component"
@@ -1816,11 +1864,13 @@ do
                 			            rm -rf "$timelapse_file" /usr/data/moonraker/moonraker/moonraker/components/timelapse.pyc
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -1832,13 +1882,20 @@ do
                     18)
             			if [ -f "$camera_file" ]; then
             				printf "${darkred} ✗ Camera Settings Control is already installed!"
+            				wait
             				printf "${white}\n\n"
+            			elif [ $K1 -eq 0 ]; then
+                            printf "${darkred} ✗ This feature is not compatible with your printer."
+                            wait
+                            printf "${white}\n\n"
             		    elif v4l2-ctl --list-devices | grep -q 'CCX2F3299'; then
-            		        printf "${darkred} ✗ Your camera version is not compatible!"
+            		        printf "${darkred} ✗ You have the new hardware version of the camera and it's not compatible!"
+            		        wait
             				printf "${white}\n\n"
             			elif [ ! -f "$shellcommand_file" ]; then
             				printf "${darkred} ✗ Please install Klipper Gcode Shell Command first!"
-            				 printf "${white}\n\n"
+            				wait
+            				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to install macros needed to control camera settings."
             			    printf "${white}\n\n"
@@ -1879,6 +1936,7 @@ do
                 			        rmdir "$helper_script" 2>/dev/null
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -1890,12 +1948,15 @@ do
                     19)
 						if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} ✗ Please install Moonraker and Nginx first!"
+            				wait
             				printf "${white}\n\n"
 						elif [ ! -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
             				printf "${darkred} ✗ Please install Fluidd and/or Mainsail first!"
+            				wait
             				printf "${white}\n\n"
             			elif [ ! -f "$entware_file" ]; then
             				printf "${darkred} ✗ Please install Entware first!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} Cloud empower your Klipper printers with free, private,"
@@ -1937,9 +1998,11 @@ do
                     20)
             			if [ ! -d "$moonraker_folder" ]; then
             				printf "${darkred} ✗ Please install Moonraker and Nginx first!"
+            				wait
             				printf "${white}\n\n"
             			elif [ ! -f "$entware_file" ]; then
             				printf "${darkred} ✗ Please install Entware first!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} Obico is a Moonraker plugin that allows you to monitor"
@@ -1981,6 +2044,7 @@ do
                     21)
             			if [ -d "$mobileraker_folder" ]; then
             				printf "${darkred} ✗ Mobileraker Companion is already installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} Mobileraker Companion allows to push notification"
@@ -2035,11 +2099,13 @@ do
                 			            rm -rf /usr/data/mobileraker_companion 2>/dev/null
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -2070,6 +2136,7 @@ do
                     1)
             			if [ ! -d "$moonraker_folder" ] && [ ! -d "$nginx_folder" ]; then
             				printf "${darkred} ✗ Moonraker and Nginx are not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Moonraker and Nginx ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2104,11 +2171,13 @@ do
                     2)
             			if [ ! -d "$fluidd_folder" ]; then
             				printf "${darkred} ✗ Fluidd is not installed!"
+            				wait
             				printf "${white}\n\n"
             			elif [ ! -f "$crealityweb_file" ]; then
             			    printf "${darkred} ✗ Creality Web Interface is removed!"
             			    printf "\n"
             			    printf "${darkred} If you want to remove Fluidd please restore Creality Web Interface first."
+            			    wait
             				printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Fluidd ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2150,11 +2219,13 @@ do
                     3)
             			if [ ! -d "$mainsail_folder" ]; then
                 			printf "${darkred} ✗ Mainsail is not installed!"
+                			wait
                 			printf "${white}\n\n"
             			elif [ ! -f "$crealityweb_file" ]; then
             			    printf "${darkred} ✗ Creality Web Interface is removed!"
             			    printf "\n"
             			    printf "${darkred} If you want to remove Mainsail please restore Creality Web Interface first."
+            			    wait
             				printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Mainsail ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2234,18 +2305,23 @@ do
 					5)
             			if [ ! -f "$shellcommand_file" ]; then
             				printf "${darkred} ✗ Klipper Gcode Shell Command is not installed!"
+            				wait
             				printf "${white}\n\n"
             			elif [ -f "$buzzer_file" ]; then
             				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Buzzer Support, please uninstall it first!"
+            				wait
             				printf "${white}\n\n"
             			elif [ -f "$camera_file" ]; then
             				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Camera Settings Control, please uninstall it first!"
+            				wait
             				printf "${white}\n\n"
             			elif [ -d "$guppyscreen_folder" ]; then
             				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Guppy Screen, please uninstall it first!"
+            				wait
             				printf "${white}\n\n"
             			elif [ -d "$shaperconfig_folder" ]; then
             				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Improved Shapers Calibrations, please uninstall it first!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Klipper Gcode Shell Command ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2276,6 +2352,7 @@ do
                     6)
             			if [ ! -f "$hostname_file" ]; then
             				printf "${darkred} ✗ Hostname Service is not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Hostname Service ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2305,6 +2382,7 @@ do
             		7)
             			if [ ! -f "$supervisor_file" ]; then
             				printf "${darkred} ✗ Supervisor Lite is not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Supervisor Lite ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2351,6 +2429,7 @@ do
             		8)
             			if [ ! -f "$systemctl_file" ] && [ ! -f "$sudo_file" ]; then
             				printf "${darkred} ✗ Host Controls Support is not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Host Controls Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2380,6 +2459,7 @@ do
                     9)
             			if [ ! -d "$kamp_folder" ]; then
             				printf "${darkred} ✗ Klipper Adaptive Meshing & Purging is not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Klipper Adaptive Meshing & Purging ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2440,6 +2520,7 @@ do
 					10)
             			if [ ! -f "$buzzer_file" ]; then
             				printf "${darkred} ✗ Buzzer Support is not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Buzzer Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2478,6 +2559,7 @@ do
 					11)
             			if [ ! -d "$prtouch_folder" ]; then
             				printf "${darkred} ✗ Nozzle Cleaning Fan Control is not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Nozzle Cleaning Fan Control ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2516,6 +2598,7 @@ do
                     12)
             			if [ ! -f "$fancontrols_file" ]; then
             				printf "${darkred} ✗ Fans Control Macros are not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Fans Control Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2578,6 +2661,7 @@ do
                     13)
             			if [ ! -d "$shaperconfig_folder" ]; then
                 			printf "${darkred} ✗ Improved Shapers Calibrations are not installed!"
+                			wait
                 			printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Improved Shapers Calibrations ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2634,6 +2718,7 @@ do
                     14)
             			if [ ! -f "$usefullmacros_file" ]; then
             				printf "${darkred} ✗ Usefull Macros are not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Usefull Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2672,6 +2757,7 @@ do
                     15)
             			if [ ! -f "$savezoffset_file" ]; then
             				printf "${darkred} ✗ Save Z-Offset Macros are not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Save Z-Offset Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2710,6 +2796,7 @@ do
                     16)
             			if [ ! -f "$screwsadjust_file" ]; then
             				printf "${darkred} ✗ Screws Tilt Adjust Support is not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Screws Tilt Adjust Support ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2748,6 +2835,7 @@ do
                     17)
             			if [ ! -f "$timelapse_file" ]; then
                 			printf "${darkred} ✗ Moonraker Timelapse is not installed!"
+                			wait
                 			printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Moonraker Timelapse ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2801,6 +2889,7 @@ do
                     18)
             			if [ ! -f "$camera_file" ]; then
             				printf "${darkred} ✗ Camera Settings Control is not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
                             printf " Are you sure you want to remove ${green}Camera Settings Control ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2839,6 +2928,7 @@ do
 					19)
             			if [ ! -d "$octoeverywhere_folder" ]; then
             				printf "${darkred} ✗ OctoEverywhere is not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}OctoEverywhere ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2868,6 +2958,7 @@ do
                     20)
             			if [ ! -d "$moonraker_obico_folder" ]; then
                 			printf "${darkred} ✗ Obico is not installed!"
+                			wait
                 			printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Obico ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2918,6 +3009,7 @@ do
                     21)
             			if [ ! -d "$mobileraker_folder" ]; then
             				printf "${darkred} ✗ Mobileraker Companion is not installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Mobileraker Companion ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -2982,6 +3074,7 @@ do
                     1)
             			if [ ! -d "$bootdisplay_folder" ]; then
             				printf "${darkred} ✗ Please use latest firmware to install Custom Boot Display!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to install a custom Creality-themed boot display."
@@ -3024,6 +3117,7 @@ do
                 			        else
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
             			        elif [ "$confirm2" = "k1max" ] || [ "$confirm2" = "K1MAX" ]; then
@@ -3043,6 +3137,7 @@ do
                 			        else
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
             			        fi
@@ -3054,6 +3149,7 @@ do
             	    2)
             			if [ ! -d "$bootdisplay_folder" ]; then
             				printf "${darkred} ✗ Please use latest firmware to restore Stock Boot Display!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to restore stock boot display."
@@ -3085,6 +3181,7 @@ do
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -3096,11 +3193,13 @@ do
                     3)
             			if [ ! -d "$fluidd_folder" ] && [ ! -d "$mainsail_folder" ]; then
             				printf "${darkred} ✗ Please install Fluidd and/or Mainsail first!"
+            				wait
             				printf "${white}\n\n"
             			elif [ ! -f "$crealityweb_file" ]; then
             			    printf "${darkred} ✗ Creality Web Interface is already removed!"
             			    printf "\n"
             			    printf "${darkred} If you want to change the default Web Interface please restore Creality Web Interface first."
+            			    wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to remove Creality Web Interface"
@@ -3213,6 +3312,7 @@ do
             	    4)
             			if [ -f "$crealityweb_file" ]; then
             				printf "${darkred} ✗ Creality Web Interface is already present!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to restore Creality Web Interface on port 80."
@@ -3262,15 +3362,19 @@ do
             				printf "${darkred} ✗ Guppy Screen is already installed!"
             				printf "\n"
             			    printf "${darkred} If you want to change the theme please remove Guppy Screen first."
+            			    wait
             				printf "${white}\n\n"
             			elif [ -d "$shaperconfig_folder" ]; then
             				printf "${darkred} Please remove Improved Shapers Calibrations before, Guppy Screen already use it!"
+            				wait
             				printf "${white}\n\n"
             			elif [ ! -f /lib/ld-2.29.so ]; then
             			    printf "${darkred} Make sure you're running 1.3.x.x firmware version!"
+            			    wait
             			    printf "${white}\n\n"
             			elif [ ! -f "$shellcommand_file" ]; then
             				printf " ${darkred}Please install Klipper Gcode Shell Command first!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} Guppy Screen is a touch UI for Klipper using APIs"
@@ -3408,6 +3512,7 @@ do
                 			        else
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
                 			        printf "\n"
@@ -3523,6 +3628,7 @@ do
                 			        else
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
                 			        printf "\n"
@@ -3537,6 +3643,7 @@ do
                     6)
             			if [ ! -d "$guppyscreen_folder" ]; then
                 			printf "${darkred} ✗ Guppy Screen is not installed!"
+                			wait
                 			printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to remove ${green}Guppy Screen ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -3621,6 +3728,7 @@ do
                     7)
             			if [ -f "$fluiddlogo_file" ]; then
             				printf "${darkred} ✗ Creality Dynamic Logos for Fluidd are already installed!"
+            				wait
             				printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows you to have the dynamic Creality logos on the Fluidd Web interface."
@@ -3655,17 +3763,20 @@ do
                 			                rm -f /usr/data/fluidd/logo_creality_v2.svg
                 			                printf "${white}\n\n"
                 			                printf "${darkred} ✗ Download failed!"
+                			                wait
                 			                printf "${white}\n\n"
                 			            fi
                 			        else
                 			            rm -f /usr/data/fluidd/logo_creality_v1.svg
                 			            printf "${white}\n\n"
                 			            printf "${darkred} ✗ Download failed!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -3722,7 +3833,8 @@ do
                         ;;
                     2)
             			if [ ! -f /usr/data/printer_data/config/backup_config.tar.gz ]; then
-                			printf "${darkred} Please backup configuration files before restore!"
+                			printf "${darkred} Please backup Klipper configuration files before restore!"
+                			wait
                 			printf "${white}\n\n"
             			else
             			    printf " Are you sure you want to restore ${green}Klipper configuration ${white}files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -3775,6 +3887,7 @@ do
                     1)
                         if [ ! -d "$moonraker_folder" ] && [ ! -d "$nginx_folder" ]; then
             	            printf "${darkred} ✗ Moonraker and Nginx are not installed!"
+            	            wait
             	            printf "${white}\n\n"
                         else
                             printf " Do you want to restart ${green}Moonraker and Nginx ${white}services ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -3807,6 +3920,7 @@ do
                     2)
                         if [ ! -f /etc/init.d/S55klipper_service ]; then
             	            printf "${darkred} ✗ Klipper service is not present!"
+            	            wait
             	            printf "${white}\n\n"
                         else
                             printf " Do you want to restart ${green}Klipper ${white}service ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
@@ -3834,17 +3948,18 @@ do
                     3)
                         if [ ! -f /etc/init.d/S55klipper_service ]; then
             	            printf "${darkred} ✗ Klipper service is not present!"
+            	            wait
             	            printf "${white}\n\n"
                         else
-                            printf "${cyan} This prevents updating configuration files when Klipper restarts."
+                            printf "${cyan} This prevents updating Klipper configuration files when it restarts."
             			    printf "${white}\n\n"
-                            printf " Do you want to prevent updating configuration files when Klipper restarts ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            printf " Do you want to prevent updating Klipper configuration files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             	            read confirm
             	            printf "${white}\n"
             	            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} ✗ Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Do you want to prevent updating configuration files when Klipper restarts ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                printf " Do you want to prevent updating Klipper configuration files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -3859,11 +3974,12 @@ do
                                     printf "Restarting service...\n"
                                     /etc/init.d/S55klipper_service restart
                                     printf "\n"
-                                    printf "${green} ✓ Configuration files will no longer be updated when Klipper restarts!"
+                                    printf "${green} ✓ Klipper configuration files will no longer be updated when Klipper restarts!"
                                     printf "${white}\n\n"
                                 else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    fi
                             elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -3875,17 +3991,18 @@ do
                     4)
                         if [ ! -f /etc/init.d/disabled.S55klipper_service ]; then
             	            printf "${darkred} ✗ This is already applied!"
+            	            wait
             	            printf "${white}\n\n"
                         else
-                            printf "${cyan} This allows updating configuration files when Klipper restarts."
+                            printf "${cyan} This allows updating Klipper configuration files when it restarts."
             			    printf "${white}\n\n"
-                            printf " Do you want to allow updating configuration files when Klipper restarts ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            printf " Do you want to allow updating Klipper configuration files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             	            read confirm
             	            printf "${white}\n"
             	            while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} ✗ Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Do you want to allow updating configuration files when Klipper restarts ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                printf " Do you want to allow updating Klipper configuration files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
@@ -3896,7 +4013,7 @@ do
                                 printf "Restarting service...\n"
                                 /etc/init.d/S55klipper_service restart
                                 printf "\n"
-                                printf "${green} ✓ Configuration files will be updated when Klipper restarts!"
+                                printf "${green} ✓ Klipper configuration files will be updated when Klipper restarts!"
                                 printf "${white}\n\n"
                             elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 	            printf "${darkred} ✗ Restart canceled!"
@@ -3935,6 +4052,7 @@ do
                                 printf "${white}\n\n"
                             else
                                 printf "${darkred} ✗ No .img file found on the USB drive. Restoration canceled!"
+                                wait
                                 printf "${white}\n\n"
                             fi
                         elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -3961,6 +4079,30 @@ do
                             printf "${white}\n\n"
                         elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 	        printf "${darkred} ✗ Clearing cache canceled!"
+                	        printf "${white}\n\n"
+                        fi
+                        ;;
+                    7)
+                        printf " Do you want to clear logs files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            	        read confirm
+            	        printf "${white}\n"
+            	        while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            printf "${darkred} ✗ Please select a correct choice!"
+                            printf "${white}\n\n"
+                            printf " Do you want to clear logs files ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                        done
+                        if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                            printf "Clearing logs files...\n"
+                            rm -f /usr/data/creality/userdata/log/*.log
+                            rm -f /usr/data/creality/userdata/log/*.gz
+                            rm -f /usr/data/printer_data/logs/*
+                            printf "\n"
+                            printf "${green} ✓ Logs files has been cleared!"
+                            printf "${white}\n\n"
+                        elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                	        printf "${darkred} ✗ Clearing logs files canceled!"
                 	        printf "${white}\n\n"
                         fi
                         ;;
