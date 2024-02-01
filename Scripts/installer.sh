@@ -100,7 +100,7 @@ if [ ! -f /tmp/curl ]; then
         printf "${white}\n"
         printf "   Make sure your system date and time are correct.\n"
         printf "   You can check this with the command: ${yellow}date\n"
-        printf "${white}   To change the date use the following command in this format: ${yellow}date -s \"YYYY-MM-DD HH:MM:SS\""
+        printf "${white}   To change the date and time use the following command in this format: ${yellow}date -s \"YYYY-MM-DD HH:MM:SS\""
         printf "${white}\n\n"
         exit 1
     else
@@ -409,7 +409,7 @@ install_menu(){
     menu_option '16' 'Install' 'Screws Tilt Adjust Support'
     hr
     subtitle '•CAMERA:'
-    menu_option '17' 'Install' 'Moonraker Timelapse '
+    menu_option '17' 'Install' 'Moonraker Timelapse'
     menu_option '18' 'Install' 'Camera Settings Control'
     hr
     subtitle '•REMOTE ACCESS AND AI DETECTION:'
