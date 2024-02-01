@@ -390,12 +390,12 @@ install_menu(){
     menu_option ' 1' 'Install' 'Moonraker and Nginx'
     menu_option ' 2' 'Install' 'Fluidd (port 4408)'
     menu_option ' 3' 'Install' 'Mainsail (port 4409)'
+    menu_option ' 4' 'Install' 'Supervisor Lite'
     hr
     subtitle '•UTILITIES:'
-    menu_option ' 4' 'Install' 'Entware'
-    menu_option ' 5' 'Install' 'Klipper Gcode Shell Command'
-    menu_option ' 6' 'Install' 'Hostname Service'
-    menu_option ' 7' 'Install' 'Supervisor Lite'
+    menu_option ' 5' 'Install' 'Entware'
+    menu_option ' 6' 'Install' 'Klipper Gcode Shell Command'
+    menu_option ' 7' 'Install' 'Hostname Service'
     menu_option ' 8' 'Install' 'Host Controls Support'
     hr
     subtitle '•IMPROVEMENTS:'
@@ -439,12 +439,12 @@ uninstall_menu(){
     menu_option ' 1' 'Remove' 'Moonraker and Nginx'
     menu_option ' 2' 'Remove' 'Fluidd (port 4408)'
     menu_option ' 3' 'Remove' 'Mainsail (port 4409)'
+    menu_option ' 4' 'Remove' 'Supervisor Lite'
     hr
     subtitle '•UTILITIES:'
-    menu_option ' 4' 'Remove' 'Entware'
-    menu_option ' 5' 'Remove' 'Klipper Gcode Shell Command'
-    menu_option ' 6' 'Remove' 'Hostname Service'
-    menu_option ' 7' 'Remove' 'Supervisor Lite'
+    menu_option ' 5' 'Remove' 'Entware'
+    menu_option ' 6' 'Remove' 'Klipper Gcode Shell Command'
+    menu_option ' 7' 'Remove' 'Hostname Service'
     menu_option ' 8' 'Remove' 'Host Controls Support'
     hr
     subtitle '•IMPROVEMENTS:'
@@ -876,6 +876,64 @@ do
             			fi
                         ;;
                     4)
+            			if [ -f "$supervisor_file" ]; then
+            				printf "${darkred} ✗ Supervisor Lite is already installed!"
+            				wait
+            				printf "${white}\n\n"
+            			else
+            			    printf "${cyan} This allows managing services with Moonraker."
+            			    printf "${white}\n\n"
+            			    printf " Are you sure you want to install ${green}Supervisor Lite ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} ✗ Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to install ${green}Supervisor Lite ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+                			    printf "${green} Installing Supervisor Lite..."
+                			    printf "${white}\n\n"
+								printf "Downloading supervisorctl file...\n"
+								/tmp/curl -s -L "$supervisor_URL" -o "$supervisor_file"
+								if [ $? -eq 0 ]; then
+								    printf "Applying permissions...\n"
+                			        chmod 755 /usr/bin/supervisorctl
+                			        if grep -q "provider: none" "$moonraker_config" && ! grep -q "provider: supervisord_cli" "$moonraker_config"; then
+                                        printf "Replacing provider in moonraker.conf file...\n"
+                                        sed -i 's/provider: none/provider: supervisord_cli/' "$moonraker_config"
+                                    else
+                                        printf "Provider is already replaced in moonraker.conf file.\n"
+                                    fi
+                                    if grep -q "is_system_service: False" "$moonraker_config" && ! grep -q "managed_services: klipper" "$moonraker_config"; then
+                                        printf "Replacing managed services in moonraker.conf file...\n"
+                                        sed -i 's/is_system_service: False/managed_services: klipper/' "$moonraker_config"
+                                    else
+                                        printf "Managed services are already replaced in moonraker.conf file.\n"
+                                    fi
+                                    printf "Restarting services...\n"
+                			        /etc/init.d/S56moonraker_service restart
+                                    sleep 1
+                                    /etc/init.d/S56moonraker_service restart
+                			        sleep 1
+                			        printf "\n"
+                			        printf "${green} ✓ Supervisor Lite has been installed successfully!"
+                			        printf "${white}\n\n"
+                			    else
+                			        printf "${white}\n\n"
+                			        printf "${darkred} ✗ Download failed!"
+                			        wait
+                			        printf "${white}\n\n"
+                			    fi
+                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                			    printf "${darkred} ✗ Installation canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+                        ;;
+                    5)
                         printf "${cyan} Entware is a software repository for devices which use the Linux kernel."
                         printf "\n"
                         printf " It allows packages to be added to your printer."
@@ -921,7 +979,7 @@ do
                 			printf "${white}\n\n"
             			fi
                         ;;
-                    5)
+                    6)
             			if [ -f "$shellcommand_file" ]; then
             				printf "${darkred} ✗ Klipper Gcode Shell Command is already installed!"
             				wait
@@ -962,7 +1020,7 @@ do
             			    fi
             			fi
                         ;;
-                    6)
+                    7)
             			if [ -f "$hostname_file" ]; then
             				printf "${darkred} ✗ Hostname Service is already installed!"
             				wait
@@ -994,64 +1052,6 @@ do
                 			        chmod 755 "$hostname_file"
                 			        printf "\n"
                 			        printf "${green} ✓ Hostname Service has been installed successfully!"
-                			        printf "${white}\n\n"
-                			    else
-                			        printf "${white}\n\n"
-                			        printf "${darkred} ✗ Download failed!"
-                			        wait
-                			        printf "${white}\n\n"
-                			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} ✗ Installation canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
-                        ;;
-                    7)
-            			if [ -f "$supervisor_file" ]; then
-            				printf "${darkred} ✗ Supervisor Lite is already installed!"
-            				wait
-            				printf "${white}\n\n"
-            			else
-            			    printf "${cyan} This allows managing services with Moonraker."
-            			    printf "${white}\n\n"
-            			    printf " Are you sure you want to install ${green}Supervisor Lite ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
-                                printf "${darkred} ✗ Please select a correct choice!"
-                                printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Supervisor Lite ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-                                read confirm
-                                printf "${white}\n"
-                            done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Supervisor Lite..."
-                			    printf "${white}\n\n"
-								printf "Downloading supervisorctl file...\n"
-								/tmp/curl -s -L "$supervisor_URL" -o "$supervisor_file"
-								if [ $? -eq 0 ]; then
-								    printf "Applying permissions...\n"
-                			        chmod 755 /usr/bin/supervisorctl
-                			        if grep -q "provider: none" "$moonraker_config" && ! grep -q "provider: supervisord_cli" "$moonraker_config"; then
-                                        printf "Replacing provider in moonraker.conf file...\n"
-                                        sed -i 's/provider: none/provider: supervisord_cli/' "$moonraker_config"
-                                    else
-                                        printf "Provider is already replaced in moonraker.conf file.\n"
-                                    fi
-                                    if grep -q "is_system_service: False" "$moonraker_config" && ! grep -q "managed_services: klipper" "$moonraker_config"; then
-                                        printf "Replacing managed services in moonraker.conf file...\n"
-                                        sed -i 's/is_system_service: False/managed_services: klipper/' "$moonraker_config"
-                                    else
-                                        printf "Managed services are already replaced in moonraker.conf file.\n"
-                                    fi
-                                    printf "Restarting services...\n"
-                			        /etc/init.d/S56moonraker_service restart
-                                    sleep 1
-                                    /etc/init.d/S56moonraker_service restart
-                			        sleep 1
-                			        printf "\n"
-                			        printf "${green} ✓ Supervisor Lite has been installed successfully!"
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
@@ -2265,121 +2265,7 @@ do
             			    fi
             			fi
                         ;;
-                    4)
-                        printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			read confirm
-            			printf "${white}\n"
-            			while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
-                            printf "${darkred} ✗ Please select a correct choice!"
-                            printf "${white}\n\n"
-                            printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-                            read confirm
-                            printf "${white}\n"
-                        done
-            			if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			    printf "${green} Removing Entware..."
-                			printf "${white}\n\n"
-            			    printf "Removing startup script...\n"
-                            rm -f /etc/init.d/S50unslung
-                            printf "Removing opt directory...\n"
-                            rm -rf /usr/data/opt
-                            printf "Removing /opt symbolic link and replacing with stock empty directory...\n"
-                            if [ -L /opt ]; then
-                                rm /opt
-                                mkdir -p /opt
-                                chmod 755 /opt
-                            fi
-                            printf "Removing SFTP server symlink if it exists...\n"
-                            [ -L /usr/libexec/sftp-server ] && rm /usr/libexec/sftp-server
-                            printf "Removing /opt/bin and /opt/sbin from PATH in the system profile...\n"
-                            rm -f /etc/profile.d/entware.sh
-                            sed -i 's/\/opt\/bin:\/opt\/sbin:\/bin:/\/bin:/' /etc/profile
-                            printf "\n"
-            			    printf "${green} ✓ Entware has been removed successfully!"
-            			    printf "${white}\n\n"
-            			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			printf "${darkred} ✗ Deletion canceled!"
-                			printf "${white}\n\n"
-            			fi
-                        ;;
-					5)
-            			if [ ! -f "$shellcommand_file" ]; then
-            				printf "${darkred} ✗ Klipper Gcode Shell Command is not installed!"
-            				wait
-            				printf "${white}\n\n"
-            			elif [ -f "$buzzer_file" ]; then
-            				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Buzzer Support, please uninstall it first!"
-            				wait
-            				printf "${white}\n\n"
-            			elif [ -f "$camera_file" ]; then
-            				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Camera Settings Control, please uninstall it first!"
-            				wait
-            				printf "${white}\n\n"
-            			elif [ -d "$guppyscreen_folder" ]; then
-            				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Guppy Screen, please uninstall it first!"
-            				wait
-            				printf "${white}\n\n"
-            			elif [ -d "$shaperconfig_folder" ]; then
-            				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Improved Shapers Calibrations, please uninstall it first!"
-            				wait
-            				printf "${white}\n\n"
-            			else
-            			    printf " Are you sure you want to remove ${green}Klipper Gcode Shell Command ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
-                                printf "${darkred} ✗ Please select a correct choice!"
-                                printf "${white}\n\n"
-                                printf " Are you sure you want to remove ${green}Klipper Gcode Shell Command ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-                                read confirm
-                                printf "${white}\n"
-                            done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf "${green} Removing Klipper Gcode Shell Command..."
-                			    printf "${white}\n\n"
-            			        printf "Removing file...\n"
-                			    rm -rf "$klipper_extra_folder"gcode_shell_command.py "$klipper_extra_folder"gcode_shell_command.pyc
-                			    printf "Restarting services...\n"
-                			    /etc/init.d/S55klipper_service restart
-                			    printf "\n"
-                			    printf "${green} ✓ Klipper Gcode Shell Command has been removed successfully!"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} ✗ Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
-            			;;
-                    6)
-            			if [ ! -f "$hostname_file" ]; then
-            				printf "${darkred} ✗ Hostname Service is not installed!"
-            				wait
-            				printf "${white}\n\n"
-            			else
-            			    printf " Are you sure you want to remove ${green}Hostname Service ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			    read confirm
-            			    printf "${white}\n"
-            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
-                                printf "${darkred} ✗ Please select a correct choice!"
-                                printf "${white}\n\n"
-                                printf " Are you sure you want to remove ${green}Hostname Service ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-                                read confirm
-                                printf "${white}\n"
-                            done
-            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf "${green} Removing Hostname Service..."
-                			    printf "${white}\n\n"
-            			        printf "Removing file...\n"
-                			    rm -f /etc/init.d/S01hostname
-                			    printf "\n"
-                			    printf "${green} ✓ Hostname Service has been removed successfully!"
-                			    printf "${white}\n\n"
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			    printf "${darkred} ✗ Deletion canceled!"
-                			    printf "${white}\n\n"
-            			    fi
-            			fi
-            			;;
-            		7)
+            		4)
             			if [ ! -f "$supervisor_file" ]; then
             				printf "${darkred} ✗ Supervisor Lite is not installed!"
             				wait
@@ -2426,6 +2312,120 @@ do
             			    fi
             			fi
                         ;;
+                    5)
+                        printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			read confirm
+            			printf "${white}\n"
+            			while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                            printf "${darkred} ✗ Please select a correct choice!"
+                            printf "${white}\n\n"
+                            printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            read confirm
+                            printf "${white}\n"
+                        done
+            			if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+            			    printf "${green} Removing Entware..."
+                			printf "${white}\n\n"
+            			    printf "Removing startup script...\n"
+                            rm -f /etc/init.d/S50unslung
+                            printf "Removing opt directory...\n"
+                            rm -rf /usr/data/opt
+                            printf "Removing /opt symbolic link and replacing with stock empty directory...\n"
+                            if [ -L /opt ]; then
+                                rm /opt
+                                mkdir -p /opt
+                                chmod 755 /opt
+                            fi
+                            printf "Removing SFTP server symlink if it exists...\n"
+                            [ -L /usr/libexec/sftp-server ] && rm /usr/libexec/sftp-server
+                            printf "Removing /opt/bin and /opt/sbin from PATH in the system profile...\n"
+                            rm -f /etc/profile.d/entware.sh
+                            sed -i 's/\/opt\/bin:\/opt\/sbin:\/bin:/\/bin:/' /etc/profile
+                            printf "\n"
+            			    printf "${green} ✓ Entware has been removed successfully!"
+            			    printf "${white}\n\n"
+            			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                			printf "${darkred} ✗ Deletion canceled!"
+                			printf "${white}\n\n"
+            			fi
+                        ;;
+					6)
+            			if [ ! -f "$shellcommand_file" ]; then
+            				printf "${darkred} ✗ Klipper Gcode Shell Command is not installed!"
+            				wait
+            				printf "${white}\n\n"
+            			elif [ -f "$buzzer_file" ]; then
+            				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Buzzer Support, please uninstall it first!"
+            				wait
+            				printf "${white}\n\n"
+            			elif [ -f "$camera_file" ]; then
+            				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Camera Settings Control, please uninstall it first!"
+            				wait
+            				printf "${white}\n\n"
+            			elif [ -d "$guppyscreen_folder" ]; then
+            				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Guppy Screen, please uninstall it first!"
+            				wait
+            				printf "${white}\n\n"
+            			elif [ -d "$shaperconfig_folder" ]; then
+            				printf "${darkred} ✗ Klipper Gcode Shell Command is needed to use Improved Shapers Calibrations, please uninstall it first!"
+            				wait
+            				printf "${white}\n\n"
+            			else
+            			    printf " Are you sure you want to remove ${green}Klipper Gcode Shell Command ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} ✗ Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to remove ${green}Klipper Gcode Shell Command ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+            			        printf "${green} Removing Klipper Gcode Shell Command..."
+                			    printf "${white}\n\n"
+            			        printf "Removing file...\n"
+                			    rm -rf "$klipper_extra_folder"gcode_shell_command.py "$klipper_extra_folder"gcode_shell_command.pyc
+                			    printf "Restarting services...\n"
+                			    /etc/init.d/S55klipper_service restart
+                			    printf "\n"
+                			    printf "${green} ✓ Klipper Gcode Shell Command has been removed successfully!"
+                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                			    printf "${darkred} ✗ Deletion canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+            			;;
+                    7)
+            			if [ ! -f "$hostname_file" ]; then
+            				printf "${darkred} ✗ Hostname Service is not installed!"
+            				wait
+            				printf "${white}\n\n"
+            			else
+            			    printf " Are you sure you want to remove ${green}Hostname Service ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} ✗ Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to remove ${green}Hostname Service ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+            			        printf "${green} Removing Hostname Service..."
+                			    printf "${white}\n\n"
+            			        printf "Removing file...\n"
+                			    rm -f /etc/init.d/S01hostname
+                			    printf "\n"
+                			    printf "${green} ✓ Hostname Service has been removed successfully!"
+                			    printf "${white}\n\n"
+                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                			    printf "${darkred} ✗ Deletion canceled!"
+                			    printf "${white}\n\n"
+            			    fi
+            			fi
+            			;;
             		8)
             			if [ ! -f "$systemctl_file" ] && [ ! -f "$sudo_file" ]; then
             				printf "${darkred} ✗ Host Controls Support is not installed!"
