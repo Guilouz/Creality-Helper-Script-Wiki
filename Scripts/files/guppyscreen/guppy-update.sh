@@ -15,7 +15,15 @@ if grep -Fqs "ID=buildroot" /etc/os-release; then
     CURL=/tmp/curl
     if [ ! -f /tmp/curl ]; then
         wget -q --no-check-certificate https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/Scripts/files/fixes/curl -O /tmp/curl >/dev/null 2>&1
-        chmod +x /tmp/curl
+        if [ $? -ne 0 ]; then
+        echo "✗ Download failed!"
+        echo "  Make sure your system date and time are correct."
+        echo "  You can check this over SSH with the command: date"
+        echo "  To change the date and time use the following command over SSH in this format: date -s \"YYYY-MM-DD HH:MM:SS\""
+        exit 1
+    else
+        chmod +x /tmp/curl >/dev/null 2>&1 &
+        clear
     fi
 fi
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.4.0
+VERSION=v4.4.1
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -69,8 +69,8 @@ shaperconfig_URL2="${download_URL}shapers-configs/shapers-configs.cfg"
 fancontrols_URL1="${download_URL}macros/fans-control-not-upgrade.cfg"
 fancontrols_URL2="${download_URL}macros/fans-control-upgrade.cfg"
 fancontrols_file="${helper_script}/fans-control.cfg"
-usefullmacros_URL="${download_URL}macros/usefull-macros.cfg"
-usefullmacros_file="${helper_script}/usefull-macros.cfg"
+usefulmacros_URL="${download_URL}macros/useful-macros.cfg"
+usefulmacros_file="${helper_script}/useful-macros.cfg"
 savezoffset_URL="${download_URL}macros/save-zoffset.cfg"
 savezoffset_file="${helper_script}/save-zoffset.cfg"
 screwsadjust_URL1="${download_URL}screws-tilt-adjust/screws_tilt_adjust.py"
@@ -404,7 +404,7 @@ install_menu(){
     menu_option '11' 'Install' 'Nozzle Cleaning Fan Control'
     menu_option '12' 'Install' 'Fans Control Macros'
     menu_option '13' 'Install' 'Improved Shapers Calibrations'
-    menu_option '14' 'Install' 'Usefull Macros'
+    menu_option '14' 'Install' 'Useful Macros'
     menu_option '15' 'Install' 'Save Z-Offset Macros'
     menu_option '16' 'Install' 'Screws Tilt Adjust Support'
     hr
@@ -453,7 +453,7 @@ uninstall_menu(){
     menu_option '11' 'Remove' 'Nozzle Cleaning Fan Control'
     menu_option '12' 'Remove' 'Fans Control Macros'
     menu_option '13' 'Remove' 'Improved Shapers Calibrations'
-    menu_option '14' 'Remove' 'Usefull Macros'
+    menu_option '14' 'Remove' 'Useful Macros'
     menu_option '15' 'Remove' 'Save Z-Offset Macros'
     menu_option '16' 'Remove' 'Screws Tilt Adjust Support'
     hr
@@ -476,27 +476,6 @@ uninstall_menu(){
     printf " ${white}Type your choice and validate with Enter: ${yellow}"
     read -rp "" opt_uninstall_menu
     opt_uninstall_menu=$(echo "$opt_uninstall_menu" | tr '[:lower:]' '[:upper:]')
-    printf "${white}\n"
-}
-
-backup_menu(){
-    topline
-    title '[ BACKUP & RESTORE MENU ]' "${yellow}"
-    innerline
-    hr
-    menu_option '1' 'Backup Klipper configuration files'
-    menu_option '2' 'Restore Klipper configuration files'
-    hr
-    innerline
-    hr
-    bottom_menu_option 'b' 'Back to [Main Menu]' "${yellow}"
-    bottom_menu_option 'q' 'Exit' "${darkred}"
-    hr
-    bottomline
-    printf "\n"
-    printf " ${white}Type your choice and validate with Enter: ${yellow}"
-    read -rp "" opt_backup_menu
-    opt_backup_menu=$(echo "$opt_backup_menu" | tr '[:lower:]' '[:upper:]')
     printf "${white}\n"
 }
 
@@ -526,6 +505,27 @@ customize_menu(){
     printf " ${white}Type your choice and validate with Enter: ${yellow}"
     read -rp "" opt_customize_menu
     opt_customize_menu=$(echo "$opt_customize_menu" | tr '[:lower:]' '[:upper:]')
+    printf "${white}\n"
+}
+
+backup_menu(){
+    topline
+    title '[ BACKUP & RESTORE MENU ]' "${yellow}"
+    innerline
+    hr
+    menu_option '1' 'Backup Klipper configuration files'
+    menu_option '2' 'Restore Klipper configuration files'
+    hr
+    innerline
+    hr
+    bottom_menu_option 'b' 'Back to [Main Menu]' "${yellow}"
+    bottom_menu_option 'q' 'Exit' "${darkred}"
+    hr
+    bottomline
+    printf "\n"
+    printf " ${white}Type your choice and validate with Enter: ${yellow}"
+    read -rp "" opt_backup_menu
+    opt_backup_menu=$(echo "$opt_backup_menu" | tr '[:lower:]' '[:upper:]')
     printf "${white}\n"
 }
 
@@ -581,7 +581,7 @@ info_menu(){
     infoline "$(check_folder "$prtouch_folder")" 'Nozzle Cleaning Fan Control'
     infoline "$(check_file "$fancontrols_file")" 'Fans Control Macros' 
     infoline "$(check_folder "$shaperconfig_folder")" 'Improved Shapers Calibrations'
-    infoline "$(check_file "$usefullmacros_file")" 'Usefull Macros'
+    infoline "$(check_file "$usefulmacros_file")" 'Useful Macros'
     infoline "$(check_file "$savezoffset_file")" 'Save Z-Offset Macros'
     infoline "$(check_file "$screwsadjust_file")" 'Screws Tilt Adjust Support'
     hr
@@ -1143,6 +1143,7 @@ do
                 			    printf "${white}\n\n"
                 			    cd /usr/data
                 			    printf "Cloning repository...\n"
+                			    git config --global http.sslVerify false
                 			    git clone "$kamp_URL"
                 			    if [ $? -eq 0 ]; then
                 			        if [ -d "$helper_script"/KAMP ]; then
@@ -1572,45 +1573,45 @@ do
             			fi
                         ;;
                     14)
-            			if [ -f "$usefullmacros_file" ]; then
-            				printf "${darkred} ✗ Usefull Macros are already installed!"
+            			if [ -f "$usefulmacros_file" ]; then
+            				printf "${darkred} ✗ Useful Macros are already installed!"
             				wait
             				printf "${white}\n\n"
             			else
-            			    printf "${cyan} This allows to install usefull macros like Bed Leveling and PID."
+            			    printf "${cyan} This allows to install useful macros like Bed Leveling and PID."
             			    printf "${white}\n\n"
-            			    printf " Are you sure you want to install ${green}Usefull Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+            			    printf " Are you sure you want to install ${green}Useful Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} ✗ Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to install ${green}Usefull Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                printf " Are you sure you want to install ${green}Useful Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-                			    printf "${green} Installing Usefull Macros..."
+                			    printf "${green} Installing Useful Macros..."
                 			    printf "${white}\n\n"
-                                printf "Downloading Usefull Macros...\n"
-                                if [ -f "$helper_script"/usefull-macros.cfg ]; then
-                                    rm -f "$helper_script"/usefull-macros.cfg
+                                printf "Downloading Useful Macros...\n"
+                                if [ -f "$helper_script"/useful-macros.cfg ]; then
+                                    rm -f "$helper_script"/useful-macros.cfg
                                 fi
                                 if [ ! -d "$helper_script" ]; then
                 			        mkdir -p "$helper_script"
                 			    fi
-                			    /tmp/curl -s -L "$usefullmacros_URL" -o "$helper_script"/usefull-macros.cfg
+                			    /tmp/curl -s -L "$usefulmacros_URL" -o "$helper_script"/useful-macros.cfg
                 			    if [ $? -eq 0 ]; then
-                			        if grep -q "include Helper-Script/usefull-macros" "$printer_config" ; then
-                                        printf "Usefull Macros configurations are already enabled in printer.cfg file.\n"
+                			        if grep -q "include Helper-Script/useful-macros" "$printer_config" ; then
+                                        printf "Useful Macros configurations are already enabled in printer.cfg file.\n"
                                     else
-                                        printf "Adding Usefull Macros configurations in printer.cfg file...\n"
-                                        sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/usefull-macros\.cfg\]' "$printer_config"
+                                        printf "Adding Useful Macros configurations in printer.cfg file...\n"
+                                        sed -i '/\[include printer_params\.cfg\]/a \[include Helper-Script/useful-macros\.cfg\]' "$printer_config"
                                     fi
                 			        printf "Restarting services...\n"
                 			        /etc/init.d/S55klipper_service restart
                 			        printf "\n"
-                			        printf "${green} ✓ Usefull Macros have been installed successfully!"
+                			        printf "${green} ✓ Useful Macros have been installed successfully!"
                 			        printf "${white}\n\n"
                 			    else
                 			        rmdir "$helper_script" 2>/dev/null
@@ -1981,6 +1982,7 @@ do
 									printf "OctoEverywhere is already installed. Download skipped."
 								else
                 			    	printf "Downloading OctoEverywhere for Klipper..."
+                			    	git config --global http.sslVerify false
                 			    	git clone $octoeverywhere_URL octoeverywhere
 								fi
                 			    cd octoeverywhere
@@ -2027,6 +2029,7 @@ do
                 			        printf "Obico is already installed. Download skipped."
                 			    else
                 			        printf "Downloading Obico..."
+                			        git config --global http.sslVerify false
                 			        git clone $moonraker_obico_URL moonraker-obico
                 			    fi
                 			    cd moonraker-obico
@@ -2068,6 +2071,7 @@ do
                 			    printf "Installing prerequisite python packages...\n"
                 			    pip3 install requests websockets pytz coloredlogs
                 			    printf "Downloading Mobileraker Companion...\n"
+                			    git config --global http.sslVerify false
                 			    git clone --depth 1 "$mobileraker_URL1"
                 			    if [ $? -eq 0 ]; then
                 			        cd mobileraker_companion
@@ -2716,37 +2720,37 @@ do
             			fi
                         ;;
                     14)
-            			if [ ! -f "$usefullmacros_file" ]; then
-            				printf "${darkred} ✗ Usefull Macros are not installed!"
+            			if [ ! -f "$usefulmacros_file" ]; then
+            				printf "${darkred} ✗ Useful Macros are not installed!"
             				wait
             				printf "${white}\n\n"
             			else
-                            printf " Are you sure you want to remove ${green}Usefull Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                            printf " Are you sure you want to remove ${green}Useful Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
             			    read confirm
             			    printf "${white}\n"
             			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
                                 printf "${darkred} ✗ Please select a correct choice!"
                                 printf "${white}\n\n"
-                                printf " Are you sure you want to remove ${green}Usefull Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                printf " Are you sure you want to remove ${green}Useful Macros ${white}? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
                                 read confirm
                                 printf "${white}\n"
                             done
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			        printf "${green} Removing Usefull Macros..."
+            			        printf "${green} Removing Useful Macros..."
                 			    printf "${white}\n\n"
                 			    printf "Removing file...\n"
-                			    rm -f "$helper_script"/usefull-macros.cfg
-                			    if grep -q "include Helper-Script/usefull-macros" "$printer_config" ; then
-                                    printf "Removing Usefull Macros configurations in printer.cfg file...\n"
-                                    sed -i '/include Helper-Script\/usefull-macros\.cfg/d' "$printer_config"
+                			    rm -f "$helper_script"/useful-macros.cfg
+                			    if grep -q "include Helper-Script/useful-macros" "$printer_config" ; then
+                                    printf "Removing Useful Macros configurations in printer.cfg file...\n"
+                                    sed -i '/include Helper-Script\/useful-macros\.cfg/d' "$printer_config"
                                 else
-                                    printf "Usefull Macros configurations are already removed in printer.cfg file.\n"
+                                    printf "Useful Macros configurations are already removed in printer.cfg file.\n"
                                 fi
                                 rmdir "$helper_script" 2>/dev/null
                 			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n"
-                			    printf "${green} ✓ Usefull Macros have been removed successfully!"
+                			    printf "${green} ✓ Useful Macros have been removed successfully!"
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -3439,15 +3443,18 @@ do
                                             rm -f /etc/init.d/S99start_app
                                         fi
                                         printf "Setting up Guppy Screen...\n"
-                                        cp "$guppyscreen_folder"k1_mods/S50dropbear /etc/init.d/S50dropbear
-                                        cp "$guppyscreen_folder"k1_mods/S99guppyscreen /etc/init.d/S99guppyscreen
-                                        cp "$guppyscreen_folder"k1_mods/calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.py
                                         if [ ! -d "/usr/lib/python3.8/site-packages/matplotlib-2.2.3-py3.8.egg-info" ]; then
                                             printf "mathplotlib ft2font module is not replaced. PSD graphs might not work.\n"
                                         else
                                             printf "Replacing mathplotlib ft2font module to generate PSD graphs...\n"
                                             cp "$guppyscreen_folder"k1_mods/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
                                         fi
+                                        cp "$guppyscreen_folder"k1_mods/S50dropbear /etc/init.d/S50dropbear
+                                        cp "$guppyscreen_folder"k1_mods/S99guppyscreen /etc/init.d/S99guppyscreen
+                                        cp "$guppyscreen_folder"k1_mods/calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.py
+                                        ln -sf "$guppyscreen_folder"k1_mods/guppy_module_loader.py "$klipper_extra_folder"guppy_module_loader.py
+                                        ln -sf "$guppyscreen_folder"k1_mods/guppy_config_helper.py "$klipper_extra_folder"guppy_config_helper.py
+                                        ln -sf "$guppyscreen_folder"k1_mods/tmcstatus.py "$klipper_extra_folder"tmcstatus.py
                                         ln -sf "$guppyscreen_folder"k1_mods/respawn/libeinfo.so.1 /lib/libeinfo.so.1
                                         ln -sf "$guppyscreen_folder"k1_mods/respawn/librc.so.1 /lib/librc.so.1
                                         printf "Downloading Guppy Screen configurations files...\n"
@@ -3555,15 +3562,18 @@ do
                                             rm -f /etc/init.d/S99start_app
                                         fi
                                         printf "Setting up Guppy Screen...\n"
-                                        cp "$guppyscreen_folder"k1_mods/S50dropbear /etc/init.d/S50dropbear
-                                        cp "$guppyscreen_folder"k1_mods/S99guppyscreen /etc/init.d/S99guppyscreen
-                                        cp "$guppyscreen_folder"k1_mods/calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.py
                                         if [ ! -d "/usr/lib/python3.8/site-packages/matplotlib-2.2.3-py3.8.egg-info" ]; then
                                             printf "mathplotlib ft2font module is not replaced. PSD graphs might not work.\n"
                                         else
                                             printf "Replacing mathplotlib ft2font module to generate PSD graphs...\n"
                                             cp "$guppyscreen_folder"/k1_mods/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
                                         fi
+                                        cp "$guppyscreen_folder"k1_mods/S50dropbear /etc/init.d/S50dropbear
+                                        cp "$guppyscreen_folder"k1_mods/S99guppyscreen /etc/init.d/S99guppyscreen
+                                        cp "$guppyscreen_folder"k1_mods/calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.py
+                                        ln -sf "$guppyscreen_folder"k1_mods/guppy_module_loader.py "$klipper_extra_folder"guppy_module_loader.py
+                                        ln -sf "$guppyscreen_folder"k1_mods/guppy_config_helper.py "$klipper_extra_folder"guppy_config_helper.py
+                                        ln -sf "$guppyscreen_folder"k1_mods/tmcstatus.py "$klipper_extra_folder"tmcstatus.py
                                         ln -sf "$guppyscreen_folder"k1_mods/respawn/libeinfo.so.1 /lib/libeinfo.so.1
                                         ln -sf "$guppyscreen_folder"k1_mods/respawn/librc.so.1 /lib/librc.so.1
                                         printf "Downloading Guppy Screen configurations files...\n"
@@ -3668,8 +3678,12 @@ do
                                 fi
                                 [ -f /etc/init.d/S99guppyscreen ] && /etc/init.d/S99guppyscreen stop &> /dev/null
                                 killall -q guppyscreen
+                                rm -f "$klipper_extra_folder"calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.pyc
+                                rm -f "$klipper_extra_folder"guppy_module_loader.py "$klipper_extra_folder"guppy_module_loader.pyc
+                                rm -f "$klipper_extra_folder"guppy_config_helper.py "$klipper_extra_folder"guppy_config_helper.pyc
+                                rm -f "$klipper_extra_folder"tmcstatus.py "$klipper_extra_folder"tmcstatus.pyc
                                 rm -f /etc/init.d/S99guppyscreen /lib/libeinfo.so.1 /lib/librc.so.1
-                                rm -rf /usr/data/guppyscreen /usr/data/printer_data/config/GuppyScreen "$klipper_extra_folder"calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.pyc
+                                rm -rf /usr/data/guppyscreen /usr/data/printer_data/config/GuppyScreen
                                 if grep -q "include GuppyScreen/*" "$printer_config" ; then
                                     printf "Removing Guppy Screen configurations in printer.cfg file...\n"
                                     sed -i '/\[include GuppyScreen\/\*\.cfg\]/d' "$printer_config"
