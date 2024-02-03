@@ -567,12 +567,12 @@ info_menu(){
     infoline "$(check_folder "$moonraker_folder")" 'Moonraker & Nginx'
     infoline "$(check_folder "$fluidd_folder")" 'Fluidd'
     infoline "$(check_folder "$mainsail_folder")" 'Mainsail'
+    infoline "$(check_file "$supervisor_file")" 'Supervisor Lite'
     hr
     subtitle '•UTILITIES:'
     infoline "$(check_file "$entware_file")" 'Entware'
     infoline "$(check_file "$shellcommand_file")" 'Klipper Gcode Shell Command'
     infoline "$(check_file "$hostname_file")" 'Hostname Service'
-    infoline "$(check_file "$supervisor_file")" 'Supervisor Lite'
     infoline "$(check_file "$systemctl_file")" 'Host Controls Support'
     hr
     subtitle '•IMPROVEMENTS:'
