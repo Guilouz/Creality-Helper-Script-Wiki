@@ -3451,7 +3451,7 @@ do
                                         fi
                                         cp "$guppyscreen_folder"k1_mods/S50dropbear /etc/init.d/S50dropbear
                                         cp "$guppyscreen_folder"k1_mods/S99guppyscreen /etc/init.d/S99guppyscreen
-                                        cp "$guppyscreen_folder"k1_mods/calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.py
+                                        ln -sf "$guppyscreen_folder"k1_mods/calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.py
                                         ln -sf "$guppyscreen_folder"k1_mods/guppy_module_loader.py "$klipper_extra_folder"guppy_module_loader.py
                                         ln -sf "$guppyscreen_folder"k1_mods/guppy_config_helper.py "$klipper_extra_folder"guppy_config_helper.py
                                         ln -sf "$guppyscreen_folder"k1_mods/tmcstatus.py "$klipper_extra_folder"tmcstatus.py
@@ -3570,7 +3570,7 @@ do
                                         fi
                                         cp "$guppyscreen_folder"k1_mods/S50dropbear /etc/init.d/S50dropbear
                                         cp "$guppyscreen_folder"k1_mods/S99guppyscreen /etc/init.d/S99guppyscreen
-                                        cp "$guppyscreen_folder"k1_mods/calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.py
+                                        ln -sf "$guppyscreen_folder"k1_mods/calibrate_shaper_config.py "$klipper_extra_folder"calibrate_shaper_config.py
                                         ln -sf "$guppyscreen_folder"k1_mods/guppy_module_loader.py "$klipper_extra_folder"guppy_module_loader.py
                                         ln -sf "$guppyscreen_folder"k1_mods/guppy_config_helper.py "$klipper_extra_folder"guppy_config_helper.py
                                         ln -sf "$guppyscreen_folder"k1_mods/tmcstatus.py "$klipper_extra_folder"tmcstatus.py
