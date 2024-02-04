@@ -3007,6 +3007,8 @@ do
                 			    rm -rf /usr/data/moonraker-obico-env
                 			    rm -f /usr/data/printer_data/config/moonraker-obico-update.cfg /usr/data/printer_data/config/moonraker-obico.cfg
                     			rm -f /etc/init.d/S99moonraker_obico
+                    			printf "Removing packages...\n"
+                    			opkg remove --force-depends python3 python3-pip libpython3 python3-base python3-light python3-asyncio python3-email python3-cgi python3-pydoc python3-cgitb python3-codecs libffi python3-ctypes libgdbm python3-dbm python3-decimal python3-distutils python3-logging liblzma python3-lzma python3-multiprocessing libncursesw python3-ncurses libopenssl ca-certificates python3-openssl libreadline python3-readline libsqlite3 python3-sqlite3 python3-unittest python3-urllib libuuid
                     			printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    /etc/init.d/S56moonraker_service restart
