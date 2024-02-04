@@ -2986,12 +2986,7 @@ do
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                                 printf "${green} Removing Obico..."
                 			    printf "${white}\n\n"
-                                printf "Removing files...\n"
-                			    rm -rf $moonraker_obico_folder
-                			    rm -rf /usr/data/moonraker-obico-env
-                			    printf "Removing service file...\n"
-                    			rm -f /etc/init.d/S99moonraker_obico
-                    			if grep -q "include moonraker_obico_macros" "$printer_config" ; then
+                			    if grep -q "include moonraker_obico_macros" "$printer_config" ; then
                                     printf "Removing Obico configurations in printer.cfg file...\n"
                                     sed -i '/include moonraker_obico_macros\.cfg/d' "$printer_config"
                                 else
@@ -3003,6 +2998,11 @@ do
                                 else
                                     printf "Obico configurations are already removed in moonraker.conf file.\n"
                                 fi
+                                printf "Removing files...\n"
+                			    rm -rf $moonraker_obico_folder
+                			    rm -rf /usr/data/moonraker-obico-env
+                			    rm -f /usr/data/printer_data/config/moonraker-obico-update.cfg /usr/data/printer_data/config/moonraker-obico.cfg
+                    			rm -f /etc/init.d/S99moonraker_obico
                     			printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    /etc/init.d/S56moonraker_service restart
