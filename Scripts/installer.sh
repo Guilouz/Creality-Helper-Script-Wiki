@@ -1123,6 +1123,10 @@ do
             				printf "${darkred} ✗ Klipper Adaptive Meshing & Purging is already installed!"
             				wait
             				printf "${white}\n\n"
+            			elif [ ! -f "$supervisor_file" ]; then
+            				printf "${darkred} ✗ Please install Supervisor Lite first!"
+            				wait
+            				printf "${white}\n\n"
             			else
             			    printf "${cyan} Klipper Adaptive Meshing & Purging is an extension that allows"
             			    printf "\n"
