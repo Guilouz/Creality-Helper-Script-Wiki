@@ -1377,6 +1377,10 @@ do
             				printf "${darkred} ✗ Fans Control Macros are already installed!"
             				wait
             				printf "${white}\n\n"
+            			elif [ $K1 -eq 0 ]; then
+                            printf "${darkred} ✗ This feature is not compatible with your printer."
+                            wait
+                            printf "${white}\n\n"
             			else
             			    if [ "$firmware_version" == "1.3.2.1" ] || [ "$firmware_version" == "1.3.2.20" ]; then
             			        printf "${cyan} This allows to control Chamber and Motherboard fans with slicers."
@@ -1685,6 +1689,10 @@ do
             				printf "${darkred} ✗ Screws Tilt Adjust Support is already installed!"
             				wait
             				printf "${white}\n\n"
+            			elif [ $K1 -eq 0 ]; then
+                            printf "${darkred} ✗ This feature is not compatible with your printer."
+                            wait
+                            printf "${white}\n\n"
             			else
             			    printf "${cyan} This allows to add support for Screws Tilt Adjust functionality."
             			    printf "${white}\n\n"
@@ -3076,7 +3084,11 @@ do
                 customize_menu
                 case $opt_customize_menu in
                     1)
-            			if [ ! -d "$bootdisplay_folder" ]; then
+            			if [ $K1 -eq 0 ]; then
+                            printf "${darkred} ✗ This feature is not compatible with your printer."
+                            wait
+                            printf "${white}\n\n"
+            			elif [ ! -d "$bootdisplay_folder" ]; then
             				printf "${darkred} ✗ Please use latest firmware to install Custom Boot Display!"
             				wait
             				printf "${white}\n\n"
@@ -3151,7 +3163,11 @@ do
             			fi
                         ;;
             	    2)
-            			if [ ! -d "$bootdisplay_folder" ]; then
+            			if [ $K1 -eq 0 ]; then
+                            printf "${darkred} ✗ This feature is not compatible with your printer."
+                            wait
+                            printf "${white}\n\n"
+            			elif [ ! -d "$bootdisplay_folder" ]; then
             				printf "${darkred} ✗ Please use latest firmware to restore Stock Boot Display!"
             				wait
             				printf "${white}\n\n"
@@ -3368,6 +3384,10 @@ do
             			    printf "${darkred} If you want to change the theme please remove Guppy Screen first."
             			    wait
             				printf "${white}\n\n"
+            			elif [ $K1 -eq 0 ]; then
+                            printf "${darkred} ✗ This feature is not compatible with your printer."
+                            wait
+                            printf "${white}\n\n"
             			elif [ -d "$shaperconfig_folder" ]; then
             				printf "${darkred} Please remove Improved Shapers Calibrations before, Guppy Screen already use it!"
             				wait
