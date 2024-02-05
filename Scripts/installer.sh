@@ -692,7 +692,7 @@ do
                 			        rm -f moonraker.tar
                 			    fi
                 			    printf "Downloading Moonraker and Nginx file... Please wait...\n"
-                			    /tmp/curl -s -L "$moonraker_URL" -o moonraker.tar
+                			    /tmp/curl -L "$moonraker_URL" -o moonraker.tar
                 			    if [ $? -eq 0 ]; then
                 			        printf "Installing files...\n"
                 			        tar -xvf moonraker.tar
@@ -707,7 +707,7 @@ do
                                         sed -i '/keepalive_timeout  65;/a \    proxy_connect_timeout 1600;\n    proxy_send_timeout 1600;\n    proxy_read_timeout 1600;\n    send_timeout 1600;' /usr/data/nginx/nginx/nginx.conf
                                     fi
                 			        printf "Downloading Moonraker configuration file...\n"
-                    			    /tmp/curl -L "$moonraker_config_URL" -o "$moonraker_config"
+                    			    /tmp/curl -s -L "$moonraker_config_URL" -o "$moonraker_config"
                 			        printf "Applying changes...\n"
                 			        cd /usr/data/moonraker/moonraker
                 			        git stash; git checkout master; git pull
