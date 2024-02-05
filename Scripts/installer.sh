@@ -720,6 +720,7 @@ do
                 			        sleep 1
                 			        printf "\n"
                 			        printf "${green} ✓ Moonraker and Nginx have been installed successfully!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
@@ -791,6 +792,7 @@ do
                 			        printf "${green} ✓ Fluidd has been installed successfully!"
                 			        printf "${white}\n\n"
                 			        printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress):4408"
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
@@ -862,6 +864,7 @@ do
                 			        printf "${green} ✓ Mainsail has been installed successfully!"
                 			        printf "${white}\n\n"
                 			        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress):4409"
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
@@ -920,6 +923,7 @@ do
                 			        sleep 1
                 			        printf "\n"
                 			        printf "${green} ✓ Supervisor Lite has been installed successfully!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
@@ -967,6 +971,7 @@ do
             			        printf "${green} ✓ Entware has been installed successfully!"
             			        printf "${white}\n\n"
             			        printf " Log out and log back in, and you can now install packages with: ${yellow}opkg install <packagename>"
+            			        wait
             			        printf "${white}\n\n"
             			    else
             			        printf "${white}\n\n"
@@ -1007,6 +1012,7 @@ do
                 			        /etc/init.d/S55klipper_service restart
                 			        printf "\n"
                 			        printf "${green} ✓ Klipper Gcode Shell Command has been installed successfully!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
@@ -1052,6 +1058,7 @@ do
                 			        chmod 755 "$hostname_file"
                 			        printf "\n"
                 			        printf "${green} ✓ Hostname Service has been installed successfully!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
@@ -1098,6 +1105,7 @@ do
                 			            chmod 755 /usr/bin/systemctl
                 			            printf "\n"
                 			            printf "${green} ✓ Host Controls Support has been installed successfully!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        else
                 			            rm -f "$sudo_file"
@@ -1223,6 +1231,7 @@ do
                 			        printf "${green} ✓ Klipper Adaptive Meshing & Purging has been installed successfully!"
                 			        printf "${white}\n\n"
                 			        printf " Make sure Label Objects setting is enabled in your slicer."
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
@@ -1288,6 +1297,7 @@ do
                 			            printf "${green} ✓ Buzzer Support has been installed successfully!"
                 			            printf "${white}\n\n"
                 			            printf " You can now use ${yellow}BEEP ${white}command in your macros to play sound."
+                			            wait
                 			            printf "${white}\n\n"
                 			        else
                 			            rm -f "$buzzer_file" 2>/dev/null
@@ -1356,6 +1366,7 @@ do
                                         /etc/init.d/S55klipper_service restart
                                         printf "\n"
                 			            printf "${green} ✓ Nozzle Cleaning Fan Control has been installed successfully!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        else
                 			            rm -rf "$klipper_extra_folder"prtouch_v2_fan 2>/dev/null
@@ -1452,6 +1463,7 @@ do
                 			        /etc/init.d/S55klipper_service restart
                 			        printf "\n"
                 			        printf "${green} ✓ Fans Control Macros have been installed successfully!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        rmdir "$helper_script" 2>/dev/null
@@ -1559,6 +1571,7 @@ do
                 			            sleep 1
                 			            printf "\n"
                 			            printf "${green} ✓ Improved Shapers Calibrations have been installed successfully!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        else
                 			            cp -f "$shaperconfig_folder"backup/ft2font.cpython-38-mipsel-linux-gnu.so /usr/lib/python3.8/site-packages/matplotlib/ft2font.cpython-38-mipsel-linux-gnu.so
@@ -1620,6 +1633,7 @@ do
                 			        /etc/init.d/S55klipper_service restart
                 			        printf "\n"
                 			        printf "${green} ✓ Useful Macros have been installed successfully!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        rmdir "$helper_script" 2>/dev/null
@@ -1674,6 +1688,7 @@ do
                 			        /etc/init.d/S55klipper_service restart
                 			        printf "\n"
                 			        printf "${green} ✓ Save Z-Offset Macros have been installed successfully!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        rmdir "$helper_script" 2>/dev/null
@@ -1748,6 +1763,7 @@ do
                 			                    /etc/init.d/S55klipper_service restart
                 			                    printf "\n"
                 			                    printf "${green} ✓ Screws Tilt Adjust Support for ${yellow}K1 ${green}has been installed successfully!"
+                			                    wait
                 			                    printf "${white}\n\n"
                 			                else
                 			                    rm -rf "$klipper_extra_folder"screws_tilt_adjust.py "$klipper_extra_folder"screws_tilt_adjust.pyc 2>/dev/null
@@ -1790,6 +1806,7 @@ do
                 			                    /etc/init.d/S55klipper_service restart
                 			                    printf "\n"
                 			                    printf "${green} ✓ Screws Tilt Adjust Support for ${yellow}K1 Max ${green}has been installed successfully!"
+                			                    wait
                 			                    printf "${white}\n\n"
                 			                else
                 			                    rm -rf "$klipper_extra_folder"screws_tilt_adjust.py "$klipper_extra_folder"screws_tilt_adjust.pyc 2>/dev/null
@@ -1871,6 +1888,7 @@ do
                 			            sleep 1
                 			            printf "\n"
                 			            printf "${green} ✓ Moonraker Timelapse has been installed successfully!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        else
                 			            rmdir "$helper_script" 2>/dev/null
@@ -1944,6 +1962,7 @@ do
                 			        /etc/init.d/S55klipper_service restart
                 			        printf "\n"
                 			        printf "${green} ✓ Camera Settings Control has been installed successfully!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        rmdir "$helper_script" 2>/dev/null
@@ -2002,6 +2021,7 @@ do
 								sh ./install.sh
                 			    printf "\n"
                 			    printf "${green} ✓ OctoEverywhere has been installed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Installation canceled!"
@@ -2049,6 +2069,7 @@ do
                 			    sh ./scripts/install_creality.sh -k
                 			    printf "\n"
                 			    printf "${green} ✓ Obico has been installed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Installation canceled!"
@@ -2110,6 +2131,7 @@ do
                 			            sleep 1
                 			            printf "\n"
                 			            printf "${green} ✓ Mobileraker Companion has been installed successfully!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        else
                 			            rm -rf /usr/data/mobileraker_companion 2>/dev/null
@@ -2177,6 +2199,7 @@ do
                 			    rm -rf /usr/data/printer_data/config/moonraker.conf /usr/data/printer_data/config/.moonraker.conf.bkp /usr/data/printer_data/.moonraker.uuid /usr/data/printer_data/moonraker.asvc /usr/data/nginx /usr/data/moonraker
                 			    printf "\n"
                 			    printf "${green} ✓ Moonraker and Nginx }have been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2225,6 +2248,7 @@ do
                                 fi
                 			    printf "\n"
                 			    printf "${green} ✓ Fluidd has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2274,6 +2298,7 @@ do
                                 fi
                 			    printf "\n"
                 			    printf "${green} ✓ Mainsail has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2321,6 +2346,7 @@ do
                 			    sleep 1
                 			    printf "\n"
                 			    printf "${green} ✓ Supervisor Lite has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2359,6 +2385,7 @@ do
                             sed -i 's/\/opt\/bin:\/opt\/sbin:\/bin:/\/bin:/' /etc/profile
                             printf "\n"
             			    printf "${green} ✓ Entware has been removed successfully!"
+            			    wait
             			    printf "${white}\n\n"
             			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			printf "${darkred} ✗ Deletion canceled!"
@@ -2406,6 +2433,8 @@ do
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n"
                 			    printf "${green} ✓ Klipper Gcode Shell Command has been removed successfully!"
+                			    wait
+            			        printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
                 			    printf "${white}\n\n"
@@ -2435,6 +2464,7 @@ do
                 			    rm -f /etc/init.d/S01hostname
                 			    printf "\n"
                 			    printf "${green} ✓ Hostname Service has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2465,6 +2495,7 @@ do
                 			    rm -f /usr/bin/sudo /usr/bin/systemctl
                 			    printf "\n"
                 			    printf "${green} ✓ Host Controls Support has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2526,6 +2557,7 @@ do
                 			    sleep 1
                 			    printf "\n"
                 			    printf "${green} ✓ Klipper Adaptive Meshing & Purging has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2565,6 +2597,7 @@ do
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n"
                 			    printf "${green} ✓ Buzzer Support has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2604,6 +2637,7 @@ do
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n"
                 			    printf "${green} ✓ Nozzle Cleaning Fan Control has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2667,6 +2701,7 @@ do
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n"
                 			    printf "${green} ✓ Fans Control Macros have been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2724,6 +2759,7 @@ do
                 			    sleep 1
                 			    printf "\n"
                 			    printf "${green} ✓ Improved Shapers Calibrations have been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2763,6 +2799,7 @@ do
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n"
                 			    printf "${green} ✓ Useful Macros have been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2802,6 +2839,7 @@ do
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n"
                 			    printf "${green} ✓ Save Z-Offset Macros have been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2841,6 +2879,7 @@ do
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n"
                 			    printf "${green} ✓ Screws Tilt Adjust Support has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2895,6 +2934,7 @@ do
                 			    sleep 1
                 			    printf "\n"
                 			    printf "${green} ✓ Moonraker Timelapse has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2934,6 +2974,7 @@ do
                 			    /etc/init.d/S55klipper_service restart
                 			    printf "\n"
                 			    printf "${green} ✓ Camera Settings Control has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -2964,6 +3005,7 @@ do
 								printf "Running the OctoEverywhere uninstaller..."
 								sh ./uninstall.sh
                 			    printf "${green} ✓ OctoEverywhere has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -3017,6 +3059,7 @@ do
                 			    sleep 1
                 			    printf "\n"
                 			    printf "${green} ✓ Obico has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -3063,6 +3106,7 @@ do
                 			    sleep 1
                 			    printf "\n"
                 			    printf "${green} ✓ Mobileraker Companion has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -3135,6 +3179,7 @@ do
                 			            rm -f k1_boot_display.tar
                 			            printf "\n"
                 			            printf "${green} ✓ Custom Boot Display for ${yellow}K1 ${green}has been installed successfully!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        else
                 			            printf "${white}\n\n"
@@ -3155,6 +3200,7 @@ do
                 			            rm -f k1max_boot_display.tar
                 			            printf "\n"
                 			            printf "${green} ✓ Custom Boot Display for ${yellow}K1 Max ${green}has been installed successfully!"
+                			            wait
                 			            printf "${white}\n\n"
                 			        else
                 			            printf "${white}\n\n"
@@ -3203,6 +3249,7 @@ do
                 			        rm -f stock_boot_display.tar
                 			        printf "\n"
                 			        printf "${green} ✓ Custom Boot Display has been removed successfully!"
+                			        wait
                 			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
@@ -3262,6 +3309,7 @@ do
                                     printf "${green} ✓ Creality Web Interface has been removed successfully!"
                 			        printf "${white}\n\n"
                 			        printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress)"
+                			        wait
                 			        printf "${white}\n\n"
             			        elif [ ! -d "$fluidd_folder" ] && [ -d "$mainsail_folder" ]; then
             			            printf "${green} Removing Creality Web Interface..."
@@ -3280,6 +3328,7 @@ do
                                     printf "${green} ✓ Creality Web Interface has been removed successfully!"
                 			        printf "${white}\n\n"
                 			        printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress)"
+                			        wait
                 			        printf "${white}\n\n"
             			        elif [ -d "$fluidd_folder" ] && [ -d "$mainsail_folder" ]; then
             			            printf " Which Web Interface do you want to set as default (on port 80) ? (${yellow}fluidd${white}/${yellow}mainsail${white}): ${yellow}"
@@ -3309,6 +3358,7 @@ do
                                         printf "${green} ✓ Creality Web Interface has been removed successfully!"
                 			            printf "${white}\n\n"
                 			            printf " You can now connect to Fluidd Web Interface with ${yellow}http://$(check_ipaddress) ${white}or ${yellow}http://$(check_ipaddress):4408"
+                			            wait
                 			            printf "${white}\n\n"
             			            elif [ "$confirm2" = "mainsail" ] || [ "$confirm2" = "MAINSAIL" ]; then
                 			            printf "${green} Removing Creality Web Interface..."
@@ -3327,6 +3377,7 @@ do
                                         printf "${green} ✓ Creality Web Interface has been removed successfully!"
                 			            printf "${white}\n\n"
                 			            printf " You can now connect to Mainsail Web Interface with ${yellow}http://$(check_ipaddress) ${white}or ${yellow}http://$(check_ipaddress):4409"
+                			            wait
                 			            printf "${white}\n\n"
                 			        fi
             			        fi
@@ -3376,6 +3427,7 @@ do
                                 printf "${green} Creality Web Interface has been restored successfully!"
                                 printf "${white}\n\n"
                 			    printf " You can now connect to Creality Web Interface with ${yellow}http://$(check_ipaddress) ${white}and with ${yellow}Creality Print"
+                			    wait
                 			    printf "${white}\n\n"
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} Restoration canceled!"
@@ -3550,6 +3602,7 @@ do
                 			        fi
                 			        printf "\n"
                 			        printf "${green} ✓ Guppy Screen with ${yellow}Material Design ${green}theme has been installed successfully!"
+                			        wait
                 			        printf "${white}\n\n"
             			        elif [ "$confirm2" = "zbolt" ] || [ "$confirm2" = "ZBOLT" ]; then
                 			        printf "${green} Installing Guppy Screen with Z-Bolt theme..."
@@ -3669,6 +3722,7 @@ do
                 			        fi
                 			        printf "\n"
                 			        printf "${green} ✓ Guppy Screen with ${yellow}Z-Bolt ${green}theme has been installed successfully!"
+                			        wait
                 			        printf "${white}\n\n"
             			        fi
             			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -3758,6 +3812,7 @@ do
                                 fi
                 			    printf "\n"
                 			    printf "${green} ✓ Guppy Screen has been removed successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Deletion canceled!"
@@ -3797,6 +3852,7 @@ do
                                             printf "${green} ✓ Creality Dynamic Logos for Fluidd have been installed successfully!"
                 			                printf "${white}\n\n"
                 			                printf " You can now select Creality V1 or V2 theme in Fluidd settings."
+                			                wait
                 			                printf "${white}\n\n"
                 			            else
                 			                rm -f /usr/data/fluidd/logo_creality_v1.svg
@@ -3865,6 +3921,7 @@ do
             			    mv backup_config.tar.gz config/backup_config.tar.gz
             			    printf "\n"
             			    printf "${green} ✓ Klipper configuration files have been saved successfully in ${yellow}/usr/data/printer_data/config/ ${green}folder!"
+            			    wait
             			    printf "${white}\n\n"
             			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			printf "${darkred} Backup canceled!"
@@ -3898,6 +3955,7 @@ do
                 			    mv backup_config.tar.gz config/backup_config.tar.gz
                 			    printf "\n"
                 			    printf "${green} ✓ Klipper configuration files have been restored successfully!"
+                			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Restoration canceled!"
@@ -4015,6 +4073,7 @@ do
                                     /etc/init.d/S55klipper_service restart
                                     printf "\n"
                                     printf "${green} ✓ Klipper configuration files will no longer be updated when Klipper restarts!"
+                                    wait
                                     printf "${white}\n\n"
                                 else
                 			        printf "${white}\n\n"
@@ -4054,6 +4113,7 @@ do
                                 /etc/init.d/S55klipper_service restart
                                 printf "\n"
                                 printf "${green} ✓ Klipper configuration files will be updated when Klipper restarts!"
+                                wait
                                 printf "${white}\n\n"
                             elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 	            printf "${darkred} ✗ Restart canceled!"
@@ -4089,6 +4149,7 @@ do
                                 printf "${green} ✓ Firmware has been restored! Please reboot your printer."
                                 printf "${white}\n\n"
                                 printf " After reboot, perform a reset to factory settings (see Wiki)."
+                                wait
                                 printf "${white}\n\n"
                             else
                                 printf "${darkred} ✗ No .img file found on the USB drive. Restoration canceled!"
