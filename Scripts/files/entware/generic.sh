@@ -1,86 +1,64 @@
 #!/bin/sh
 
-TYPE='generic'
-#TYPE='alternative'
-
-#|---------|-----------------------|---------------|---------------|---------------------|-------------------|-------------------|----------------------|-------------------|
-#| ARCH    | aarch64-k3.10         | armv5sf-k3.2  | armv7sf-k2.6  | armv7sf-k3.2        | mipselsf-k3.4     | mipssf-k3.4       | x64-k3.2             | x86-k2.6          |
-#| LOADER  | ld-linux-aarch64.so.1 | ld-linux.so.3 | ld-linux.so.3 | ld-linux.so.3       | ld.so.1           | ld.so.1           | ld-linux-x86-64.so.2 | ld-linux.so.2     |
-#| GLIBC   | 2.27                  | 2.27          | 2.23          | 2.27                | 2.27              | 2.27              | 2.27                 | 2.23              |
-#|---------|-----------------------|---------------|---------------|---------------------|-------------------|-------------------|----------------------|-------------------|
-
 unset LD_LIBRARY_PATH
 unset LD_PRELOAD
 
-ARCH=mipselsf-k3.4
 LOADER=ld.so.1
 GLIBC=2.27
 
-echo 'Info: Checking for prerequisites and creating folders...'
-if [ -d /opt ]; then
-    echo 'Warning: Folder /opt exists!'
-else
-    mkdir /opt
-fi
-# no need to create many folders. entware-opt package creates most
+URL="http://test.entware.net/mipselsf-k3.4/installer"
+MIRROR_URL="http://www.openk1.org/static/entware/mipselsf-k3.4/installer"
+
+echo -e "Info: Removing old directories..."
+rm -rf /opt
+rm -rf /usr/data/opt
+
+echo -e "Info: Creating directory..."
+mkdir -p /usr/data/opt
+
+echo -e "Info: Linking folder..."
+ln -nsf /usr/data/opt /opt
+
+echo -e "Info: Creating subdirectories..."
 for folder in bin etc lib/opkg tmp var/lock
 do
-  if [ -d "/opt/$folder" ]; then
-    echo "Warning: Folder /opt/$folder exists!"
-    echo 'Warning: If something goes wrong please clean /opt folder and try again.'
-  else
-    mkdir -p /opt/$folder
-  fi
+  mkdir -p /usr/data/opt/$folder
 done
 
-echo 'Info: Opkg package manager deployment...'
-URL=http://bin.entware.net/${ARCH}/installer
-REPLACE_OPKG_MIRROR=0
-/tmp/curl -s -L $URL/opkg --connect-timeout 10 -o /opt/bin/opkg >/dev/null 2>&1
+echo -e "Info: Downloading opkg package manager..."
+/usr/data/helper-script/files/fixes/curl -L "$URL/opkg" --connect-timeout 10 -o "/opt/bin/opkg"
 if [ $? -ne 0 ]; then
-  echo 'Warning: Trying mirrors.bfsu.edu.cn mirror repo...'
-  URL=http://mirrors.bfsu.edu.cn/entware/${ARCH}/installer
-  /tmp/curl -s -L $URL/opkg -o /opt/bin/opkg >/dev/null 2>&1
-  REPLACE_OPKG_MIRROR=1
+  echo -e 'Warning: Primary URL download failed, using openk1.org mirror...'
+  URL="$MIRROR_URL"
+  /usr/data/helper-script/files/fixes/curl -L "$URL/opkg" --connect-timeout 10 -o "/opt/bin/opkg"
 fi
+/usr/data/helper-script/files/fixes/curl -L "$URL/opkg.conf" -o "/opt/etc/opkg.conf"
+
+echo -e "Info: Applying permissions..."
 chmod 755 /opt/bin/opkg
-/tmp/curl -s -L $URL/opkg.conf -o /opt/etc/opkg.conf
-
-if [ $REPLACE_OPKG_MIRROR = '1' ]; then
-  sed -i "s,http://bin.entware.net/${ARCH},http://mirrors.bfsu.edu.cn/entware/${ARCH},g" /opt/etc/opkg.conf
-fi
-
-echo 'Info: Basic packages installation...'
-/opt/bin/opkg update
-if [ $TYPE = 'alternative' ]; then
-  /opt/bin/opkg install busybox
-fi
-/opt/bin/opkg install entware-opt
-
-# Fix for multiuser environment
 chmod 777 /opt/tmp
 
+echo -e "Info: Installing basic packages..."
+/opt/bin/opkg update
+/opt/bin/opkg install entware-opt
+
+echo -e "Info: Installing SFTP server support..."
+/opt/bin/opkg install openssh-sftp-server; ln -s /opt/libexec/sftp-server /usr/libexec/sftp-server
+
+echo -e "Info: Configuring files..."
 for file in passwd group shells shadow gshadow; do
-  if [ $TYPE = 'generic' ]; then
-    if [ -f /etc/$file ]; then
-      ln -sf /etc/$file /opt/etc/$file
-    else
-      [ -f /opt/etc/$file.1 ] && cp /opt/etc/$file.1 /opt/etc/$file
-    fi
+  if [ -f /etc/$file ]; then
+    ln -sf /etc/$file /opt/etc/$file
   else
-    if [ -f /opt/etc/$file.1 ]; then
-      cp /opt/etc/$file.1 /opt/etc/$file
-    fi
+    [ -f /opt/etc/$file.1 ] && cp /opt/etc/$file.1 /opt/etc/$file
   fi
 done
 
 [ -f /etc/localtime ] && ln -sf /etc/localtime /opt/etc/localtime
 
-echo 'Info: Congratulations!'
-echo 'Info: If there are no errors above then Entware was successfully initialized.'
-echo 'Info: Add /opt/bin & /opt/sbin to $PATH variable'
-echo 'Info: Add "/opt/etc/init.d/rc.unslung start" to startup script for Entware services to start'
-if [ $TYPE = 'alternative' ]; then
-  echo 'Info: Use ssh server from Entware for better compatibility.'
-fi
-echo 'Info: Found a Bug? Please report at https://github.com/Entware/Entware/issues'
+echo -e "Info: Applying changes in system profile..."
+echo 'export PATH="/opt/bin:/opt/sbin:$PATH"' > /etc/profile.d/entware.sh
+
+echo -e "Info: Adding startup script..."
+echo '#!/bin/sh\n/opt/etc/init.d/rc.unslung "$1"' > /etc/init.d/S50unslung
+chmod 755 /etc/init.d/S50unslung

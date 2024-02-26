@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION=v4.4.1
+VERSION=v4.4.2
 
 white=`echo -en "\033[m"`
 blue=`echo -en "\033[36m"`
@@ -258,12 +258,12 @@ check_connection() {
 }
 
 check_version() {
-  file="/usr/data/creality/userdata/config/system_version.json"
-  if [ -e "$file" ]; then
-    cat "$file" | jq -r '.sys_version'
-  else
-    printf "N/A"
-  fi
+    file="/usr/data/creality/userdata/config/system_version.json"
+    if [ -e "$file" ]; then
+        cat "$file" | jq -r '.sys_version'
+    else
+        printf "N/A"
+    fi
 }
 
 topline() {
@@ -712,7 +712,8 @@ do
                 			        cd /usr/data/moonraker/moonraker
                 			        git stash; git checkout master; git pull
                 			        printf "Installing necessary package...\n"
-                			        python3 -m pip install pyserial-asyncio==0.6
+                			        cd /usr/data/moonraker/moonraker-env/bin
+                			        python3 -m pip install --no-cache-dir pyserial-asyncio==0.6
                 			        printf "Restarting services...\n"
                 			        /etc/init.d/S50nginx start
                 			        sleep 1
@@ -955,18 +956,9 @@ do
             			if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                             printf "${green} Installing Entware..."
                             printf "${white}\n\n"
-            			    echo "Making /opt directory on data partition where there is space, and adding a symbolic link..."
-            			    rm -rf /opt /usr/data/opt
-            			    mkdir -p /usr/data/opt
-            			    ln -nsf /usr/data/opt /opt
             			    echo "Downloading generic installer script..."
             			    wget --no-check-certificate -O - "$entware_URL" | /bin/sh
             			    if [ $? -eq 0 ]; then
-            			        echo "Adding /opt/bin and /opt/sbin to the start of the PATH in the system profile..."
-            			        echo 'export PATH="/opt/bin:/opt/sbin:$PATH"' > /etc/profile.d/entware.sh
-            			        echo "Adding startup script..."
-            			        echo -e '#!/bin/sh\n/opt/etc/init.d/rc.unslung "$1"' > /etc/init.d/S50unslung
-            			        chmod 755 /etc/init.d/S50unslung
             			        printf "\n"
             			        printf "${green} ✓ Entware has been installed successfully!"
             			        printf "${white}\n\n"
@@ -1131,6 +1123,10 @@ do
             				printf "${darkred} ✗ Klipper Adaptive Meshing & Purging is already installed!"
             				wait
             				printf "${white}\n\n"
+            			elif [ $K1 -eq 0 ]; then
+                            printf "${darkred} ✗ This feature is not compatible with your printer."
+                            wait
+                            printf "${white}\n\n"
             			elif [ ! -f "$supervisor_file" ]; then
             				printf "${darkred} ✗ Please install Supervisor Lite first!"
             				wait
@@ -2198,7 +2194,7 @@ do
                 			    rm -rf /etc/init.d/S50nginx /etc/init.d/S56moonraker_service
                 			    rm -rf /usr/data/printer_data/config/moonraker.conf /usr/data/printer_data/config/.moonraker.conf.bkp /usr/data/printer_data/.moonraker.uuid /usr/data/printer_data/moonraker.asvc /usr/data/nginx /usr/data/moonraker
                 			    printf "\n"
-                			    printf "${green} ✓ Moonraker and Nginx }have been removed successfully!"
+                			    printf "${green} ✓ Moonraker and Nginx have been removed successfully!"
                 			    wait
                 			    printf "${white}\n\n"
                 			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
@@ -2355,41 +2351,46 @@ do
             			fi
                         ;;
                     5)
-                        printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-            			read confirm
-            			printf "${white}\n"
-            			while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
-                            printf "${darkred} ✗ Please select a correct choice!"
-                            printf "${white}\n\n"
+                        if [ -f "$timelapse_file" ]; then
+            				printf "${darkred} ✗ Entware is needed to use Moonraker Timelapse, please uninstall it first!"
+            				wait
+            				printf "${white}\n\n"
+            			else
                             printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
-                            read confirm
-                            printf "${white}\n"
-                        done
-            			if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
-            			    printf "${green} Removing Entware..."
-                			printf "${white}\n\n"
-            			    printf "Removing startup script...\n"
-                            rm -f /etc/init.d/S50unslung
-                            printf "Removing opt directory...\n"
-                            rm -rf /usr/data/opt
-                            printf "Removing /opt symbolic link and replacing with stock empty directory...\n"
-                            if [ -L /opt ]; then
-                                rm /opt
-                                mkdir -p /opt
-                                chmod 755 /opt
-                            fi
-                            printf "Removing SFTP server symlink if it exists...\n"
-                            [ -L /usr/libexec/sftp-server ] && rm /usr/libexec/sftp-server
-                            printf "Removing /opt/bin and /opt/sbin from PATH in the system profile...\n"
-                            rm -f /etc/profile.d/entware.sh
-                            sed -i 's/\/opt\/bin:\/opt\/sbin:\/bin:/\/bin:/' /etc/profile
-                            printf "\n"
-            			    printf "${green} ✓ Entware has been removed successfully!"
-            			    wait
-            			    printf "${white}\n\n"
-            			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
-                			printf "${darkred} ✗ Deletion canceled!"
-                			printf "${white}\n\n"
+            			    read confirm
+            			    printf "${white}\n"
+            			    while [ "$confirm" != "y" ] && [ "$confirm" != "Y" ] && [ "$confirm" != "n" ] && [ "$confirm" != "N" ]; do
+                                printf "${darkred} ✗ Please select a correct choice!"
+                                printf "${white}\n\n"
+                                printf " Are you sure you want to remove ${green}Entware${white}, it will also remove all installed packages ? (${yellow}y${white}/${yellow}n${white}): ${yellow}"
+                                read confirm
+                                printf "${white}\n"
+                            done
+            			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
+            			        printf "${green} Removing Entware..."
+                			    printf "${white}\n\n"
+            			        printf "Removing startup script...\n"
+                                rm -f /etc/init.d/S50unslung
+                                printf "Removing directories...\n"
+                                rm -rf /usr/data/opt
+                                if [ -L /opt ]; then
+                                    rm /opt
+                                    mkdir -p /opt
+                                    chmod 755 /opt
+                                fi
+                                printf "Removing SFTP server symlink...\n"
+                                [ -L /usr/libexec/sftp-server ] && rm /usr/libexec/sftp-server
+                                printf "Removing changes in system profile...\n"
+                                rm -f /etc/profile.d/entware.sh
+                                sed -i 's/\/opt\/bin:\/opt\/sbin:\/bin:/\/bin:/' /etc/profile
+                                printf "\n"
+            			        printf "${green} ✓ Entware has been removed successfully!"
+            			        wait
+            			        printf "${white}\n\n"
+            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+                			    printf "${darkred} ✗ Deletion canceled!"
+                			    printf "${white}\n\n"
+            			    fi
             			fi
                         ;;
 					6)
