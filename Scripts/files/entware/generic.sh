@@ -26,13 +26,13 @@ do
 done
 
 echo -e "Info: Downloading opkg package manager..."
-/usr/data/helper-script/files/fixes/curl -L "$URL/opkg" --connect-timeout 10 -o "/opt/bin/opkg"
+/tmp/curl -L "$URL/opkg" --connect-timeout 10 -o "/opt/bin/opkg"
 if [ $? -ne 0 ]; then
   echo -e 'Warning: Primary URL download failed, using openk1.org mirror...'
   URL="$MIRROR_URL"
-  /usr/data/helper-script/files/fixes/curl -L "$URL/opkg" --connect-timeout 10 -o "/opt/bin/opkg"
+  /tmp/curl -L "$URL/opkg" --connect-timeout 10 -o "/opt/bin/opkg"
 fi
-/usr/data/helper-script/files/fixes/curl -L "$URL/opkg.conf" -o "/opt/etc/opkg.conf"
+/tmp/curl -L "$URL/opkg.conf" -o "/opt/etc/opkg.conf"
 
 echo -e "Info: Applying permissions..."
 chmod 755 /opt/bin/opkg
