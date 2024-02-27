@@ -6,9 +6,6 @@ unset LD_PRELOAD
 LOADER=ld.so.1
 GLIBC=2.27
 
-URL="http://test.entware.net/mipselsf-k3.4/installer"
-MIRROR_URL="http://www.openk1.org/static/entware/mipselsf-k3.4/installer"
-
 echo -e "Info: Removing old directories..."
 rm -rf /opt
 rm -rf /usr/data/opt
@@ -26,12 +23,8 @@ do
 done
 
 echo -e "Info: Downloading opkg package manager..."
-/tmp/curl -L "$URL/opkg" --connect-timeout 10 -o "/opt/bin/opkg"
-if [ $? -ne 0 ]; then
-  echo -e 'Warning: Primary URL download failed, using openk1.org mirror...'
-  URL="$MIRROR_URL"
-  /tmp/curl -L "$URL/opkg" --connect-timeout 10 -o "/opt/bin/opkg"
-fi
+URL="http://www.openk1.org/static/entware/mipselsf-k3.4/installer"
+/tmp/curl -L "$URL/opkg" -o "/opt/bin/opkg"
 /tmp/curl -L "$URL/opkg.conf" -o "/opt/etc/opkg.conf"
 
 echo -e "Info: Applying permissions..."
