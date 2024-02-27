@@ -33,7 +33,7 @@ timelapse_URL2="${download_URL}timelapse/timelapse.cfg"
 entware_file="/opt/bin/opkg"
 entware_URL="${download_URL}entware/generic.sh"
 mobileraker_folder="/usr/data/mobileraker_companion/"
-mobileraker_URL1="https://github.com/Clon1998/mobileraker_companion"
+mobileraker_URL1="https://github.com/Clon1998/mobileraker_companion.git"
 mobileraker_URL2="${download_URL}mobileraker/mobileraker-companion-k1-no-tzlocal.patch"
 kamp_folder="/usr/data/KAMP-for-K1-Series/"
 kamp_URL="https://github.com/Guilouz/KAMP-for-K1-Series.git"
@@ -2096,53 +2096,35 @@ do
             			    if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                 			    printf "${green} Installing Mobileraker Companion..."
                 			    printf "${white}\n\n"
-                			    cd /usr/data
-                			    printf "Installing prerequisite python packages...\n"
-                			    pip3 install requests websockets pytz coloredlogs
                 			    printf "Downloading Mobileraker Companion...\n"
                 			    git config --global http.sslVerify false
-                			    git clone --depth 1 "$mobileraker_URL1"
+                			    git clone "$mobileraker_URL1" "$mobileraker_folder"
                 			    if [ $? -eq 0 ]; then
-                			        cd mobileraker_companion
-                			        printf "Downloading K1 compatibility patches...\n"
-                			        /tmp/curl -s -L "$mobileraker_URL2" -o mobileraker-companion-k1-no-tzlocal.patch
-                			        if [ $? -eq 0 ]; then
-                			            printf "Applying K1 compatibility patches...\n"
-                			            patch -p1 < mobileraker-companion-k1-no-tzlocal.patch
-                			            printf "Adding startup script...\n"
-                			            cp S80mobileraker_companion /etc/init.d/S80mobileraker_companion
-                			            chmod 755 /etc/init.d/S80mobileraker_companion
-                			            if grep -q -v "mobileraker_companion" "/usr/data/printer_data/moonraker.asvc"; then
-                                            printf "Adding Mobileraker Companion to Moonraker services file...\n"
-                                            sed -i '/mobileraker_companion/!{ $a\mobileraker_companion' "/usr/data/printer_data/moonraker.asvc"
-                                        else
-                                            printf "Mobileraker Companion is already added to Moonraker services file...\n"
-                                        fi
-                			            printf "Restarting services...\n"
-                			            /etc/init.d/S80mobileraker_companion restart
-                			            /etc/init.d/S55klipper_service restart
-                			            /etc/init.d/S56moonraker_service restart
-                			            sleep 1
-                			            /etc/init.d/S56moonraker_service restart
-                			            sleep 1
-                			            printf "\n"
-                			            printf "${green} ✓ Mobileraker Companion has been installed successfully!"
-                			            wait
-                			            printf "${white}\n\n"
-                			        else
-                			            rm -rf /usr/data/mobileraker_companion 2>/dev/null
-                			            printf "${white}\n\n"
-                			            printf "${darkred} ✗ Download failed!"
-                			            wait
-                			            printf "${white}\n\n"
-                			        fi
+                			        sh "$mobileraker_folder"/scripts/install.sh
+                			        printf "${white}\n\n"
+                			        if grep -q "#\[update_manager mobileraker\]" "$moonraker_config" ; then
+                                        printf "Enabling Mobileraker Companion configurations for Update Manager...\n"
+                                        sed -i -e 's/^\s*#[[:space:]]*\[update_manager mobileraker\]/[update_manager mobileraker]/' -e '/^\[update_manager mobileraker\]/,/^\s*$/ s/^\(\s*\)#/\1/' "$moonraker_config"
+                                    else
+                                        printf "Mobileraker Companion configurations are already enabled for Update Manager...\n"        
+                                    fi
+                			        printf "Restarting services...\n"
+                			        /etc/init.d/S55klipper_service restart
+                			        /etc/init.d/S56moonraker_service restart
+                			        sleep 1
+                			        /etc/init.d/S56moonraker_service restart
+                			        sleep 1
+                			        printf "\n"
+                			        printf "${green} ✓ Mobileraker Companion has been installed successfully!"
+                			        wait
+                			        printf "${white}\n\n"
                 			    else
                 			        printf "${white}\n\n"
                 			        printf "${darkred} ✗ Download failed!"
                 			        wait
                 			        printf "${white}\n\n"
                 			    fi
-                			elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
+            			    elif [ "$confirm" = "n" ] || [ "$confirm" = "N" ]; then
                 			    printf "${darkred} ✗ Installation canceled!"
                 			    printf "${white}\n\n"
             			    fi
@@ -3087,18 +3069,15 @@ do
                             if [ "$confirm" = "y" ] || [ "$confirm" = "Y" ]; then
                                 printf "${green} Removing Mobileraker Companion..."
                 			    printf "${white}\n\n"
-                			    printf "Stopping services...\n"
-                			    /etc/init.d/S80mobileraker_companion stop
-                			    printf "Removing files...\n"
-                			    if grep -q "mobileraker_companion" "/usr/data/printer_data/moonraker.asvc"; then
-                                    printf "Removing Mobileraker Companion from Moonraker services file...\n"
-                                    sed -i "/mobileraker_companion/d" "/usr/data/printer_data/moonraker.asvc"
+                			    printf "Running Mobileraker Companion uninstaller...\n"
+                			    sh "$mobileraker_folder"/scripts/install.sh -uninstall
+                			    printf "${white}\n\n"
+                			    if grep -q "\[update_manager mobileraker\]" "$moonraker_config" ; then
+                                    printf "Disabling Mobileraker Companion configurations for Update Manager...\n"
+                                    sed -i '/^\[update_manager mobileraker\]/,/^\s*$/ s/^\(\s*\)\([^#]\)/#\1\2/' "$moonraker_config"
                                 else
-                                    printf "Mobileraker Companion is already removed from Moonraker services files...\n"
+                                    printf "Mobileraker Companion configurations are already disabled for Update Manager...\n"
                                 fi
-                			    rm -rf /etc/init.d/S80mobileraker_companion /usr/data/mobileraker_companion
-                			    printf "Removing dependencies...\n"
-                			    pip3 uninstall -y requests websockets pytz coloredlogs
                 			    printf "Restarting services...\n"
                 			    /etc/init.d/S55klipper_service restart
                 			    /etc/init.d/S56moonraker_service restart
