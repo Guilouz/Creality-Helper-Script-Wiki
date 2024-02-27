@@ -2100,7 +2100,7 @@ do
                 			    git config --global http.sslVerify false
                 			    git clone "$mobileraker_URL1" "$mobileraker_folder"
                 			    if [ $? -eq 0 ]; then
-                			        sh "$mobileraker_folder"/scripts/install.sh
+                			        sh "$mobileraker_folder"scripts/install.sh
                 			        printf "${white}\n\n"
                 			        if grep -q "#\[update_manager mobileraker\]" "$moonraker_config" ; then
                                         printf "Enabling Mobileraker Companion configurations for Update Manager...\n"
@@ -3070,7 +3070,7 @@ do
                                 printf "${green} Removing Mobileraker Companion..."
                 			    printf "${white}\n\n"
                 			    printf "Running Mobileraker Companion uninstaller...\n"
-                			    sh "$mobileraker_folder"/scripts/install.sh -uninstall
+                			    sh "$mobileraker_folder"scripts/install.sh -uninstall
                 			    printf "${white}\n\n"
                 			    if grep -q "\[update_manager mobileraker\]" "$moonraker_config" ; then
                                     printf "Disabling Mobileraker Companion configurations for Update Manager...\n"
