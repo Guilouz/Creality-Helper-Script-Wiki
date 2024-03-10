@@ -9,6 +9,7 @@ hide:
 
   - New Wiki.
   - New script version 5.0.0:
+    * Ended support for old firmwares (only support 1.3.3.5 and above for K1 Series and 1.1.0.12 and aboce for KE Series).
     * Code completely rewritten.
     * Now installed in /usr/data and it completely offline (except for downloading official builds).
     * Updates can be done when the script is started or from the Update Manager on Web interfaces.
