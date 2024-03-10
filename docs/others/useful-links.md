@@ -6,7 +6,7 @@ Here you can find several useful links.
 
 - **Stock configuration files:**
 
-    :material-github: <a href="https://github.com/Guilouz/Creality-K1-and-K1-Max/tree/main/downloads/Stock%20Config%20Files">https://github.com/Guilouz/Creality-K1-and-K1-Max/tree/main/downloads/Stock%20Config%20Files</a>
+    :material-github: <a href="https://github.com/Guilouz/Creality-K1-Series/tree/main/downloads/Stock%20Config%20Files">https://github.com/Guilouz/Creality-K1-Series/tree/main/downloads/Stock%20Config%20Files</a>
 
 - **Firmwares changes:**
 
