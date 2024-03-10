@@ -1,0 +1,19 @@
+V1.3.3.3 Firmware Update
+
+What's New:
+- LiDAR pressure advance re-worked (Only K1 Max), compatible with Creality Print, Prusa, Orca slicers. Support PLA/PETG/ABS.. etc. typical non-soft filament types.
+- Expert mode - adjust flow rate and z offset on the fly. As well as hot end PID tune.
+- Speed control - Quiet/Stable mode(50%), Standard mode(100%), Ultra fast mode(125%)
+- Support object exclusion
+- Support Korean language
+
+Optimizations:
+- Optimize filament runout algorithm
+- Chamber fan algorithm update, no longer turn on by default when the print start. Instead it will trigger and control by chamber temperature.
+- Add filament runout indication on main page.
+
+Fixes:
+- Fixes object exclusion cause UI freezing and/or blank screen.
+- Fixes inconsistent display between Web UI and LCD display of maximum hot bed temperature.
+- Fixes time sync and Creality Cloud app not displaying camera problem in some rare cases.
+- Fixes special characters file name cause print task cannot be completed.

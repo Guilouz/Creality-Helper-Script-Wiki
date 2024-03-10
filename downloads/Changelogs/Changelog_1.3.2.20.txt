@@ -1,0 +1,55 @@
+V1.3.2.20 Firmware Update
+
+New Features:
+1. Added a root account and password for root access.
+2. Added a device name in the “About” page. The name combines the product model and its MAC address, useful for device management with Creality Print.
+3. Added a function in the WebUI that users can skip partial failure in batch-printing. To enable it, please tick “Exclude Objects” in Creality Print while slicing.
+4. Added the option of firmware rollback. For K1 Max, the earliest firmware you can roll back to is V1.3.1.19. For K1, the earliest firmware you can roll back to is V1.3.1.28.
+5. Added the ability to connect hidden networks.
+6. Added the ability to connect public networks.
+7. Added a regular check of the storage space. If it is less than 1G, an alert will pop up once a day. If it is less than 500M, an alert will pop up once an hour.
+8. Newly-added Printable Files.
+  a. Scaper model (Source: https://www.thingiverse.com/thing:6058257/files)
+  b. Side spool holder model (requiring M4*16 screws for installation) (Source: https://www.printables.com/model/540699-creality-k1-max-side-load-spool-holder)
+
+Optimizations:
+1. Optimized the logic for the camera of K1 Max to generate a time-lapse video, so that it includes the necessary ending frames.
+2. Improved the compression of logs for faster upload to the server.
+3. Optimized for better sync between Creality Cloud APP and the firmware.
+4. Avoided system lag caused by frequently refreshing the Creality Cloud binding page.
+5. Improved the display effect and texts of some UI pages.
+6. Optimizations of AI Algorithms (K1 Max)
+  a. Improved spaghetti detection, especially for silk and transparent filaments.
+  b. Improved the accuracy of AI regarding black filaments.
+  c. Improved foreign object detection to factor in various build surfaces including those applied with glue.
+  d. Optimized the process to deal with auto-leveling failure in the boot-up process.
+  e. Introduced dynamic foreign object detection that can avoid the camera’s blind spot.
+  f. Introduced two different AI modes -- regular mode and professional mode.
+
+Bug Fixes:
+1. Fixed the occasional leveling issue in V1.3.2.8.
+2. Fixed the issue that the print completion pop-up of the previous print task stays when a new task is started remotely and then tapping on the pop-up causes the new task to pause.
+3. Fixed the issue that the motors are not disengaged when the pre-print calibration has been stopped.
+4. Fixed the issue that the pre-print calibration doesn't take effect when a print task is started from the history record.
+5. Fixed the issue that the pre-print calibration doesn't take effect when such a calibration command is sent from Creality Print.
+6. Fixed the issue that the first layer printing cannot be stopped immediately when the first layer inspection is enabled for the printer.
+7. Fixed the system error caused by repeatedly plugging and unplugging a USB drive while reading the USB drive.
+8. Fixed the system error caused by the excessive memory usage of AI LiDAR algorithms.
+9. Fixed the issue that Creality Cloud app does not inform the self-test status when the printer is doing auto-leveling.
+10. Fixed the issue that a file exported to a USB drive becomes a .temp file.
+11. Fixed the issue that the self-test completion pop-up stays when a new print task is started remotely.
+12. Fixed the 2243 over-limit error indicating that the distance between the nozzle and the heatbed exceeds 10mm after an incorrect homing.
+13. Fixed the failure of renaming a G-code file on the WebUI.
+14. Fixed the failure to print a G-code file of a long name after the file is copied from a USB drive to the machine.
+15. Fixed the problematic partial highlight of the previewed model when a print task is started from Creality Cloud APP.
+16. Fixed the issue that some texts on the privacy policy page and the network connection page do not switch to the selected UI language.
+17. Fixed the unnecessary print resuming pop-up when the power is out while printing the first layer.
+18. Fixed the abnormal page jump when tapping on the fan icon on the home page.
+19. Fixed the abnormal page jump when tapping on the pop-ups related to filament loading or unloading.
+20. Fixed the problematic back-and-forth jumps between the print page and the home page as well as the abnormal temperature curve in the process of printing.
+21. Fixed the issue that the file copying progress is stuck at 100% when a print task is started from a USB drive.
+22. Fixed occasional disconnections of the camera for K1 Max.
+
+Known Issues:
+1. Updating the firmware from V1.3.0.x will disconnect the printer from Creality Cloud. To reconnect, please bind them again.
+2. The system may freeze if you try to upload a file when the 8G storage space is already filled up. In this case, you need to flash the firmware via a USB cable. To avoid this risk, please delete useless G-code files regularly.

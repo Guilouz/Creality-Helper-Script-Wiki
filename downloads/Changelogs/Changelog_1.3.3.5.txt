@@ -1,0 +1,19 @@
+V1.3.3.5 Firmware Update
+
+New Features:
+  1. Reworked laser lidar flow calibration feature (K1Max only), compatible with CrealityPrint, Prusa, and Orca slicers, supporting calibration for harder materials such as PLA/PETG/ABS.
+  2. Support for speed gear adjustment, with speed modes including Silent/Stable (50%)/Standard (100%)/High Speed (125%).
+  3. Added Expert Mode settings, allowing adjustments to flow and Z-axis offset during printing, and support for nozzle PID calibration.
+  4. Added ability to skip models.
+
+Firmware Improvements:
+  1. Optimized filament runout detection logic.
+  2. Updated chassis fan logic; it no longer turns on by default when starting a print, but is now controlled by the chamber temperature (default 35°C).
+  3. Added Korean language to the firmware.
+  4. Added filament runout status display to the home page.
+
+Bug Fixes:
+  1. Fixed an issue where the UI would frequently crash and cause a black screen reboot during model skip printing.
+  2. Fixed an inconsistency between the maximum bed temperature on the web interface and on the screen.
+  3. Fixed an issue where the app would not display the monitoring video when synchronization between systems was unsuccessful.
+  4. Fixed a problem where the printing task would not exit if the print file name was abnormal.

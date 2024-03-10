@@ -1,0 +1,164 @@
+site_name: Wiki for Creality K1 Series
+site_description: Documentation
+
+repo_name: GitHub
+repo_url: https://github.com/Guilouz/Creality-K1-Series
+
+theme:
+    name: material
+    language: en
+    logo: assets/img/home/logo.png
+    favicon: assets/img/home/favicon.png
+    icon:
+        repo: material/github
+        admonition:
+            note: material/information
+    font:
+        text: Roboto
+        code: Roboto Mono
+    palette:
+        - media: "(prefers-color-scheme: light)"
+          scheme: default
+          primary: custom
+          accent: custom
+          toggle:
+            icon: material/brightness-7
+            name: Dark Mode
+        - media: "(prefers-color-scheme: dark)"
+          scheme: slate
+          primary: custom
+          accent: custom
+          toggle:
+            icon: material/brightness-4
+            name: Light Mode
+    features:
+        - content.code.copy
+        - content.code.annotate
+        - navigation.top
+        - navigation.indexes
+        - navigation.sections
+        - search.highlight
+        - search.share
+        - search.suggest
+extra_css:
+    - ./assets/stylesheets/extra.css
+    - ./assets/stylesheets/glightbox.min.css
+extra_javascript:
+    - ./assets/javascripts/glightbox.min.js
+    - ./assets/javascripts/external_links.js
+plugins:
+    - search
+    - glightbox:
+        touchNavigation: true
+        loop: false
+        effect: zoom
+        slide_effect: slide
+        width: 100%
+        height: auto
+        zoomable: true
+        draggable: true
+        skip_classes:
+            - zoom-off
+        auto_caption: false
+        caption_position: bottom
+copyright: Guislain Cyril &copy; All rights reserved
+extra:
+  generator: false
+  social:
+    - icon: simple/kofi
+      link: https://ko-fi.com/guilouz
+    - icon: simple/github
+      link: https://github.com/Guilouz
+    - icon: simple/tiktok
+      link: https://tiktok.com/@guilouz
+    - icon: simple/x
+      link: https://twitter.com/Guilouz
+markdown_extensions:
+    - attr_list
+    - md_in_html
+    - meta
+    - tables
+    - def_list
+    - pymdownx.critic
+    - pymdownx.caret
+    - pymdownx.keys
+    - pymdownx.mark
+    - pymdownx.tilde
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
+    - toc:
+        title: On this page
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.emoji:
+        emoji_index: !!python/name:material.extensions.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+
+nav:
+    - About: index.md
+    - Changelog: changelog.md
+    - Discussions: https://github.com/Guilouz/Creality-K1-Series/discussions
+    - Special Thanks: special-thanks.md
+    - Firmwares:
+        - Install & Update Rooted Firmware: firmwares/install-and-update-rooted-firmware.md
+        - Restore Previous Firmware: firmwares/restore-previous-firmware.md
+        - Reset Factory Settings: firmwares/reset-factory-settings.md
+        - SSH Connection: firmwares/ssh-connection.md
+    - Helper Script for Creality:
+        - Helper Script Installation: helper-script/helper-script-installation.md
+        - Install Menu: 
+            - Moonraker and Nginx: helper-script/moonraker-and-nginx.md
+            - Fluidd: helper-script/fluidd.md
+            - Mainsail: helper-script/mainsail.md
+            - Entware: helper-script/entware.md
+            - Klipper Gcode Shell Command: helper-script/klipper-gcode-shell-command.md
+            - Klipper Adaptive Meshing & Purging: helper-script/klipper-adaptive-meshing-and-purging.md
+            - Buzzer Support: helper-script/buzzer-support.md
+            - Nozzle Cleaning Fan Control: helper-script/nozzle-cleaning-fan-control.md
+            - Fans Control Macros: helper-script/fans-control-macros.md
+            - Improved Shapers Calibrations: helper-script/improved-shapers-calibrations.md
+            - Useful Macros: helper-script/useful-macros.md
+            - Save Z-Offset Macros: helper-script/save-z-offset-macros.md
+            - Screws Tilt Adjust Support: helper-script/screws-tilt-adjust-support.md
+            - Virtual Pins Support: helper-script/virtual-pins-support.md
+            - M600 Support: helper-script/m600-support.md
+            - Git Backup: helper-script/git-backup.md
+            - Moonraker Timelapse: helper-script/moonraker-timelapse.md
+            - Camera Settings Control: helper-script/camera-settings-control.md
+            - OctoEverywhere: helper-script/octoeverywhere.md
+            - Moonraker Obico: helper-script/moonraker-obico.md
+            - Mobileraker Companion: helper-script/mobileraker-companion.md
+        - Customize Menu:
+            - Custom Boot Display: helper-script/custom-boot-display.md
+            - Remove & Restore Creality Web Interface: helper-script/remove-and-restore-creality-web-interface.md
+            - Guppy Screen: helper-script/guppy-screen.md
+            - Creality Dynamic Logos for Fluidd: helper-script/creality-dynamic-logos-for-fluidd.md
+        - Backup & Restore Menu:
+            - Backup & Restore Klipper configuration files: helper-script/backup-and-restore-klipper-configuration-files.md
+            - Backup & Restore Moonraker database: helper-script/backup-and-restore-moonraker-database.md
+        - Tools Menu:
+            - Prevent & Allow updating Klipper configuration files: helper-script/prevent-and-allow-updating-klipper-configuration-files.md
+            - Fix Printing Gcode files from Folder: helper-script/fix-printing-gcode-files-from-folder.md
+            - Restore a previous Firmware: helper-script/restore-a-previous-firmware.md
+            - Reset Factory Settings: helper-script/reset-factory-settings.md
+    - Configuration / Use:
+        - Access to Web Interface: configurations/access-to-web-interface.md
+        - Configure Camera: configurations/configure-camera.md
+        - Change WiFi Location: configurations/change-wifi-location.md
+    - Improvements:
+        - Improve Hotend Cooling: improvements/improve-hotend-cooling.md
+        - Calibrate Extruder: improvements/calibrate-extruder.md
+    - Others: 
+        - Boards Layout: others/boards-layout.md
+        - Files Location: others/files-location.md
+        - Useful Links: others/useful-links.md
+    - Slicers: 
+        - OrcaSlicer: slicers/orcaslicer.md
+    - STL Files: 
+        - Printables (Guilouz): https://www.printables.com/@Guilouz/models
+        - Makerworld (Guilouz): https://makerworld.com/en/u/3879767814
+        - Printables (Henlor): https://www.printables.com/fr/@Henlor_358992/models
+
