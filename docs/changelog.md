@@ -5,7 +5,7 @@ hide:
 #### 10/03/2024
 
 !!! Warning
-    **Due to many changes in files, it's necessary to reset factory settings before using script**
+    **Due to many changes in files, it's necessary to reset factory settings before using script!**
 
   - New Wiki.
   - New script version 5.0.0:
