@@ -9,13 +9,13 @@ hide:
 
   - New Wiki.
   - New script version 5.0.0:
-    * Ended support for old firmwares (only support 1.3.3.5 and above for K1 Series and 1.1.0.12 and aboce for KE Series).
+    * Ended support for old firmwares (only support 1.3.3.5 and above for K1 Series and 1.1.0.12 and above for KE Series).
+    * Added support for Creality KE printers (for compatible features).
     * Code completely rewritten.
-    * Now installed in /usr/data and it completely offline (except for downloading official builds).
+    * Now installed in /usr/data/helper-script and it completely offline (except for downloading official builds).
     * Updates can be done when the script is started or from the Update Manager on Web interfaces.
     * All files are symbolic links, allowing you to always have the latest versions if they are updated after a script update.
     * `Supervisor Lite` and `Host Control Support` are now installed with Moonraker.
-    * Added support for Creality KE printers (for compatible features).
     * Fixed loops in `WARMUP` macro when installing `Useful Macros`.
     * Added support for `Klipper Virtual Pins`. This allows usage of virtual (simulated) pins in Klipper configurations.
     * Added support for `Git Backup`. This allows to watch Klipper configuration folder and automatically backup to GitHub whenever a change is made in that directory.
