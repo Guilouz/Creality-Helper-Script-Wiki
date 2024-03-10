@@ -5,7 +5,7 @@ hide:
 
 <img width="900" src="assets/img/home/home.png">
 
-This guide explains the whole process to root Creality K1, K1C and K1 Max and add good stuffs to your printer.
+This guide explains the whole process to root Creality K1, K1C and K1 Max and add features to your printer.
 
 The advantage is having full access to the firmware and configuration files to be able to make changes.
 
