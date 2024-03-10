@@ -4,37 +4,21 @@ hide:
 ---
 Here you can find several useful links.
 
-- **Stock configuration files:**
+- material-github: <a href="https://github.com/Guilouz/Creality-K1-Series/tree/main/downloads/Stock%20Config%20Files">Stock configuration files</a>
 
-    :material-github: <a href="https://github.com/Guilouz/Creality-K1-Series/tree/main/downloads/Stock%20Config%20Files">https://github.com/Guilouz/Creality-K1-Series/tree/main/downloads/Stock%20Config%20Files</a>
+- :material-github: <a href="https://github.com/Guilouz/Creality-K1-Extracted-Firmwares">Firmwares changes</a>
 
-- **Firmwares changes:**
+- :material-web: <a href="https://wiki.creality.com/en/k1-flagship-series">Creality Wiki</a>
 
-    :material-github: <a href="https://github.com/Guilouz/Creality-K1-Extracted-Firmwares">https://github.com/Guilouz/Creality-K1-Extracted-Firmwares</a>
+- :material-github: <a href="https://github.com/trevos3d/K1-USB-Cam">Use USB camera from front USB port</a>
 
-- **Creality Wiki:**
+- :material-github: <a href="https://github.com/victornpb/k1S/tree/main/camera">Control camera settings over SSH</a>
 
-    :material-web: <a href="https://wiki.creality.com/en/k1-flagship-series">https://wiki.creality.com/en/k1-flagship-series</a>
+- :material-github: <a href="https://github.com/D3vil-Design/K1-Hardware-Mods">D3D K1 Hardware Modifications</a>
 
-- **Use USB camera from front USB port:**
+- :simple-googledocs: <a href="https://docs.google.com/presentation/d/1GMZwEPHjKJ3IrpGRz07VVAv4h2vc6QOYyk7FDC-Pyls">K1 Mods from D3vil Design Discord</a>
 
-    :material-github: <a href="https://github.com/trevos3d/K1-USB-Cam">https://github.com/trevos3d/K1-USB-Cam</a>
-
-- **Control camera settings over SSH:**
-
-    :material-github: <a href="https://github.com/victornpb/k1S/tree/main/camera">https://github.com/victornpb/k1S/tree/main/camera</a>
-
-- **D3D K1 Hardware Modifications:**
-
-    :material-github: <a href="https://github.com/D3vil-Design/K1-Hardware-Mods">https://github.com/D3vil-Design/K1-Hardware-Mods</a>
-
-- **K1 Mods from D3vil Design Discord:**
-
-    :simple-googledocs: <a href="https://docs.google.com/presentation/d/1GMZwEPHjKJ3IrpGRz07VVAv4h2vc6QOYyk7FDC-Pyls">https://docs.google.com/presentation/d/1GMZwEPHjKJ3IrpGRz07VVAv4h2vc6QOYyk7FDC-Pyls</a>
-
-- **D3vil Design Discord:**
-
-    :simple-discord: <a href="https://discord.gg/d3vil-design">https://discord.gg/d3vil-design</a>
+- :simple-discord: <a href="https://discord.gg/d3vil-design">D3vil Design Discord:</a>
 
 <br />
 
