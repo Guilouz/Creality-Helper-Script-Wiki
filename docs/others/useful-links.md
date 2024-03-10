@@ -18,7 +18,7 @@ Here you can find several useful links.
 
 - :simple-googledocs: <a href="https://docs.google.com/presentation/d/1GMZwEPHjKJ3IrpGRz07VVAv4h2vc6QOYyk7FDC-Pyls">K1 Mods from D3vil Design Discord</a>
 
-- :simple-discord: <a href="https://discord.gg/d3vil-design">D3vil Design Discord:</a>
+- :simple-discord: <a href="https://discord.gg/d3vil-design">D3vil Design Discord</a>
 
 <br />
 
