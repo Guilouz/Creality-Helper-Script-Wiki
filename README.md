@@ -14,6 +14,6 @@ If you don't know what you're doing, I don't recommend following this guide.
 
 ## Wiki
 
-Guide is  available here: [Wiki](https://guilouz.github.io/Creality-K1-Series/)
+Guide is available here: [Wiki](https://guilouz.github.io/Creality-K1-Series/)
 
 <br />
