@@ -24,6 +24,7 @@ hide:
     * Added possibility to Backup & Restore Moonraker database in `[Backup & Restore] Menu`.
     * Added `Fix Printing Gcode files from Folder` in `[Tools] Menu`.
     * Added possibility to update Entware packages in `[Tools] Menu`.
+    * Added possibility to enable Camera settings in Moonraker in `[Tools] Menu`.
     * Added possibility to backup and restore Klipper configuration files and Moonraker database with macros when installing `Useful Macros`.
     * Added possibility to Reset Factory Settings directly from the script in `[Tools] Menu`. Reset from WebSocket connection with html file is not needed anymore.
   - KAMP is now integrated in Helper Script (repo has been removed) with this changes:
