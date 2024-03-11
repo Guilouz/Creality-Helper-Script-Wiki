@@ -27,6 +27,9 @@ This allows to have the dynamic Creality logos on the Fluidd Web interface.
   | :---------: |
   | <img src="../../assets/img/Dynamic-Logos/logo_v2.png"> |
 
+!!! Note
+    **In some cases, it's necessary to clear your web browser's cache to see themes appear.**  
+
 <br />
 
 **If you like my work, don't hesitate to support me by paying me a 🍺 or a ☕. Thank you 🙂**
