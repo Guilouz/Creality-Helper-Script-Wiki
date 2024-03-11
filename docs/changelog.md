@@ -2,6 +2,10 @@
 hide:
   - toc
 ---
+#### 11/03/2024
+
+  - Updated script to 5.0.1 to fix Mainsail on port 80 when removing Creality Web Interface.
+
 #### 10/03/2024
 
 !!! Warning
