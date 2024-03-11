@@ -28,6 +28,9 @@
 ### Configure Camera in Moonraker
 <hr>
 
+!!! Note
+    This can also be done from `[Tools] Menu` in <a href="../../helper-script/helper-script-installation">Installation Helper Script</a>.
+
 If you want to configure camera for Fluidd and Mainsail you can also configure it in Moonraker.
 
 -  Open `moonraker.conf` file:
