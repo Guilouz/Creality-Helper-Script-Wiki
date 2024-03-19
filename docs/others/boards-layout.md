@@ -7,7 +7,7 @@
 ## Motherboard Pinout
 <hr>
 
-<img src="../../assets/img/Boards-Layout/Motherboard_Pinout.jpeg">
+<img src="../../assets/img/Boards-Layout/Motherboard_Pinout.jpg">
 
 
 ## Hotend Layout
