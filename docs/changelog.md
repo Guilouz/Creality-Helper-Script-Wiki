@@ -2,6 +2,10 @@
 hide:
   - toc
 ---
+#### 21/03/2024
+
+  - Updated Wiki with new 1.3.3.8 Creality firmware.
+
 #### 11/03/2024
 
   - Updated script to 5.0.1 to fix Mainsail on port 80 when removing Creality Web Interface.
