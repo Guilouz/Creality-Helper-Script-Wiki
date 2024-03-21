@@ -14,6 +14,8 @@ You can easily restore current Firmware to a previous one.
 
 &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.5 (Google Drive)](https://drive.google.com/file/d/1T0TvtmtD22mEpzL5YJzbyJ7H-9QIoozB/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/downloads/Changelogs/Changelog_1.3.3.5.txt) / :material-file-image: <a href="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/downloads/Changelogs/Changelog_1.3.3.5.jpg">Picture</a>
 
+&nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.8 (Google Drive)](https://drive.google.com/file/d/1Kh8oaVWUtEd0saeWahEs4Y5dTcPnKPrV/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/downloads/Changelogs/Changelog_1.3.3.8.txt)
+
 
 ## Restoration
 <hr>

@@ -1,0 +1,3 @@
+V1.3.3.8 Firmware Update
+
+Fix some bugs.
