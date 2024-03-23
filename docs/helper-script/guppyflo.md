@@ -61,11 +61,13 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
     3. The devices you have connected to Tailscale (here my mobile phone)
     4. The IP addresses assigned to the devices you have connected
 
-- What interests us here is the IP address assigned to guppyflo (your printer). It's this IP address that you will need to use to connect to the GuppyFlo Web interface remotely from the device(s) you have connected to Tailscale.
+- Go to Tailscale DNS settings tab and enable `MagicDNS` feature:
 
-- You can now connect to GuppyFlo Web interface remotely by using IP address assigned to guppyflo:
+    <img width="900" src="../../assets/img/GuppyFLO/07.png">
 
-    <img width="350" src="../../assets/img/GuppyFLO/07.png">
+- You can now connect to GuppyFlo Web interface remotely by using IP address assigned to guppyflo or with <a href="http://guppyflo">http://guppyflo</a>:
+
+    <img width="350" src="../../assets/img/GuppyFLO/08.png">
 
 !!! Note
     **For now camera not working remotely on Fluidd Web interface and it will be fixed in future release of GuppyFLO.**
