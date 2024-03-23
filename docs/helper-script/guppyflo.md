@@ -52,14 +52,14 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
 - Go to to your Tailscale Admin console here: :material-web: [Tailscale Admin Console](https://login.tailscale.com/admin/machines)
 
-- There you will see the connected devices and their respective IP addresses :
-
-    <img width="900" src="../../assets/img/GuppyFLO/06.png">
+- There you will see the connected devices and their respective IP addresses:
 
     1. guppyflo :fontawesome-solid-arrow-right-long: Your printer
     2. IP address assigned to your printer (to connect to it remotely)
     3. The devices you have connected to Tailscale (here my mobile phone)
     4. The IP addresses assigned to the devices you have connected
+
+    <img width="900" src="../../assets/img/GuppyFLO/06.png">
 
 - Go to Tailscale DNS settings tab and enable `MagicDNS` feature:
 
