@@ -23,7 +23,7 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
 - Create a free Tailscale account here: :material-web: [Create Tailscale Account](https://login.tailscale.com/start)
  
-- Install the Tailscale application depending device(s) you want to use for remote access: :material-web: [Download Tailscale App](https://tailscale.com/download)
+- Install Tailscale application depending device(s) you want to use for remote access: :material-web: [Download Tailscale App](https://tailscale.com/download)
 
 
 ## Configurations
@@ -47,13 +47,13 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
 - Configure settings and click on `Add Printer` button:
 
-    <img width="500" src="../../assets/img/GuppyFLO/05.png">
+    <img width="450" src="../../assets/img/GuppyFLO/05.png">
 
-- Go to to your Tailscale Admin console here: [Tailscale Admin Console](https://login.tailscale.com/admin/machines)
+- Go to to your Tailscale Admin console here: :material-web: [Tailscale Admin Console](https://login.tailscale.com/admin/machines)
 
 - There you will see the connected devices and their respective IP addresses :
 
-    <img width="500" src="../../assets/img/GuppyFLO/06.png">
+    <img width="900" src="../../assets/img/GuppyFLO/06.png">
 
     1. guppyflo :fontawesome-solid-arrow-right-long: Your printer
     2. IP address assigned to your printer (to connect to it remotely)
