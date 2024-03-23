@@ -24,7 +24,7 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 - Create a free Tailscale account here: :material-web: [Create Tailscale Account](https://login.tailscale.com/start)
  
 - Install Tailscale application depending device(s) you want to use for remote access:
-  :material-web: [Download Tailscale App](https://tailscale.com/download)
+    :material-web: [Download Tailscale App](https://tailscale.com/download)
 
 
 ## Configurations
@@ -63,7 +63,7 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
 <br />
 
-What interests us here is the IP address assigned to guppyflo (your printer). It's this IP address that you will need to use to connect to the GuppyFlo Web interface remotely from the device(s) you have connected to Tailscale.
+- What interests us here is the IP address assigned to guppyflo (your printer). It's this IP address that you will need to use to connect to the GuppyFlo Web interface remotely from the device(s) you have connected to Tailscale.
 
 - You can now connect to GuppyFlo Web interface remotely by using IP address assigned to guppyflo:
 
