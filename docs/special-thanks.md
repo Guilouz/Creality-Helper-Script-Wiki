@@ -17,7 +17,7 @@ hide:
 - [Kenneth Jiang](https://github.com/kennethjiang) for Obico.
 - [mulder999](https://github.com/mulder999) for M191 macro.
 - [caffeineflo](https://github.com/caffeineflo) for fix for Reboot function.
-- [ballaswag](https://github.com/ballaswag) for Guppy Screen, Shapers Calibrations macros and fix with curl.
+- [ballaswag](https://github.com/ballaswag) for Guppy Screen, GuppyFLO, Shapers Calibrations macros and fix with curl.
 - [Frix-x](https://github.com/Frix-x) for EXCITATE_AXIS_AT_FREQ macro and some pics.
 - [d3dorsett](https://github.com/d3dorsett) for fix for 504 Gateway Timeout error.
 - [avoylenko](https://github.com/avoylenko) for mirroring Entware repo.
