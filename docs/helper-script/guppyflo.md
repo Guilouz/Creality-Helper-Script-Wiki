@@ -69,7 +69,7 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
     <img width="350" src="../../assets/img/GuppyFLO/07.png">
 
 !!! Note
-    **For now camera not working remotely and it will be fixed in future release of GuppyFLO.**
+    **For now camera not working remotely in Fluidd and it will be fixed in future release of GuppyFLO.**
 
 
 <br />
