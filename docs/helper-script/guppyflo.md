@@ -23,7 +23,8 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
 - Create a free Tailscale account here: :material-web: [Create Tailscale Account](https://login.tailscale.com/start)
  
-- Install Tailscale application depending device(s) you want to use for remote access: :material-web: [Download Tailscale App](https://tailscale.com/download)
+- Install Tailscale application depending device(s) you want to use for remote access:
+  :material-web: [Download Tailscale App](https://tailscale.com/download)
 
 
 ## Configurations
