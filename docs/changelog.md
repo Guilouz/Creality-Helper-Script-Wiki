@@ -4,7 +4,7 @@ hide:
 ---
 #### 23/03/2024
 
-  - Updated script to 5.1.0 to add support for `GuppyFLO`. See new section on wiki [here](helper-script/guppyflo.md)
+  - Updated script to 5.1.0 to add support for `GuppyFLO`. See new section on wiki [here](helper-script/guppyflo.md).
 
 #### 21/03/2024
 
