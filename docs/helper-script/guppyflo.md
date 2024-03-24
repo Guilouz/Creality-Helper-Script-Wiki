@@ -69,6 +69,8 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
     <img width="350" src="../../assets/img/GuppyFLO/08.png">
 
+- You can also configure Mobileraker App for remote access, see <a href="../mobileraker-companion/#add-printer-remote-access-with-guppyflo">here</a>.
+
 !!! Note
     **For now camera not working remotely on Fluidd Web interface and it will be fixed in future release of GuppyFLO.**
 
