@@ -25,7 +25,7 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 <a href="https://apps.apple.com/us/app/mobileraker/id1581451248"><img width="350" src="../../assets/img/Mobileraker-Companion/Mobileraker_App_Store.png"></a>
 
 
-## Configurations
+## Add Printer (Local Access)
 <hr>
 
 - Start **Mobileraker** App and click on `Add Machine`:
@@ -48,7 +48,44 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 
     <img width="350" src="../../assets/img/Mobileraker-Companion/05.png">
 
-- Your printer is now added and you can click on the 3 horizontal bars to display the menu:
+- Your printer is now added to Mobileraker for local access.
+
+
+## Add Printer (Remote Access with GuppyFLO)
+<hr>
+
+- Start **Mobileraker** App and click on `Add Machine`:
+
+    <img width="350" src="../../assets/img/Mobileraker-Companion/01.png">
+
+- Then, click on `Advanced`:
+
+    <img width="350" src="../../assets/img/Mobileraker-Companion/11.png">
+
+- Configure this settings like that by replacing `Printer` and `Websocket` adresses by yours and click on `Test Connection`:
+
+    <img width="350" src="../../assets/img/Mobileraker-Companion/12.png">
+
+  You can obtain your printer link by pointing at the `Fluidd` button on GuppyFLO Web interface. It looks like this: `http://guppyflo/printer-*********/fluidd`
+
+- If your configuration is correct, the test should return `Valid` status and you can click on `Continue`:
+
+    <img width="350" src="../../assets/img/Mobileraker-Companion/13.png">
+
+- Then, you can click on `To the Dashboard`:
+
+    <img width="350" src="../../assets/img/Mobileraker-Companion/05.png">
+
+- Your printer is now added to Mobileraker for remote access.
+
+!!! Note
+    **For now camera not working remotely on Fluidd Web interface and it will be fixed in future release of GuppyFLO.**
+
+
+## Configurations
+<hr>
+
+- Click on the 3 horizontal bars to display the menu:
 
     <img width="350" src="../../assets/img/Mobileraker-Companion/06.png">
 
