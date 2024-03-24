@@ -19,9 +19,6 @@ More info about KAMP here: :material-github: [GitHub](https://github.com/kyleisa
 
     <img width="900" src="../../assets/img/Creality-Helper-Script/Install_Menu.png">
 
-    !!! Note
-        You can update KAMP with Update Manager when a new version is available.
-
 
 ## Configuration
 <hr>
@@ -31,6 +28,16 @@ All settings for KAMP are configured by Helper Script, you just need to make sur
   - **OrcaSlicer**: In `Others` tab, check `Exclude objets` setting
   - **Creality Print**: Under `Parameter Config`, check `Exclude Objects` setting in `Experimental` tab
   - **PrusaSlicer**: Make sure G-code flavor is set to `Klipper` in `Printer Settings > General > Firmware > G-code flavor` and change the `Label Objects` setting to `Firmware-specific` in `Print Settings > Output options > Output file > Label objects`
+
+## Use
+<hr>
+
+Two buttons are available on Web interface to control KAMP:
+
+  - `KAMP` button to enable/disable KAMP features.<br />
+     When KAMP is enabled, a bed mesh named "kamp" is created and loaded to use adaptative bed mesh.<br />
+     When KAMP is disabled, a bed mesh named "default" is created and loaded to use classic calibration (full bed mesh).
+  - `BED_LEVELING` button to enable/disable classic calibration (full bed mesh) when KAMP is disabled (it have no effect when KAMP is enabled).
 
 <br />
 
