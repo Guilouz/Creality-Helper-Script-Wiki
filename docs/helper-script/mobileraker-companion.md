@@ -79,7 +79,7 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 - Your printer is now added to Mobileraker for remote access.
 
 !!! Note
-    **For now camera not working remotely on Fluidd Web interface and it will be fixed in future release of GuppyFLO.**
+    **For now camera not working remotely and it will be fixed in future release of GuppyFLO.**
 
 
 ## Configurations
