@@ -32,7 +32,7 @@ All settings for KAMP are configured by Helper Script, you just need to make sur
 ## Use
 <hr>
 
-Two buttons are available on Web interface to control KAMP:
+Two buttons are available on Web interface to control KAMP and bed leveling:
 
   - `KAMP` button to enable/disable KAMP features.<br />
      When KAMP is enabled, a bed mesh named "kamp" is created and loaded to use adaptative bed mesh.<br />
