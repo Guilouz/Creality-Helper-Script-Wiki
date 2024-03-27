@@ -69,10 +69,18 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
     <img width="350" src="../../assets/img/GuppyFLO/08.png">
 
+- To add camera on GuppyFLO Web interface, click on `Add Camera` button and configure settings like this by replacing **xxx.xxx.xxx.xxx** by your printer's local IP address:
+
+    <img width="900" src="../../assets/img/GuppyFLO/09.png">
+
+- You have now access to your camera locally and remotely by clicking on `Cameras` button:
+
+    <img width="350" src="../../assets/img/GuppyFLO/10.png">
+
 - You can also configure Mobileraker App for remote access, see <a href="../mobileraker-companion/#add-printer-remote-access-with-guppyflo">here</a>.
 
 !!! Note
-    **For now camera not working remotely on Fluidd Web interface and it will be fixed in future release of GuppyFLO.**
+    **For now camera not working remotely on Fluidd or Mainsail Web interface and it will be fixed in future release of GuppyFLO.**
 
 
 <br />
