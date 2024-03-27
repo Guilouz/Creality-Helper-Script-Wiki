@@ -50,6 +50,10 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
     <img width="450" src="../../assets/img/GuppyFLO/05.png">
 
+- To add camera on GuppyFLO Web interface, click on `Add Camera` button and configure settings like this by replacing **xxx.xxx.xxx.xxx** by your printer's local IP address:
+
+    <img width="900" src="../../assets/img/GuppyFLO/09.png">
+
 - Go to to your Tailscale Admin console here: :material-web: [Tailscale Admin Console](https://login.tailscale.com/admin/machines)
 
 - There you will see the connected devices and their respective IP addresses:
@@ -69,11 +73,7 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
     <img width="350" src="../../assets/img/GuppyFLO/08.png">
 
-- To add camera on GuppyFLO Web interface, click on `Add Camera` button and configure settings like this by replacing **xxx.xxx.xxx.xxx** by your printer's local IP address:
-
-    <img width="900" src="../../assets/img/GuppyFLO/09.png">
-
-- You have now access to your camera locally and remotely by clicking on `Cameras` button:
+- If you have configured camera, you have also access to your camera by clicking on `Cameras` button:
 
     <img width="350" src="../../assets/img/GuppyFLO/10.png">
 
