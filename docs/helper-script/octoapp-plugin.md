@@ -1,7 +1,3 @@
----
-hide:
-  - toc
----
 This allows you to control your printer from OctoApp and get notifications for your prints.
 
 More info about OctoApp Plugin: :material-github: [Here](https://github.com/crysxd/OctoApp-Plugin)
