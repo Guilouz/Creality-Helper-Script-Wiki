@@ -23,6 +23,7 @@ hide:
 - [avoylenko](https://github.com/avoylenko) for mirroring Entware repo.
 - [Tombraider2006](https://github.com/Tombraider2006) for LUBRICATE_RODS macro.
 - [lokiagent](https://github.com/lokiagent/K1-Backup) for Git Backup.
+- [crysxd](https://github.com/crysxd) for OctoApp.
 - BootyCall Jones and sozkara from [D3vil Design Discord](https://discord.gg/d3vil-design) for WARMUP macro.
 - Colt45RPM, NeverUsedID, DigitalPanhandler, [KORSiRO](https://github.com/KORSiRO), [Nastras](https://github.com/Nastras) and [Zuffdesign](https://github.com/zuffdesign) for beta testing.
 
