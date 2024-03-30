@@ -1,6 +1,6 @@
-This allows you to control your printer from OctoApp and get notifications for your prints.
+OctoApp Companion allows you to control your printer from OctoApp and get notifications for your prints.
 
-More info about OctoApp Companion plugin: :material-github: [Here](https://github.com/crysxd/OctoApp-Plugin)
+More info about OctoApp Companion: :material-github: [Here](https://github.com/crysxd/OctoApp-Plugin)
 
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
