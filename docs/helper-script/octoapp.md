@@ -2,34 +2,40 @@
 hide:
   - toc
 ---
-Control your Creality printer from your phone and get notifications for your prints!
+This allows you to control your printer from OctoApp and get notifications for your prints.
 
-Get the app in the [AppStore](https://apps.apple.com/us/app/octoapp-for-octoprint-klipper/id1658133862) and [Google Play](https://play.google.com/store/apps/details?id=de.crysxd.octoapp&hl=en&gl=US)
-
-<a href="https://play.google.com/store/apps/details?id=de.crysxd.octoapp&hl=en&gl=US"><img width="200" src="../../assets/img/OctoApp-Companion/play-badge.png"></a>
-<a href="https://apps.apple.com/us/app/octoapp-for-octoprint-klipper/id1658133862"><img width="200" src="../../assets/img/OctoApp-Companion/app-store-badge.png"></a>
+More info about OctoApp Plugin: :material-github: [Here](https://github.com/crysxd/OctoApp-Plugin)
 
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
 
-
-## Download OctoApp
-<hr>
-
-<a href="https://play.google.com/store/apps/details?id=de.crysxd.octoapp&hl=en&gl=US"><img width="200" src="../../assets/img/OctoApp-Companion/play-badge.png"></a>&nbsp;&nbsp;
-<a href="https://apps.apple.com/us/app/octoapp-for-octoprint-klipper/id1658133862"><img width="200" src="../../assets/img/OctoApp-Companion/app-store-badge.png"></a>
 
 ## Installation
 <hr>
 
 - Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
 
-- In the script, enter in `[Install] Menu` by typing ++"1"++ , validate with ++"Enter"++ and install `OctoApp Companion`:
+- In the script, enter in `[Install] Menu` by typing ++"1"++ , validate with ++"Enter"++ and install `OctoApp Plugin`:
 
     <img width="900" src="../../assets/img/Creality-Helper-Script/Install_Menu.png">
 
-- Download the app and connect your printer by entering the Mainsail or Fluidd URL in the app
+
+## Download OctoApp
+<hr>
+
+<a href="https://play.google.com/store/apps/details?id=de.crysxd.octoapp"><img width="350" src="../../assets/img/OctoApp-Plugin/OctoAppr_Google_Play.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://apps.apple.com/us/app/octoapp-for-octoprint-klipper/id1658133862"><img width="350" src="../../assets/img/OctoApp-Plugin/OctoApp_App_Store.png"></a>
+
+
+## Configuration
+<hr>
+
+- Download the app and connect your printer by entering the Mainsail or Fluidd URL in the app.
   
 - The app will automatically connect with the plugin!
 
 <br />
+
+**If you like my work, don't hesitate to support me by paying me a 🍺 or a ☕. Thank you 🙂**
+
+<a href="https://ko-fi.com/guilouz" target="_blank"><img width="350" src="../../assets/img/home/Ko-fi.png"></a>

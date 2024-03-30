@@ -130,9 +130,9 @@ nav:
             - Camera Settings Control: helper-script/camera-settings-control.md
             - OctoEverywhere: helper-script/octoeverywhere.md
             - Moonraker Obico: helper-script/moonraker-obico.md
-            - Mobileraker Companion: helper-script/mobileraker-companion.md
             - GuppyFLO: helper-script/guppyflo.md
-            - OctoApp: helper-script/octoapp.md
+            - Mobileraker Companion: helper-script/mobileraker-companion.md
+            - OctoApp Plugin: helper-script/octoapp.md
         - Customize Menu:
             - Custom Boot Display: helper-script/custom-boot-display.md
             - Remove & Restore Creality Web Interface: helper-script/remove-and-restore-creality-web-interface.md
