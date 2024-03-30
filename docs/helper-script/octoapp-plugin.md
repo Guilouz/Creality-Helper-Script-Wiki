@@ -23,7 +23,7 @@ More info about OctoApp Plugin: :material-github: [Here](https://github.com/crys
 ## Download OctoApp
 <hr>
 
-<a href="https://play.google.com/store/apps/details?id=de.crysxd.octoapp"><img width="350" src="../../assets/img/OctoApp-Plugin/OctoAppr_Google_Play.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://play.google.com/store/apps/details?id=de.crysxd.octoapp"><img width="350" src="../../assets/img/OctoApp-Plugin/OctoApp_Google_Play.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://apps.apple.com/us/app/octoapp-for-octoprint-klipper/id1658133862"><img width="350" src="../../assets/img/OctoApp-Plugin/OctoApp_App_Store.png"></a>
 
 
