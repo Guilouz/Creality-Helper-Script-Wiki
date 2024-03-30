@@ -1,6 +1,6 @@
 This allows you to control your printer from OctoApp and get notifications for your prints.
 
-More info about OctoApp Plugin: :material-github: [Here](https://github.com/crysxd/OctoApp-Plugin)
+More info about OctoApp Companion plugin: :material-github: [Here](https://github.com/crysxd/OctoApp-Plugin)
 
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
@@ -11,7 +11,7 @@ More info about OctoApp Plugin: :material-github: [Here](https://github.com/crys
 
 - Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
 
-- In the script, enter in `[Install] Menu` by typing ++"1"++ , validate with ++"Enter"++ and install `OctoApp Plugin`:
+- In the script, enter in `[Install] Menu` by typing ++"1"++ , validate with ++"Enter"++ and install `OctoApp Companion`:
 
     <img width="900" src="../../assets/img/Creality-Helper-Script/Install_Menu.png">
 
@@ -28,7 +28,7 @@ More info about OctoApp Plugin: :material-github: [Here](https://github.com/crys
 
 - Download the app and connect your printer by entering the Mainsail or Fluidd URL in the app.
   
-- The app will automatically connect with the plugin!
+- OctoApp will automatically connect with OctoApp Companion plugin.
 
 <br />
 
