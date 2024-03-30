@@ -132,6 +132,7 @@ nav:
             - Moonraker Obico: helper-script/moonraker-obico.md
             - Mobileraker Companion: helper-script/mobileraker-companion.md
             - GuppyFLO: helper-script/guppyflo.md
+            - OctoApp: helper-script/octoapp.md
         - Customize Menu:
             - Custom Boot Display: helper-script/custom-boot-display.md
             - Remove & Restore Creality Web Interface: helper-script/remove-and-restore-creality-web-interface.md
