@@ -3,6 +3,8 @@
 
 <img src="../../assets/img/Boards-Layout/Motherboard_Layout.png">
 
+<img src="../../assets/img/Boards-Layout/Motherboard_Back.png">
+
 
 ## Motherboard Pinout
 <hr>
