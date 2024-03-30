@@ -2,6 +2,10 @@
 hide:
   - toc
 ---
+#### 30/03/2024
+
+  - Updated script to 5.2.0 to add support for `OctoApp Companion` (Thanks to [crysxd](https://github.com/crysxd)). See new section on wiki [here](helper-script/octoapp-companion.md).
+
 #### 27/03/2024
 
 - Updated [GuppyFLO](helper-script/guppyflo.md) section to add configuration for camera.
