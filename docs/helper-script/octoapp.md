@@ -13,6 +13,12 @@ Get the app in the [AppStore](https://apps.apple.com/us/app/octoapp-for-octoprin
     **This procedure must be repeated after restoring the printer to factory settings.**
 
 
+## Download OctoApp
+<hr>
+
+<a href="https://play.google.com/store/apps/details?id=de.crysxd.octoapp&hl=en&gl=US"><img width="200" src="../../assets/img/OctoApp-Companion/play-badge.png"></a>&nbsp;&nbsp;
+<a href="https://apps.apple.com/us/app/octoapp-for-octoprint-klipper/id1658133862"><img width="200" src="../../assets/img/OctoApp-Companion/app-store-badge.png"></a>
+
 ## Installation
 <hr>
 
