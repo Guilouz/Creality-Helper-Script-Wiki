@@ -1,6 +1,6 @@
 SimplyPrint allows you to start those prints that you just need to be done sooner rather than later. You can send print jobs to your printer from anywhere in the world.
 
-More info about SimplyPrint: :material-web: [Here](https://simplyprint.io/)
+More info about SimplyPrint: :material-web: [Here](https://simplyprint.io?utm_source=k1/ke-helper-script)
 
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
@@ -26,7 +26,7 @@ More info about SimplyPrint: :material-web: [Here](https://simplyprint.io/)
 ## Configuration
 <hr>
 
-- Create an account on SimplyPrint website: :material-web: [Sign up](https://simplyprint.io/panel/signup?utm_source=lp_nav)
+- Create an account on SimplyPrint website: :material-web: [Sign up](https://simplyprint.io/panel/signup?utm_source=lp_nav?utm_source=k1/ke-helper-script)
 
 -  Click on `Add your first printer`:
 
