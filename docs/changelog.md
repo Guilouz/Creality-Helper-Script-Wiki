@@ -2,6 +2,10 @@
 hide:
   - toc
 ---
+#### 31/03/2024
+
+  - Updated script to 5.3.0 to add support for `SimplyPrint`. See new section on wiki [here](helper-script/simplyprint.md).
+  
 #### 30/03/2024
 
   - Updated script to 5.2.0 to add support for `OctoApp Companion` (Thanks to [crysxd](https://github.com/crysxd)). See new section on wiki [here](helper-script/octoapp-companion.md).

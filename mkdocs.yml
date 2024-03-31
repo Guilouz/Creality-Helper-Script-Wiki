@@ -133,6 +133,7 @@ nav:
             - GuppyFLO: helper-script/guppyflo.md
             - Mobileraker Companion: helper-script/mobileraker-companion.md
             - OctoApp Companion: helper-script/octoapp-companion.md
+            - SimplyPrint: helper-script/simplyprint.md
         - Customize Menu:
             - Custom Boot Display: helper-script/custom-boot-display.md
             - Remove & Restore Creality Web Interface: helper-script/remove-and-restore-creality-web-interface.md
