@@ -56,6 +56,8 @@ More info about SimplyPrint: :material-web: [Here](https://simplyprint.io/)
 
     <img width="900" src="../../assets/img/SimplyPrint/05.png">
 
+- See how to integrate SimplyPrint to OrcaSlicer: :material-web: [Here](https://help.simplyprint.io/en/article/the-orcaslicer-simplyprint-integration-how-to-set-up-and-use-1miu532/)
+
 <br />
 
 **If you like my work, don't hesitate to support me by paying me a 🍺 or a ☕. Thank you 🙂**
