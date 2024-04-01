@@ -75,7 +75,7 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
 - You can now connect to GuppyFlo Web interface remotely with <a href="http://guppyflo">http://guppyflo</a> URL:
 
-    <img width="350" src="../../assets/img/GuppyFLO/11.png">
+    <img width="350" src="../../assets/img/GuppyFLO/10.png">
 
 - If you have configured camera, you have also access to your camera by clicking on `Cameras` button:
 
