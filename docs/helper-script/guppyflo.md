@@ -51,35 +51,35 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
     3. The devices you have connected to Tailscale (here my mobile phone)
     4. The IP addresses assigned to the devices you have connected
 
-    <img width="900" src="../../assets/img/GuppyFLO/06.png">
+    <img width="900" src="../../assets/img/GuppyFLO/04.png">
 
 - Go to Tailscale DNS settings tab and enable `MagicDNS` feature:
 
-    <img width="900" src="../../assets/img/GuppyFLO/07.png">
+    <img width="900" src="../../assets/img/GuppyFLO/05.png">
 
 - Go back to GuppyFLO Web interface and click on `Add Printer` button:
 
-    <img width="900" src="../../assets/img/GuppyFLO/04.png">
+    <img width="900" src="../../assets/img/GuppyFLO/06.png">
 
 - Configure settings and click on `Save` button:
 
-    <img width="900" src="../../assets/img/GuppyFLO/05.png">
+    <img width="900" src="../../assets/img/GuppyFLO/07.png">
 
 - To add camera on GuppyFLO Web interface, click on `Auto Detect` button:
 
-    <img width="900" src="../../assets/img/GuppyFLO/09.png">
+    <img width="900" src="../../assets/img/GuppyFLO/08.png">
 
 - You can delete one of the two camera configurations and clic on `Save` button:
 
-    <img width="900" src="../../assets/img/GuppyFLO/11.png">
+    <img width="900" src="../../assets/img/GuppyFLO/09.png">
 
 - You can now connect to GuppyFlo Web interface remotely with <a href="http://guppyflo">http://guppyflo</a> URL:
 
-    <img width="350" src="../../assets/img/GuppyFLO/08.png">
+    <img width="350" src="../../assets/img/GuppyFLO/11.png">
 
 - If you have configured camera, you have also access to your camera by clicking on `Cameras` button:
 
-    <img width="350" src="../../assets/img/GuppyFLO/10.png">
+    <img width="350" src="../../assets/img/GuppyFLO/11.png">
 
 - You can also configure Mobileraker App for remote access, see <a href="../mobileraker-companion/#add-printer-remote-access-with-guppyflo">here</a>.
 
