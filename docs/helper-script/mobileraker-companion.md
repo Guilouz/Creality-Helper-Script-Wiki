@@ -66,7 +66,7 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 
     <img width="350" src="../../assets/img/Mobileraker-Companion/12.png">
 
-    You can obtain your printer link by clicking on the `Info` button on GuppyFLO Web interface.:
+    You can obtain your printer link by clicking on the `Info` button on GuppyFLO Web interface:
 
     <img width="900" src="../../assets/img/Mobileraker-Companion/14.png">
 
