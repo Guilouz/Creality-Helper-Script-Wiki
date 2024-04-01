@@ -2,6 +2,10 @@
 hide:
   - toc
 ---
+#### 01/04/2024
+
+- Updated [GuppyFLO](helper-script/guppyflo.md) and [Mobileraker Companion](helper-script/mobileraker-companion.md) sections for new GuppyFLO version 0.0.5.
+
 #### 31/03/2024
 
   - Updated script to 5.3.0 to add support for `SimplyPrint`. See new section on wiki [here](helper-script/simplyprint.md).
