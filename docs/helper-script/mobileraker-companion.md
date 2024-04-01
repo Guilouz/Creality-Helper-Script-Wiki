@@ -66,7 +66,11 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 
     <img width="350" src="../../assets/img/Mobileraker-Companion/12.png">
 
-    You can obtain your printer link by pointing at the `Fluidd` button on GuppyFLO Web interface. It looks like this: `http://guppyflo/printer-*********/fluidd`
+    You can obtain your printer link by clicking on the `Info` button on GuppyFLO Web interface.:
+
+        <img width="900" src="../../assets/img/Mobileraker-Companion/14.png">
+
+        <img width="900" src="../../assets/img/Mobileraker-Companion/15.png">
 
 - If your configuration is correct, the test should return `Valid` status and you can click on `Continue`:
 

@@ -42,18 +42,6 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
     <img width="500" src="../../assets/img/GuppyFLO/03.png">
 
-- Go back to GuppyFLO Web interface and click on `Add Printer` button:
-
-    <img width="900" src="../../assets/img/GuppyFLO/04.png">
-
-- Configure settings and click on `Add Printer` button:
-
-    <img width="450" src="../../assets/img/GuppyFLO/05.png">
-
-- To add camera on GuppyFLO Web interface, click on `Add Camera` button and configure settings like this by replacing **xxx.xxx.xxx.xxx** by your printer's local IP address:
-
-    <img width="450" src="../../assets/img/GuppyFLO/09.png">
-
 - Go to to your Tailscale Admin console here: :material-web: [Tailscale Admin Console](https://login.tailscale.com/admin/machines)
 
 - There you will see the connected devices and their respective IP addresses:
@@ -69,7 +57,23 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 
     <img width="900" src="../../assets/img/GuppyFLO/07.png">
 
-- You can now connect to GuppyFlo Web interface remotely by using IP address assigned to guppyflo or with <a href="http://guppyflo">http://guppyflo</a>:
+- Go back to GuppyFLO Web interface and click on `Add Printer` button:
+
+    <img width="900" src="../../assets/img/GuppyFLO/04.png">
+
+- Configure settings and click on `Save` button:
+
+    <img width="900" src="../../assets/img/GuppyFLO/05.png">
+
+- To add camera on GuppyFLO Web interface, click on `Auto Detect` button:
+
+    <img width="900" src="../../assets/img/GuppyFLO/09.png">
+
+- You can delete one of the two camera configurations and clic on `Save` button:
+
+    <img width="900" src="../../assets/img/GuppyFLO/11.png">
+
+- You can now connect to GuppyFlo Web interface remotely with <a href="http://guppyflo">http://guppyflo</a> URL:
 
     <img width="350" src="../../assets/img/GuppyFLO/08.png">
 
