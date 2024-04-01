@@ -47,7 +47,7 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 - There you will see the connected devices and their respective IP addresses:
 
     1. guppyflo :fontawesome-solid-arrow-right-long: Your printer
-    2. IP address assigned to your printer (to connect to it remotely)
+    2. IP address assigned to your printer
     3. The devices you have connected to Tailscale (here my mobile phone)
     4. The IP addresses assigned to the devices you have connected
 
