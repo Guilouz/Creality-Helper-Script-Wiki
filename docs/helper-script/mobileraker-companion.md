@@ -66,9 +66,13 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 
     <img width="350" src="../../assets/img/Mobileraker-Companion/12.png">
     
-    Your **Printer Adress** must be similar to: `http://guppyflo/printer/xxxxxxxxxx` by replacing `xxxxxxxxxx` by your Printer ID
+    Your **Printer Adress** must be similar to:<br />
+    `http://guppyflo/printer/xxxxxxxxxx`<br />
+    by replacing `xxxxxxxxxx` by your Printer ID
     
-    Your **Websocket Adress** must be similar to: `ws://guppyflo/printer/xxxxxxxxxx/websocket` by replacing `xxxxxxxxxx` by your Printer ID
+    Your **Websocket Adress** must be similar to:<br />
+    `ws://guppyflo/printer/xxxxxxxxxx/websocket`
+    <br />by replacing `xxxxxxxxxx` by your Printer ID
 
     You can obtain your **Printer ID** by clicking on the `Info` button on GuppyFLO Web interface:
 
@@ -98,9 +102,13 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 
     <img width="350" src="../../assets/img/Mobileraker-Companion/17.png">
 
-    Your **Stream URL** must be similar to: `http://guppyflo/printer/xxxxxxxxxx/cameras/yyyyyyyyyy/webcam/?action=stream` by replacing `xxxxxxxxxx` by your Printer ID and `yyyyyyyyyy` by your Camera ID
+    Your **Stream URL** must be similar to:<br />
+    `http://guppyflo/printer/xxxxxxxxxx/cameras/yyyyyyyyyy/webcam/?action=stream`<br />
+    by replacing `xxxxxxxxxx` by your Printer ID and `yyyyyyyyyy` by your Camera ID
 
-    Your **Snapshot URL** must be similar to: `http://guppyflo/printer/xxxxxxxxxx/cameras/yyyyyyyyyy/webcam/?action=snapshot` by replacing `xxxxxxxxxx` by your Printer ID and `yyyyyyyyyy` by your Camera ID
+    Your **Snapshot URL** must be similar to:<br />
+    `http://guppyflo/printer/xxxxxxxxxx/cameras/yyyyyyyyyy/webcam/?action=snapshot`<br />
+    by replacing `xxxxxxxxxx` by your Printer ID and `yyyyyyyyyy` by your Camera ID
 
     You can obtain your **Camera ID** by clicking on the `Info` button on GuppyFLO Web interface:
 
