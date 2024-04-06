@@ -83,7 +83,7 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 - Your printer is now added to Mobileraker for remote access.
 
 !!! Note
-    **The camera works remotely only when configured on the Fluidd or Mainsail web interface. See the [Configure Camera](../../configurations/configure-camera.md) section.**
+    **The camera works remotely only when configured on the Fluidd or Mainsail Web interface. See the [Configure Camera](../configurations/configure-camera.md) section.**
 
 
 ## Configurations

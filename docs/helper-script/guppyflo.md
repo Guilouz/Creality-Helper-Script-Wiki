@@ -84,7 +84,7 @@ More info about Tailscale: :material-web: [Here](https://tailscale.com/)
 - You can also configure Mobileraker App for remote access, see <a href="../mobileraker-companion/#add-printer-remote-access-with-guppyflo">here</a>.
 
 !!! Note
-    **The camera works remotely only when configured on the Fluidd or Mainsail web interface. See the [Configure Camera](../../configurations/configure-camera.md) section.**
+    **The camera works remotely only when configured on the Fluidd or Mainsail Web interface. See the [Configure Camera](../configurations/configure-camera.md) section.**
 
 
 <br />
