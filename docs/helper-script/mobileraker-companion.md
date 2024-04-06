@@ -65,8 +65,12 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 - Configure this settings like that by replacing `Printer` and `Websocket` adresses by yours and click on `Test Connection`:
 
     <img width="350" src="../../assets/img/Mobileraker-Companion/12.png">
+    
+    Your **Printer Adress** must be similar to: `http://guppyflo/printer/xxxxxxxxxx` by replacing `xxxxxxxxxx` by your Printer ID
+    
+    Your **Websocket Adress** must be similar to: `ws://guppyflo/printer/xxxxxxxxxx/websocket` by replacing `xxxxxxxxxx` by your Printer ID
 
-    You can obtain your printer link by clicking on the `Info` button on GuppyFLO Web interface:
+    You can obtain your **Printer ID** by clicking on the `Info` button on GuppyFLO Web interface:
 
     <img width="900" src="../../assets/img/Mobileraker-Companion/14.png">
 
@@ -81,6 +85,28 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
     <img width="350" src="../../assets/img/Mobileraker-Companion/05.png">
 
 - Your printer is now added to Mobileraker for remote access.
+
+- To configure camera, click on the 3 horizontal bars to display the menu:
+
+    <img width="350" src="../../assets/img/Mobileraker-Companion/06.png">
+
+- Click on `Settings` icon:
+
+    <img width="350" src="../../assets/img/Mobileraker-Companion/16.png">
+
+- And edit `WEBCAM` section:
+
+    <img width="350" src="../../assets/img/Mobileraker-Companion/17.png">
+
+    Your **Stream URL** must be similar to: `http://guppyflo/printer/xxxxxxxxxx/cameras/yyyyyyyyyy/webcam/?action=stream` by replacing `xxxxxxxxxx` by your Printer ID and `yyyyyyyyyy` by your Camera ID
+
+    Your **Snapshot URL** must be similar to: `http://guppyflo/printer/xxxxxxxxxx/cameras/yyyyyyyyyy/webcam/?action=snapshot` by replacing `xxxxxxxxxx` by your Printer ID and `yyyyyyyyyy` by your Camera ID
+
+    You can obtain your **Camera ID** by clicking on the `Info` button on GuppyFLO Web interface:
+
+    <img width="900" src="../../assets/img/Mobileraker-Companion/14.png">
+
+    <img width="900" src="../../assets/img/Mobileraker-Companion/18.png">
 
 !!! Note
     **The camera works remotely only when configured on the Fluidd or Mainsail Web interface. See the [Configure Camera](../configurations/configure-camera.md) section.**
