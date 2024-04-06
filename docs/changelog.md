@@ -2,6 +2,10 @@
 hide:
   - toc
 ---
+#### 06/04/2024
+
+- Updated [Mobileraker Companion](helper-script/mobileraker-companion.md) section for new GuppyFLO version 0.0.6.
+
 #### 01/04/2024
 
 - Updated [GuppyFLO](helper-script/guppyflo.md) and [Mobileraker Companion](helper-script/mobileraker-companion.md) sections for new GuppyFLO version 0.0.5.
