@@ -14,15 +14,9 @@
 
 - Go to `Interface Settings` at the top right of the window and in `WEBCAMS` section.
 
-- Configure your webcam like this:
+- Configure your webcam like with these settings:
 
     <img width="899" src="../../assets/img/Configure-Camera/Mainsail_Camera.png">
-
-- Replacing xxx.xxx.xxx.xxx by your local IP address:
-
-    - **URL Stream:** `http://xxx.xxx.xxx.xxx:4409/webcam/?action=stream`
-    - **URL Snapshot:** `http://xxx.xxx.xxx.xxx:4409/webcam/?action=snapshot`
-    - **Service:** `MJPEG-Streamer` or `Adaptative MJPEG-Streamer (experimental)`
 
 
 ### Configure Camera in Moonraker
