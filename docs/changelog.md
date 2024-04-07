@@ -2,6 +2,10 @@
 hide:
   - toc
 ---
+#### 08/04/2024
+
+- Added new [Change Date & Time](firmwares/change-date-and-time.md) section.
+
 #### 06/04/2024
 
 - Updated [Mobileraker Companion](helper-script/mobileraker-companion.md) section for new GuppyFLO version 0.0.6.

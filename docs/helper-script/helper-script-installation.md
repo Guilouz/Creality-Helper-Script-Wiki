@@ -39,17 +39,7 @@ If you have already installed Moonraker, Fluidd or Mainsail provided by Creality
     git config --global http.sslVerify false
     ```
 
-- Also, make sure your system date and time are correct. You can check this with the command:
-
-    ``` title="SSH Command Prompt"
-    date
-    ```
-
-- To change the date and time use the following command in this format:
-
-    ``` title="SSH Command Prompt"
-    date -s "YYYY-MM-DD HH:MM:SS"
-    ```
+- Also, make sure your system date and time are correct. See [Change Date & Time](../../firmwares/change-date-and-time) section.
 
 !!! Note
     Some features are not available for KE Series.
