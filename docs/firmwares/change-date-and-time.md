@@ -20,7 +20,7 @@ This guide explains how to set the correct date and time on your printer based o
     
     If date and time are correct, there is no need to continue.
 
-- Enter this command to see the current zone defined on your printer:
+- Enter this command to see the current time zone defined on your printer:
 
     ``` title="SSH Command Prompt"
     ls -l /etc/localtime | awk '{print $6, $7, $8, $9, $10, $11}'
