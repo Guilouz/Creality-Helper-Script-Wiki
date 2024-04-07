@@ -2,7 +2,7 @@
 hide:
   - toc
 ---
-In some cases date and time are not correct and defined by default to Sun Mar  1 13:29:37 CET 2020.
+In some cases date and time are not correct and defined by default to Sun Mar  1 13:29:37 CET 2020.<br />
 This guide explains how to set the correct date and time on your printer based on your time zone.
 
 !!! Note
@@ -32,7 +32,7 @@ This guide explains how to set the correct date and time on your printer based o
     Jan 10 16:04 /etc/localtime -> ../usr/share/zoneinfo/Asia/Shanghai
     ```
 
-- Enter this command to delete the current defined zone:
+- Enter this command to delete the current time zone:
 
     ``` title="SSH Command Prompt"
     rm -rf /etc/localtime
