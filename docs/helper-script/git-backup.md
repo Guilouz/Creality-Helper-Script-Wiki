@@ -60,7 +60,7 @@ This allows to watch Klipper configuration folder and automatically backup to Gi
 
     <img width="900" src="../../assets/img/Creality-Helper-Script/Install_Menu.png">
 
-- When asked enter your GitHub username, your repository name and your personal access token retrieved previously.
+- When asked enter your GitHub username, your repository name, your branch name and your personal access token retrieved previously.
 
 - Once installed and configured, your Klipper configuration files will be automatically pushed to your GitHub repository.
 
