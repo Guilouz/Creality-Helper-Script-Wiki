@@ -2,6 +2,10 @@
 hide:
   - toc
 ---
+#### 11/04/2024
+
+- Added possibility to define branch name when installing `Git Backup` (thanks to [3DPrintingGeek](https://github.com/3DPrintingGeek)).
+
 #### 08/04/2024
 
 - Added new [Change Date & Time](firmwares/change-date-and-time.md) section.
