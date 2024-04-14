@@ -22,6 +22,10 @@ Here you can find :simple-youtube: YouTube videos about Helper Script.
   | aim6mac |
   | :---------: |
   | <iframe width="900" height="506" src="https://www.youtube.com/embed/iGs1hU5ng9A?si=7G1Oe5-dgd4m7hD6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>  |
+  
+  | Vector 3D |
+  | :---------: |
+  | <iframe width="900" height="506" src="https://www.youtube.com/embed/8deFl73x_5Q?si=9DCsYfHu5k_sGF1T" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
   | NeedItMakeIt |
   | :---------: |
