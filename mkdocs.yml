@@ -101,6 +101,7 @@ nav:
     - About: index.md
     - Changelog: changelog.md
     - Discussions: https://github.com/Guilouz/Creality-K1-Series/discussions
+    - YouTube: youtube.md
     - Special Thanks: special-thanks.md
     - Firmwares:
         - Install & Update Rooted Firmware: firmwares/install-and-update-rooted-firmware.md
