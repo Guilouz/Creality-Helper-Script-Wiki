@@ -7,7 +7,7 @@ This allows to install a custom Creality-themed boot display.
 ## Install Custom Boot Display
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Customize] Menu` by typing ++"3"++ , validate with ++"Enter"++ and install `Install Custom Boot Display`:
 
@@ -33,7 +33,7 @@ This allows to install a custom Creality-themed boot display.
 ## Remove Custom Boot Display
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Customize] Menu` by typing ++"3"++ , validate with ++"Enter"++ and Select `Remove Custom Boot Display`:
 

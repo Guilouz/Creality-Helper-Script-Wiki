@@ -7,7 +7,7 @@ This allows to remove Creality Web interface and replace it with Fluidd or Mains
 ## Remove Creality Web interface
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Customize] Menu` by typing ++"3"++ , validate with ++"Enter"++ and select `Remove Creality Web Interface`:
 
@@ -28,7 +28,7 @@ This allows to remove Creality Web interface and replace it with Fluidd or Mains
 ## Restore Creality Web interface
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Customize] Menu` by typing ++"3"++ , validate with ++"Enter"++ and select `Restore Creality Web Interface`:
 

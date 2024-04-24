@@ -7,7 +7,7 @@ Note that the Factory Reset function in the screen menu settings only performs a
 <hr>
 
 !!! Note
-    This can also be done from `[Tools] Menu` in <a href="../../helper-script/helper-script-installation">Installation Helper Script</a>.
+    This can also be done from `[Tools] Menu` in <a href="../../helper-script/helper-script-installation">Helper Script</a>.
 
 - Connect to SSH (Guide is available <a href="../../firmwares/ssh-connection">here</a>).
 

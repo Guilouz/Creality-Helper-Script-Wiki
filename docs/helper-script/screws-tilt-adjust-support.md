@@ -13,7 +13,7 @@ More info about Screws Tilt Adjust functionality: :material-web: [Here](https://
 ## Installation
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Install] Menu` by typing ++"1"++ , validate with ++"Enter"++ and install `Screws Tilt Adjust Support`:
 

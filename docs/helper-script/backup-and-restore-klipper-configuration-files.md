@@ -4,7 +4,7 @@ This allows to backup and restore Klipper configuration files (all files and fol
 ## Backup
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Backup & Restore] Menu` by typing ++"4"++ , validate with ++"Enter"++ and select `Backup Klipper configuration files`:
 
@@ -19,7 +19,7 @@ This allows to backup and restore Klipper configuration files (all files and fol
 ## Restore
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - Make sure `backup_config.tar.gz` file is present in `/usr/data/printer_data/config/` folder.
 

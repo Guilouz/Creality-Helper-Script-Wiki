@@ -9,7 +9,7 @@ By default when Klipper is started or restarted, the service file checks if the 
 ## Prevent updating Klipper configuration files
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Tools] Menu` by typing ++"5"++ , validate with ++"Enter"++ and select `Prevent updating Klipper configuration files`:
 
@@ -21,7 +21,7 @@ By default when Klipper is started or restarted, the service file checks if the 
 ## Allow updating Klipper configuration files
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Tools] Menu` by typing ++"5"++ , validate with ++"Enter"++ and select `Allow updating Klipper configuration files`:
 

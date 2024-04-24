@@ -37,7 +37,7 @@ You can easily restore current Firmware to a previous Firmware directly from the
 
 - When you are on home screen, plug USB drive on the front of the printer.
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - Start Helper Script and enter in `[Tools] Menu` by typing ++"5"++ , validate with ++"Enter"++ and select `Restore a previous firmware`:
 

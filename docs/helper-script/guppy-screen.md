@@ -15,7 +15,7 @@ More info about Guppy Screen here: :material-github: [GitHub](https://github.com
 ## Installation
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Customize] Menu` by typing ++"3"++ , validate with ++"Enter"++ and install `Guppy Screen`:
 

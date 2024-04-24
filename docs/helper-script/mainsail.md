@@ -13,7 +13,7 @@ Mainsail is the popular web interface for managing and controlling 3D printers w
 ## Installation
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Install] Menu` by typing ++"1"++ , validate with ++"Enter"++ and install `Mainsail`:
 

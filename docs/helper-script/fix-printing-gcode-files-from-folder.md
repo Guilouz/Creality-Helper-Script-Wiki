@@ -13,7 +13,7 @@ This returns **_code:"key514", "msg":"Malformed command args..._** error. This f
 ## How to fix that
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Tools] Menu` by typing ++"5"++ , validate with ++"Enter"++ and select `Fix printing Gode files from folder`:
 

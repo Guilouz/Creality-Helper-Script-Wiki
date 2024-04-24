@@ -7,7 +7,7 @@ This allows to use the buzzer integrated into the motherboard to play a sound du
 ## Installation
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Install] Menu` by typing ++"1"++ , validate with ++"Enter"++ and install `Buzzer Support`:
 

@@ -11,7 +11,7 @@ This allows to have the dynamic Creality logos on the Fluidd Web interface.
 ## Installation
 <hr>
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Customize] Menu` by typing ++"3"++ , validate with ++"Enter"++ and install `Creality Dynamic Logos for Fluidd`:
 

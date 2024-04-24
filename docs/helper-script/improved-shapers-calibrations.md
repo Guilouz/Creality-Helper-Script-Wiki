@@ -17,7 +17,7 @@ The resonance test is performed on the Y axis and the same result is also applie
 !!! Note
     You can't install `Improved Shapers Calibrations` if you already have installed `Guppy Screen` because it already has these features.
 
-- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Helper Script Installation</a> section before.
+- Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
 - In the script, enter in `[Install] Menu` by typing ++"1"++ , validate with ++"Enter"++ and install `Improved Shapers Calibrations`:
 
