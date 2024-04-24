@@ -111,44 +111,73 @@ nav:
         - Change Date & Time: firmwares/change-date-and-time.md
     - Helper Script for Creality:
         - Helper Script Installation: helper-script/helper-script-installation.md
-        - Install Menu: 
-            - Moonraker and Nginx: helper-script/moonraker-and-nginx.md
-            - Fluidd: helper-script/fluidd.md
-            - Mainsail: helper-script/mainsail.md
-            - Entware: helper-script/entware.md
-            - Klipper Gcode Shell Command: helper-script/klipper-gcode-shell-command.md
-            - Klipper Adaptive Meshing & Purging: helper-script/klipper-adaptive-meshing-and-purging.md
-            - Buzzer Support: helper-script/buzzer-support.md
-            - Nozzle Cleaning Fan Control: helper-script/nozzle-cleaning-fan-control.md
-            - Fans Control Macros: helper-script/fans-control-macros.md
-            - Improved Shapers Calibrations: helper-script/improved-shapers-calibrations.md
-            - Useful Macros: helper-script/useful-macros.md
-            - Save Z-Offset Macros: helper-script/save-z-offset-macros.md
-            - Screws Tilt Adjust Support: helper-script/screws-tilt-adjust-support.md
-            - Virtual Pins Support: helper-script/virtual-pins-support.md
-            - M600 Support: helper-script/m600-support.md
-            - Git Backup: helper-script/git-backup.md
-            - Moonraker Timelapse: helper-script/moonraker-timelapse.md
-            - Camera Settings Control: helper-script/camera-settings-control.md
-            - OctoEverywhere: helper-script/octoeverywhere.md
-            - Moonraker Obico: helper-script/moonraker-obico.md
-            - GuppyFLO: helper-script/guppyflo.md
-            - Mobileraker Companion: helper-script/mobileraker-companion.md
-            - OctoApp Companion: helper-script/octoapp-companion.md
-            - SimplyPrint: helper-script/simplyprint.md
-        - Customize Menu:
-            - Custom Boot Display: helper-script/custom-boot-display.md
-            - Remove & Restore Creality Web Interface: helper-script/remove-and-restore-creality-web-interface.md
-            - Guppy Screen: helper-script/guppy-screen.md
-            - Creality Dynamic Logos for Fluidd: helper-script/creality-dynamic-logos-for-fluidd.md
-        - Backup & Restore Menu:
-            - Backup & Restore Klipper configuration files: helper-script/backup-and-restore-klipper-configuration-files.md
-            - Backup & Restore Moonraker database: helper-script/backup-and-restore-moonraker-database.md
-        - Tools Menu:
-            - Prevent & Allow updating Klipper configuration files: helper-script/prevent-and-allow-updating-klipper-configuration-files.md
-            - Fix Printing Gcode files from Folder: helper-script/fix-printing-gcode-files-from-folder.md
-            - Restore a previous Firmware: helper-script/restore-a-previous-firmware.md
-            - Reset Factory Settings: helper-script/reset-factory-settings.md
+        - K1 Series:
+            - Install Menu: 
+                - Moonraker and Nginx: helper-script/moonraker-and-nginx.md
+                - Fluidd: helper-script/fluidd.md
+                - Mainsail: helper-script/mainsail.md
+                - Entware: helper-script/entware.md
+                - Klipper Gcode Shell Command: helper-script/klipper-gcode-shell-command.md
+                - Klipper Adaptive Meshing & Purging: helper-script/klipper-adaptive-meshing-and-purging.md
+                - Buzzer Support: helper-script/buzzer-support.md
+                - Nozzle Cleaning Fan Control: helper-script/nozzle-cleaning-fan-control.md
+                - Fans Control Macros: helper-script/fans-control-macros.md
+                - Improved Shapers Calibrations: helper-script/improved-shapers-calibrations.md
+                - Useful Macros: helper-script/useful-macros.md
+                - Save Z-Offset Macros: helper-script/save-z-offset-macros.md
+                - Screws Tilt Adjust Support: helper-script/screws-tilt-adjust-support.md
+                - Virtual Pins Support: helper-script/virtual-pins-support.md
+                - M600 Support: helper-script/m600-support.md
+                - Git Backup: helper-script/git-backup.md
+                - Moonraker Timelapse: helper-script/moonraker-timelapse.md
+                - Camera Settings Control: helper-script/camera-settings-control.md
+                - OctoEverywhere: helper-script/octoeverywhere.md
+                - Moonraker Obico: helper-script/moonraker-obico.md
+                - GuppyFLO: helper-script/guppyflo.md
+                - Mobileraker Companion: helper-script/mobileraker-companion.md
+                - OctoApp Companion: helper-script/octoapp-companion.md
+                - SimplyPrint: helper-script/simplyprint.md
+            - Customize Menu:
+                - Custom Boot Display: helper-script/custom-boot-display.md
+                - Remove & Restore Creality Web Interface: helper-script/remove-and-restore-creality-web-interface.md
+                - Guppy Screen: helper-script/guppy-screen.md
+                - Creality Dynamic Logos for Fluidd: helper-script/creality-dynamic-logos-for-fluidd.md
+            - Backup & Restore Menu:
+                - Backup & Restore Klipper configuration files: helper-script/backup-and-restore-klipper-configuration-files.md
+                - Backup & Restore Moonraker database: helper-script/backup-and-restore-moonraker-database.md
+            - Tools Menu:
+                - Prevent & Allow updating Klipper configuration files: helper-script/prevent-and-allow-updating-klipper-configuration-files.md
+                - Fix Printing Gcode files from Folder: helper-script/fix-printing-gcode-files-from-folder.md
+                - Restore a previous Firmware: helper-script/restore-a-previous-firmware.md
+                - Reset Factory Settings: helper-script/reset-factory-settings.md
+        - KE Series:
+            - Install Menu: 
+                - Moonraker and Nginx: helper-script/moonraker-and-nginx.md
+                - Fluidd: helper-script/fluidd.md
+                - Mainsail: helper-script/mainsail.md
+                - Entware: helper-script/entware.md
+                - Klipper Gcode Shell Command: helper-script/klipper-gcode-shell-command.md
+                - Improved Shapers Calibrations: helper-script/improved-shapers-calibrations.md
+                - Virtual Pins Support: helper-script/virtual-pins-support.md
+                - Git Backup: helper-script/git-backup.md
+                - Moonraker Timelapse: helper-script/moonraker-timelapse.md
+                - OctoEverywhere: helper-script/octoeverywhere.md
+                - Moonraker Obico: helper-script/moonraker-obico.md
+                - GuppyFLO: helper-script/guppyflo.md
+                - Mobileraker Companion: helper-script/mobileraker-companion.md
+                - OctoApp Companion: helper-script/octoapp-companion.md
+                - SimplyPrint: helper-script/simplyprint.md
+            - Customize Menu:
+                - Remove & Restore Creality Web Interface: helper-script/remove-and-restore-creality-web-interface.md
+                - Guppy Screen: helper-script/guppy-screen.md
+                - Creality Dynamic Logos for Fluidd: helper-script/creality-dynamic-logos-for-fluidd.md
+            - Backup & Restore Menu:
+                - Backup & Restore Klipper configuration files: helper-script/backup-and-restore-klipper-configuration-files.md
+                - Backup & Restore Moonraker database: helper-script/backup-and-restore-moonraker-database.md
+            - Tools Menu:
+                - Prevent & Allow updating Klipper configuration files: helper-script/prevent-and-allow-updating-klipper-configuration-files.md
+                - Restore a previous Firmware: helper-script/restore-a-previous-firmware.md
+                - Reset Factory Settings: helper-script/reset-factory-settings.md
     - Configuration / Use:
         - Access to Web Interface: configurations/access-to-web-interface.md
         - Configure Camera: configurations/configure-camera.md
