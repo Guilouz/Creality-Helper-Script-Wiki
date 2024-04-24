@@ -2,7 +2,7 @@ site_name: Wiki for Creality Helper Script
 site_description: Documentation
 
 repo_name: GitHub
-repo_url: https://github.com/Guilouz/Creality-K1-Series
+repo_url: https://github.com/Guilouz/Creality-Helper-Script-Wiki
 
 theme:
     name: material
