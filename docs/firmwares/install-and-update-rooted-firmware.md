@@ -5,17 +5,22 @@ This guide explain how to install firmware and enable Root access.
 
 Please follow the instruction below strictly before to install latest firmware. Otherwise, installation of latest firmware may fail.
 
-**For V1.2.9.14 and earlier firmwares:**
-Update to `V1.2.9.15` via USB Drive → Update to `V1.2.9.22` via OTA/USB Drive → Update to `V1.3.30` via OTA/USB Drive → Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP.
+**For V1.2.9.14 and earlier firmwares:**<br />
+→ Update to `V1.2.9.15` via USB Drive<br />
+→ Update to `V1.2.9.22` via OTA/USB Drive<br />
+→ Update to `V1.3.30` via OTA/USB Drive<br />
+→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP.
 
-**For V1.2.9.17 to 1.2.9.21 firmware:**
-Update to `V1.2.9.22` via OTA/USB Drive → Update to `V1.3.30` via OTA/USB Drive → Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP..
+**For V1.2.9.17 to 1.2.9.21 firmware:**<br />
+→ Update to `V1.2.9.22` via OTA/USB Drive<br />
+→ Update to `V1.3.30` via OTA/USB Drive<br />
+→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP.
 
-**For V1.3.0.30 firmware:**
-Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP.
+**For V1.3.0.30 firmware:**<br />
+→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP.
 
-**For V1.3.1.4 and above firmwares:**
-You can install latest latest firmwares below.
+**For V1.3.1.4 and above firmwares:**<br />
+→ You can install latest latest firmwares below.
 
 
 ## Download Links
@@ -52,7 +57,7 @@ You can install latest latest firmwares below.
 
 - Once you are on the home screen, you can remove the USB drive.
 
-- Perfom a new Self Check on the new firmware by going to `Settings` :fontawesome-solid-arrow-right-long: `Self-check`.
+- Perfom a new Self Check on the new firmware by going to `Settings` → `Self-check`.
 
     !!! Warning
         **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Creality Helper Script</a>  must be reinstalled.**
@@ -88,7 +93,7 @@ This can be useful if you have made modifications to the printer (BLTouch etc...
 !!! Note
     **Root access must be re-enabled if you restore the printer to factory settings.**
 
-- On the screen UI, go to `Settings` :fontawesome-solid-arrow-right-long: `Root account information`:
+- On the screen UI, go to `Settings` → `Root account information`:
 
     <img width="600" src="../../assets/img/Install-Rooted-Firmware/01.png">
 

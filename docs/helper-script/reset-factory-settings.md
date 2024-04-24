@@ -18,7 +18,7 @@ Note that the Factory Reset function in the screen menu settings only performs a
 
 - Once executed, the `ok` message appears and your printer restarts with the settings reset to default.
 
-- It's necessary to reconnect your printer to your network from screen settings in `Settings` :fontawesome-solid-arrow-right-long: `Network` tab.
+- It's necessary to reconnect your printer to your network from screen settings in `Settings` → `Network` tab.
 
     !!! Warning
         **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Helper Script for Creality</a>  must be reinstalled.**

@@ -2,7 +2,7 @@
 <hr>
 
 - When you first go to the original Fluidd Web Interface, the camera will not be detected because it's disabled by default.<br />
-  It's necessary to go to `Settings` :fontawesome-solid-arrow-right-long: `Cameras` and enable it.
+  It's necessary to go to `Settings` → `Cameras` and enable it.
 
 - If not working, delete the existing camera and recreate it with these settings:
 

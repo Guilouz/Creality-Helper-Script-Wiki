@@ -70,9 +70,9 @@ This allows to watch Klipper configuration folder and automatically backup to Gi
 
 - You can control `Git Backup` with this macros:
 
-    - `GIT_BACKUP_STOP` :fontawesome-solid-arrow-right-long: To stop watching Klipper configuration folder and stop pushing to GitHub until manually resumed
-    - `GIT_BACKUP_PAUSE` :fontawesome-solid-arrow-right-long: To pause watching Klipper configuration folder and stop pushing to GitHub until next reboot, or until manually resumed
-    - `GIT_BACKUP_RESUME` :fontawesome-solid-arrow-right-long: To resume watching Klipper configuration folder and pushing to GitHub
+    - `GIT_BACKUP_STOP` → To stop watching Klipper configuration folder and stop pushing to GitHub until manually resumed
+    - `GIT_BACKUP_PAUSE` → To pause watching Klipper configuration folder and stop pushing to GitHub until next reboot, or until manually resumed
+    - `GIT_BACKUP_RESUME` → To resume watching Klipper configuration folder and pushing to GitHub
 
 - Git Backup can also be controlled from SSH with this command by replacing `<option>` with possible option:
 
