@@ -1,10 +1,8 @@
-# Wiki for Creality K1 Series
-
-<img width="1102" src="https://github.com/Guilouz/Creality-K1-Series/blob/main/docs/assets/img/home/home.png">
+# Wiki for Creality Helper Script
 
 ## About
 
-This guide explains the whole process to root Creality K1, K1C and K1 Max and add features to your printer.
+This guide explains the whole process to root Creality K1 Series, KE Series and Ender-3 V3 Series and add features to your printer using Creality Helper Script.
 
 The advantage is having full access to the firmware and configuration files to be able to make changes.
 
@@ -14,6 +12,6 @@ If you don't know what you're doing, I don't recommend following this guide.
 
 ## Wiki
 
-Guide is available here: [Wiki](https://guilouz.github.io/Creality-K1-Series/)
+Guide is available here: [Wiki](https://guilouz.github.io/Creality-Helper-Script-Wiki/)
 
 <br />
