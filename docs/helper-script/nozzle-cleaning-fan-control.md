@@ -7,8 +7,6 @@ This allows to control hotend and side fans during nozzle cleaning process to ha
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
 
-!!! Note
-    This feature is not available for KE Series.
 
 ## Installation
 <hr>

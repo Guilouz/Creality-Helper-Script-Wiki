@@ -3,8 +3,6 @@ This allows to use the buzzer integrated into the motherboard to play a sound du
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
 
-!!! Note
-    This feature is not available for KE Series.
 
 ## Installation
 <hr>

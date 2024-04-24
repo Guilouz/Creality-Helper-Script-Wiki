@@ -3,8 +3,6 @@ This allows to use `M600` command in your slicer to change filament.
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
 
-!!! Note
-    This feature is not available for KE Series.
 
 ## Installation
 <hr>

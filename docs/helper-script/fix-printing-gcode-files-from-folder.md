@@ -9,8 +9,6 @@ This returns **_code:"key514", "msg":"Malformed command args..._** error. This f
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings or if you update the firmware.**
 
-!!! Note
-    This feature is not available for KE Series.
 
 ## How to fix that
 <hr>

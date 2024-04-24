@@ -7,8 +7,6 @@ This allows to trigger the back fan depending on the chamber temperature and the
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
 
-!!! Note
-    This feature is not available for KE Series.
 
 ## Installation
 <hr>

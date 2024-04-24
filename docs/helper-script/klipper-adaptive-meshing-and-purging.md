@@ -7,9 +7,6 @@ More info about KAMP here: :material-github: [GitHub](https://github.com/kyleisa
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
 
-!!! Note
-    This feature is not available for KE Series.
-
 ## Installation
 <hr>
 

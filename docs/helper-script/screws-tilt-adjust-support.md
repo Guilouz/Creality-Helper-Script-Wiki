@@ -9,8 +9,6 @@ More info about Screws Tilt Adjust functionality: :material-web: [Here](https://
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
 
-!!! Note
-    This feature is not available for KE Series.
 
 ## Installation
 <hr>

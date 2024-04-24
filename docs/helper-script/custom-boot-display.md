@@ -3,8 +3,6 @@ This allows to install a custom Creality-themed boot display.
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
 
-!!! Note
-    This feature is not available for KE Series.
 
 ## Install Custom Boot Display
 <hr>
