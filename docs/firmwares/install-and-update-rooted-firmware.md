@@ -22,7 +22,8 @@ Please follow the instruction below strictly before to install latest firmware. 
 **For V1.3.1.4 and above firmwares:**<br />
 → You can install latest firmwares below.
 
-You can find earlier firmwares download links :material-web: [here](https://www.crealitycloud.com/software-firmware/firmware/flagship-series)
+!!! Note
+    You can find earlier firmwares download links :material-web: [here](https://www.crealitycloud.com/software-firmware/firmware/flagship-series).
 
 
 ## Download Links
