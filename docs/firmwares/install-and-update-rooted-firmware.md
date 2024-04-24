@@ -9,18 +9,20 @@ Please follow the instruction below strictly before to install latest firmware. 
 → Update to `V1.2.9.15` via USB Drive<br />
 → Update to `V1.2.9.22` via OTA/USB Drive<br />
 → Update to `V1.3.30` via OTA/USB Drive<br />
-→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP.
+→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP
 
 **For V1.2.9.17 to 1.2.9.21 firmware:**<br />
 → Update to `V1.2.9.22` via OTA/USB Drive<br />
 → Update to `V1.3.30` via OTA/USB Drive<br />
-→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP.
+→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP
 
 **For V1.3.0.30 firmware:**<br />
-→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP.
+→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP
 
 **For V1.3.1.4 and above firmwares:**<br />
-→ You can install latest latest firmwares below.
+→ You can install latest firmwares below.
+
+You can find firmwares download links :material-web: [here](https://www.crealitycloud.com/software-firmware/firmware/flagship-series)
 
 
 ## Download Links
