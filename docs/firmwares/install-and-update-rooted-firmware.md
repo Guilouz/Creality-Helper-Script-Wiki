@@ -10,6 +10,15 @@ This guide explain how to install firmware and enable Root access.
 
 &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.8 (Google Drive)](https://drive.google.com/file/d/1Kh8oaVWUtEd0saeWahEs4Y5dTcPnKPrV/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/downloads/Changelogs/Changelog_1.3.3.8.txt)
 
+## Prerequisites
+Your K1 series printer needs to be at least at version `V1.3.1.4` before trying to update to one of the rooted firmwares above.
+
+### For Printers with 1.2.9.14 or earlier
+
+Update manually via USB to:
+1. V1.2.9.15
+2. V1.2.9.22
+3. 1.3.1.4
 
 ## Installation & Update
 <hr>
