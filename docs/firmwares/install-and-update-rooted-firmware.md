@@ -1,5 +1,23 @@
 This guide explain how to install firmware and enable Root access.
 
+## Prerequisites
+<hr>
+
+Please follow the instruction below strictly before to install latest firmware. Otherwise, installation of latest firmware may fail.
+
+**For V1.2.9.14 and earlier firmwares:**
+Update to `V1.2.9.15` via USB Drive → Update to `V1.2.9.22` via OTA/USB Drive → Update to `V1.3.30` via OTA/USB Drive → Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP.
+
+**For V1.2.9.17 to 1.2.9.21 firmware:**
+Update to `V1.2.9.22` via OTA/USB Drive → Update to `V1.3.30` via OTA/USB Drive → Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP..
+
+**For V1.3.0.30 firmware:**
+Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP.
+
+**For V1.3.1.4 and above firmwares:**
+You can install latest latest firmwares below.
+
+
 ## Download Links
 <hr>
 
