@@ -110,7 +110,7 @@ nav:
         - SSH Connection: firmwares/ssh-connection.md
         - Change Date & Time: firmwares/change-date-and-time.md
     - Helper Script for Creality:
-        - Helper Script Installation: helper-script/helper-script-installation.md
+        - Install Helper Script: helper-script/helper-script-installation.md
         - K1 Series:
             - Install Menu: 
                 - Moonraker and Nginx: helper-script/moonraker-and-nginx.md
@@ -178,6 +178,11 @@ nav:
                 - Prevent & Allow updating Klipper configuration files: helper-script/prevent-and-allow-updating-klipper-configuration-files.md
                 - Restore a previous Firmware: helper-script/restore-a-previous-firmware.md
                 - Reset Factory Settings: helper-script/reset-factory-settings.md
+        - Ender-3 V3 Series:
+            - Install Menu: 
+            - Customize Menu:
+            - Backup & Restore Menu:
+            - Tools Menu:
     - Configuration / Use:
         - Access to Web Interface: configurations/access-to-web-interface.md
         - Configure Camera: configurations/configure-camera.md
