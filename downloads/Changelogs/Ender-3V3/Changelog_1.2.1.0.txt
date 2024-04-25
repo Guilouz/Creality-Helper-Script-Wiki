@@ -1,0 +1,14 @@
+Version Update V1.2.1.0
+
+1. Optimized error 2527.
+2. Optimize font display issues.
+3. Modify the fan motherboard logic.
+4. Resolved issues with Creality Print slicer file preview images not displaying.
+5. Optimize silent printing parameter configuration.
+6. Add root account information page.
+7. Built-in Gcode file update.
+8. Modify configuration parameters to optimize first-layer printing.
+9. Temperature sensor set to a minimum of -15 degrees Celsius to prevent the machine from reporting errors due to cold conditions in some areas.
+10. Optimize the UI interface operation logic.
+11. Optimize other known bugs.
+

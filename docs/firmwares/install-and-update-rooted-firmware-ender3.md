@@ -1,40 +1,12 @@
 This guide explain how to install firmware and enable Root access.
 
-## Prerequisites
-<hr>
-
-Please follow the instruction below strictly before to install latest firmware. Otherwise, installation of latest firmware may fail.
-
-**For V1.2.9.14 and earlier firmwares:**<br />
-→ Update to `V1.2.9.15` via USB Drive<br />
-→ Update to `V1.2.9.22` via OTA/USB Drive<br />
-→ Update to `V1.3.30` via OTA/USB Drive<br />
-→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP
-
-**For V1.2.9.17 to 1.2.9.21 firmware:**<br />
-→ Update to `V1.2.9.22` via OTA/USB Drive<br />
-→ Update to `V1.3.30` via OTA/USB Drive<br />
-→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP
-
-**For V1.3.0.30 firmware:**<br />
-→ Update to `V1.3.1.4` via USB Drive or from Creality Cloud APP
-
-**For V1.3.1.4 and above firmwares:**<br />
-→ You can install latest firmwares below.
-
-!!! Note
-    You can find earlier firmwares download links :material-web: [here](https://www.crealitycloud.com/software-firmware/firmware/flagship-series).
-
-
 ## Download Links
 <hr>
 
 !!! Note
-    Firmwares are official and work on K1, K1C and K1 Max, detection of the correct printer is done by the firmware.
+    Firmwares are official from Creality.
 
-&nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.5 (Google Drive)](https://drive.google.com/file/d/1T0TvtmtD22mEpzL5YJzbyJ7H-9QIoozB/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/downloads/Changelogs/Changelog_1.3.3.5.txt) / :material-file-image: <a href="https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/downloads/Changelogs/Changelog_1.3.2.20.jpg">Picture</a>
-
-&nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.8 (Google Drive)](https://drive.google.com/file/d/1Kh8oaVWUtEd0saeWahEs4Y5dTcPnKPrV/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-K1-and-K1-Max/main/downloads/Changelogs/Changelog_1.3.3.8.txt)
+&nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.2.1.3 (Google Drive)](https://drive.google.com/file/d/1ECPGartjdiBhqMHSAjWLiDUkL3k6Dw7a/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/Ender-3V3/Changelog_1.2.1.3.txt)
 
 
 ## Installation & Update
@@ -71,7 +43,7 @@ Please follow the instruction below strictly before to install latest firmware. 
 
 This can be useful if you have made modifications to the printer (BLTouch etc...) and you can no longer perform the Startup Self Check.
 
-- Download and unzip this file: :material-download: [debugmode_JumpSelftest.zip](https://github.com/Guilouz/Creality-K1-Series/raw/main/downloads/debugmode_JumpSelftest.zip)
+- Download and unzip this file: :material-download: [debugmode_JumpSelftest.zip](https://github.com/Guilouz/Creality-Helper-Script-Wiki/raw/main/downloads/debugmode_JumpSelftest.zip)
 
 - Insert USB drive in your computer.
 
@@ -111,7 +83,7 @@ This can be useful if you have made modifications to the printer (BLTouch etc...
 - You can now connect to SSH (Guide is available <a href="../ssh-connection">here</a>) with:
   
     * User: `root`
-    * Password: `creality_2023`
+    * Password: `creality_ender3v3`
 
 <br />
 

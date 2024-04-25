@@ -104,8 +104,12 @@ nav:
     - YouTube: youtube.md
     - Special Thanks: special-thanks.md
     - Firmwares:
-        - Install & Update Rooted Firmware: firmwares/install-and-update-rooted-firmware.md
-        - Restore Previous Firmware: firmwares/restore-previous-firmware.md
+        - K1 Series:
+            - Install & Update Rooted Firmware: firmwares/install-and-update-rooted-firmware-k1.md
+            - Restore Previous Firmware: firmwares/restore-previous-firmware-k1.md
+        - Ender-3 V3 Series:
+            - Install & Update Rooted Firmware: firmwares/install-and-update-rooted-firmware-ender3.md
+            - Restore Previous Firmware: firmwares/restore-previous-firmware-ender3.md
         - Reset Factory Settings: firmwares/reset-factory-settings.md
         - SSH Connection: firmwares/ssh-connection.md
         - Change Date & Time: firmwares/change-date-and-time.md
@@ -148,7 +152,7 @@ nav:
             - Tools Menu:
                 - Prevent & Allow updating Klipper configuration files: helper-script/prevent-and-allow-updating-klipper-configuration-files.md
                 - Fix Printing Gcode files from Folder: helper-script/fix-printing-gcode-files-from-folder.md
-                - Restore a previous Firmware: helper-script/restore-a-previous-firmware.md
+                - Restore a previous Firmware: helper-script/restore-a-previous-firmware-k1.md
                 - Reset Factory Settings: helper-script/reset-factory-settings.md
         - KE Series:
             - Install Menu: 
@@ -176,7 +180,6 @@ nav:
                 - Backup & Restore Moonraker database: helper-script/backup-and-restore-moonraker-database.md
             - Tools Menu:
                 - Prevent & Allow updating Klipper configuration files: helper-script/prevent-and-allow-updating-klipper-configuration-files.md
-                - Restore a previous Firmware: helper-script/restore-a-previous-firmware.md
                 - Reset Factory Settings: helper-script/reset-factory-settings.md
     - Configuration / Use:
         - Access to Web Interface: configurations/access-to-web-interface.md

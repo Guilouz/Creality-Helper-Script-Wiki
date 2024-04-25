@@ -16,9 +16,9 @@ Here you will find custom build plates for OrcaSlicer.
 ## Download Links
 <hr>
 
-:material-download: [Creality_K1.zip](https://github.com/Guilouz/Creality-K1-Series/raw/main/downloads/OrcaSlicer/Creality_K1.zip)
+:material-download: [Creality_K1.zip](https://github.com/Guilouz/Creality-Helper-Script-Wiki/raw/main/downloads/OrcaSlicer/Creality_K1.zip)
 
-:material-download: [Creality_K1_Max.zip](https://github.com/Guilouz/Creality-K1-Series/raw/main/downloads/OrcaSlicer/Creality_K1_Max.zip)
+:material-download: [Creality_K1_Max.zip](https://github.com/Guilouz/Creality-Helper-Script-Wiki/raw/main/downloads/OrcaSlicer/Creality_K1_Max.zip)
 
 
 ## Installation
