@@ -4,7 +4,7 @@ You can easily restore current Firmware to a previous one.
 <hr>
 
 !!! Note
-    Firmwares are official and work on K1, K1C and K1 Max, detection of the correct printer is done by the firmware.
+    Firmwares are official from Creality and work on K1, K1C and K1 Max, detection of the correct printer is done by the firmware.<br />You can also download them from :material-web: [Creality Cloud](https://www.crealitycloud.com/software-firmware/firmware/flagship-series).
 
 &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.2.1 (Google Drive)](https://drive.google.com/file/d/1-hD7gfqsY3cuEoSbo1h7D2EJTM5Njihk/view?usp=share_link) / :material-github: [1.3.2.1 (Creality GitHub)](https://github.com/CrealityOfficial/K1_Series_Klipper/releases/download/V1.3.2.20/CR4CU220812S11_ota_img_V1.3.2.20.img) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.2.1.txt)
 

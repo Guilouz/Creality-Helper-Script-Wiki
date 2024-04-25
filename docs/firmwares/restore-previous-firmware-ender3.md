@@ -4,7 +4,7 @@ You can easily restore current Firmware to a previous one.
 <hr>
 
 !!! Note
-    Firmwares are official from Creality.
+    Firmwares are official from Creality.<br />You can also download them from :material-web: [Creality Cloud](https://www.crealitycloud.com/software-firmware/firmware/ender-series).
 
 &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.2.1.3 (Google Drive)](https://drive.google.com/file/d/1WgASL64AKSqmyqxzyhYDyrflWLY9LVa6/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/Ender-3V3/Changelog_1.2.1.3.txt)
 
