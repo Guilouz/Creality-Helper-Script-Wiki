@@ -10,7 +10,7 @@ You can easily restore current Firmware to a previous one.
 
 &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.2.20 (Google Drive)](https://drive.google.com/file/d/1mF6DnCHkyZdrIkQ2ulALZ4DfufMfyjOo/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.2.20.txt) / :material-file-image: <a href="https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.2.20.jpg">Picture</a>
 
-&nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.2.31 (Google Drive)](https://drive.google.com/file/d/1xMQhyEXoyxa391CLC5SOxUdxoA-4mFzV/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/ChangelogsK1/Changelog_1.3.2.31.txt)
+&nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.2.31 (Google Drive)](https://drive.google.com/file/d/1xMQhyEXoyxa391CLC5SOxUdxoA-4mFzV/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.2.31.txt)
 
 &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.5 (Google Drive)](https://drive.google.com/file/d/1T0TvtmtD22mEpzL5YJzbyJ7H-9QIoozB/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.3.5.txt) / :material-file-image: <a href="https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.3.5.jpg">Picture</a>
 
