@@ -2,7 +2,7 @@
 hide:
   - toc
 ---
-- Make sure you have enabled Root access before by following this <a href="../install-and-update-rooted-firmware/#enable-root-access">Enable Root access</a> section.
+- Make sure you have enabled Root access before by following `Enable Root Access` section.
 
 - Download and install the **MobaXterm** software: :material-download: <a href="https://mobaxterm.mobatek.net/download-home-edition.html">Here</a>
 

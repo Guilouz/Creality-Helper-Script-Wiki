@@ -90,7 +90,7 @@ This can be useful if you have made modifications to the printer (BLTouch etc...
     ```
 
 
-## Enable Root access
+## Enable Root Access
 <hr>
 
 !!! Note

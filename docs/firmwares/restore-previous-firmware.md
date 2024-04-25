@@ -49,7 +49,7 @@ You can easily restore current Firmware to a previous one.
 - Then, follow this <a href="../reset-factory-settings">Reset Factory Settings</a> section to restore default settings.
 
     !!! Warning
-        **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Helper Script for Creality</a>  must be reinstalled and <a href="../../firmwares/install-and-update-rooted-firmware/#enable-root-access">root access</a> needs to be re-enabled from screen settings.**
+        **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Helper Script for Creality</a>  must be reinstalled and root access needs to be re-enabled from screen settings.**
 
 <br />
 

@@ -50,7 +50,7 @@ Note that the Factory Reset function in the screen menu settings only performs a
 - Your printer restart with the settings reset to default.
 
     !!! Warning
-        **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Helper Script for Creality</a>  must be reinstalled and <a href="../../firmwares/install-and-update-rooted-firmware/#enable-root-access">root access</a> needs to be re-enabled from screen settings.**
+        **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Helper Script for Creality</a>  must be reinstalled and root access needs to be re-enabled from screen settings.**
 
 <br />
 

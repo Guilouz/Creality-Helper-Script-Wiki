@@ -43,6 +43,8 @@ This allows to install useful macros.
 
 - You can perform `MOONRAKER_RESTORE_DATABASE` macro to restore Moonraker database using `backup_database.tar.gz` file.
 
+- You can perform `RELOAD_CAMERA` macro to restore a disconnected camera without needing to restart the printer.
+
 <br />
 
 **If you like my work, don't hesitate to support me by paying me a 🍺 or a ☕. Thank you 🙂**
