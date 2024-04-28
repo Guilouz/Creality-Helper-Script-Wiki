@@ -35,9 +35,9 @@ Two macros are available on Web interface to control KAMP:
   - `KAMP_BED_MESH_ON` macro to enable KAMP Bed Mesh and disable Full Bed Mesh<br />
   - `KAMP_BED_MESH_OFF` macro to disable KAMP Bed Mesh and enable Full Bed Mesh
 
-When KAMP Bed Mesh is enabled, a bed mesh named "kamp" is created and loaded to use adaptative bed mesh.
+When KAMP Bed Mesh is enabled, a bed mesh named `kamp` is created and loaded to use adaptative bed mesh.
 
-When KAMP Bed Mesh is disabled, a bed mesh named "default" is created and loaded to use classic bed mesh.
+When KAMP Bed Mesh is disabled, a bed mesh named `default` is created and loaded to use classic bed mesh.
 
 <br />
 
