@@ -10,4 +10,4 @@ V1.3.3.26 Firmware Update
 
 5. Add camera startup fail prompt
 
-6. Lower the temperature of the nozzle during the homing sequence(G28) to prevent leaking from the nozzle with certain material when the nozzle probes the print bed
+6. Lower the temperature of the nozzle during the homing sequence (G28) to prevent leaking from the nozzle with certain material when the nozzle probes the print bed
