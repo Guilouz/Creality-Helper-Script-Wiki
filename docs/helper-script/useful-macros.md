@@ -33,8 +33,6 @@ This allows to install useful macros.
 
     <img width="400" src="../../assets/img/Useful-Macros/Macro_04.png">
 
-- You can perform `LUBRICATE_RODS` macro to move the hotend along the X and Y axis to spread grease or oil when lubricating the axes.
-
 - You can perform `KLIPPER_BACKUP_CONFIG` macro to backup Klipper configuration files. File `backup_config.tar.gz` is saved in your printer's configuration folder.
 
 - You can perform `KLIPPER_RESTORE_CONFIG` macro to restore Klipper configuration files using `backup_config.tar.gz` file.

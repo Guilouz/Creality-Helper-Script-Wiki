@@ -1,6 +1,7 @@
 This allows to install Klipper Adaptive Meshing & Purging modified build to works with K1 Series.
 
-Klipper Adaptive Meshing & Purging is an extension that allows you to generate a mesh only in the area you really need it.
+Klipper Adaptive Meshing & Purging is an extension that allows you to generate a mesh and purge line only in the area of the bed used by the objects being printed.<br />
+When used, the method will automatically adjust the mesh parameters based on the area occupied by the defined print objects.
 
 More info about KAMP here: :material-github: [GitHub](https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging)
 
@@ -20,7 +21,7 @@ More info about KAMP here: :material-github: [GitHub](https://github.com/kyleisa
 ## Configuration
 <hr>
 
-All settings for KAMP are configured by Helper Script, you just need to make sure that `Label Objects` setting is enabled in your slicer.
+All settings for KAMP are configured by Helper Script, you just need to make sure that `Exclude Objects` setting is enabled in your slicer.
 
   - **OrcaSlicer**: In `Others` tab, check `Exclude objets` setting
   - **Creality Print**: Under `Parameter Config`, check `Exclude Objects` setting in `Experimental` tab
@@ -29,12 +30,13 @@ All settings for KAMP are configured by Helper Script, you just need to make sur
 ## Use
 <hr>
 
-Two buttons are available on Web interface to control KAMP and bed leveling:
+Two macros are available on Web interface to control KAMP:
 
-  - `KAMP` button to enable/disable KAMP features.<br />
-     When KAMP is enabled, a bed mesh named "kamp" is created and loaded to use adaptative bed mesh.<br />
-     When KAMP is disabled, a bed mesh named "default" is created and loaded to use classic calibration (full bed mesh).
-  - `BED_LEVELING` button to enable/disable classic calibration (full bed mesh) when KAMP is disabled (it have no effect when KAMP is enabled).
+  - `KAMP_BED_MESH_ON` macro to enable KAMP Bed Mesh and disable Full Bed Mesh<br />
+  - `KAMP_BED_MESH_OFF` macro to disable KAMP Bed Mesh and enable Full Bed Mesh
+
+When KAMP Bed Mesh is enabled, a bed mesh named "kamp" is created and loaded to use adaptative bed mesh.<br />
+When KAMP Bed Mesh is disabled, a bed mesh named "default" is created and loaded to use classic bed mesh.
 
 <br />
 

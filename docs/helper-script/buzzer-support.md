@@ -22,8 +22,8 @@ This allows to use the buzzer integrated into the motherboard to play a sound du
 - You can use `BEEP` command where you want in macros to play a sound.
 
     !!! Example
-        Here is an example to play a sound when printing is complete:<br />
-        ``` title="gcode_macro.cfg" hl_lines="12"
+        Here is an example to play 3 sounds when printing is complete:<br />
+        ``` title="gcode_macro.cfg" hl_lines="12 13 14"
         [gcode_macro END_PRINT]
         gcode:
           Qmode_exit
@@ -35,6 +35,8 @@ This allows to use the buzzer integrated into the motherboard to play a sound du
           M107 P1
           M107 P2
           END_PRINT_POINT
+          BEEP
+          BEEP
           BEEP
           WAIT_TEMP_START
           M84

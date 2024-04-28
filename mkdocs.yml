@@ -117,8 +117,8 @@ nav:
         - Install Helper Script: helper-script/helper-script-installation.md
         - K1 Series:
             - Install Menu: 
-                - Moonraker and Nginx: helper-script/moonraker-and-nginx.md
-                - Fluidd: helper-script/fluidd.md
+                - Moonraker and Nginx: helper-script/moonraker-k1.md
+                - Fluidd: helper-script/fluidd-k1.md
                 - Mainsail: helper-script/mainsail.md
                 - Entware: helper-script/entware.md
                 - Klipper Gcode Shell Command: helper-script/klipper-gcode-shell-command.md
@@ -130,7 +130,6 @@ nav:
                 - Useful Macros: helper-script/useful-macros.md
                 - Save Z-Offset Macros: helper-script/save-z-offset-macros.md
                 - Screws Tilt Adjust Support: helper-script/screws-tilt-adjust-support.md
-                - Virtual Pins Support: helper-script/virtual-pins-support.md
                 - M600 Support: helper-script/m600-support.md
                 - Git Backup: helper-script/git-backup.md
                 - Moonraker Timelapse: helper-script/moonraker-timelapse.md
@@ -154,17 +153,22 @@ nav:
                 - Fix Printing Gcode files from Folder: helper-script/fix-printing-gcode-files-from-folder.md
                 - Restore a previous Firmware: helper-script/restore-a-previous-firmware-k1.md
                 - Reset Factory Settings: helper-script/reset-factory-settings.md
-        - KE Series:
+        - Ender-3 V3 Series:
             - Install Menu: 
-                - Moonraker and Nginx: helper-script/moonraker-and-nginx.md
-                - Fluidd: helper-script/fluidd.md
+                - Updated Moonraker: helper-script/moonraker-ender3.md
+                - Updated Fluidd: helper-script/fluidd-ender3.md
                 - Mainsail: helper-script/mainsail.md
                 - Entware: helper-script/entware.md
                 - Klipper Gcode Shell Command: helper-script/klipper-gcode-shell-command.md
+                - Adaptive Bed Meshing Support: helper-script/adaptive-bed-meshing.md
+                - Buzzer Support: helper-script/buzzer-support.md
                 - Improved Shapers Calibrations: helper-script/improved-shapers-calibrations.md
-                - Virtual Pins Support: helper-script/virtual-pins-support.md
+                - Useful Macros: helper-script/useful-macros.md
+                - Save Z-Offset Macros: helper-script/save-z-offset-macros.md
+                - M600 Support: helper-script/m600-support.md
                 - Git Backup: helper-script/git-backup.md
                 - Moonraker Timelapse: helper-script/moonraker-timelapse.md
+                - Nebula Camera Settings Control: helper-script/nebula-camera-settings-control.md
                 - OctoEverywhere: helper-script/octoeverywhere.md
                 - Moonraker Obico: helper-script/moonraker-obico.md
                 - GuppyFLO: helper-script/guppyflo.md
@@ -180,16 +184,20 @@ nav:
                 - Backup & Restore Moonraker database: helper-script/backup-and-restore-moonraker-database.md
             - Tools Menu:
                 - Prevent & Allow updating Klipper configuration files: helper-script/prevent-and-allow-updating-klipper-configuration-files.md
+                - Fix Printing Gcode files from Folder: helper-script/fix-printing-gcode-files-from-folder.md
+                - Restore a previous Firmware: helper-script/restore-a-previous-firmware-k1.md
                 - Reset Factory Settings: helper-script/reset-factory-settings.md
     - Configuration / Use:
         - Access to Web Interface: configurations/access-to-web-interface.md
         - Configure Camera: configurations/configure-camera.md
         - Change WiFi Location: configurations/change-wifi-location.md
     - Improvements:
-        - Improve Hotend Cooling: improvements/improve-hotend-cooling.md
+        - K1 Series:
+            - Improve Hotend Cooling: improvements/improve-hotend-cooling-k1.md
         - Calibrate Extruder: improvements/calibrate-extruder.md
-    - Others: 
-        - Boards Layout: others/boards-layout.md
+    - Others:
+        - K1 Series:
+            - Boards Layout: others/boards-layout-k1.md
         - Files Location: others/files-location.md
         - Useful Links: others/useful-links.md
     - Slicers: 

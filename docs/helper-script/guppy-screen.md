@@ -23,7 +23,7 @@ More info about Guppy Screen here: :material-github: [GitHub](https://github.com
 
 - Once installed, you will have the new screen UI.
 
-- To update Guppy Screen you must remove and reinstall it or you can also use `GUPPY_UPDATE` macro.
+- You can update Guppy Screen in screen menu or you can also use `GUPPY_UPDATE` macro.
 
 <br />
 

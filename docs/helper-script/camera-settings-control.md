@@ -1,7 +1,7 @@
 This allows to control camera settings with macros.
 
 !!! Warning
-    **This feature is not compatible with the new hardware version of the camera.**
+    **This feature is not compatible with the new hardware version of the camera.<br/>You can control settings if you use a USB Cam by installing <a href="https://github.com/trevos3d/K1-USB-Cam">USB camera from USB port</a>.**
 
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
