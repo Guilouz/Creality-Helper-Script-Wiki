@@ -185,7 +185,7 @@ nav:
             - Tools Menu:
                 - Prevent & Allow updating Klipper configuration files: helper-script/prevent-and-allow-updating-klipper-configuration-files.md
                 - Fix Printing Gcode files from Folder: helper-script/fix-printing-gcode-files-from-folder.md
-                - Restore a previous Firmware: helper-script/restore-a-previous-firmware-k1.md
+                - Restore a previous Firmware: helper-script/restore-a-previous-firmware-ender3.md
                 - Reset Factory Settings: helper-script/reset-factory-settings.md
     - Configuration / Use:
         - Access to Web Interface: configurations/access-to-web-interface.md
