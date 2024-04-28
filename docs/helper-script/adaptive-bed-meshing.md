@@ -33,7 +33,8 @@ Two macros are available on Web interface to control KAMP:
   - `ADAPTIVE_BED_MESH_ON` macro to enable Adaptive Bed Mesh and disable Full Bed Mesh<br />
   - `ADAPTIVE_BED_MESH_OFF` macro to disable Adaptive Bed Mesh and enable Full Bed Mesh
 
-When Adaptive Bed Mesh is enabled, a bed mesh named "kamp" is created and loaded to use adaptative bed mesh.<br />
+When Adaptive Bed Mesh is enabled, a bed mesh named "kamp" is created and loaded to use adaptative bed mesh.
+
 When Adaptive Bed Mesh is disabled, a bed mesh named "default" is created and loaded to use classic bed mesh.
 
 <br />
