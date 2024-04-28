@@ -1,0 +1,13 @@
+V1.3.3.26 Firmware Update
+
+1. Compatibility update with Creality Print 5.0 print files (Thumbnails)
+
+2. Nozzle PID tune is now default to 220 degree
+
+3. Fixed some UI translation
+
+4. Optimize M141 command
+
+5. Add camera startup fail prompt
+
+6. Lower the temperature of the nozzle during the homing sequence(G28) to prevent leaking from the nozzle with certain material when the nozzle probes the print bed
