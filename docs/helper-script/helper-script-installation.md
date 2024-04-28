@@ -5,9 +5,9 @@ It's completely automated, necessary changes are made automatically when install
 When the script is updated, installed files are automatically updated as well.
 
 !!! Warning
-    **FOR K1 SERIES: ONLY USE THIS SCRIPT WITH FIRMWARE 1.3.3.5 AND ABOVE!<br />
-    FOR KE SERIES: ONLY USE THIS SCRIPT WITH FIRMWARE 1.1.0.12 AND ABOVE!<br />
-    FOR ENDER-3 V3 SERIES: ONLY USE THIS SCRIPT WITH FIRMWARE 1.2.1.3 AND ABOVE!**
+    **FOR <u>K1 SERIES</u>: ONLY USE THIS SCRIPT WITH FIRMWARE 1.3.3.5 AND ABOVE!<br />
+    FOR <u>KE SERIES</u>: ONLY USE THIS SCRIPT WITH FIRMWARE 1.1.0.12 AND ABOVE!<br />
+    FOR <u>ENDER-3 V3 SERIES</u>: ONLY USE THIS SCRIPT WITH FIRMWARE 1.2.1.3 AND ABOVE!**
 
 !!! Note
     **Please restore firmware to factory settings before using script to avoid issue.**<br />
