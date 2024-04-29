@@ -25,7 +25,7 @@ This allows to use third-party camera (not from Creality) from your printer's US
     `http://xxx.xxx.xxx.xxx:4409/webcam/?action=stream` for first camera<br />
     `http://xxx.xxx.xxx.xxx:4409/webcam2/?action=stream` for second camera
 
-- You can also use this (replacing xxx.xxx.xxx.xxx by your local IP address):
+- You can also use this (replacing xxx.xxx.xxx.xxx by your local IP address):<br />
     `http://xxx.xxx.xxx.xxx:8080/?action=stream` for first camera<br />
     `http://xxx.xxx.xxx.xxx:8081/?action=stream` for second camera
 
