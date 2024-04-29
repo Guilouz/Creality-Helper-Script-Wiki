@@ -12,7 +12,7 @@ Here you can find several useful links.
 
 - :material-github: <a href="https://github.com/Guilouz/Creality-Ender3-V3-Extracted-Firmwares">Firmwares changes for Ender-3 V3 Series</a>
 
-- :material-web: <a href="https://wiki.creality.com/en/k1-flagship-series">Creality Wiki</a>
+- :material-web: <a href="https://wiki.creality.com/en/home">Creality Wiki</a>
 
 - :material-github: <a href="https://github.com/victornpb/k1S/tree/main/camera">Control camera settings over SSH</a>
 
