@@ -169,7 +169,7 @@ nav:
                 - Git Backup: helper-script/git-backup.md
                 - Moonraker Timelapse: helper-script/moonraker-timelapse.md
                 - Nebula Camera Settings Control: helper-script/nebula-camera-settings-control.md
-                - Camera USB Support: helper-script/camera-usb-support.md
+                - USB Camera Support: helper-script/usb-camera-support.md
                 - OctoEverywhere: helper-script/octoeverywhere.md
                 - Moonraker Obico: helper-script/moonraker-obico.md
                 - GuppyFLO: helper-script/guppyflo.md
