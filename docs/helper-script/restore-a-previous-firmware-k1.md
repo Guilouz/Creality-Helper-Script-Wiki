@@ -18,9 +18,6 @@ You can easily restore current Firmware to a previous Firmware directly from the
 
 &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.26 (Google Drive)](https://drive.google.com/file/d/1QqMxk0V5sw4b6CRRXXPJpQQJZdJwscy5/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.3.26.txt)
 
-!!! Warning
-    **1.3.3.26 version is a beta firmware, there may or may not be changes before official release in coming days.<br />Wait for official release from OTA or from Creality Cloud website if you are unsure about the beta.**
-
 
 ## Prepare USB drive
 <hr>
