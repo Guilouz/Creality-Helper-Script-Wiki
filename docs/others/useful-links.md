@@ -12,8 +12,6 @@ Here you can find several useful links.
 
 - :material-web: <a href="https://wiki.creality.com/en/k1-flagship-series">Creality Wiki</a>
 
-- :material-github: <a href="https://github.com/trevos3d/K1-USB-Cam">Use USB camera from USB port</a>
-
 - :material-github: <a href="https://github.com/victornpb/k1S/tree/main/camera">Control camera settings over SSH</a>
 
 - :material-github: <a href="https://github.com/D3vil-Design/K1-Hardware-Mods">D3D K1 Hardware Modifications</a>
