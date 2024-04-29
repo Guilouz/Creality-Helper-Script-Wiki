@@ -134,6 +134,7 @@ nav:
                 - Git Backup: helper-script/git-backup.md
                 - Moonraker Timelapse: helper-script/moonraker-timelapse.md
                 - Camera Settings Control: helper-script/camera-settings-control.md
+                - USB Camera Support: helper-script/usb-camera-support.md
                 - OctoEverywhere: helper-script/octoeverywhere.md
                 - Moonraker Obico: helper-script/moonraker-obico.md
                 - GuppyFLO: helper-script/guppyflo.md
