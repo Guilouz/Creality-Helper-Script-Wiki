@@ -8,6 +8,10 @@
 
     <img width="400" src="../../assets/img/Configure-Camera/Fluidd_Camera.png">
 
+- You can also use this settings (replacing xxx.xxx.xxx.xxx by your local IP address):<br />
+    `http://xxx.xxx.xxx.xxx:4408/webcam/?action=stream` for Camera URL Stream<br />
+    `http://xxx.xxx.xxx.xxx:4408/webcam/?action=snapshot` for Camera URL Snapshot
+
 
 ### Configure Camera in Mainsail
 <hr>
@@ -17,6 +21,10 @@
 - Configure your webcam like with these settings:
 
     <img width="899" src="../../assets/img/Configure-Camera/Mainsail_Camera.png">
+
+- You can also use this settings (replacing xxx.xxx.xxx.xxx by your local IP address):<br />
+    `http://xxx.xxx.xxx.xxx:4409/webcam/?action=stream` for Camera URL Stream<br />
+    `http://xxx.xxx.xxx.xxx:4409/webcam/?action=snapshot` for Camera URL Snapshot
 
 
 ### Configure Camera in Moonraker

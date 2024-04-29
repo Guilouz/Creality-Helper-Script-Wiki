@@ -18,16 +18,16 @@ This allows to use third-party camera from your printer's USB port.
     <img width="900" src="../../assets/img/Creality-Helper-Script/Install_Menu.png">
 
 - If you use **Fluidd** as the Web Interface, camera will be accessible with (replacing xxx.xxx.xxx.xxx by your local IP address):<br />
-    `http://xxx.xxx.xxx.xxx:4408/webcam/?action=stream` for first camera stream<br />
-    `http://xxx.xxx.xxx.xxx:4408/webcam/?action=snapshot` for first camera snapshot<br />
-    `http://xxx.xxx.xxx.xxx:4408/webcam2/?action=stream` for second camera stream<br />
-    `http://xxx.xxx.xxx.xxx:4408/webcam2/?action=snapshot` for second camera snapshot
+    `http://xxx.xxx.xxx.xxx:4408/webcam/?action=stream` for first Camera URL Stream<br />
+    `http://xxx.xxx.xxx.xxx:4408/webcam/?action=snapshot` for first camera URL snapshot<br />
+    `http://xxx.xxx.xxx.xxx:4408/webcam2/?action=stream` for second Camera URL Stream<br />
+    `http://xxx.xxx.xxx.xxx:4408/webcam2/?action=snapshot` for second Camera URL Snapshot
 
 - If you use **Mainsail** as the Web Interface, camera will be accessible with (replacing xxx.xxx.xxx.xxx by your local IP address):<br />
-    `http://xxx.xxx.xxx.xxx:4409/webcam/?action=stream` for first camera stream<br />
-    `http://xxx.xxx.xxx.xxx:4409/webcam/?action=snapshot` for first camera snapshot<br />
-    `http://xxx.xxx.xxx.xxx:4409/webcam2/?action=stream` for second camera stream<br />
-    `http://xxx.xxx.xxx.xxx:4409/webcam2/?action=snapshot` for second camera snapshot
+    `http://xxx.xxx.xxx.xxx:4409/webcam/?action=stream` for first Camera URL Stream<br />
+    `http://xxx.xxx.xxx.xxx:4409/webcam/?action=snapshot` for first Camera URL Snapshot<br />
+    `http://xxx.xxx.xxx.xxx:4409/webcam2/?action=stream` for second Camera URL Stream<br />
+    `http://xxx.xxx.xxx.xxx:4409/webcam2/?action=snapshot` for second Camera URL Snapshot
 
 <br />
 
