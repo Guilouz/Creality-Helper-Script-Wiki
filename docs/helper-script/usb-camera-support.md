@@ -2,7 +2,7 @@
 hide:
   - toc
 ---
-This allows to use third-party camera (not from Creality) from your printer's USB port.
+This allows to use third-party camera from your printer's USB port.
 
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
@@ -18,16 +18,16 @@ This allows to use third-party camera (not from Creality) from your printer's US
     <img width="900" src="../../assets/img/Creality-Helper-Script/Install_Menu.png">
 
 - If you use **Fluidd** as the Web Interface, camera will be accessible with (replacing xxx.xxx.xxx.xxx by your local IP address):<br />
-    `http://xxx.xxx.xxx.xxx:4408/webcam/?action=stream` for first camera<br />
-    `http://xxx.xxx.xxx.xxx:4408/webcam2/?action=stream` for second camera
+    `http://xxx.xxx.xxx.xxx:4408/webcam/?action=stream` for first camera stream<br />
+    `http://xxx.xxx.xxx.xxx:4408/webcam/?action=snapshot` for first camera snapshot<br />
+    `http://xxx.xxx.xxx.xxx:4408/webcam2/?action=stream` for second camera stream<br />
+    `http://xxx.xxx.xxx.xxx:4408/webcam2/?action=snapshot` for second camera snapshot
 
 - If you use **Mainsail** as the Web Interface, camera will be accessible with (replacing xxx.xxx.xxx.xxx by your local IP address):<br />
-    `http://xxx.xxx.xxx.xxx:4409/webcam/?action=stream` for first camera<br />
-    `http://xxx.xxx.xxx.xxx:4409/webcam2/?action=stream` for second camera
-
-- You can also use this (replacing xxx.xxx.xxx.xxx by your local IP address):<br />
-    `http://xxx.xxx.xxx.xxx:8080/?action=stream` for first camera<br />
-    `http://xxx.xxx.xxx.xxx:8081/?action=stream` for second camera
+    `http://xxx.xxx.xxx.xxx:4409/webcam/?action=stream` for first camera stream<br />
+    `http://xxx.xxx.xxx.xxx:4409/webcam/?action=snapshot` for first camera snapshot<br />
+    `http://xxx.xxx.xxx.xxx:4409/webcam2/?action=stream` for second camera stream<br />
+    `http://xxx.xxx.xxx.xxx:4409/webcam2/?action=snapshot` for second camera snapshot
 
 <br />
 
