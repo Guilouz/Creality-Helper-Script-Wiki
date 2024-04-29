@@ -78,7 +78,7 @@ This can be useful if you have made modifications to the printer (BLTouch etc...
 
 - Root access is now enabled, you can click on `OK` button:
 
-    <img width="600" src="../../assets/img/Install-Rooted-Firmware/03.png">
+    <img width="600" src="../../assets/img/Install-Rooted-Firmware/04.png">
 
 - You can now connect to SSH (Guide is available <a href="../ssh-connection">here</a>) with:
   
