@@ -54,7 +54,7 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 ## Add Printer (Remote Access with GuppyFLO)
 <hr>
 
-- <a href="../guppyflo.md">GuppyFLO</a> is needed for remote access, please follow installation.
+- <a href="../guppyflo">GuppyFLO</a> is needed for remote access, please follow its installation.
 
 - Start **Mobileraker** App and click on `Add Machine`:
 
