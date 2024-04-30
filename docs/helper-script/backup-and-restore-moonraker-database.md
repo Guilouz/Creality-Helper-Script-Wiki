@@ -15,6 +15,8 @@ This allows to backup and restore Moonraker database. This can be useful for kee
     - On original Fluidd Web Interface go to `Configuration` icon on the left side.
     - On original Mainsail Web Interface go to `Machine` tab on the left side.
 
+!!! Note
+    You can also use `MOONRAKER_BACKUP_DATABASE` macro to backup Moonraker database.
 
 ## Restore
 <hr>
@@ -28,6 +30,9 @@ This allows to backup and restore Moonraker database. This can be useful for kee
     <img width="900" src="../../assets/img/Creality-Helper-Script/Backup_Restore_Menu.png">
 
 - When it's done, Moonraker database is restored.
+
+!!! Note
+    You can also use `MOONRAKER_RESTORE_DATABASE` macro to restore Moonraker database.
 
 <br />
 

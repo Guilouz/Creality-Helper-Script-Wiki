@@ -15,6 +15,9 @@ This allows to backup and restore Klipper configuration files (all files and fol
     - On original Fluidd Web Interface go to `Configuration` icon on the left side.
     - On original Mainsail Web Interface go to `Machine` tab on the left side.
 
+!!! Note
+    You can also use `KLIPPER_BACKUP_CONFIG` macro to backup Klipper configuration files.
+
 
 ## Restore
 <hr>
@@ -28,6 +31,9 @@ This allows to backup and restore Klipper configuration files (all files and fol
     <img width="900" src="../../assets/img/Creality-Helper-Script/Backup_Restore_Menu.png">
 
 - When it's done, `/usr/data/printer_data/config/` folder is restored.
+
+!!! Note
+    You can also use `KLIPPER_RESTORE_CONFIG` macro to restore Klipper configuration files.
 
 <br />
 
