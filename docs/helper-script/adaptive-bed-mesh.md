@@ -1,4 +1,4 @@
-This allows to install Adaptive Bed Meshing (fork of KAMP) modified to works with Ender-3 V3 Series.
+This allows to install Adaptive Bed Mesh (fork of KAMP) modified to works with Ender-3 V3 Series.
 
 Adaptive bed meshing is a way to speed up the bed mesh generation by only probing the area of the bed used by the objects being printed.<br />
 When used, the method will automatically adjust the mesh parameters based on the area occupied by the defined print objects. 
@@ -11,7 +11,7 @@ When used, the method will automatically adjust the mesh parameters based on the
 
 - Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
-- In the script, enter in `[Install] Menu` by typing ++"1"++ , validate with ++"Enter"++ and install `Adaptive Bed Meshing Support`:
+- In the script, enter in `[Install] Menu` by typing ++"1"++ , validate with ++"Enter"++ and install `Adaptive Bed Mesh Support`:
 
     <img width="900" src="../../assets/img/Creality-Helper-Script/Install_Menu.png">
 
@@ -19,7 +19,7 @@ When used, the method will automatically adjust the mesh parameters based on the
 ## Configuration
 <hr>
 
-All settings for Adaptive Bed Meshing are configured by Helper Script, you just need to make sure that `Exclude Objects` setting is enabled in your slicer.
+All settings for Adaptive Bed Mesh are configured by Helper Script, you just need to make sure that `Exclude Objects` setting is enabled in your slicer.
 
   - **OrcaSlicer**: In `Others` tab, check `Exclude objets` setting
   - **Creality Print**: Under `Parameter Config`, check `Exclude Objects` setting in `Experimental` tab

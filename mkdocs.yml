@@ -161,7 +161,7 @@ nav:
                 - Mainsail: helper-script/mainsail.md
                 - Entware: helper-script/entware.md
                 - Klipper Gcode Shell Command: helper-script/klipper-gcode-shell-command.md
-                - Adaptive Bed Meshing Support: helper-script/adaptive-bed-meshing.md
+                - Adaptive Bed Mesh Support: helper-script/adaptive-bed-mesh.md
                 - Buzzer Support: helper-script/buzzer-support.md
                 - Improved Shapers Calibrations: helper-script/improved-shapers-calibrations.md
                 - Useful Macros: helper-script/useful-macros.md
