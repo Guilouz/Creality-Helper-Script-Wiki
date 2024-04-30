@@ -28,14 +28,15 @@ All settings for Adaptive Bed Meshing are configured by Helper Script, you just 
 ## Use
 <hr>
 
-Two macros are available on Web interface to control KAMP:
+To configure the bed mesh type, use the macro `BED_MESH_SETTINGS`:
 
-  - `ADAPTIVE_BED_MESH_ON` macro to enable Adaptive Bed Mesh and disable Full Bed Mesh<br />
-  - `ADAPTIVE_BED_MESH_OFF` macro to disable Adaptive Bed Mesh and enable Full Bed Mesh
+    <img width="600" src="../../assets/img/KAMP/Bed_Mesh_Settings.png">
 
-When Adaptive Bed Mesh is enabled, a bed mesh named `adaptive` is created and loaded to use adaptative bed mesh.
+When `ADAPTIVE BED MESH` is selected, a bed mesh named `adaptive` will be done to use adaptative bed mesh when you start a print.
 
-When Adaptive Bed Mesh is disabled, a bed mesh named `default` is created and loaded to use classic bed mesh.
+When `FULL BED MESH` is selected, a bed mesh named `default` will be done to use adaptative bed mesh when you start a print.
+
+When `NONE` is selected, no bed mesh will be performed when starting a print (make sure you have already saved a mesh before).
 
 <br />
 
