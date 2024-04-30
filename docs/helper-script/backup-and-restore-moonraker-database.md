@@ -16,7 +16,7 @@ This allows to backup and restore Moonraker database. This can be useful for kee
     - On original Mainsail Web Interface go to `Machine` tab on the left side.
 
 !!! Note
-    You can also use `MOONRAKER_BACKUP_DATABASE` macro to backup Moonraker database when installing <a href="../usefull-macros">Useful Macros</a> feature.
+    You can also use `MOONRAKER_BACKUP_DATABASE` macro to backup Moonraker database when installing <a href="../usefull-macros.md">Useful Macros</a> feature.
 
 ## Restore
 <hr>
@@ -32,7 +32,7 @@ This allows to backup and restore Moonraker database. This can be useful for kee
 - When it's done, Moonraker database is restored.
 
 !!! Note
-    You can also use `MOONRAKER_RESTORE_DATABASE` macro to restore Moonraker database when installing <a href="../usefull-macros">Useful Macros</a> feature.
+    You can also use `MOONRAKER_RESTORE_DATABASE` macro to restore Moonraker database when installing <a href="../usefull-macros.md">Useful Macros</a> feature.
 
 <br />
 
