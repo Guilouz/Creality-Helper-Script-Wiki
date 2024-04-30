@@ -1,4 +1,4 @@
-This allows to install Klipper Adaptive Meshing & Purging modified build to works with K1 Series.
+This allows to install Klipper Adaptive Meshing & Purging modified build to works with K1 Series and Ender-3 V3 Series.
 
 Klipper Adaptive Meshing & Purging is an extension that allows you to generate a mesh and purge line only in the area of the bed used by the objects being printed.<br />
 When used, the method will automatically adjust the mesh parameters based on the area occupied by the defined print objects.
