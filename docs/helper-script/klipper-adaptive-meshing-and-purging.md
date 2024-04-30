@@ -30,15 +30,23 @@ All settings for KAMP are configured by Helper Script, you just need to make sur
 ## Use
 <hr>
 
-To configure the bed mesh type, use the macro `BED_MESH_SETTINGS`:
+- To configure the bed mesh type, use the `BED_MESH_SETTINGS` macro:
 
-<img width="600" src="../../assets/img/KAMP/Bed_Mesh_Settings.png">
+    <img width="600" src="../../assets/img/KAMP/Bed_Mesh_Settings.png">
 
-When `ADAPTIVE BED MESH` is selected, a bed mesh named `adaptive` will be done to use adaptative bed mesh when you start a print.
+    - When `ADAPTIVE BED MESH` is selected, a bed mesh named `adaptive` is done to use adaptative bed mesh when starting a print.
 
-When `FULL BED MESH` is selected, a bed mesh named `default` will be done to use adaptative bed mesh when you start a print.
+    - When `FULL BED MESH` is selected, a bed mesh named `default` is done to use adaptative bed mesh when starting a print.
 
-When `NONE` is selected, no bed mesh will be performed when starting a print (make sure you have already saved a mesh before).
+    - When `NONE` is selected, no bed mesh is performed when starting a print (make sure you have already saved a mesh before).
+
+- To configure the purge line type, use the `PURGE_LINE_SETTINGS` macro:
+
+    <img width="600" src="../../assets/img/KAMP/Purge_Line_Settings.png">
+
+    - When `ADAPTIVE PUGE LINE` is selected, a adaptive purge line near the print area is done when starting a print.
+
+    - When `CLASSIC PURGE LINE` is selected, a classic purge line is done when starting a print.
 
 <br />
 
