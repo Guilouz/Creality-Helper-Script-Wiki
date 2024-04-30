@@ -38,6 +38,9 @@ When `FULL BED MESH` is selected, a bed mesh named `default` is done to use adap
 
 When `NONE` is selected, no bed mesh is performed when starting a print (make sure you have already saved a mesh before).
 
+!!! Note
+    Adaptative Bed Mesh is loaded by default every time Klipper starts.
+
 <br />
 
 **If you like my work, don't hesitate to support me by paying me a 🍺 or a ☕. Thank you 🙂**

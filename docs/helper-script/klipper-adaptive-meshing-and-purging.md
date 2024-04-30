@@ -48,6 +48,9 @@ All settings for KAMP are configured by Helper Script, you just need to make sur
 
     - When `CLASSIC PURGE LINE` is selected, a classic purge line is done when starting a print.
 
+!!! Note
+    Adaptative Bed Mesh and Adaptive Purge Line are loaded by default every time Klipper starts.
+
 <br />
 
 **If you like my work, don't hesitate to support me by paying me a 🍺 or a ☕. Thank you 🙂**
