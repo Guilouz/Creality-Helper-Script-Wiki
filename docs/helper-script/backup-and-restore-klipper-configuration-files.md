@@ -16,7 +16,7 @@ This allows to backup and restore Klipper configuration files (all files and fol
     - On original Mainsail Web Interface go to `Machine` tab on the left side.
 
 !!! Note
-    You can also use `KLIPPER_BACKUP_CONFIG` macro to backup Klipper configuration files when installing <a href="../useful-macros.md">Useful Macros</a> feature.
+    You can also use `KLIPPER_BACKUP_CONFIG` macro to backup Klipper configuration files when installing <a href="useful-macros.md">Useful Macros</a> feature.
 
 
 ## Restore
@@ -33,7 +33,7 @@ This allows to backup and restore Klipper configuration files (all files and fol
 - When it's done, `/usr/data/printer_data/config/` folder is restored.
 
 !!! Note
-    You can also use `KLIPPER_RESTORE_CONFIG` macro to restore Klipper configuration files when installing <a href="../useful-macros.md">Useful Macros</a> feature.
+    You can also use `KLIPPER_RESTORE_CONFIG` macro to restore Klipper configuration files when installing <a href="useful-macros.md">Useful Macros</a> feature.
 
 <br />
 
