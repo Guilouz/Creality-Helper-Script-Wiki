@@ -26,7 +26,7 @@ The resonance test is performed on the Y axis and the same result is also applie
 - Run `INPUT_SHAPER_CALIBRATION` macro to measure the X and Y axis resonances and save results in printer.cfg file.
 
 !!! Note
-    **If you experience a Klipper shutdown during Shapers calibration, this is caused by motherboard's memory being too limited.<br />It's necessary to turn the printer off and on and restart the calibration.**
+    **If you experience a Klipper shutdown during Shapers calibration, this is caused by motherboard's memory being too limited. It's necessary to turn the printer off and on and restart the calibration.**
 
 
 ## Extras
