@@ -46,6 +46,26 @@ If you have already installed Moonraker, Fluidd or Mainsail provided by Creality
     Some features are not available for KE Series.
 
 
+## Update
+<hr>
+
+Creality Helper Script can be updated in two ways:
+
+- Directly from the script at startup:
+
+    <img src="../../assets/img/Creality-Helper-Script/Update_Screen.png">
+
+- In Update Manager from the Web interface:
+
+      | From **Fluidd** in `Settings` tab → `Software Updates` |
+      | :---------: |
+      | <img width="800" src="../../assets/img/Creality-Helper-Script/Update_Fluidd.png"> |
+
+      | From **Mainsail** in `MACHINE` tab |
+      | :---------: |
+      | <img width="800" src="../../assets/img/Creality-Helper-Script/Update_Mainsail.png"> |
+
+
 ## Main Menu
 <hr>
 
@@ -109,13 +129,6 @@ This menu allows you to have different information about the printer:
 
 <img src="../../assets/img/Creality-Helper-Script/System_Menu.png">
 
-
-## Update Screen
-<hr>
-
-This is the update screen:
-
-<img src="../../assets/img/Creality-Helper-Script/Update_Screen.png">
 
 <br />
 
