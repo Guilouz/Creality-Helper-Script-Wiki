@@ -2,6 +2,25 @@
 hide:
   - toc
 ---
+#### 01/05/2024
+
+- Updated script to 6.0.0:
+    * Added support for Ender-3 V3.
+    * Added `Nebula Camera Settings Control` support for Ender-3 V3 and KE Series.
+    * Added `USB Camera Support` to use third-party camera (thanks to [destinal](https://www.reddit.com/user/destinal/?rdt=44404)).
+    * Now possible to install `Camera Settings Control` on K1 Series with the new hardware version of the camera if you have installed `USB Camera Support`.
+    * Added possibility to install Nightly or Release builds with `Guppy Screen`.
+    * Added possibility to reload Creality cameras with `RELOAD_CAMERA` macro when installing `Useful Macros` to restore a disconnected camera without needing to restart the printer (thanks to [jattie-ire](https://github.com/jattie-ire)).
+    * Reworked `Git Backup` install process.
+    * Improved `Klipper Adaptive Meshing & Purging` with new prompt macros. You can now define the type of bed mesh and the type of purge line to use.
+    * Removed `Virtual Pins` from Install/Remove menus, it now installed with `Klipper Adaptive Meshing & Purging`.
+    * Updated `M600 Support` macros with new prompt macros.
+    * Updated `Fans Control Macros` feature.
+    * Change in `Buzzer Support` macro to have one beep per command.
+    * Fixed `WARMUP` macro error with `Useful Macros` feature.
+    * Minnor fixes.
+- Updated Wiki accordingly.
+
 #### 13/04/2024
 
 - Updated `GuppyFLO` install process to save and restore existing configuration when updating.
