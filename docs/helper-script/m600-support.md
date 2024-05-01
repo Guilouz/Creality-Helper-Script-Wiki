@@ -27,8 +27,8 @@ Unlike a classic pause which just parks the hotend on the right side and does no
       
        <img width="600" src="../../assets/img/M600-Support/M600_Support.png">   
       
-      !!! Note
-          If you don't take any action, the heating of the hotend is stopped after 15 min to avoid thermal runaway. The bed remains heated to avoid detachment of the model.
+    !!! Note
+        If you don't take any action, the heating of the hotend is stopped after 15 min to avoid thermal runaway. The bed remains heated to avoid detachment of the model.
 
   4. You must remove old filament and replace the new one by placing it at the extruder inlet and press the `LOAD FILAMENT` button.
   5. If necessary, the filament can be further purged with the `LOAD FILAMENT` button.
