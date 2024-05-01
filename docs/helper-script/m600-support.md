@@ -19,14 +19,20 @@ This allows to use `M600` command in your slicer to change filament.
 ## How M600 works
 <hr>
 
-Unlike a classic pause which just parks the hotend on the right side and does not stop hotend heater and part fan, `M600` command works as follows:
+Unlike a classic pause which just parks the hotend on the right side and does not stop hotend heating and part fan, `M600` command works as follows:
 
-  - When an M600 is detected in Gcode or if filament runout sensor is triggered, the hotend is parked at the front right of the build plate
-  - Filament is ejected from the hotend and fans are stopped
-  - At this stage user action is required. If no action is done, the heating of the hotend is stopped after 15 min to avoid thermal runaway
-  - User must remove old filament and replace the new one by placing it at the extruder inlet and press the `Resume` button
-  - The hotend returns to its original temperature and the fans reactivate to their original state
-  - The filament is reinserted into the hotend and a purge is performed before printing resumes
+  1. When an M600 is detected in Gcode or if the filament sensor has a runout detection, the hotend is parked at the front of the build plate.
+  2. Filament is automatically unloaded from the hotend and the fans are stopped.
+  3. At this point, action on your part is required, a prompt window is displayed on the Fluidd or Mainsail Web interface:
+      
+       <img width="600" src="../../assets/img/M600-Support/M600_Support.png">   
+      
+      !!! Note
+          If you don't take any action, the heating of the hotend is stopped after 15 min to avoid thermal runaway. The bed remains heated to avoid detachment of the model.
+
+  4. You must remove old filament and replace the new one by placing it at the extruder inlet and press the `LOAD FILAMENT` button.
+  5. If necessary, the filament can be further purged with the `LOAD FILAMENT` button.
+  6. When all is done, you can restart print with `RESU£ME` button.
     
     !!! Note
         **Remember to remove excess purge from the hotend before resuming printing.**
