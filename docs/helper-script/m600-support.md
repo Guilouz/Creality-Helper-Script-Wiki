@@ -21,18 +21,18 @@ This allows to use `M600` command in your slicer to change filament.
 
 Unlike a classic pause which just parks the hotend on the right side and does not stop hotend heating and part fan, `M600` command works as follows:
 
-    **1.** When an M600 is detected in Gcode or if the filament sensor has a runout detection, the hotend is parked at the front of the build plate.
-    **2.** Filament is automatically unloaded from the hotend and the fans are stopped.
-    **3.** At this point, action on your part is required, a prompt window is displayed on the Fluidd or Mainsail Web interface:
+  1. When an M600 is detected in Gcode or if the filament sensor has a runout detection, the hotend is parked at the front of the build plate.
+  2. Filament is automatically unloaded from the hotend and the fans are stopped.
+  3. At this point, action on your part is required, a prompt window is displayed on the Fluidd or Mainsail Web interface:
       
        <img width="600" src="../../assets/img/M600-Support/M600_Support.png">   
       
     !!! Note
-        If you don't take any action, the heating of the hotend is stopped after 15 min to avoid thermal runaway.<br />The bed remains heated to avoid detachment of the model.
+        If you don't take any action, the heating of the hotend is stopped after 15 min to avoid thermal runaway. The bed remains heated to avoid detachment of the model.
 
-    **4.** You must remove old filament and replace the new one by placing it at the extruder inlet and press the `LOAD FILAMENT` button.
-    **5.** If necessary, the filament can be further purged with the `PURGE MORE FILAMENT` button.
-    **6.** When all is done, you can restart print with `RESUME` button.
+  4. You must remove old filament and replace the new one by placing it at the extruder inlet and press the `LOAD FILAMENT` button.
+  5. If necessary, the filament can be further purged with the `PURGE MORE FILAMENT` button.
+  6. When all is done, you can restart print with `RESUME` button.
     
     !!! Note
         **Remember to remove excess purge from the hotend before resuming printing.**
