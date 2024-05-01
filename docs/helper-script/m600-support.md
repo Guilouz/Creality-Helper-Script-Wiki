@@ -32,7 +32,7 @@ Unlike a classic pause which just parks the hotend on the right side and does no
 
   4. You must remove old filament and replace the new one by placing it at the extruder inlet and press the `LOAD FILAMENT` button.
   5. If necessary, the filament can be further purged with the `LOAD FILAMENT` button.
-  6. When all is done, you can restart print with `RESU£ME` button.
+  6. When all is done, you can restart print with `RESUME` button.
     
     !!! Note
         **Remember to remove excess purge from the hotend before resuming printing.**
