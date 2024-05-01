@@ -30,7 +30,7 @@ All settings for KAMP are configured by Helper Script, you just need to make sur
 ## Use
 <hr>
 
-- To configure the bed mesh type, use the `BED_MESH_SETTINGS` macro:
+- To configure the bed mesh type, use the `KAMP_BED_MESH_SETTINGS` macro:
 
     <img width="600" src="../../assets/img/KAMP/Bed_Mesh_Settings.png">
 
@@ -40,7 +40,7 @@ All settings for KAMP are configured by Helper Script, you just need to make sur
 
     - When `NONE` is selected, no bed mesh is performed when starting a print (make sure you have already saved a mesh before).
 
-- To configure the purge line type, use the `PURGE_LINE_SETTINGS` macro:
+- To configure the purge line type, use the `KAMP_PURGE_LINE_SETTINGS` macro:
 
     <img width="600" src="../../assets/img/KAMP/Purge_Line_Settings.png">
 
