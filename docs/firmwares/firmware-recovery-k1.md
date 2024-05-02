@@ -4,7 +4,7 @@ If your motherboard is partially bricked, it's possible to restore the firmware 
 ## Prerequisites
 <hr>
 
-- Drivers and USB Cloner Tool available here: :material-download: [cloner-2.5.36.1-windows_alpha.zip](https://github.com/Guilouz/Creality-Helper-Script-Wiki/raw/main/downloads/Files/cloner-2.5.36.1-windows_alpha.zip)
+- USB Cloner Tool and drivers available here: :material-download: [cloner-2.5.36.1-windows_alpha.zip](https://github.com/Guilouz/Creality-Helper-Script-Wiki/raw/main/downloads/Files/cloner-2.5.36.1-windows_alpha.zip)
 - A computer running :material-microsoft-windows: Windows
 - A microUSB to USB-A cable with dual-purpose for communication and power supply:
 
