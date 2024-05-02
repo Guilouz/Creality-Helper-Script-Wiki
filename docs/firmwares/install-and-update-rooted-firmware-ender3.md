@@ -43,7 +43,7 @@ This guide explain how to install firmware and enable Root access.
 
 This can be useful if you have made modifications to the printer (BLTouch etc...) and you can no longer perform the Startup Self Check.
 
-- Download and unzip this file: :material-download: [debugmode_JumpSelftest.zip](https://github.com/Guilouz/Creality-Helper-Script-Wiki/raw/main/downloads/debugmode_JumpSelftest.zip)
+- Download and unzip this file: :material-download: [debugmode_JumpSelftest.zip](https://github.com/Guilouz/Creality-Helper-Script-Wiki/raw/main/downloads/Files/debugmode_JumpSelftest.zip)
 
 - Insert USB drive in your computer.
 

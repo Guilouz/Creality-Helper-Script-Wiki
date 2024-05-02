@@ -33,7 +33,7 @@ Note that the Factory Reset function in the screen menu settings only performs a
       - Make sure the Creality Web Interface is restored if you have removed it with the Installation Helper Script.<br />
       - Make sure Guppy Screen is removed if you have installed it with the Installation Helper Script.
 
-- Download and unzip this file: :material-download: [Creality_K1_Reset_Utility.zip](https://github.com/Guilouz/Creality-Helper-Script-Wiki/raw/main/downloads/Creality_K1_Reset_Utility.zip)
+- Download and unzip this file: :material-download: [Creality_K1_Reset_Utility.zip](https://github.com/Guilouz/Creality-Helper-Script-Wiki/raw/main/downloads/Files/Creality_K1_Reset_Utility.zip)
 
 - Open the file `Creality_K1_Reset_Utility.html` in your Internet browser:
 

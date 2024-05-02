@@ -107,6 +107,7 @@ nav:
         - K1 Series:
             - Install & Update Rooted Firmware: firmwares/install-and-update-rooted-firmware-k1.md
             - Restore Previous Firmware: firmwares/restore-previous-firmware-k1.md
+            - Firmware Recovery: firmwares/firmware-recovery-k1.md
         - Ender-3 V3 Series:
             - Install & Update Rooted Firmware: firmwares/install-and-update-rooted-firmware-ender3.md
             - Restore Previous Firmware: firmwares/restore-previous-firmware-ender3.md
