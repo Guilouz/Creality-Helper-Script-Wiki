@@ -8,6 +8,8 @@ Guppy Screen is a touch UI for Klipper using APIs exposed by Moonraker. It repla
 
 More info about Guppy Screen here: :material-github: [GitHub](https://github.com/ballaswag/guppyscreen)
 
+More info about configuration of Guppy Screen: :material-web: [Here](https://ballaswag.github.io/docs/guppyscreen/configuration/)
+
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
 
