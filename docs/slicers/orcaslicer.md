@@ -1,6 +1,6 @@
 OrcaSlicer is an open source slicer for FDM printers.
 
-You can download it here: [GitHub](https://github.com/SoftFever/OrcaSlicer/releases/latest)
+You can download it here: :material-github: [GitHub](https://github.com/SoftFever/OrcaSlicer/releases/latest)
 
 
 Here you will find custom build plates for OrcaSlicer:
@@ -77,14 +77,8 @@ Here you will find custom build plates for OrcaSlicer:
     ;AFTER_LAYER_CHANGE
     ;[layer_z]
     ```
-
-    ``` title="Layer change G-code"
-    SET_PRINT_STATS_INFO CURRENT_LAYER={layer_num + 1}
-    ;AFTER_LAYER_CHANGE
-    ;[layer_z]
-    ```
     
-    ``` title="Time lapse G-code (if you use Timelapse)"
+    ``` title="Time lapse G-code (if you use Moonraker Timelapse feature)"
     TIMELAPSE_TAKE_FRAME
     ```
 
