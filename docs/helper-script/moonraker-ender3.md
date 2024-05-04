@@ -2,11 +2,6 @@ This allows to install official and latest build of Moonraker.
 
 Moonraker is a Python 3 based web server that exposes APIs with which client applications may use to interact with Klipper firmware.
 
-Note that Moonraker does not come bundled with a client, you will need to install one. The following clients are currently available:
-
-  - <a href="../fluidd">Fluidd</a> by <a href="https://github.com/fluidd-core">Fluidd Crew</a>
-  - <a href="../mainsail">Mainsail</a> by <a href="https://github.com/mainsail-crew">Mainsail Crew</a>
-
 !!! Note
     **This procedure must be repeated after restoring the printer to factory settings.**
 
