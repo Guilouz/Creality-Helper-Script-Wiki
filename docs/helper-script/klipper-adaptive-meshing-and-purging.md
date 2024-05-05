@@ -44,7 +44,7 @@ You can also edit some settings in `KAMP_Settings.cfg` file located in `Helper-S
     - **variable_purge_amount**: This is the amount (in millimeters) of filament material you wish to purge prior to a print beginning. By default, this value is `50`.
     - **variable_flow_rate**: This is the desired flow rate you wish to purge at. You should set this value to be close to the flow limit of your hotend. By default, this value is `12`.
 
-- <u>The following variables are for adjusting Smart Park feature, which will park the printhead near the print area:</u>
+- <u>The following variables are for adjusting Smart Park settings, which will park the printhead near the print area:</u>
 
     - **variable_smart_park_height**: This is the height (in millimeters) at which your print head will be positioned when thewhen calling the `_SMART_PARK` macro. By default, this value is `10`.
 
