@@ -26,6 +26,21 @@ Fluidd is a free and open-source Klipper web interface for managing your 3d prin
     !!! Note
         You can update Fluidd with Update Manager when a new version is available.
 
+- When forwarding the printer through a reverse proxy, remember to include your domain in the `moonraker.conf` file.
+
+    ```ini
+    [authorization]
+    force_logins: False
+    cors_domains:
+        *.lan
+        *.local
+        *://localhost
+        *://localhost:*
+        *://my.mainsail.xyz
+        *://app.fluidd.xyz
+        *://<YOUR DOMAIN>
+    ```
+
 <br />
 
 **If you like my work, don't hesitate to support me by paying me a 🍺 or a ☕. Thank you 🙂**

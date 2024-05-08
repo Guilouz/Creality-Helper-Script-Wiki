@@ -26,6 +26,21 @@ Mainsail is the popular web interface for managing and controlling 3D printers w
     !!! Note
         You can update Mainsail with Update Manager when a new version is available.
 
+- When configuring printer forwarding through a reverse proxy, remember to include your domain in the `moonraker.conf` file.
+
+    ```ini
+    [authorization]
+    force_logins: False
+    cors_domains:
+        *.lan
+        *.local
+        *://localhost
+        *://localhost:*
+        *://my.mainsail.xyz
+        *://app.fluidd.xyz
+        *://<YOUR DOMAIN>
+    ```
+
 <br />
 
 **If you like my work, don't hesitate to support me by paying me a 🍺 or a ☕. Thank you 🙂**
