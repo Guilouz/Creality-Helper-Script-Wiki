@@ -36,8 +36,6 @@ Please follow the instruction below strictly before to install latest firmware. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.8 (Google Drive)](https://drive.google.com/file/d/1Kh8oaVWUtEd0saeWahEs4Y5dTcPnKPrV/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.3.8.txt)
 
-&nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.26 (Google Drive)](https://drive.google.com/file/d/1QqMxk0V5sw4b6CRRXXPJpQQJZdJwscy5/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.3.26.txt)
-
 
 ## Installation & Update
 <hr>
