@@ -7,19 +7,39 @@ Note that the Factory Reset function in the screen menu settings only performs a
 <hr>
 
 !!! Note
-    This can also be done from `[Tools] Menu` in <a href="../../helper-script/helper-script-installation">Helper Script</a>.
+    This feature is only possible if you have installed <a href="../../helper-script/helper-script-installation">Helper Script</a>.
 
 - Connect to SSH (Guide is available <a href="../../firmwares/ssh-connection">here</a>).
 
 - Enter the following command to perform a full factory reset:
 
     ``` title="SSH Command Prompt"
-    echo "all" | nc -U /var/run/wipe.sock
+    /etc/init.d/S58factoryreset reset
     ``` 
 
-- Once executed, the `ok` message appears and your printer restarts with the settings reset to default.
+- Once executed, your printer will start with settings reset to default, only user preferences and connection settings are preserved.
 
-- It's necessary to reconnect your printer to your network from screen settings in `Settings` → `Network` tab.
+    !!! Warning
+        **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Helper Script for Creality</a>  must be reinstalled.**
+
+
+## Reset from USB drive
+<hr>
+
+This can be useful for factory resetting if you don't have SSH access or the printer is no longer connected to the network.
+
+!!! Note
+    This feature is only possible if you have installed <a href="../../helper-script/helper-script-installation">Helper Script</a>.
+
+- Download and unzip this file: :material-download: [factory_reset.zip](https://github.com/Guilouz/Creality-Helper-Script-Wiki/raw/main/downloads/Files/factory_reset.zip)
+
+- Insert USB drive in your computer.
+
+- Copy the `factory_reset` file to the root of your USB drive and remove it from your computer.
+
+- Plug USB drive on the front of the printer and turn it on.
+
+- At startup, factory reset will be automatically executed, only user preferences and connection settings are preserved.
 
     !!! Warning
         **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Helper Script for Creality</a>  must be reinstalled.**

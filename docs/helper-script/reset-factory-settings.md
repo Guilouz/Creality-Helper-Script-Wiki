@@ -16,9 +16,7 @@ Note that the Factory Reset function in the screen menu settings only performs a
 
     <img width="900" src="../../assets/img/Creality-Helper-Script/Tools_Menu.png">
 
-- Once executed, the `ok` message appears and your printer restarts with the settings reset to default.
-
-- It's necessary to reconnect your printer to your network from screen settings in `Settings` → `Network` tab.
+- Once executed, your printer will start with settings reset to default, only user preferences and connection settings are preserved.
 
     !!! Warning
         **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Helper Script for Creality</a>  must be reinstalled.**

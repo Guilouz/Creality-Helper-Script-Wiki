@@ -2,6 +2,15 @@
 hide:
   - toc
 ---
+#### 19/05/2024
+
+- Updated script to 6.1.0:
+    * Added a new factory reset method, user preferences and connection settings are now preserved and it's possible to reset to factory settings with USB drive (thanks to [pellcorp](https://github.com/pellcorp)).
+    * Minnor fixes.
+- Added links for firmware V1.3.3.29 for K1 Series.
+- Added links for firmware V1.2.1.13  for KE Series.
+- Updated Wiki accordingly.
+
 #### 01/05/2024
 
 - Updated script to 6.0.0:
