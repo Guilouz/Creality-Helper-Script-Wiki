@@ -6,6 +6,7 @@ hide:
 
 - Updated script to 6.1.0:
     * Added a new factory reset method, user preferences and connection settings are now preserved and it's possible to reset to factory settings with USB drive (thanks to [pellcorp](https://github.com/pellcorp)).
+    * Added `M600 support` for KE Series (thanks to [ceedee666](https://github.com/ceedee666)).
     * Minnor fixes.
 - Added links for firmware V1.3.3.29 for K1 Series.
 - Added links for firmware V1.2.1.13  for KE Series.

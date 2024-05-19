@@ -39,6 +39,7 @@ Thanks to everyone who participated or indirectly participated in this project.
 - [Zuffdesign](https://github.com/zuffdesign)
 - [pellcorp](https://github.com/pellcorp)
 - [Anna Leung](https://www.facebook.com/profile.php?id=100094427077994)
+- [ceedee666](https://github.com/ceedee666)
 - BootyCall Jones
 - sozkara
 - Colt45RPM
