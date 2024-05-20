@@ -114,12 +114,12 @@ This menu allows you to perform different actions:
 <img src="../../assets/img/Creality-Helper-Script/Tools_Menu.png">
 
 
-## Informations Menu
+## Information Menu
 <hr>
 
 This menu allows you to know what is installed or not on the printer:
 
-<img src="../../assets/img/Creality-Helper-Script/Informations_Menu.png">
+<img src="../../assets/img/Creality-Helper-Script/Information_Menu.png">
 
 
 ## System Menu
