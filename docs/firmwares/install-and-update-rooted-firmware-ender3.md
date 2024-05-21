@@ -40,7 +40,7 @@ This guide explain how to install firmware and enable Root access.
         **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Creality Helper Script</a>  must be reinstalled.**
 
 
-## Skip the Startup Self Check
+## Skip the Startup Self-Check
 <hr>
 
 This can be useful if you have made modifications to the printer (BLTouch etc...) and you can no longer perform the Startup Self Check.
@@ -53,9 +53,9 @@ This can be useful if you have made modifications to the printer (BLTouch etc...
 
 - Plug USB drive on the front of the printer and turn it on.
 
-- At startup, Self Check will be skipped.
+- At startup, Self-Check will be skipped.
 
-- If you leave the USB drive inserted the Startup Self Check will still be ignored even after reboot.
+- If you leave the USB drive inserted the Startup Self-Check will still be ignored even after reboot.
 
 - If you no longer want to have the USB drive inserted (until the next factory reset), connect to SSH (Guide is available <a href="../ssh-connection">here</a>) and enter this command:
 

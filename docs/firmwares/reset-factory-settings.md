@@ -19,6 +19,8 @@ Note that the Factory Reset function in the screen menu settings only performs a
 
 - Once executed, your printer will start with settings reset to default, only user preferences and connection settings are preserved.
 
+- If needed, start a new calibration in `Settings` → `Self-check` on screen UI.
+
     !!! Warning
         **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Helper Script for Creality</a>  must be reinstalled.**
 
@@ -40,6 +42,8 @@ This can be useful for factory resetting if you don't have SSH access or the pri
 - Plug USB drive on the front of the printer and turn it on.
 
 - At startup, factory reset will be automatically executed, only user preferences and connection settings are preserved.
+
+- If needed, start a new calibration in `Settings` → `Self-check` on screen UI.
 
     !!! Warning
         **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Helper Script for Creality</a>  must be reinstalled.**
