@@ -71,7 +71,10 @@ You can also edit some settings in `KAMP_Settings.cfg` file located in `Helper-S
     - When `CLASSIC PURGE LINE` is selected, a classic purge line is done when starting a print.
 
 !!! Note
-    Adaptative Bed Mesh and Adaptive Purge Line are loaded by default every time Klipper starts.
+    Adaptive Bed Mesh and Adaptive Purge Line configuration changes made using these macros will only
+    be active while your printer is running.   If you restart your printer or Restart Klipper from Fluidd
+    or Mainsail, or even by using `SAVE_CONFIG`, these settings will be lost and your printer will revert
+    to doing an `ADAPTIVE BED MESH` and `ADAPTIVE PUGE LINE` by default.
 
 <br />
 
