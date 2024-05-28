@@ -2,6 +2,12 @@
 hide:
   - toc
 ---
+#### 29/05/2024
+
+- Updated script to 6.2.0:
+    * Added `Screws Tilt Adjust Support` for KE Series (thanks to [foresterr](https://github.com/foresterr)).
+    * Minnor fixes.
+
 #### 19/05/2024
 
 - Updated script to 6.1.0:

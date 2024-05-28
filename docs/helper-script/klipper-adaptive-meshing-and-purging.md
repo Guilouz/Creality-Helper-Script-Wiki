@@ -52,6 +52,9 @@ You can also edit some settings in `KAMP_Settings.cfg` file located in `Helper-S
 ## Use
 <hr>
 
+!!! Note
+    Adaptative Bed Mesh and Adaptive Purge Line are loaded by default every time Klipper starts.
+
 - To configure the bed mesh type, use the `KAMP_BED_MESH_SETTINGS` macro:
 
     <img width="600" src="../../assets/img/KAMP/Bed_Mesh_Settings.png">
@@ -69,9 +72,6 @@ You can also edit some settings in `KAMP_Settings.cfg` file located in `Helper-S
     - When `ADAPTIVE PUGE LINE` is selected, a adaptive purge line near the print area is done when starting a print.
 
     - When `CLASSIC PURGE LINE` is selected, a classic purge line is done when starting a print.
-
-!!! Note
-    Adaptative Bed Mesh and Adaptive Purge Line are loaded by default every time Klipper starts.
 
 <br />
 
