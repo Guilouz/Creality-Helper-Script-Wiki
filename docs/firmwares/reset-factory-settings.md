@@ -3,7 +3,26 @@ The best way to reset the printer to its factory settings is to perform a full r
 Note that the Factory Reset function in the screen menu settings only performs a partial reset.
 
 
-## Reset from SSH connection
+## Reset from SSH connection without Helper Script
+<hr>
+
+- Connect to SSH (Guide is available <a href="../../firmwares/ssh-connection">here</a>).
+
+- Enter the following command to perform a full factory reset:
+
+    ``` title="SSH Command Prompt"
+    echo "all" | nc -U /var/run/wipe.sock
+    ``` 
+
+- Once executed, the `ok` message appears and your printer restarts with the settings reset to default.
+
+- It's necessary to reconnect your printer to your network from screen UI in `Settings` → `Network tab`.
+
+    !!! Warning
+        **After a factory reset, all features already been installed with <a href="../../helper-script/helper-script-installation">Helper Script for Creality</a>  must be reinstalled.**
+
+
+## Reset from SSH connection with Helper Script
 <hr>
 
 !!! Note
