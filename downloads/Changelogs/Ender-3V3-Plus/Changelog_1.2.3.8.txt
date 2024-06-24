@@ -1,0 +1,8 @@
+Version Update V1.2.3.8
+
+1. Repair local UI into and out of the material flashback problem.
+2. Optimize the leveling effect.
+3. Fix the problem of server crash when setting feed and withdrawal on the mobile terminal.
+4. Repair the problem of 2111 error report that may occur after the end of self-test.
+5. Update the built-in slice file.
+6. Fix other bugs.

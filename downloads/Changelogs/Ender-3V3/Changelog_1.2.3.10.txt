@@ -1,0 +1,4 @@
+Version Update V1.2.3.10
+
+1. Fix the name error problem.
+2. Add a random gcode file.
