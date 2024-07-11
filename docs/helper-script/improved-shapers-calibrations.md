@@ -32,11 +32,11 @@ The resonance test is performed on the Y axis and the same result is also applie
 ## Extras
 <hr>
 
-- You can test X and Y axis resonances and generate graphs by running `TEST_RESONANCES_GRAPHS` macro (or `GUPPY_SHAPERS` macro with Guppy Screen). More info :material-github: [here](https://github.com/Frix-x/klippain-shaketune/blob/main/docs/macros/axis_tuning.md).
+- You can test X and Y axis resonances and generate graphs by running `TEST_RESONANCES_GRAPHS` macro (or `GUPPY_SHAPERS` macro with Guppy Screen). More info :material-github: [here](https://github.com/Frix-x/klippain-shaketune/blob/main/docs/macros/axes_shaper_calibrations.md).
 
     <img src="../../assets/img/Improved-Shapers-Calibrations/Resonances_Graph_Description.png">
 
-- You can perform a custom half-axis test to analyze and compare the frequency profiles of individual belts by running `BELTS_SHAPER_CALIBRATION` macro (or `GUPPY_BELTS_SHAPER_CALIBRATION` macro with Guppy Screen). More info :material-github: [here](https://github.com/Frix-x/klippain-shaketune/blob/main/docs/macros/belts_tuning.md).
+- You can perform a custom half-axis test to analyze and compare the frequency profiles of individual belts by running `BELTS_SHAPER_CALIBRATION` macro (or `GUPPY_BELTS_SHAPER_CALIBRATION` macro with Guppy Screen). More info :material-github: [here](https://github.com/Frix-x/klippain-shaketune/blob/main/docs/macros/compare_belts_responses.md).
 
     <img src="../../assets/img/Improved-Shapers-Calibrations/Belts_Graph_Description.png">
 
