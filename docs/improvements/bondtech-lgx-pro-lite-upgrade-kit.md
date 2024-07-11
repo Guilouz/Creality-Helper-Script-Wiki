@@ -1,11 +1,11 @@
-Is your Creality K1 Max falling short? You have a way to make it much better. Improve speed, surface quality, versatility and durability.
+Is your Creality K1 Max falling short? You have a way to make it much better. Improve speed, surface quality, versatility and durability.<br />
 This XY-axis and Large Gears Extruder LGX Lite Pro upgrade from **Bondtech** is designed to use on the Creality K1, K1C and K1 Max.
 
 
 ## Links
 <hr>
 
-&nbsp;&nbsp;&nbsp;&nbsp;:material-web: <a href="For K1/K1C: https://www.bondtech.se/product/lgx-lite-pro-upgrade-kit-for-creality-k1-k1c/">LGX Lite Pro Upgrade Kit for Creality K1 and K1C</a>
+&nbsp;&nbsp;&nbsp;&nbsp;:material-web: <a href="For K1/K1C: https://www.bondtech.se/product/lgx-lite-pro-upgrade-kit-for-creality-k1-k1c/">LGX Lite Pro Upgrade Kit for Creality K1 and K1C</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;:material-web: <a href="https://www.bondtech.se/product/lgx-lite-pro-upgrade-kit-for-creality-k1-max/">LGX Lite Pro Upgrade Kit for Creality K1 Max</a>
 
 
