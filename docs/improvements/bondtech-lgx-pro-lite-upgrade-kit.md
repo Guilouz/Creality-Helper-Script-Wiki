@@ -69,7 +69,7 @@ It’s needed to change extruder motor configuration.
 ## Slicer Configuration
 <hr>
 
-It’s needed to change retraction settings in your slicer.
+It’s needed to change retraction settings in your slicer:
 
 - **For 0.4mm nozzle:** 0.7mm length @ 35mm/s
 - **For 0.4mm nozzle:** 0.9mm length @ 35mm/s
