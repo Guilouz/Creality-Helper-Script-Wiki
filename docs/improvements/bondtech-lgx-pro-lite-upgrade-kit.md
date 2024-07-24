@@ -5,7 +5,7 @@ This XY-axis and Large Gears Extruder LGX Lite Pro upgrade from **Bondtech** is 
 ## Links
 <hr>
 
-&nbsp;&nbsp;&nbsp;&nbsp;:material-web: <a href="For K1/K1C: https://www.bondtech.se/product/lgx-lite-pro-upgrade-kit-for-creality-k1-k1c/">LGX Lite Pro Upgrade Kit for Creality K1 and K1C</a><br />
+&nbsp;&nbsp;&nbsp;&nbsp;:material-web: <a href="https://www.bondtech.se/product/lgx-lite-pro-upgrade-kit-for-creality-k1-k1c/">LGX Lite Pro Upgrade Kit for Creality K1 and K1C</a><br />
 &nbsp;&nbsp;&nbsp;&nbsp;:material-web: <a href="https://www.bondtech.se/product/lgx-lite-pro-upgrade-kit-for-creality-k1-max/">LGX Lite Pro Upgrade Kit for Creality K1 Max</a>
 
 
