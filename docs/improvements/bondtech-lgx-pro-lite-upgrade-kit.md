@@ -53,7 +53,7 @@ It’s needed to change extruder motor configuration.
 
 - Search section named `[extruder]` and replace this parameter:
 
-    ``` title="printer.cfg" hl_lines="2"
+    ``` hl_lines="2"
     [extruder]
     rotation_distance: 3.99
     ```
