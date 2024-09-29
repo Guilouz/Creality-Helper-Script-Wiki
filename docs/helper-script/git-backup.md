@@ -76,11 +76,12 @@ This allows to watch Klipper configuration folder and automatically backup to Gi
 
 - Git Backup can also be controlled from SSH with this command by replacing `<option>` with possible option:
 
-    ``` title="SSH Command Prompt"
+    ```
     sh /usr/data/helper-script/files/git-backup/git-backup.sh <option>
     ```
 
-    ``` title="Possible Options"
+    Possible Options:
+    ```
     -i              Install
     -p              Pause
     -r              Resume

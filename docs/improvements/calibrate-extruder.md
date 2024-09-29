@@ -17,11 +17,11 @@ On an extruder, the rotation_distance is the amount of distance the filament tra
 
     Note this value of 100mm as the `<requested_extrude_distance>`:
 
-    ``` title="Console"
+    ```
     G91
     ```
 
-    ``` title="Console"
+    ```
     G1 E100 F100
     ```
 
@@ -37,7 +37,7 @@ On an extruder, the rotation_distance is the amount of distance the filament tra
 
 - Then retrieve the current rotation_distance value from the `printer.cfg` file at the `rotation_distance:` line of the `[extruder]` section:
 
-    ``` title="printer.cfg" hl_lines="8"
+    ```
     [extruder]
     max_extrude_only_distance: 1000.0
     max_extrude_cross_section: 80
@@ -87,7 +87,7 @@ On an extruder, the rotation_distance is the amount of distance the filament tra
 - I replace the **rotation_distance: 6.9** line in the `printer.cfg` file with:<br />
   **rotation_distance: 7.038**:
 
-    ``` title="printer.cfg" hl_lines="8"
+    ```
     [extruder]
     max_extrude_only_distance: 1000.0
     max_extrude_cross_section: 80

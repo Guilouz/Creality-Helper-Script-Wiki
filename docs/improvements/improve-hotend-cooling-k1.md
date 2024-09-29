@@ -20,7 +20,7 @@ By making this change, the hotend fan speed will be reduced to 80% and the side 
 
 - Search macro named `[gcode_macro WAIT_TEMP_START]` and replace it by this one:
 
-    ``` title="gcode_macro.cfg"
+    ```
     [gcode_macro WAIT_TEMP_START]
     gcode:
       UPDATE_DELAYED_GCODE ID=wait_temp DURATION=1
@@ -30,7 +30,7 @@ By making this change, the hotend fan speed will be reduced to 80% and the side 
 
 - Then, search macro named `[gcode_macro WAIT_TEMP_END]` and replace it by this one:
 
-    ``` title="gcode_macro.cfg"
+    ```
     [gcode_macro WAIT_TEMP_END]
     gcode:
       UPDATE_DELAYED_GCODE ID=wait_temp DURATION=0

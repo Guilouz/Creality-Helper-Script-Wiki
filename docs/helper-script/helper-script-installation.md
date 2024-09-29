@@ -22,13 +22,13 @@ If you have already installed Moonraker, Fluidd or Mainsail provided by Creality
 
 - Enter the following command to install script in `usr/data` folder:
 
-    ``` title="SSH Command Prompt"
+    ```
     git clone https://github.com/Guilouz/Creality-Helper-Script.git /usr/data/helper-script
     ```
 
 - And enter this command to run the script:
 
-    ``` title="SSH Command Prompt"
+    ```
     sh /usr/data/helper-script/helper.sh
     ```
 
@@ -36,7 +36,7 @@ If you have already installed Moonraker, Fluidd or Mainsail provided by Creality
 
 - If you encounter an issue to clone Helper Script repository, enter this command before cloning:
 
-    ``` title="SSH Command Prompt"
+    ```
     git config --global http.sslVerify false
     ```
 

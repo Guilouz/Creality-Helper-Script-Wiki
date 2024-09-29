@@ -30,7 +30,7 @@ This allows to control camera settings with macros.
 
 - When restarting the printer your camera settings will not be preserved, to correct this open `camera-settings.cfg` located in `Helper-Script` folder and edit this lines with the desired values:
 
-    ``` title="camera-settings.cfg"
+    ```
     [delayed_gcode LOAD_CAM_SETTINGS]
     initial_duration: 2
     gcode:

@@ -24,7 +24,7 @@ This allows to control hotend and side fans during nozzle cleaning process to ha
 
 - And change the `max_speed` value knowing that the max value is 1.0 (which corresponds to a speed of 100%).
 
-    ``` title="nozzle-cleaning-fan-control.cfg" hl_lines="2"
+    ```
     [prtouch_v2_fan]
     max_speed: 0.5
     ```

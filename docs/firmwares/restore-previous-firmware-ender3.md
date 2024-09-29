@@ -44,7 +44,7 @@ You can easily restore current Firmware to a previous one.
 
 - Connect to SSH (Guide is available <a href="../ssh-connection">here</a>) and run this command:
 
-    ``` title="SSH Command Prompt"
+    ```
     /etc/ota_bin/local_ota_update.sh /tmp/udisk/sda1/*.img
     ```
 

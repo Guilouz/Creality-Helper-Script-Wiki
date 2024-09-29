@@ -26,53 +26,64 @@ Installing Entware allows ton install packages to your printer to perform new ta
 - This is available commands (replacing `<packagename>` by the name of the package):
 
     
-    ``` title="To install a specified package"
+    To install a specified package:
+    ```
     opkg install <packagename>
     ```
     
-    ``` title="To update available packages list"
+    To update available packages list:
+    ```
     opkg update
     ```
     
-    ``` title="To update all installed packages"
+    To update all installed packages:
+    ```
     opkg upgrade
     ```
     
-    ``` title="To update a specified package"
+    To update a specified package:
+    ```
     opkg upgrade <packagename>
     ```
     
-    ``` title="To display the list of all available packages"
+    To display the list of all available packages:
+    ```
     opkg list
     ```
     
-    ``` title="To display the list of all installed packages"
+    To display the list of all installed packages:
+    ```
     opkg list-installed
     ```
     
-    ``` title="To display the list of packages that can be updated"
+    To display the list of packages that can be updated:
+    ```
     opkg list-upgradable
     ```
     
-    ``` title="To remove package without its associated dependencies"
+    To remove package without its associated dependencies:
+    ```
     opkg remove <packagename>
     ```
 
-    ``` title="To remove package and its associated dependencies"
+    To remove package and its associated dependencies:
+    ```
     opkg --autoremove remove <packagename>
     ```
     
-    ``` title="To display detailed information about a specified package"
+    To display detailed information about a specified package:
+    ```
     opkg info <packagename>
     ```
     
-    ``` title="To display the list of files installed by a specified package"
+    To display the list of files installed by a specified package:
+    ```
     opkg files <packagename>
     ```
 
     !!! Example
         To install **Nano** (Nano is a small and simple text editor for use on the terminal):<br/>
-        ``` title="SSH Command Prompt"
+        ```
         opkg install nano
         ```
 

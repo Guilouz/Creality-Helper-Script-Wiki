@@ -14,7 +14,7 @@ This guide explains how to set the correct date and time on your printer based o
 
 - Enter this command to see the current date and time defined on your printer:
 
-    ``` title="SSH Command Prompt"
+    ```
     date
     ```
     
@@ -22,59 +22,59 @@ This guide explains how to set the correct date and time on your printer based o
 
 - Enter this command to see the current time zone defined on your printer:
 
-    ``` title="SSH Command Prompt"
+    ```
     ls -l /etc/localtime | awk '{print $6, $7, $8, $9, $10, $11}'
     ```
 
     By default I get this (I live in France so this is not correct):
     
-    ``` title="SSH Command Prompt"
+    ```
     Jan 10 16:04 /etc/localtime -> ../usr/share/zoneinfo/Asia/Shanghai
     ```
 
 - Enter this command to delete the current time zone:
 
-    ``` title="SSH Command Prompt"
+    ```
     rm -rf /etc/localtime
     ```
 
 - Enter this command to display the list of available zones:
 
-    ``` title="SSH Command Prompt"
+    ```
     ls /usr/share/zoneinfo | grep '^[A-Z]'
     ```
 
 - Enter this command to display the list of cities available in the chosen zone (by replacing the `XXX` with the zone):
 
-    ``` title="SSH Command Prompt"
+    ```
     ls /usr/share/zoneinfo/XXX | grep '^[A-Z]'
     ```
 
     !!! Example
-        ``` title="SSH Command Prompt"
+        ```
         ls /usr/share/zoneinfo/Europe | grep '^[A-Z]'
         ```
 
 - When you have find your current time zone, enter this command to define it  (by replacing the `XXX` with the zone and `YYY` by the city):
 
-    ``` title="SSH Command Prompt"
+    ```
     ln -s /usr/share/zoneinfo/XXX/YYY /etc/localtime
     ```
 
     !!! Example
-        ``` title="SSH Command Prompt"
+        ```
         ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
         ```
 
 - Enter this command to restart NTP server to take effect:
 
-    ``` title="SSH Command Prompt"
+    ```
     /etc/init.d/S49ntp restart
     ```
 
 - Then enter this command again to see the changes applied:
 
-    ``` title="SSH Command Prompt"
+    ```
     date
     ```
 

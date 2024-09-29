@@ -10,7 +10,7 @@ Note that the Factory Reset function in the screen menu settings only performs a
 
 - Enter the following command to perform a full factory reset:
 
-    ``` title="SSH Command Prompt"
+    ```
     echo "all" | nc -U /var/run/wipe.sock
     ``` 
 
@@ -32,7 +32,7 @@ Note that the Factory Reset function in the screen menu settings only performs a
 
 - Enter the following command to perform a full factory reset:
 
-    ``` title="SSH Command Prompt"
+    ```
     /etc/init.d/S58factoryreset reset
     ``` 
 

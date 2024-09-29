@@ -19,7 +19,7 @@ Only make these changes if you are experiencing stability issues with your print
 
 - Enter the following command to check all available locations:
 
-    ``` title="SSH Command Prompt"
+    ```
     cat /usr/share/zoneinfo/zone.tab
     ```
 
@@ -43,7 +43,7 @@ Only make these changes if you are experiencing stability issues with your print
 
 - On the right part of the window, in SSH command prompt, enter this command to reboot your printer:
 
-    ``` title="SSH Command Prompt"
+    ```
     reboot
     ```
 

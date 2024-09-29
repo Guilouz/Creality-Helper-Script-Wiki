@@ -143,7 +143,7 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 
 - You can now test push notifications by enter this command in Console on Fluidd or Mainsail Web interface:
 
-     ``` title="Console"
+     ```
      M117 $MR$:Hi guy!|This message is a notification test.
      ```
 
@@ -164,7 +164,7 @@ More info about Mobileraker: :material-web: [Here](https://mobileraker.com/)
 
 - And add this macro:
 
-    ``` title="gcode_macro.cfg"
+    ```
     [gcode_macro MR_NOTIFY]
     description: Allows to send custom notifications via Mobileraker without using the M117 command
     gcode:

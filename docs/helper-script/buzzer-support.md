@@ -23,7 +23,7 @@ This allows to use the buzzer integrated into the motherboard to play a sound du
 
     !!! Example
         Here is an example to play 3 sounds when printing is complete:<br />
-        ``` title="gcode_macro.cfg" hl_lines="12 13 14"
+        ```
         [gcode_macro END_PRINT]
         gcode:
           Qmode_exit

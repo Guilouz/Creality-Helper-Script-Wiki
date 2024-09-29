@@ -42,7 +42,7 @@ If you want to configure camera for Fluidd and Mainsail you can also configure i
 
 - Add this lines (if you don't have them) by replacing `xxx.xxx.xxx.xxx` by your local IP address:
 
-    ``` title="moonraker.conf"
+    ```
     [webcam Camera]
     location: printer
     enabled: True

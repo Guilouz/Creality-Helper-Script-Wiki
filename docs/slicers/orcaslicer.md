@@ -55,38 +55,45 @@ Here you will find custom build plates for OrcaSlicer:
 
 - Click on `Machine G-code` tab and define the following G-codes:
 
-    ``` title="Machine start G-code"
+    Machine start G-code:
+    ```
     SET_PRINT_STATS_INFO TOTAL_LAYER=[total_layer_count]
     M140 S0
     M104 S0
     START_PRINT EXTRUDER_TEMP=[nozzle_temperature_initial_layer] BED_TEMP=[bed_temperature_initial_layer_single]
     ```
 
-    ``` title="Machine end G-code"
+    Machine end G-code:
+    ```
     END_PRINT
     ```
 
-    ``` title="Before layer change G-code"
+    Before layer change G-code:
+    ```
     ;BEFORE_LAYER_CHANGE
     ;[layer_z]
     G92 E0
     ```
 
-    ``` title="Layer change G-code"
+    Layer change G-code:
+    ```
     SET_PRINT_STATS_INFO CURRENT_LAYER={layer_num + 1}
     ;AFTER_LAYER_CHANGE
     ;[layer_z]
     ```
     
-    ``` title="Time lapse G-code (if you use Moonraker Timelapse feature)"
+    Time lapse G-code (if you use Moonraker Timelapse feature):
+    ```
     TIMELAPSE_TAKE_FRAME
     ```
 
-    ``` title="Change filament G-code (if you use M600 Support feature otherwise it must be PAUSE)"
+    Change filament G-code (if you use M600 Support feature otherwise it must be PAUSE):
+    ```
     M600
     ```
 
-    ``` title="Pause G-code (if you use M600 Support feature otherwise it must be PAUSE)"
+    Pause G-code (if you use M600 Support feature otherwise it must be PAUSE):
+    ```
     M600
     ```
 

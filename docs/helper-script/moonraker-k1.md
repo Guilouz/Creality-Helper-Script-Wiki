@@ -39,7 +39,7 @@ It allows to manage services with Moonraker.
 
 - It can be also used in SSH with this command:
 
-    ``` title="SSH Command Prompt"
+    ```
     /usr/bin/supervisorctl [command] <service>
     ```
 
