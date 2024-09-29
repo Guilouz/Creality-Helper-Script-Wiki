@@ -53,38 +53,38 @@ It’s needed to change extruder motor configuration.
 
 - Search section named `[extruder]` and replace this parameter:
 
-    ``` hl_lines="2"
+    ```
     [extruder]
     rotation_distance: 3.99
     ```
 
 - Search section named `[tmc2209 extruder]` and replace this parameter:
 
-    ``` title="printer.cfg" hl_lines="2"
+    ```
     [extruder]
     run_current: 0.6
     ```
 
 - If you have the new version of **K1** (with 20 teeth pulleys) or **K1C**, you must also change these settings:
 
-    ``` title="printer.cfg" hl_lines="2"
+    ```
     [stepper_y]
     position_max: 224 # Stock 227 - Decrease 3
     ```
 
-    ``` title="printer.cfg" hl_lines="2"
+    ```
     [prtouch_v2]
     clr_noz_start_y: 223.5 # Stock 225 - Decrease 1.5
     ```
 
 - If you have the new version of **K1 Max** (with 20 teeth pulleys), you must also change these settings:
 
-    ``` title="printer.cfg" hl_lines="2"
+    ```
     [stepper_y]
     position_max: 303 # Stock 306 - Decrease 3
     ```
 
-    ``` title="printer.cfg" hl_lines="2"
+    ```
     [prtouch_v2]
     clr_noz_start_y: 301.5 # Stock 303 - Decrease 1.5
     ```
