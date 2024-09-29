@@ -84,9 +84,9 @@ This can be useful if you have made modifications to the printer (BLTouch etc...
 
 - If you no longer want to have the USB drive inserted (until the next factory reset), connect to SSH (Guide is available <a href="../ssh-connection">here</a>) and enter this command:
 
-    ``` title="SSH Command Prompt"
-    sed -i 's/"self_test_sw":1/"self_test_sw":0/' /usr/data/creality/userdata/config/system_config.json
-    ```
+``` title="SSH Command Prompt"
+sed -i 's/"self_test_sw":1/"self_test_sw":0/' /usr/data/creality/userdata/config/system_config.json
+```
 
 
 ## Enable Root Access
