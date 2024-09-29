@@ -93,6 +93,8 @@ markdown_extensions:
         title: On this page
     - pymdownx.highlight:
         anchor_linenums: true
+        line_spans: __span
+        pygments_lang_class: true
     - pymdownx.emoji:
         emoji_index: !!python/name:material.extensions.emoji.twemoji
         emoji_generator: !!python/name:materialx.emoji.to_svg
