@@ -1,0 +1,11 @@
+V1.3.3.36 Firmware Update
+
+1. Optimize the logic of filament loading and unloading
+2. Optimize some UI issues;
+3. Compatibility with Creality Print 5.1;
+4. Optimize leveling parameters;
+5. Fixed some bugs.
+
+Tips:
+1. Please do a factory reset if you used the root script to install other components, otherwise it might cause errors.
+2. Upgrade won't remove fluidd/mainsail, but will overwrite printer configs. Save configs if needed.
