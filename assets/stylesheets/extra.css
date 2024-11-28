@@ -1,0 +1,55 @@
+:root {
+  --md-primary-fg-color: #227fe3;
+  --md-primary-fg-color--light: #227fe3;
+  --md-primary-fg-color--dark: #227fe3;
+  --md-accent-fg-color: #5ca5f5;
+  --md-accent-fg-color--light: #5ca5f5;
+  --md-accent-fg-color--dark: #5ca5f5;
+}
+
+[dir=ltr] .md-header__title {
+    margin-left: 0;
+}
+
+.md-header__title {
+    margin-left: 0;
+}
+
+.md-typeset mark {
+    background-color: #5ca5f573;
+}
+
+.md-nav__title {
+    color: #227fe3;
+}
+
+.md-nav__item--section>.md-nav__link[for] {
+    color: #227fe3;
+}
+
+.md-typeset h1 {
+    color: #227fe3;
+    font-weight: bold;
+}
+
+.md-typeset h2 {
+    color: var(--md-default-fg-color--light);
+   	font-weight: bold;
+}
+
+.md-typeset h4 {
+    color: var(--md-default-fg-color--light);
+   	font-weight: bold;
+}
+
+.md-typeset hr {
+    margin: 0;
+}
+
+.md-typeset code {
+    background-color: #448aff1a;
+}
+
+.md-typeset pre>code {
+    padding-right: 3em;
+}
