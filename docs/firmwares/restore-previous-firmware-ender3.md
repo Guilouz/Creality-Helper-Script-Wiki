@@ -17,10 +17,14 @@ You can easily restore current Firmware to a previous one.
     &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.2.1.13 (Google Drive)](https://drive.google.com/file/d/1rJa8zU_wOauW06blgUMfsl_u9u2oYKu2/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/Ender-3V3/Changelog_1.2.1.13.txt)
 
     &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.2.3.10 (Google Drive)](https://drive.google.com/file/d/10C3l2vppEA_tmbGjGqz5hRkYXvc29V0D/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/Ender-3V3/Changelog_1.2.3.10.txt)
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.2.3.21 (Google Drive)](https://drive.google.com/file/d/1M-mxhIKSw2jmhW5YX_K6QvIhRx0EJ6UO/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/Ender-3V3/Changelog_1.2.3.21.txt)
 
 - <b><u>Ender-3 V3 Plus:</u></b>
 
     &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.2.3.8 (Google Drive)](https://drive.google.com/file/d/12tCO7zBVLqz-Wrbc7WgQnIuNbYdtdhdl/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/Ender-3V3-Plus/Changelog_1.2.3.8.txt)
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.2.3.21 (Google Drive)](https://drive.google.com/file/d/10EOuyyhm4bGDt1yL7Vga5ZkZlgIlJsb0/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/Ender-3V3-Plus/Changelog_1.2.3.21.txt)
 
 
 ## Restoration
