@@ -1,0 +1,9 @@
+Version Update V1.2.3.21
+
+1. Add Z-axis offset save control and risk reminder confirmation pop-up interface.
+2. Boot animation: change the page to a green theme.
+3. Fixed frequent disconnections of the cloud camera, optimized WebRTC connection speed.
+4. Adjusted the camera AI interface layout.
+5. Adjusted leveling anomaly prompts.
+6. Fixed other known UI issues.
+7. Updated privacy policy text.
