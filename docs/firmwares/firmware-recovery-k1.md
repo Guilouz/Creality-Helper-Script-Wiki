@@ -27,7 +27,6 @@ If your motherboard is partially bricked, it's possible to restore the firmware 
 &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [Ingenic 1.3.0.39 (Google Drive)](https://drive.google.com/file/d/1zlV_gpXGbqq8l_wbcNEygb2r-DPEHV9g/view?usp=drive_link)
 
 
-
 ## Drivers Installation
 <hr>
 

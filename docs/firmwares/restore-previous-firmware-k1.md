@@ -20,6 +20,8 @@ You can easily restore current Firmware to a previous one.
 
 &nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.36 (Google Drive)](https://drive.google.com/file/d/1SiOEZU2pM553ZniUa9tt9XMyrZ8FKbT_/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.3.36.txt)
 
+&nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.46 (Google Drive)](https://drive.google.com/file/d/1G7VbYWHmuFZzdqpkSGDlBuUVdSaruJR-/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.3.46.txt)
+
 
 ## Restoration
 <hr>
