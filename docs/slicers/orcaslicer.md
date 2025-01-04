@@ -101,7 +101,7 @@ Here you will find custom build plates for OrcaSlicer:
 ## Upload Gcode files to printer
 <hr>
 
-- In **OrcaSlicer**, click on `Connexion` icon:
+- In **OrcaSlicer**, click on `Connection` icon:
 
     <img width="600" src="../../assets/img/OrcaSlicer/OrcaSlicer_04.png">
 
