@@ -15,7 +15,7 @@ Fluidd is a free and open-source Klipper web interface for managing your 3d prin
 
 - Make sure you have followed this <a href="../../helper-script/helper-script-installation">Install Helper Script</a> section before.
 
-- In the script, enter in `[Install] Menu` by typing ++"1"++ , validate with ++"Enter"++ and install `Fluidd`:
+- In the script, enter in `[Install] Menu` by typing ++"2"++ , validate with ++"Enter"++ and install `Fluidd`:
 
     <img width="900" src="../../assets/img/Creality-Helper-Script/Install_Menu.png">
 
