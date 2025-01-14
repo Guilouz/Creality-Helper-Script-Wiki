@@ -23,20 +23,13 @@ Please follow the instruction below strictly before to install latest firmware. 
 → You can install latest firmwares below.
 
 !!! Note
-    You can find earlier firmwares download links here: :material-web: [Creality Cloud](https://www.crealitycloud.com/software-firmware/firmware/flagship-series).
+    You can find earlier firmwares download links here: :material-web: [Creality Cloud](https://www.crealitycloud.com/software-firmware/firmware/flagship-series)
 
 
 ## Download Links
 <hr>
 
-!!! Note
-    Firmwares are official from Creality and work on K1, K1C and K1 Max, detection of the correct printer is done by the firmware.<br />You can also install them from OTA or download them from :material-web: [Creality Cloud](https://www.crealitycloud.com/software-firmware/firmware/flagship-series).
-
-&nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.29 (Google Drive)](https://drive.google.com/file/d/1NxsR7_bMTwDUZZVag909ea3NbAyd4k1f/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.3.29.txt)
-
-&nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.36 (Google Drive)](https://drive.google.com/file/d/1SiOEZU2pM553ZniUa9tt9XMyrZ8FKbT_/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.3.36.txt)
-
-&nbsp;&nbsp;&nbsp;&nbsp;:material-google-drive: [1.3.3.46 (Google Drive)](https://drive.google.com/file/d/1G7VbYWHmuFZzdqpkSGDlBuUVdSaruJR-/view?usp=drive_link) / :material-note-text: [Changelog](https://raw.githubusercontent.com/Guilouz/Creality-Helper-Script-Wiki/main/downloads/Changelogs/K1/Changelog_1.3.3.46.txt)
+You can install firmware from OTA or download them from :material-web: [Creality Cloud](https://www.crealitycloud.com/software-firmware/firmware/flagship-series)
 
 
 ## Installation & Update

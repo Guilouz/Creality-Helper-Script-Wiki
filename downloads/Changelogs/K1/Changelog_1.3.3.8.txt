@@ -1,5 +1,0 @@
-V1.3.3.8 Firmware Update
-
-1.Solving the intermittent clogging problem of quick-swap nozzle through the use unload filament.
-
-2.Fix some bugs.
