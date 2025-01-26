@@ -23,7 +23,7 @@ If you have already installed Moonraker, Fluidd or Mainsail provided by Creality
 - Enter the following command to install script in `usr/data` folder:
 
     ```
-    git clone https://github.com/Guilouz/Creality-Helper-Script.git /usr/data/helper-script
+    git clone --depth 1 https://github.com/Guilouz/Creality-Helper-Script.git /usr/data/helper-script
     ```
 
 - And enter this command to run the script:
