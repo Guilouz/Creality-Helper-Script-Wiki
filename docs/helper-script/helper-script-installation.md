@@ -20,7 +20,7 @@ If you have already installed Moonraker, Fluidd or Mainsail provided by Creality
 
 - Connect to SSH (Guide is available <a href="../../firmwares/ssh-connection">here</a>).
 
-- Enter the following command to install script in `usr/data` folder. **To reduce the size of the downloaded repository, a shallow clone with depth 1 is used:**
+- Enter the following command to install script in `usr/data` folder:
 
     ```
     git clone --depth 1 https://github.com/Guilouz/Creality-Helper-Script.git /usr/data/helper-script
