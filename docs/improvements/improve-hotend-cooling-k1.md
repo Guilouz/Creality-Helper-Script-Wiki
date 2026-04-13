@@ -24,8 +24,8 @@ By making this change, the hotend fan speed will be reduced to 80% and the side 
     [gcode_macro WAIT_TEMP_START]
     gcode:
       UPDATE_DELAYED_GCODE ID=wait_temp DURATION=1
-      SET_PIN PIN=fan0 VALUE=210
-      SET_PIN PIN=fan2 VALUE=210
+      SET_PIN PIN=fan0 VALUE=204
+      SET_PIN PIN=fan2 VALUE=102
     ```
 
 - Then, search macro named `[gcode_macro WAIT_TEMP_END]` and replace it by this one:
