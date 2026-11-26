@@ -105,7 +105,7 @@ Here you will find custom build plates for OrcaSlicer:
 
     <img width="600" src="../../assets/img/OrcaSlicer/OrcaSlicer_04.png">
 
-- On a **K1 series** printer, you can [enable slicer discovery in Helper Script](../helper-script/slicer-discovery-k1.md). Set **Host Type** to **Octo/Klipper**, click **Browse**, and select your printer on port `4408`. Click **Test** to check the connection, then **OK** to save it.
+- On a **K1 series** printer, set **Host Type** to **Octo/Klipper** and click **Browse** to find the `_octoprint._tcp.local.` service on port `4408`. Select the printer, click **Test**, then **OK** to save it. Clients with native Moonraker discovery use `_moonraker._tcp.local.` on Moonraker's configured port. [Enable both announcements in Helper Script](../helper-script/slicer-discovery-k1.md).
 
 - To set up the connection manually, enter the address for your web interface in **Hostname, IP or URL**.
 
