@@ -105,7 +105,9 @@ Here you will find custom build plates for OrcaSlicer:
 
     <img width="600" src="../../assets/img/OrcaSlicer/OrcaSlicer_04.png">
 
-- In `Hostname, IP or URL` section, enter the IP address of your printer depending Web interface you are using:
+- On a **K1 series** printer, you can [enable slicer discovery in Helper Script](../helper-script/slicer-discovery-k1.md). Set **Host Type** to **Octo/Klipper**, click **Browse**, and select your printer on port `4408`. Click **Test** to check the connection, then **OK** to save it.
+
+- To set up the connection manually, enter the address for your web interface in **Hostname, IP or URL**.
 
     - For **Fluidd**: http://xxx.xxx.xxx.xxx:4408/ (replacing xxx.xxx.xxx.xxx by your local IP address)
     - For **Mainsail**: http://xxx.xxx.xxx.xxx:4409/ (replacing xxx.xxx.xxx.xxx by your local IP address)

@@ -157,6 +157,7 @@ nav:
                 - Fix Printing Gcode files from Folder: helper-script/fix-printing-gcode-files-from-folder.md
                 - Restore a previous Firmware: helper-script/restore-a-previous-firmware-k1.md
                 - Reset Factory Settings: helper-script/reset-factory-settings.md
+                - Slicer discovery on the local network: helper-script/slicer-discovery-k1.md
         - Ender-3 V3 Series:
             - Install Menu: 
                 - Updated Moonraker: helper-script/moonraker-ender3.md
