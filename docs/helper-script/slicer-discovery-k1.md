@@ -16,6 +16,6 @@ The first announcement uses the K1 firmware's `/usr/bin/mdns`. Moonraker publish
 
 To turn off the announcements managed by Helper Script, select **Tools → 15 · Disable slicer discovery (Octo/Klipper and Moonraker)**. A pre-existing `[zeroconf]` section in `moonraker.conf` or an included file remains in control of native discovery. If you add settings to the section created by Helper Script, disabling discovery keeps those settings.
 
-When the Moonraker configuration changes, Helper Script checks that the printer is idle before restarting Moonraker. If it cannot confirm that the printer is idle, use **Tools → 7 · Restart Moonraker service** after the print finishes.
+If Moonraker needs a restart, Helper Script first checks that the printer is idle. If it asks you to wait, repeat the same **Enable** or **Disable** option once the printer is idle. If the local API is unavailable, use **Tools → 7 · Restart Moonraker service** when the printer is idle.
 
 If **Browse** shows an empty list, check that the computer and printer are on the same network and that multicast DNS (mDNS) can pass between them. You can also [enter the address manually in OrcaSlicer](../slicers/orcaslicer.md#upload-gcode-files-to-printer). If **Test** returns HTTP `401`, enter your Moonraker API key in **API Key / Password** and test again.
